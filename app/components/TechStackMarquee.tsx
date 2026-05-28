@@ -81,9 +81,9 @@ export default function TechStackMarquee() {
         </div>
       </div>
 
-      {/* Edge fade masks */}
-      <div className="absolute inset-y-0 left-0 w-24 sm:w-40 bg-gradient-to-r from-void-black to-transparent z-10 pointer-events-none" />
-      <div className="absolute inset-y-0 right-0 w-24 sm:w-40 bg-gradient-to-l from-void-black to-transparent z-10 pointer-events-none" />
+      {/* Edge fade masks — vw-based so they scale on ultrawide */}
+      <div className="absolute inset-y-0 left-0 w-[8vw] min-w-[60px] max-w-[180px] bg-gradient-to-r from-void-black to-transparent z-10 pointer-events-none" />
+      <div className="absolute inset-y-0 right-0 w-[8vw] min-w-[60px] max-w-[180px] bg-gradient-to-l from-void-black to-transparent z-10 pointer-events-none" />
 
       {/* Marquee Row 1 - Moving Right */}
       <div className="mb-6">

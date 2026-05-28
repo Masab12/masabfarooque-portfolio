@@ -68,8 +68,8 @@ export default function TrustedBy() {
       </div>
 
       <div className="relative">
-        <div className="absolute inset-y-0 left-0 w-32 z-10 pointer-events-none" style={{ background: FADE }} />
-        <div className="absolute inset-y-0 right-0 w-32 z-10 pointer-events-none" style={{ background: FADE_R }} />
+        <div className="absolute inset-y-0 left-0 w-[8vw] min-w-[60px] max-w-[200px] z-10 pointer-events-none" style={{ background: FADE }} />
+        <div className="absolute inset-y-0 right-0 w-[8vw] min-w-[60px] max-w-[200px] z-10 pointer-events-none" style={{ background: FADE_R }} />
 
         <Marquee gradient={false} speed={34} pauseOnHover>
           {[...logos, ...logos].map((logo, i) => (

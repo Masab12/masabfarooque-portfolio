@@ -349,3 +349,42 @@ img {
 .aspect-square {
   aspect-ratio: 1 / 1;
 }
+
+/* ── Ultrawide / Large Monitor Scaling ───────────────────────────────────────
+   On screens ≥ 1920px the Tailwind max-w-* caps become too narrow.
+   We scale them up progressively so content fills the screen properly.
+   Using html-prefixed selectors for specificity without !important.
+──────────────────────────────────────────────────────────────────────────── */
+
+@media (min-width: 1920px) {
+  /* Content containers */
+  html .max-w-7xl { max-width: 96rem;  } /* 1536px  (was 80rem / 1280px) */
+  html .max-w-6xl { max-width: 84rem;  } /* 1344px  (was 72rem / 1152px) */
+  html .max-w-5xl { max-width: 72rem;  } /* 1152px  (was 64rem / 1024px) */
+  html .max-w-4xl { max-width: 60rem;  } /* 960px   (was 56rem / 896px)  */
+  html .max-w-3xl { max-width: 50rem;  } /* 800px   (was 48rem / 768px)  */
+  html .max-w-2xl { max-width: 42rem;  } /* 672px   (was 42rem / 672px)  */
+
+  /* Grid tiles larger so they don't look like dense stripes */
+  .animated-grid {
+    background-size: 70px 70px;
+  }
+
+  /* Section glow covers full width at this viewport */
+  .section-cyan, .section-violet, .section-amber, .section-emerald {
+    background-size: 100% 100%;
+  }
+}
+
+@media (min-width: 2560px) {
+  html .max-w-7xl { max-width: 130rem; } /* 2080px */
+  html .max-w-6xl { max-width: 114rem; } /* 1824px */
+  html .max-w-5xl { max-width: 96rem;  } /* 1536px */
+  html .max-w-4xl { max-width: 78rem;  } /* 1248px */
+  html .max-w-3xl { max-width: 62rem;  } /* 992px  */
+  html .max-w-2xl { max-width: 52rem;  } /* 832px  */
+
+  .animated-grid {
+    background-size: 90px 90px;
+  }
+}

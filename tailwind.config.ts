@@ -9,7 +9,14 @@ const config: Config = {
   theme: {
     extend: {
       screens: {
-        xs: '480px',
+        xs:   '480px',
+        '3xl': '1920px',
+        '4xl': '2560px',
+      },
+      maxWidth: {
+        '8xl':  '96rem',   /* 1536px */
+        '9xl':  '112rem',  /* 1792px */
+        '10xl': '130rem',  /* 2080px */
       },
       fontFamily: {
         sans: ['var(--font-inter)', 'system-ui', 'sans-serif'],

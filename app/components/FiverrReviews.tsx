@@ -248,8 +248,8 @@ export default function FiverrReviews() {
         </motion.div>
 
         {/* Gradient Overlays */}
-        <div className="absolute top-0 left-0 w-16 md:w-32 h-full bg-gradient-to-r from-void-black to-transparent pointer-events-none z-10" />
-        <div className="absolute top-0 right-0 w-16 md:w-32 h-full bg-gradient-to-l from-void-black to-transparent pointer-events-none z-10" />
+        <div className="absolute top-0 left-0 w-[8vw] min-w-[60px] max-w-[200px] h-full bg-gradient-to-r from-void-black to-transparent pointer-events-none z-10" />
+        <div className="absolute top-0 right-0 w-[8vw] min-w-[60px] max-w-[200px] h-full bg-gradient-to-l from-void-black to-transparent pointer-events-none z-10" />
       </div>
 
       {/* Stats Bar */}
