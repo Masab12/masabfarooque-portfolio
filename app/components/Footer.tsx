@@ -15,12 +15,9 @@ const socialLinks = [
   { name: 'Instagram', url: 'https://www.instagram.com/masabfarooque', icon: <SiInstagram className="w-4 h-4" />, label: 'Instagram profile' },
 ];
 
-const siteLinks = [
-  { label: 'About Masab', href: '/about-masab' },
-  { label: 'Services', href: '/services' },
-  { label: 'Portfolio', href: '/portfolio' },
-  { label: 'Pricing', href: '/pricing' },
-  { label: 'Contact', href: '/contact' },
+const legalLinks = [
+  { label: 'Privacy Policy', href: '/privacy' },
+  { label: 'Terms of Service', href: '/terms' },
 ];
 
 const serviceLinks = [
@@ -80,9 +77,9 @@ export default function Footer() {
           </div>
 
           <div>
-            <p className="text-xs font-bold tracking-wider uppercase mb-4" style={{ color: 'rgb(0,240,255)' }}>Pages</p>
+            <p className="text-xs font-bold tracking-wider uppercase mb-4" style={{ color: 'rgb(0,240,255)' }}>Legal</p>
             <ul className="space-y-2.5">
-              {siteLinks.map(link => (
+              {legalLinks.map(link => (
                 <li key={link.href}>
                   <Link href={link.href} className="text-sm text-text-muted hover:text-text-primary transition-colors duration-200">
                     {link.label}
@@ -130,7 +127,11 @@ export default function Footer() {
           style={{ borderColor: 'rgba(255,255,255,0.05)' }}
         >
           <p className="text-xs text-text-muted">Built with Next.js · React · Tailwind CSS · Framer Motion</p>
-          <p className="text-xs text-text-muted">{new Date().getFullYear()} Masab Farooque. All rights reserved.</p>
+          <div className="flex items-center gap-4 flex-wrap justify-center sm:justify-end">
+            <Link href="/privacy" className="text-xs text-text-muted hover:text-text-primary transition-colors duration-200">Privacy Policy</Link>
+            <Link href="/terms" className="text-xs text-text-muted hover:text-text-primary transition-colors duration-200">Terms of Service</Link>
+            <p className="text-xs text-text-muted">&copy; {new Date().getFullYear()} Masab Farooque</p>
+          </div>
         </div>
       </div>
     </footer>
