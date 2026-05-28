@@ -5,9 +5,21 @@ import nextTs from "eslint-config-next/typescript";
 const eslintConfig = defineConfig([
   ...nextVitals,
   ...nextTs,
-  // Override default ignores of eslint-config-next.
+  {
+    rules: {
+      'no-console': 'error',
+      'no-inline-comments': 'error',
+      'spaced-comment': ['error', 'never'],
+      'no-restricted-syntax': [
+        'error',
+        {
+          selector: 'Literal[value=/[\\u{1F300}-\\u{1F9FF}\\u{2600}-\\u{26FF}\\u{2700}-\\u{27BF}]/u]',
+          message: 'Emoji characters are not allowed in source code.',
+        },
+      ],
+    },
+  },
   globalIgnores([
-    // Default ignores of eslint-config-next:
     ".next/**",
     "out/**",
     "build/**",
