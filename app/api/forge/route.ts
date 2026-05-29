@@ -3,7 +3,7 @@ export const dynamic = 'force-dynamic';
 import { NextRequest } from 'next/server';
 import Groq from 'groq-sdk';
 import { FORGE_SYSTEM_PROMPT } from '@/app/lib/forge/knowledge';
-import { supabase } from '@/app/lib/supabase';
+import { getSupabase } from '@/app/lib/supabase';
 import type { ForgeMessage } from '@/app/lib/forge/types';
 
 // ─── In-memory rate limiter (1 session / IP / 24 h) ────────────────────────
@@ -34,7 +34,7 @@ async function retrieveKnowledge(query: string): Promise<string> {
     const embed = await getEmbedder();
     const embedding = await embed(query);
 
-    const { data, error } = await supabase.rpc('match_forge_knowledge', {
+    const { data, error } = await getSupabase().rpc('match_forge_knowledge', {
       query_embedding: embedding,
       match_threshold: 0.35,
       match_count: 4,
