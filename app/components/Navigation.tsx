@@ -172,7 +172,32 @@ export default function Navigation() {
               ))}
             </div>
 
-            <div className="hidden md:block">
+            <div className="hidden md:flex items-center gap-2">
+              <Link
+                href="/forge"
+                className={`flex items-center gap-1.5 px-4 py-2 rounded-xl text-sm font-medium transition-all duration-150 ${
+                  isActive('/forge')
+                    ? 'text-electric-cyan bg-electric-cyan/10'
+                    : 'text-text-secondary hover:text-text-primary hover:bg-white/5'
+                }`}
+              >
+                Forge
+                <span
+                  style={{
+                    fontSize: 9,
+                    fontWeight: 700,
+                    fontFamily: 'var(--font-jetbrains), monospace',
+                    letterSpacing: '0.06em',
+                    padding: '1px 6px',
+                    borderRadius: 9999,
+                    background: 'rgba(0,240,255,0.12)',
+                    border: '1px solid rgba(0,240,255,0.3)',
+                    color: 'rgb(0,240,255)',
+                  }}
+                >
+                  AI
+                </span>
+              </Link>
               <Link
                 href="/contact"
                 className="px-5 py-2.5 rounded-xl text-sm font-semibold text-void-black transition-opacity duration-150 hover:opacity-88"
@@ -302,6 +327,28 @@ export default function Navigation() {
                       {link.label}
                     </Link>
                   ))}
+
+                  <Link
+                    href="/forge"
+                    className={`flex items-center gap-2 px-4 py-3 rounded-xl text-sm font-medium transition-colors ${isActive('/forge') ? 'text-electric-cyan bg-electric-cyan/10' : 'text-text-secondary hover:text-text-primary hover:bg-white/5'}`}
+                  >
+                    Forge
+                    <span
+                      style={{
+                        fontSize: 9,
+                        fontWeight: 700,
+                        fontFamily: 'var(--font-jetbrains), monospace',
+                        letterSpacing: '0.06em',
+                        padding: '1px 6px',
+                        borderRadius: 9999,
+                        background: 'rgba(0,240,255,0.12)',
+                        border: '1px solid rgba(0,240,255,0.3)',
+                        color: 'rgb(0,240,255)',
+                      }}
+                    >
+                      AI
+                    </span>
+                  </Link>
 
                   <Link
                     href="/contact"
