@@ -60,18 +60,6 @@ export async function POST(request: NextRequest) {
     );
   }
 
-  // Rate limit check
-  const ip = request.headers.get('x-forwarded-for')?.split(',')[0].trim() || 'unknown';
-  const now = Date.now();
-  const last = rateLimitMap.get(ip);
-  if (last && now - last < RATE_LIMIT_MS) {
-    return new Response(
-      JSON.stringify({ error: 'Rate limit: one Forge session per IP per 24 hours.' }),
-      { status: 429, headers: { 'Content-Type': 'application/json' } }
-    );
-  }
-  rateLimitMap.set(ip, now);
-
   let body: { messages: ForgeMessage[]; messagesUsed: number };
   try {
     body = await request.json();
@@ -83,6 +71,21 @@ export async function POST(request: NextRequest) {
   }
 
   const { messages, messagesUsed } = body;
+
+  // Rate limit — only on session start (empty messages array = greeting call).
+  // All follow-up messages within the conversation are freely allowed.
+  const ip = request.headers.get('x-forwarded-for')?.split(',')[0].trim() || 'unknown';
+  if (messages.length === 0) {
+    const now = Date.now();
+    const last = rateLimitMap.get(ip);
+    if (last && now - last < RATE_LIMIT_MS) {
+      return new Response(
+        JSON.stringify({ error: 'Rate limit: one Forge session per IP per 24 hours.' }),
+        { status: 429, headers: { 'Content-Type': 'application/json' } }
+      );
+    }
+    rateLimitMap.set(ip, now);
+  }
 
   // Phase context injected so the model knows exactly where it is
   const phaseContext =
