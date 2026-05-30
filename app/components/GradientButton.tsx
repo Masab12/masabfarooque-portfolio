@@ -14,17 +14,23 @@ interface GradientButtonProps {
 export default function GradientButton({ href, children, external = false, className = '', onClick }: GradientButtonProps) {
   const inner = (
     <motion.span
-      className={`inline-flex items-center gap-2 px-7 py-3.5 rounded-xl font-semibold text-void-black relative overflow-hidden group ${className}`}
+      className={`inline-flex items-center gap-2 px-7 py-3.5 rounded-xl font-semibold text-void-black relative overflow-hidden ${className}`}
       style={{ background: 'linear-gradient(135deg, rgb(0,240,255), rgb(139,92,246))' }}
-      whileHover={{ scale: 1.04 }}
-      whileTap={{ scale: 0.97 }}
+      whileHover={{ scale: 1.04, boxShadow: '0 0 28px rgba(0,240,255,0.35), 0 0 60px rgba(139,92,246,0.2)' }}
+      whileTap={{ scale: 0.96 }}
+      transition={{ type: 'spring', stiffness: 400, damping: 20 }}
     >
       <span className="relative z-10 flex items-center gap-2">{children}</span>
+      {/* Shimmer sweep */}
       <motion.span
-        className="absolute inset-0 bg-white/20"
-        initial={{ x: '-100%' }}
-        whileHover={{ x: '100%' }}
-        transition={{ duration: 0.45 }}
+        className="absolute inset-0"
+        style={{
+          background: 'linear-gradient(105deg, transparent 40%, rgba(255,255,255,0.28) 50%, transparent 60%)',
+          backgroundSize: '200% 100%',
+        }}
+        initial={{ backgroundPosition: '200% center' }}
+        whileHover={{ backgroundPosition: '-200% center' }}
+        transition={{ duration: 0.55, ease: 'easeInOut' }}
       />
     </motion.span>
   );
