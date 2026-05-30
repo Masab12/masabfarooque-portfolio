@@ -7,10 +7,10 @@ import CountUp from 'react-countup';
 import { HiStar, HiTrendingUp } from 'react-icons/hi';
 
 const stats = [
-  { value: 195, suffix: '+', label: 'Orders Completed', color: 'rgb(0,240,255)' },
+  { value: 195, suffix: '+', label: 'Orders Completed', color: 'var(--accent-cyan)' },
   { value: 5, suffix: '.0★', label: 'Average Rating', color: 'rgb(249,200,50)' },
-  { value: 100, suffix: '+', label: 'Happy Clients', color: 'rgb(139,92,246)' },
-  { value: 15, suffix: '+', label: 'Countries Served', color: 'rgb(0,240,255)' },
+  { value: 100, suffix: '+', label: 'Happy Clients', color: 'var(--accent-violet)' },
+  { value: 15, suffix: '+', label: 'Countries Served', color: 'var(--accent-cyan)' },
 ];
 
 const reviews = [
@@ -52,7 +52,7 @@ export default function HomepageSocialProof() {
           viewport={{ once: true, margin: '-60px' }}
           transition={{ duration: 0.65, ease: [0.76, 0, 0.24, 1] }}
         >
-          <h2 className="font-heading text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4" style={{ color: '#f8f9fa' }}>
+          <h2 className="font-heading text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4" style={{ color: 'var(--text-1)' }}>
             Trusted by Clients Worldwide
           </h2>
           <div className="w-20 h-1 rounded-full mx-auto" style={{ background: 'linear-gradient(90deg, rgb(0,240,255), rgb(139,92,246))' }} />
@@ -70,7 +70,7 @@ export default function HomepageSocialProof() {
               <HiTrendingUp className="w-6 h-6 mx-auto mb-3" style={{ color: stat.color }} />
               <div
                 className="font-heading text-2xl sm:text-3xl font-bold mb-1 tabular-nums"
-                style={{ color: '#f8f9fa', textShadow: `0 0 24px ${stat.color}60` }}
+                style={{ color: 'var(--text-1)', textShadow: `0 0 24px ${stat.color}60` }}
               >
                 {inView ? (
                   <><CountUp end={stat.value} duration={2.2} separator="," />{stat.suffix}</>
@@ -99,13 +99,13 @@ export default function HomepageSocialProof() {
               <p className="text-text-secondary text-sm leading-relaxed mb-4">{review.text}</p>
               <div className="flex items-center gap-2">
                 <div
-                  className="w-8 h-8 rounded-full flex items-center justify-center text-xs font-bold text-void-black flex-shrink-0"
-                  style={{ background: 'linear-gradient(135deg, rgb(0,240,255), rgb(139,92,246))' }}
+                  className="w-8 h-8 rounded-full flex items-center justify-center text-xs font-bold flex-shrink-0"
+                  style={{ background: 'linear-gradient(135deg, rgb(0,240,255), rgb(139,92,246))', color: 'var(--color-on-accent)' }}
                 >
                   {review.name[0]}
                 </div>
                 <div>
-                  <p className="text-sm font-semibold" style={{ color: '#f8f9fa' }}>{review.name}</p>
+                  <p className="text-sm font-semibold" style={{ color: 'var(--text-1)' }}>{review.name}</p>
                   <p className="text-xs text-text-muted">{review.role} · {review.country}</p>
                 </div>
               </div>
@@ -123,7 +123,7 @@ export default function HomepageSocialProof() {
           <Link
             href="/portfolio"
             className="font-semibold underline underline-offset-2 hover:opacity-80 transition-opacity"
-            style={{ color: 'rgb(0,240,255)' }}
+            style={{ color: 'var(--accent-cyan)' }}
           >
             See Masab's full project portfolio
           </Link>
@@ -131,7 +131,7 @@ export default function HomepageSocialProof() {
           <Link
             href="/about-masab"
             className="font-semibold underline underline-offset-2 hover:opacity-80 transition-opacity"
-            style={{ color: 'rgb(139,92,246)' }}
+            style={{ color: 'var(--accent-violet)' }}
           >
             Read about Masab Farooque
           </Link>

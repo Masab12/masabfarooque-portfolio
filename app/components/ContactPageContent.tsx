@@ -16,21 +16,21 @@ const contactCards = [
     label: 'Email',
     value: 'masabfarooque1122@gmail.com',
     href: 'mailto:masabfarooque1122@gmail.com',
-    color: 'rgb(0,240,255)',
+    color: 'var(--accent-cyan)',
   },
   {
     icon: HiLocationMarker,
     label: 'Location',
     value: 'Islamabad, Pakistan',
     href: null,
-    color: 'rgb(139,92,246)',
+    color: 'var(--accent-violet)',
   },
   {
     icon: HiClock,
     label: 'Response Time',
     value: 'Within 24 hours',
     href: null,
-    color: 'rgb(0,240,255)',
+    color: 'var(--accent-cyan)',
   },
 ];
 
@@ -58,8 +58,8 @@ export default function ContactPageContent() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.65, ease: [0.76, 0, 0.24, 1] }}
         >
-          <p className="text-xs font-bold tracking-widest uppercase mb-5 font-mono" style={{ color: 'rgb(0,240,255)' }}>Contact</p>
-          <h1 className="font-heading text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold leading-tight mb-5" style={{ color: '#f8f9fa' }}>
+          <p className="text-xs font-bold tracking-widest uppercase mb-5 font-mono" style={{ color: 'var(--accent-cyan)' }}>Contact</p>
+          <h1 className="font-heading text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold leading-tight mb-5" style={{ color: 'var(--text-1)' }}>
             Start a Conversation
           </h1>
           <p className="text-text-secondary text-base sm:text-lg max-w-xl mx-auto leading-relaxed">
@@ -90,11 +90,11 @@ export default function ContactPageContent() {
                     <div>
                       <p className="text-xs text-text-muted mb-0.5">{card.label}</p>
                       {card.href ? (
-                        <a href={card.href} className="text-sm font-medium hover:opacity-80 transition-opacity" style={{ color: '#f8f9fa' }}>
+                        <a href={card.href} className="text-sm font-medium hover:opacity-80 transition-opacity" style={{ color: 'var(--text-1)' }}>
                           {card.value}
                         </a>
                       ) : (
-                        <p className="text-sm font-medium" style={{ color: '#f8f9fa' }}>{card.value}</p>
+                        <p className="text-sm font-medium" style={{ color: 'var(--text-1)' }}>{card.value}</p>
                       )}
                     </div>
                   </div>
@@ -102,24 +102,24 @@ export default function ContactPageContent() {
               })}
             </div>
 
-            <div className="mb-8 p-4 rounded-xl" style={{ backgroundColor: 'rgba(255,255,255,0.03)', border: '1px solid rgba(255,255,255,0.07)' }}>
+            <div className="mb-8 p-4 rounded-xl" style={{ backgroundColor: 'var(--bg-card)', border: '1px solid var(--border-base)' }}>
               <p className="text-xs text-text-muted mb-2.5">Before reaching out, it may help to:</p>
               <div className="space-y-1.5">
                 <div className="flex items-center gap-2 text-xs">
-                  <span className="w-1 h-1 rounded-full flex-shrink-0" style={{ backgroundColor: 'rgb(0,240,255)' }} />
-                  <Link href="/services" className="hover:text-electric-cyan transition-colors" style={{ color: 'rgb(0,240,255)' }}>
+                  <span className="w-1 h-1 rounded-full flex-shrink-0" style={{ backgroundColor: 'var(--accent-cyan)' }} />
+                  <Link href="/services" className="hover:opacity-80 transition-opacity" style={{ color: 'var(--accent-cyan)' }}>
                     Explore the full list of services Masab offers
                   </Link>
                 </div>
                 <div className="flex items-center gap-2 text-xs">
-                  <span className="w-1 h-1 rounded-full flex-shrink-0" style={{ backgroundColor: 'rgb(139,92,246)' }} />
-                  <Link href="/pricing" className="hover:opacity-80 transition-opacity" style={{ color: 'rgb(139,92,246)' }}>
+                  <span className="w-1 h-1 rounded-full flex-shrink-0" style={{ backgroundColor: 'var(--accent-violet)' }} />
+                  <Link href="/pricing" className="hover:opacity-80 transition-opacity" style={{ color: 'var(--accent-violet)' }}>
                     View transparent pricing plans and tiers
                   </Link>
                 </div>
                 <div className="flex items-center gap-2 text-xs">
-                  <span className="w-1 h-1 rounded-full flex-shrink-0" style={{ backgroundColor: 'rgb(0,240,255)' }} />
-                  <Link href="/portfolio" className="hover:text-electric-cyan transition-colors" style={{ color: 'rgb(0,240,255)' }}>
+                  <span className="w-1 h-1 rounded-full flex-shrink-0" style={{ backgroundColor: 'var(--accent-cyan)' }} />
+                  <Link href="/portfolio" className="hover:opacity-80 transition-opacity" style={{ color: 'var(--accent-cyan)' }}>
                     Browse past projects and completed work
                   </Link>
                 </div>
@@ -157,7 +157,7 @@ export default function ContactPageContent() {
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.6, delay: 0.18, ease: [0.22, 1, 0.36, 1] }}
           >
-            <h2 className="font-heading text-xl font-bold mb-6" style={{ color: '#f8f9fa' }}>Send a Message</h2>
+            <h2 className="font-heading text-xl font-bold mb-6" style={{ color: 'var(--text-1)' }}>Send a Message</h2>
             <Suspense fallback={<div className="h-64 animate-pulse rounded-xl" style={{ backgroundColor: 'rgba(255,255,255,0.04)' }} />}>
               <FormWithParams />
             </Suspense>

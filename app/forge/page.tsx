@@ -34,15 +34,15 @@ export default function ForgePage() {
           {/* Badge */}
           <div
             className="inline-flex items-center gap-2 mb-8 px-4 py-2 rounded-full border"
-            style={{ borderColor: 'rgba(0,240,255,0.2)', background: 'rgba(0,240,255,0.04)' }}
+            style={{ borderColor: 'var(--accent-cyan-border)', background: 'var(--accent-cyan-subtle)' }}
           >
             <span
               className="w-1.5 h-1.5 rounded-full animate-pulse"
-              style={{ background: 'rgb(0,240,255)' }}
+              style={{ background: 'var(--accent-cyan)' }}
             />
             <span
               className="font-mono text-xs tracking-widest uppercase"
-              style={{ color: 'rgb(0,240,255)' }}
+              style={{ color: 'var(--accent-cyan)' }}
             >
               Under Development
             </span>
@@ -51,7 +51,7 @@ export default function ForgePage() {
           {/* Wordmark */}
           <h1
             className="font-heading text-6xl sm:text-8xl font-bold mb-4"
-            style={{ color: '#f8f9fa' }}
+            style={{ color: 'var(--text-1)' }}
           >
             FORGE
           </h1>
@@ -73,8 +73,8 @@ export default function ForgePage() {
           {/* CTA */}
           <Link
             href="/contact"
-            className="inline-flex items-center gap-2 px-8 py-4 rounded-xl font-semibold text-void-black"
-            style={{ background: 'linear-gradient(135deg, rgb(0,240,255), rgb(139,92,246))' }}
+            className="inline-flex items-center gap-2 px-8 py-4 rounded-xl font-semibold"
+            style={{ background: 'linear-gradient(135deg, rgb(0,240,255), rgb(139,92,246))', color: 'var(--color-on-accent)' }}
           >
             Start a Project
           </Link>

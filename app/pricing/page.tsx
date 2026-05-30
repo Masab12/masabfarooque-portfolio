@@ -80,8 +80,8 @@ export default function PricingPage() {
       <main className="relative bg-void-black overflow-x-hidden pt-28">
         <section className="relative w-full px-4 sm:px-6 lg:px-8 pb-12">
           <div className="relative max-w-4xl mx-auto text-center">
-            <p className="text-xs font-bold tracking-widest uppercase mb-5 font-mono" style={{ color: 'rgb(0,240,255)' }}>Pricing</p>
-            <h1 className="font-heading text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold leading-tight mb-5" style={{ color: '#f8f9fa' }}>
+            <p className="text-xs font-bold tracking-widest uppercase mb-5 font-mono" style={{ color: 'var(--accent-cyan)' }}>Pricing</p>
+            <h1 className="font-heading text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold leading-tight mb-5" style={{ color: 'var(--text-1)' }}>
               Transparent Pricing.<br className="hidden sm:block" /> No Surprises.
             </h1>
             <p className="text-text-secondary text-base sm:text-lg max-w-2xl mx-auto leading-relaxed">

@@ -50,7 +50,7 @@ export default function HomepageServicesTeaser() {
                       <Icon className="w-6 h-6" style={{ color: service.gradientFrom }} />
                     </div>
                     <div>
-                      <h3 className="font-heading text-lg sm:text-xl font-bold mb-1" style={{ color: '#f8f9fa' }}>
+                      <h3 className="font-heading text-lg sm:text-xl font-bold mb-1" style={{ color: 'var(--text-1)' }}>
                         {service.title}
                       </h3>
                       <p className="text-text-secondary text-sm leading-relaxed">{service.description}</p>
@@ -61,7 +61,7 @@ export default function HomepageServicesTeaser() {
                       <span
                         key={sub.title}
                         className="text-xs px-2.5 py-1 rounded-lg border text-text-muted"
-                        style={{ backgroundColor: 'rgba(255,255,255,0.03)', borderColor: 'rgba(255,255,255,0.08)' }}
+                        style={{ backgroundColor: 'var(--bg-card)', borderColor: 'var(--border-base)' }}
                       >
                         {sub.title}
                       </span>
@@ -89,7 +89,7 @@ export default function HomepageServicesTeaser() {
           <Link
             href="/services"
             className="inline-flex items-center gap-2 text-sm font-semibold hover:gap-3 transition-all duration-200"
-            style={{ color: 'rgb(0,240,255)' }}
+            style={{ color: 'var(--accent-cyan)' }}
           >
             Explore All Services <HiArrowRight className="w-4 h-4" />
           </Link>

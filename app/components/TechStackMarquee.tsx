@@ -23,7 +23,7 @@ import {
 
 const techStackRow1 = [
   { Icon: SiReact, name: 'React', color: '#61DAFB' },
-  { Icon: SiNextdotjs, name: 'Next.js', color: '#fff' },
+  { Icon: SiNextdotjs, name: 'Next.js', color: 'var(--text-1)' },
   { Icon: SiNodedotjs, name: 'Node.js', color: '#339933' },
   { Icon: SiFastapi, name: 'FastAPI', color: '#009688' },
   { Icon: SiPython, name: 'Python', color: '#3776AB' },
@@ -39,7 +39,7 @@ const techStackRow2 = [
   { Icon: SiDocker, name: 'Docker', color: '#2496ED' },
   { Icon: SiOpenai, name: 'OpenAI', color: '#10A37F' },
   { Icon: SiSupabase, name: 'Supabase', color: '#3ECF8E' },
-  { Icon: SiVercel, name: 'Vercel', color: '#fff' },
+  { Icon: SiVercel, name: 'Vercel', color: 'var(--text-1)' },
   { Icon: SiGit, name: 'Git', color: '#F05032' },
 ];
 
@@ -53,7 +53,7 @@ export default function TechStackMarquee() {
         <div className="text-center">
           <motion.h2
             className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4"
-            style={{ color: '#f8f9fa' }}
+            style={{ color: 'var(--text-1)' }}
             initial={{ opacity: 0, y: 24 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: '-40px' }}

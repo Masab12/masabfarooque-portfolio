@@ -81,7 +81,7 @@ export default function HomepageHero() {
                   <motion.span
                     key={wordIdx}
                     className="font-mono font-semibold block"
-                    style={{ color: 'rgb(0,240,255)' }}
+                    style={{ color: 'var(--accent-cyan)' }}
                     initial={{ y: '110%', opacity: 0 }}
                     animate={{ y: 0, opacity: 1 }}
                     exit={{ y: '-110%', opacity: 0 }}
@@ -132,8 +132,8 @@ export default function HomepageHero() {
                 href="/portfolio"
                 onMouseMove={onBtnMouseMove}
                 onMouseLeave={() => setMousePos({ x: 0, y: 0 })}
-                className="group relative px-8 py-4 rounded-xl font-semibold text-void-black w-full sm:w-auto text-center overflow-hidden"
-                style={{ background: 'linear-gradient(135deg, rgb(0,240,255), rgb(139,92,246))' }}
+                className="group relative px-8 py-4 rounded-xl font-semibold w-full sm:w-auto text-center overflow-hidden"
+                style={{ background: 'linear-gradient(135deg, rgb(0,240,255), rgb(139,92,246))', color: 'var(--color-on-accent)' }}
                 animate={{ x: mousePos.x, y: mousePos.y }}
                 transition={{ type: 'spring', stiffness: 150, damping: 15 }}
                 whileTap={{ scale: 0.96 }}
@@ -184,7 +184,7 @@ export default function HomepageHero() {
         >
           <motion.div
             className="w-1 h-2 rounded-full"
-            style={{ backgroundColor: 'rgb(0,240,255)' }}
+            style={{ backgroundColor: 'var(--accent-cyan)' }}
             animate={{ y: [0, 12, 0] }}
             transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut' }}
           />

@@ -92,23 +92,23 @@ export default function AboutPage() {
 
         <section className="relative w-full bg-void-black py-20 px-4 sm:px-6 lg:px-8">
           <div className="max-w-3xl mx-auto text-center">
-            <h2 className="font-heading text-3xl sm:text-4xl font-bold mb-4" style={{ color: '#f8f9fa' }}>
+            <h2 className="font-heading text-3xl sm:text-4xl font-bold mb-4" style={{ color: 'var(--text-1)' }}>
               Want to build something together?
             </h2>
             <p className="text-text-secondary text-base mb-3 max-w-xl mx-auto">
               I take on a limited number of projects at a time to keep quality high. If you have something worth building, let's talk.
             </p>
             <p className="text-text-muted text-sm mb-8">
-              <Link href="/services" className="underline underline-offset-2 hover:text-electric-cyan transition-colors" style={{ color: 'rgb(0,240,255)' }}>View all services</Link>
+              <Link href="/services" className="underline underline-offset-2 hover:opacity-80 transition-opacity" style={{ color: 'var(--accent-cyan)' }}>View all services</Link>
               {' '}or{' '}
-              <Link href="/pricing" className="underline underline-offset-2 hover:opacity-80 transition-opacity" style={{ color: 'rgb(139,92,246)' }}>see pricing plans</Link>
+              <Link href="/pricing" className="underline underline-offset-2 hover:opacity-80 transition-opacity" style={{ color: 'var(--accent-violet)' }}>see pricing plans</Link>
               {' '}before reaching out.
             </p>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
               <Link
                 href="/contact"
-                className="inline-flex items-center gap-2 px-7 py-3.5 rounded-xl font-semibold text-void-black"
-                style={{ background: 'linear-gradient(135deg, rgb(0,240,255), rgb(139,92,246))' }}
+                className="inline-flex items-center gap-2 px-7 py-3.5 rounded-xl font-semibold"
+                style={{ background: 'linear-gradient(135deg, rgb(0,240,255), rgb(139,92,246))', color: 'var(--color-on-accent)' }}
               >
                 Start a Project <HiArrowRight className="w-4 h-4" />
               </Link>

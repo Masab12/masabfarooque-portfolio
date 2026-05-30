@@ -47,9 +47,9 @@ function StatsContent() {
   const [ref, inView] = useInView({ threshold: 0.2, triggerOnce: true });
 
   const stats = [
-    { label: 'Orders Completed', value: 195, suffix: '+', color: 'rgb(0,240,255)' },
-    { label: 'Revenue Generated', value: 10000, prefix: '$', suffix: '+', color: 'rgb(139,92,246)' },
-    { label: 'Happy Clients', value: 100, suffix: '+', color: 'rgb(0,240,255)' },
+    { label: 'Orders Completed', value: 195, suffix: '+', color: 'var(--accent-cyan)' },
+    { label: 'Revenue Generated', value: 10000, prefix: '$', suffix: '+', color: 'var(--accent-violet)' },
+    { label: 'Happy Clients', value: 100, suffix: '+', color: 'var(--accent-cyan)' },
   ];
 
   return (
@@ -58,17 +58,17 @@ function StatsContent() {
         <motion.div
           key={stat.label}
           className="flex flex-col items-center justify-center text-center p-4 sm:p-5 rounded-xl"
-          style={{ backgroundColor: 'rgba(255,255,255,0.04)' }}
+          style={{ backgroundColor: 'var(--bg-card)' }}
           initial={{ opacity: 0, scale: 0.85 }}
           animate={inView ? { opacity: 1, scale: 1 } : {}}
           transition={{ duration: 0.5, delay: index * 0.12 }}
-          whileHover={{ backgroundColor: 'rgba(255,255,255,0.08)', scale: 1.03 }}
+          whileHover={{ scale: 1.03 }}
         >
           <HiTrendingUp className="w-7 h-7 mb-3" style={{ color: stat.color }} />
           <div
             className="text-3xl sm:text-4xl font-bold mb-1 tabular-nums"
             style={{
-              color: '#f8f9fa',
+              color: 'var(--text-1)',
               textShadow: `0 0 24px ${stat.color}70`,
             }}
           >
@@ -124,7 +124,7 @@ export default function BentoAboutSection() {
         <div className="mb-10 sm:mb-14 text-center">
           <motion.h2
             className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4"
-            style={{ color: '#f8f9fa' }}
+            style={{ color: 'var(--text-1)' }}
             initial={{ opacity: 0, y: 28 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: '-60px' }}
@@ -154,22 +154,22 @@ export default function BentoAboutSection() {
           <motion.div variants={cardVariants} className="sm:col-span-2">
             <SpotlightCard className="glass-card p-5 sm:p-7 lg:p-8 rounded-2xl sm:rounded-3xl h-full group transition-colors duration-300 hover:border-[rgba(0,240,255,0.25)]">
               <div className="flex items-center gap-2 mb-4">
-                <span className="text-base sm:text-lg font-semibold" style={{ color: '#f8f9fa' }}>
+                <span className="text-base sm:text-lg font-semibold" style={{ color: 'var(--text-1)' }}>
                   Professional Background
                 </span>
                 <motion.span
                   className="w-2 h-2 rounded-full opacity-0 group-hover:opacity-100 transition-opacity flex-shrink-0"
-                  style={{ backgroundColor: 'rgb(0,240,255)' }}
+                  style={{ backgroundColor: 'var(--accent-cyan)' }}
                   animate={{ scale: [1, 1.3, 1] }}
                   transition={{ duration: 1.8, repeat: Infinity }}
                 />
               </div>
               <div className="space-y-3">
                 <p className="text-text-secondary text-sm sm:text-base leading-relaxed">
-                  <span className="font-semibold" style={{ color: '#f8f9fa' }}>Masab Farooque</span> is a full stack developer from Islamabad, Pakistan. He graduated from{' '}
-                  <span className="font-semibold" style={{ color: 'rgb(0,240,255)' }}>COMSATS University</span>{' '}
+                  <span className="font-semibold" style={{ color: 'var(--text-1)' }}>Masab Farooque</span> is a full stack developer from Islamabad, Pakistan. He graduated from{' '}
+                  <span className="font-semibold" style={{ color: 'var(--accent-cyan)' }}>COMSATS University</span>{' '}
                   in 2023 and has been building production software for clients ever since. Two years in, he is a{' '}
-                  <span className="font-semibold" style={{ color: 'rgb(139,92,246)' }}>Level 2 Fiverr Seller</span>{' '}
+                  <span className="font-semibold" style={{ color: 'var(--accent-violet)' }}>Level 2 Fiverr Seller</span>{' '}
                   with 195 plus completed orders across Europe, North America and Asia.
                 </p>
                 <p className="text-text-secondary text-sm sm:text-base leading-relaxed">
@@ -193,12 +193,12 @@ export default function BentoAboutSection() {
                   for task queuing and caching with Celery workers. Everything ships inside{' '}
                   <span className="text-text-primary font-semibold">Docker</span>{' '}
                   containers for consistent, portable deployments. He has delivered{' '}
-                  <Link href="/portfolio" className="font-semibold hover:text-electric-cyan transition-colors" style={{ color: 'rgb(0,240,255)' }}>SaaS platforms, marketplace tools, web scrapers and AI pipelines</Link>{' '}
+                  <Link href="/portfolio" className="font-semibold hover:opacity-80 transition-opacity" style={{ color: 'var(--accent-cyan)' }}>SaaS platforms, marketplace tools, web scrapers and AI pipelines</Link>{' '}
                   for clients across 15 plus countries.
                 </p>
               </div>
               <div className="mt-5 flex items-center gap-2 text-text-muted text-xs sm:text-sm">
-                <HiAcademicCap className="w-4 h-4 sm:w-5 sm:h-5 flex-shrink-0" style={{ color: 'rgb(0,240,255)' }} />
+                <HiAcademicCap className="w-4 h-4 sm:w-5 sm:h-5 flex-shrink-0" style={{ color: 'var(--accent-cyan)' }} />
                 <span>COMSATS University Islamabad, Computer Science, 2023</span>
               </div>
             </SpotlightCard>
@@ -211,9 +211,9 @@ export default function BentoAboutSection() {
                 whileHover={{ scale: 1.15, rotate: 6 }}
                 transition={{ type: 'spring', stiffness: 300 }}
               >
-                <HiLocationMarker className="w-10 h-10 sm:w-12 sm:h-12 mb-3" style={{ color: 'rgb(0,240,255)' }} />
+                <HiLocationMarker className="w-10 h-10 sm:w-12 sm:h-12 mb-3" style={{ color: 'var(--accent-cyan)' }} />
               </motion.div>
-              <h3 className="text-xl sm:text-2xl font-bold mb-1" style={{ color: '#f8f9fa' }}>Islamabad</h3>
+              <h3 className="text-xl sm:text-2xl font-bold mb-1" style={{ color: 'var(--text-1)' }}>Islamabad</h3>
               <p className="text-sm sm:text-base text-text-muted">Pakistan</p>
             </SpotlightCard>
           </motion.div>
@@ -221,7 +221,7 @@ export default function BentoAboutSection() {
           {/* Achievements to 2 cols, NO overflow-hidden so stats aren't clipped */}
           <motion.div variants={cardVariants} className="sm:col-span-2">
             <SpotlightCard className="glass-card p-5 sm:p-7 lg:p-8 rounded-2xl sm:rounded-3xl h-full transition-colors duration-300 hover:border-[rgba(139,92,246,0.25)]">
-              <div className="text-base sm:text-lg font-semibold mb-1" style={{ color: '#f8f9fa' }}>
+              <div className="text-base sm:text-lg font-semibold mb-1" style={{ color: 'var(--text-1)' }}>
                 Achievements
               </div>
               <StatsContent />
@@ -235,9 +235,9 @@ export default function BentoAboutSection() {
                 whileHover={{ scale: 1.15, rotate: -6 }}
                 transition={{ type: 'spring', stiffness: 300 }}
               >
-                <HiStar className="w-10 h-10 sm:w-12 sm:h-12 mb-3" style={{ color: 'rgb(139,92,246)' }} />
+                <HiStar className="w-10 h-10 sm:w-12 sm:h-12 mb-3" style={{ color: 'var(--accent-violet)' }} />
               </motion.div>
-              <h3 className="text-lg sm:text-xl font-bold mb-1" style={{ color: '#f8f9fa' }}>Level 2 Seller</h3>
+              <h3 className="text-lg sm:text-xl font-bold mb-1" style={{ color: 'var(--text-1)' }}>Level 2 Seller</h3>
               <p className="text-xs sm:text-sm text-text-muted">Top Rated on Fiverr</p>
             </SpotlightCard>
           </motion.div>

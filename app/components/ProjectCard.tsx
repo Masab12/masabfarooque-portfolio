@@ -65,7 +65,7 @@ export default function ProjectCard({
             </div>
 
             {/* Gradient bottom fade */}
-            <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0f] via-[rgba(10,10,15,0.3)] to-transparent" />
+            <div className="absolute inset-0 bg-gradient-to-t from-[var(--bg-primary)] to-transparent opacity-80" />
 
             {/* Hover CTA overlay */}
             <motion.div
@@ -78,8 +78,8 @@ export default function ProjectCard({
               <span
                 className="px-4 py-2 rounded-full text-sm font-semibold border backdrop-blur-sm"
                 style={{
-                  color: 'rgb(0,240,255)',
-                  borderColor: 'rgba(0,240,255,0.4)',
+                  color: 'var(--accent-cyan)',
+                  borderColor: 'var(--accent-cyan-border)',
                   backgroundColor: 'rgba(0,0,0,0.4)',
                 }}
               >
@@ -92,8 +92,8 @@ export default function ProjectCard({
           <div className="p-5 sm:p-6 flex-1 flex flex-col">
             <motion.h3
               className="text-lg sm:text-xl md:text-2xl font-bold mb-2 transition-colors duration-300"
-              style={{ color: '#f8f9fa' }}
-              whileHover={{ color: 'rgb(0,240,255)' }}
+              style={{ color: 'var(--text-1)' }}
+              whileHover={{ color: 'var(--accent-cyan)' }}
             >
               {title}
             </motion.h3>
@@ -109,13 +109,11 @@ export default function ProjectCard({
                   key={tech}
                   className="px-2.5 py-1 text-xs font-medium rounded-lg border"
                   style={{
-                    backgroundColor: 'rgba(0,240,255,0.04)',
-                    color: 'rgba(0,240,255,0.85)',
-                    borderColor: 'rgba(0,240,255,0.12)',
+                    backgroundColor: 'var(--accent-cyan-subtle)',
+                    color: 'var(--accent-cyan)',
+                    borderColor: 'var(--accent-cyan-border)',
                   }}
                   whileHover={{
-                    backgroundColor: 'rgba(0,240,255,0.12)',
-                    borderColor: 'rgba(0,240,255,0.4)',
                     scale: 1.04,
                   }}
                   transition={{ type: 'spring', stiffness: 400, damping: 17 }}

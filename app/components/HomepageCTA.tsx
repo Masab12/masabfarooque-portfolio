@@ -14,7 +14,7 @@ export default function HomepageCTA() {
       <div className="relative max-w-4xl mx-auto text-center">
         <motion.h2
           className="font-heading text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-5 leading-tight"
-          style={{ color: '#f8f9fa' }}
+          style={{ color: 'var(--text-1)' }}
           initial={{ opacity: 0, y: 28 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: '-60px' }}
@@ -42,8 +42,8 @@ export default function HomepageCTA() {
         >
           <Link
             href="/contact"
-            className="group inline-flex items-center gap-2 px-8 py-4 rounded-xl font-bold text-void-black transition-opacity hover:opacity-90"
-            style={{ background: 'linear-gradient(135deg, rgb(0,240,255), rgb(139,92,246))' }}
+            className="group inline-flex items-center gap-2 px-8 py-4 rounded-xl font-bold transition-opacity hover:opacity-90"
+            style={{ background: 'linear-gradient(135deg, rgb(0,240,255), rgb(139,92,246))', color: 'var(--color-on-accent)' }}
           >
             Start a Project <HiArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
           </Link>

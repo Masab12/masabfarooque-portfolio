@@ -31,7 +31,7 @@ export default function Footer() {
   return (
     <footer
       className="relative bg-void-black border-t pt-14 pb-10 px-4 sm:px-6 md:px-8"
-      style={{ borderColor: 'rgba(255,255,255,0.05)' }}
+      style={{ borderColor: 'var(--border-base)' }}
     >
       <div className="max-w-7xl mx-auto">
 
@@ -46,15 +46,15 @@ export default function Footer() {
           {/* Brand */}
           <div className="sm:col-span-2 lg:col-span-1">
             <Link href="/" className="inline-block mb-3">
-              <span className="font-heading text-2xl font-bold" style={{ color: '#f8f9fa' }}>
-                MF<span style={{ color: 'rgb(0,240,255)' }}>.</span>
+              <span className="font-heading text-2xl font-bold" style={{ color: 'var(--text-1)' }}>
+                MF<span style={{ color: 'var(--accent-cyan)' }}>.</span>
               </span>
             </Link>
             <p className="text-sm text-text-secondary mb-2 leading-relaxed max-w-xs">
               Level 2 Fiverr Seller. Full Stack Developer. AI Engineer.
             </p>
             <div className="flex items-center gap-1.5 text-text-muted text-sm mb-5">
-              <HiLocationMarker className="w-4 h-4 flex-shrink-0" style={{ color: 'rgb(0,240,255)' }} />
+              <HiLocationMarker className="w-4 h-4 flex-shrink-0" style={{ color: 'var(--accent-cyan)' }} />
               <span>Islamabad, Pakistan</span>
             </div>
             {/* Social icons — wrap cleanly on mobile */}
@@ -67,8 +67,8 @@ export default function Footer() {
                   rel="noopener noreferrer"
                   aria-label={link.label}
                   className="w-10 h-10 rounded-xl flex items-center justify-center text-text-secondary border transition-colors duration-200"
-                  style={{ backgroundColor: 'rgba(26,26,46,0.8)', borderColor: 'rgba(255,255,255,0.08)' }}
-                  whileHover={{ scale: 1.12, y: -2, borderColor: 'rgba(0,240,255,0.4)', color: 'rgb(0,240,255)' }}
+                  style={{ backgroundColor: 'var(--bg-card)', borderColor: 'var(--border-base)' }}
+                  whileHover={{ scale: 1.12, y: -2, borderColor: 'var(--accent-cyan-border)', color: 'var(--accent-cyan)' }}
                   whileTap={{ scale: 0.92 }}
                   initial={{ opacity: 0, y: 8 }}
                   animate={{ opacity: 1, y: 0 }}
@@ -82,7 +82,7 @@ export default function Footer() {
 
           {/* Legal */}
           <div>
-            <p className="text-xs font-bold tracking-wider uppercase mb-4" style={{ color: 'rgb(0,240,255)' }}>Legal</p>
+            <p className="text-xs font-bold tracking-wider uppercase mb-4" style={{ color: 'var(--accent-cyan)' }}>Legal</p>
             <ul className="space-y-2.5">
               {legalLinks.map(link => (
                 <li key={link.href}>
@@ -96,7 +96,7 @@ export default function Footer() {
 
           {/* Services */}
           <div>
-            <p className="text-xs font-bold tracking-wider uppercase mb-4" style={{ color: 'rgb(139,92,246)' }}>Services</p>
+            <p className="text-xs font-bold tracking-wider uppercase mb-4" style={{ color: 'var(--accent-violet)' }}>Services</p>
             <ul className="space-y-2.5">
               {serviceLinks.map(link => (
                 <li key={link.href}>
@@ -110,19 +110,19 @@ export default function Footer() {
 
           {/* Contact */}
           <div>
-            <p className="text-xs font-bold tracking-wider uppercase mb-4" style={{ color: 'rgb(0,240,255)' }}>Get in Touch</p>
+            <p className="text-xs font-bold tracking-wider uppercase mb-4" style={{ color: 'var(--accent-cyan)' }}>Get in Touch</p>
             <p className="text-sm text-text-muted mb-3 leading-relaxed">Have a project in mind? I reply within 24 hours.</p>
             <a
               href="mailto:masabfarooque1122@gmail.com"
               className="text-sm font-medium hover:opacity-80 transition-opacity block mb-5 break-all"
-              style={{ color: 'rgb(0,240,255)' }}
+              style={{ color: 'var(--accent-cyan)' }}
             >
               masabfarooque1122@gmail.com
             </a>
             <Link
               href="/contact"
-              className="inline-block px-5 py-2.5 rounded-xl text-sm font-semibold text-void-black"
-              style={{ background: 'linear-gradient(135deg, rgb(0,240,255), rgb(139,92,246))' }}
+              className="inline-block px-5 py-2.5 rounded-xl text-sm font-semibold"
+              style={{ background: 'linear-gradient(135deg, rgb(0,240,255), rgb(139,92,246))', color: 'var(--color-on-accent)' }}
             >
               Start a Project
             </Link>
@@ -132,7 +132,7 @@ export default function Footer() {
         {/* ── Bottom bar — copyright only, no duplicate legal links ── */}
         <div
           className="flex flex-col sm:flex-row items-center justify-between gap-3 border-t pt-7"
-          style={{ borderColor: 'rgba(255,255,255,0.05)' }}
+          style={{ borderColor: 'var(--border-base)' }}
         >
           <p className="text-xs text-text-muted text-center sm:text-left">
             Built with Next.js · React · Tailwind CSS · Framer Motion

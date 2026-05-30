@@ -118,8 +118,8 @@ export default function EnhancedContactForm({ service, tier }: { service?: strin
       <motion.button
         type="submit"
         disabled={status === 'loading'}
-        className="w-full py-4 rounded-xl font-semibold text-void-black relative overflow-hidden group disabled:opacity-50 disabled:cursor-not-allowed"
-        style={{ background: 'linear-gradient(135deg, rgb(0,240,255), rgb(139,92,246))' }}
+        className="w-full py-4 rounded-xl font-semibold relative overflow-hidden group disabled:opacity-50 disabled:cursor-not-allowed"
+        style={{ background: 'linear-gradient(135deg, rgb(0,240,255), rgb(139,92,246))', color: 'var(--color-on-accent)' }}
         whileHover={status !== 'loading' ? { scale: 1.02 } : {}}
         whileTap={status !== 'loading' ? { scale: 0.98 } : {}}
       >

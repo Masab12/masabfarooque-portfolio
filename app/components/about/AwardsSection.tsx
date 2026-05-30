@@ -38,10 +38,10 @@ const awards = [
     organizer: 'Epiphany Games',
     year: '2020',
     description: 'Recognized for exceptional drive, work ethic, and execution at one of the national game jam competitions.',
-    color: 'rgb(0,240,255)',
-    bg: 'rgba(0,240,255,0.05)',
-    border: 'rgba(0,240,255,0.25)',
-    shadow: 'rgba(0,240,255,0.08)',
+    color: 'var(--accent-cyan)',
+    bg: 'var(--accent-cyan-subtle)',
+    border: 'var(--accent-cyan-border)',
+    shadow: 'var(--accent-cyan-subtle)',
     emoji: '⚡',
   },
 ];
@@ -57,7 +57,7 @@ export default function AwardsSection() {
           viewport={{ once: true, margin: '-60px' }}
           transition={{ duration: 0.65, ease: [0.76, 0, 0.24, 1] }}
         >
-          <h2 className="font-heading text-3xl sm:text-4xl md:text-5xl font-bold mb-4" style={{ color: '#f8f9fa' }}>
+          <h2 className="font-heading text-3xl sm:text-4xl md:text-5xl font-bold mb-4" style={{ color: 'var(--text-1)' }}>
             Recognition
           </h2>
           <div className="w-16 h-1 rounded-full mx-auto" style={{ background: 'linear-gradient(90deg, rgb(251,191,36), rgb(0,240,255))' }} />
@@ -87,7 +87,7 @@ export default function AwardsSection() {
                       {award.rank}
                     </span>
                   </div>
-                  <h3 className="font-heading text-base font-bold mb-1" style={{ color: '#f8f9fa' }}>{award.title}</h3>
+                  <h3 className="font-heading text-base font-bold mb-1" style={{ color: 'var(--text-1)' }}>{award.title}</h3>
                   <p className="text-xs font-medium mb-1" style={{ color: award.color }}>{award.event}</p>
                   <p className="text-xs text-text-muted mb-3">{award.year}</p>
                   <p className="text-sm text-text-secondary leading-relaxed">{award.description}</p>

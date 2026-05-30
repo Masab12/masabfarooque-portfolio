@@ -52,7 +52,7 @@ export default function SkillsRadar() {
           viewport={{ once: true, margin: '-60px' }}
           transition={{ duration: 0.65, ease: [0.76, 0, 0.24, 1] }}
         >
-          <h2 className="font-heading text-3xl sm:text-4xl md:text-5xl font-bold mb-4" style={{ color: '#f8f9fa' }}>
+          <h2 className="font-heading text-3xl sm:text-4xl md:text-5xl font-bold mb-4" style={{ color: 'var(--text-1)' }}>
             Skill Profile
           </h2>
           <div className="w-16 h-1 rounded-full mx-auto" style={{ background: 'linear-gradient(90deg, rgb(0,240,255), rgb(139,92,246))' }} />
@@ -73,7 +73,7 @@ export default function SkillsRadar() {
                     key={level}
                     points={poly}
                     fill="none"
-                    stroke="rgba(255,255,255,0.06)"
+                    stroke="var(--border-base)"
                     strokeWidth="1"
                   />
                 );
@@ -89,7 +89,7 @@ export default function SkillsRadar() {
                     y1={cy}
                     x2={outer.x}
                     y2={outer.y}
-                    stroke="rgba(255,255,255,0.06)"
+                    stroke="var(--border-base)"
                     strokeWidth="1"
                   />
                 );
@@ -97,8 +97,8 @@ export default function SkillsRadar() {
 
               <motion.polygon
                 points={inView ? fullPolygon : zeroPolygon}
-                fill="rgba(0,240,255,0.12)"
-                stroke="rgba(0,240,255,0.7)"
+                fill="var(--accent-cyan-subtle)"
+                stroke="var(--accent-cyan)"
                 strokeWidth="1.5"
                 strokeLinejoin="round"
                 initial={{ points: zeroPolygon }}
@@ -116,8 +116,8 @@ export default function SkillsRadar() {
                       cx={dotPt.x}
                       cy={dotPt.y}
                       r="4"
-                      fill="rgb(0,240,255)"
-                      style={{ filter: 'drop-shadow(0 0 4px rgba(0,240,255,0.8))' }}
+                      fill="var(--accent-cyan)"
+                      style={{ filter: 'none' }}
                       initial={{ opacity: 0, r: 0 }}
                       animate={inView ? { opacity: 1, r: 4 } : {}}
                       transition={{ duration: 0.4, delay: 0.5 + i * 0.06 }}
@@ -148,10 +148,10 @@ export default function SkillsRadar() {
                 transition={{ duration: 0.45, delay: 0.1 + i * 0.07 }}
               >
                 <div className="flex items-center justify-between mb-1.5">
-                  <span className="text-sm font-medium" style={{ color: '#f8f9fa' }}>{skill.label}</span>
-                  <span className="text-sm font-mono" style={{ color: 'rgb(0,240,255)' }}>{skill.value}%</span>
+                  <span className="text-sm font-medium" style={{ color: 'var(--text-1)' }}>{skill.label}</span>
+                  <span className="text-sm font-mono" style={{ color: 'var(--accent-cyan)' }}>{skill.value}%</span>
                 </div>
-                <div className="h-1.5 rounded-full overflow-hidden" style={{ backgroundColor: 'rgba(255,255,255,0.06)' }}>
+                <div className="h-1.5 rounded-full overflow-hidden" style={{ backgroundColor: 'var(--border-base)' }}>
                   <motion.div
                     className="h-full rounded-full"
                     style={{ background: 'linear-gradient(90deg, rgb(0,240,255), rgb(139,92,246))' }}

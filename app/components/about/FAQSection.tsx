@@ -13,7 +13,7 @@ function FAQItem({ q, a, index }: { q: string; a: string; index: number }) {
   return (
     <motion.div
       className="border-b"
-      style={{ borderColor: open ? 'rgba(0,240,255,0.12)' : 'rgba(255,255,255,0.06)', transition: 'border-color 0.25s ease' }}
+      style={{ borderColor: open ? 'var(--accent-cyan-border)' : 'var(--border-base)', transition: 'border-color 0.25s ease' }}
       initial={{ opacity: 0, y: 16 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: '-40px' }}
@@ -26,7 +26,7 @@ function FAQItem({ q, a, index }: { q: string; a: string; index: number }) {
       >
         <span
           className="text-sm sm:text-base font-medium leading-snug transition-colors duration-200"
-          style={{ color: open ? 'rgb(0,240,255)' : '#f8f9fa' }}
+          style={{ color: open ? 'var(--accent-cyan)' : 'var(--text-1)' }}
         >
           {q}
         </span>
@@ -34,7 +34,7 @@ function FAQItem({ q, a, index }: { q: string; a: string; index: number }) {
           animate={{ rotate: open ? 180 : 0 }}
           transition={{ duration: 0.25, ease: [0.22, 1, 0.36, 1] }}
           className="flex-shrink-0 mt-0.5"
-          style={{ color: open ? 'rgb(0,240,255)' : 'rgba(160,160,171,0.7)' }}
+          style={{ color: open ? 'var(--accent-cyan)' : 'var(--text-3)' }}
         >
           <HiChevronDown className="w-5 h-5" />
         </motion.span>
@@ -67,7 +67,7 @@ export default function FAQSection() {
           viewport={{ once: true, margin: '-60px' }}
           transition={{ duration: 0.65, ease: [0.76, 0, 0.24, 1] }}
         >
-          <h2 className="font-heading text-3xl sm:text-4xl md:text-5xl font-bold mb-4" style={{ color: '#f8f9fa' }}>
+          <h2 className="font-heading text-3xl sm:text-4xl md:text-5xl font-bold mb-4" style={{ color: 'var(--text-1)' }}>
             Frequently Asked Questions
           </h2>
           <div className="w-16 h-1 rounded-full mx-auto" style={{ background: 'linear-gradient(90deg, rgb(0,240,255), rgb(139,92,246))' }} />

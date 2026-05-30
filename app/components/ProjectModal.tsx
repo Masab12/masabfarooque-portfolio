@@ -85,8 +85,8 @@ export default function ProjectModal({ isOpen, onClose, project }: ProjectModalP
               <motion.div
                 className="relative w-full max-w-4xl rounded-2xl border overflow-hidden flex flex-col"
                 style={{
-                  backgroundColor: '#1a1a2e',
-                  borderColor: 'rgba(255,255,255,0.08)',
+                  backgroundColor: 'var(--bg-secondary)',
+                  borderColor: 'var(--border-base)',
                   maxHeight: '90vh',
                 }}
                 initial={{ opacity: 0, scale: 0.94, y: 24 }}
@@ -139,7 +139,7 @@ export default function ProjectModal({ isOpen, onClose, project }: ProjectModalP
                     {/* Gradient overlay */}
                     <div
                       className="absolute inset-0 pointer-events-none"
-                      style={{ background: 'linear-gradient(to bottom, transparent 60%, #1a1a2e)' }}
+                      style={{ background: 'linear-gradient(to bottom, transparent 60%, var(--bg-secondary))' }}
                     />
 
                     {/* Prev / Next buttons */}
@@ -176,7 +176,7 @@ export default function ProjectModal({ isOpen, onClose, project }: ProjectModalP
                             style={{
                               width: i === imgIdx ? '20px' : '6px',
                               height: '6px',
-                              backgroundColor: i === imgIdx ? 'rgb(0,240,255)' : 'rgba(255,255,255,0.3)',
+                              backgroundColor: i === imgIdx ? 'var(--accent-cyan)' : 'var(--border-base)',
                             }}
                           />
                         ))}
@@ -190,7 +190,7 @@ export default function ProjectModal({ isOpen, onClose, project }: ProjectModalP
                         style={{
                           backgroundColor: 'rgba(10,10,15,0.7)',
                           color: 'rgba(160,160,171,0.9)',
-                          border: '1px solid rgba(255,255,255,0.08)',
+                          border: '1px solid var(--border-base)',
                         }}
                       >
                         {imgIdx + 1} / {gallery.length}
@@ -209,7 +209,7 @@ export default function ProjectModal({ isOpen, onClose, project }: ProjectModalP
                           style={{
                             width: '72px',
                             height: '48px',
-                            outline: i === imgIdx ? '2px solid rgb(0,240,255)' : '2px solid transparent',
+                            outline: i === imgIdx ? '2px solid var(--accent-cyan)' : '2px solid transparent',
                             opacity: i === imgIdx ? 1 : 0.55,
                           }}
                           aria-label={`View image ${i + 1}`}
@@ -230,7 +230,7 @@ export default function ProjectModal({ isOpen, onClose, project }: ProjectModalP
                   <div className="p-5 sm:p-7 md:p-8">
                     <h2
                       className="text-2xl sm:text-3xl font-bold mb-3"
-                      style={{ color: '#f8f9fa' }}
+                      style={{ color: 'var(--text-1)' }}
                     >
                       {project.title}
                     </h2>
@@ -246,7 +246,7 @@ export default function ProjectModal({ isOpen, onClose, project }: ProjectModalP
 
                     {/* Technologies */}
                     <div className="mb-5">
-                      <h3 className="text-base sm:text-lg font-bold mb-2" style={{ color: '#f8f9fa' }}>
+                      <h3 className="text-base sm:text-lg font-bold mb-2" style={{ color: 'var(--text-1)' }}>
                         Technologies Used
                       </h3>
                       <div className="flex flex-wrap gap-2">
@@ -255,9 +255,9 @@ export default function ProjectModal({ isOpen, onClose, project }: ProjectModalP
                             key={tech}
                             className="px-3 py-1.5 rounded-lg text-xs sm:text-sm font-medium border"
                             style={{
-                              backgroundColor: 'rgba(0,240,255,0.07)',
-                              color: 'rgb(0,240,255)',
-                              borderColor: 'rgba(0,240,255,0.2)',
+                              backgroundColor: 'var(--accent-cyan-subtle)',
+                              color: 'var(--accent-cyan)',
+                              borderColor: 'var(--accent-cyan-border)',
                             }}
                           >
                             {tech}
@@ -268,13 +268,13 @@ export default function ProjectModal({ isOpen, onClose, project }: ProjectModalP
 
                     {/* Key Features */}
                     <div className="mb-5">
-                      <h3 className="text-base sm:text-lg font-bold mb-2" style={{ color: '#f8f9fa' }}>
+                      <h3 className="text-base sm:text-lg font-bold mb-2" style={{ color: 'var(--text-1)' }}>
                         Key Features
                       </h3>
                       <ul className="space-y-1.5">
                         {project.features.map((f, i) => (
                           <li key={i} className="flex items-start gap-3 text-text-secondary text-sm sm:text-base">
-                            <span className="mt-1 flex-shrink-0 w-1.5 h-1.5 rounded-full" style={{ backgroundColor: 'rgb(0,240,255)' }} />
+                            <span className="mt-1 flex-shrink-0 w-1.5 h-1.5 rounded-full" style={{ backgroundColor: 'var(--accent-cyan)' }} />
                             {f}
                           </li>
                         ))}
@@ -284,13 +284,13 @@ export default function ProjectModal({ isOpen, onClose, project }: ProjectModalP
                     {/* Technical Challenges */}
                     {project.challenges.length > 0 && (
                       <div className="mb-5">
-                        <h3 className="text-base sm:text-lg font-bold mb-2" style={{ color: '#f8f9fa' }}>
+                        <h3 className="text-base sm:text-lg font-bold mb-2" style={{ color: 'var(--text-1)' }}>
                           Technical Challenges
                         </h3>
                         <ul className="space-y-1.5">
                           {project.challenges.map((c, i) => (
                             <li key={i} className="flex items-start gap-3 text-text-secondary text-sm sm:text-base">
-                              <span className="mt-1 flex-shrink-0 w-1.5 h-1.5 rounded-full" style={{ backgroundColor: 'rgb(139,92,246)' }} />
+                              <span className="mt-1 flex-shrink-0 w-1.5 h-1.5 rounded-full" style={{ backgroundColor: 'var(--accent-violet)' }} />
                               {c}
                             </li>
                           ))}
@@ -300,7 +300,7 @@ export default function ProjectModal({ isOpen, onClose, project }: ProjectModalP
 
                     {/* Links */}
                     {(project.githubUrl || project.liveUrl) && (
-                      <div className="flex flex-wrap gap-3 pt-4 border-t" style={{ borderColor: 'rgba(255,255,255,0.08)' }}>
+                      <div className="flex flex-wrap gap-3 pt-4 border-t" style={{ borderColor: 'var(--border-base)' }}>
                         {project.liveUrl && (
                           <a
                             href={project.liveUrl}
@@ -323,8 +323,8 @@ export default function ProjectModal({ isOpen, onClose, project }: ProjectModalP
                             rel="noopener noreferrer"
                             className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl font-semibold text-sm border transition-all hover:border-opacity-60"
                             style={{
-                              borderColor: 'rgba(255,255,255,0.15)',
-                              color: '#f8f9fa',
+                              borderColor: 'var(--border-base)',
+                              color: 'var(--text-1)',
                             }}
                           >
                             <FiGithub className="w-4 h-4" />

@@ -26,7 +26,7 @@ function CardContent({ entry, c }: { entry: typeof timeline[0]; c: ColorConfig }
           </span>
         )}
       </div>
-      <h3 className="font-heading text-base font-bold mb-1" style={{ color: '#f8f9fa' }}>{entry.title}</h3>
+      <h3 className="font-heading text-base font-bold mb-1" style={{ color: 'var(--text-1)' }}>{entry.title}</h3>
       {entry.organization && (
         <p className="text-xs font-medium mb-2" style={{ color: c.dot }}>{entry.organization}</p>
       )}
@@ -192,7 +192,7 @@ export default function TimelineSection() {
           viewport={{ once: true, margin: '-60px' }}
           transition={{ duration: 0.65, ease: [0.76, 0, 0.24, 1] }}
         >
-          <h2 className="font-heading text-4xl sm:text-5xl md:text-6xl font-bold mb-4" style={{ color: '#f8f9fa' }}>
+          <h2 className="font-heading text-4xl sm:text-5xl md:text-6xl font-bold mb-4" style={{ color: 'var(--text-1)' }}>
             The Journey
           </h2>
           <div className="w-20 h-1 rounded-full mx-auto" style={{ background: 'linear-gradient(90deg, rgb(0,240,255), rgb(139,92,246))' }} />

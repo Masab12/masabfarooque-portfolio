@@ -222,7 +222,8 @@ export default function ContactForm() {
       <button
         type="submit"
         disabled={isSubmitting}
-        className="w-full px-6 py-4 bg-electric-cyan text-void-black font-semibold rounded-xl hover:shadow-[0_0_40px_rgba(0,240,255,0.4)] hover:scale-[1.02] transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100 text-sm"
+        className="w-full px-6 py-4 bg-electric-cyan font-semibold rounded-xl hover:scale-[1.02] transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100 text-sm"
+        style={{ color: 'var(--color-on-accent)' }}
       >
         {isSubmitting ? 'Sending...' : 'Send Message'}
       </button>

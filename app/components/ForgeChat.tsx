@@ -154,7 +154,7 @@ function MessageBubble({ message, index }: { message: ForgeMessage; index: numbe
             fontSize: 9,
             fontFamily: 'var(--font-jetbrains), monospace',
             letterSpacing: '0.15em',
-            color: 'rgb(0,240,255)',
+            color: 'var(--accent-cyan)',
             fontWeight: 700,
             marginBottom: 5,
             paddingLeft: 4,
@@ -171,13 +171,13 @@ function MessageBubble({ message, index }: { message: ForgeMessage; index: numbe
           borderRadius: isUser ? '16px 16px 4px 16px' : '4px 16px 16px 16px',
           fontSize: 14,
           lineHeight: 1.65,
-          color: '#e8e9ed',
+          color: 'var(--text-2)',
           background: isUser
-            ? 'rgba(139,92,246,0.18)'
-            : 'rgba(15,15,26,0.9)',
+            ? 'var(--accent-violet-subtle)'
+            : 'var(--bg-card)',
           border: isUser
-            ? '1px solid rgba(139,92,246,0.3)'
-            : '1px solid rgba(0,240,255,0.12)',
+            ? '1px solid var(--accent-violet-border)'
+            : '1px solid var(--accent-cyan-border)',
           wordBreak: 'break-word',
           whiteSpace: 'pre-wrap',
         }}
@@ -197,7 +197,7 @@ function StreamingBubble({ content }: { content: string }) {
           fontSize: 9,
           fontFamily: 'var(--font-jetbrains), monospace',
           letterSpacing: '0.15em',
-          color: 'rgb(0,240,255)',
+          color: 'var(--accent-cyan)',
           fontWeight: 700,
           marginBottom: 5,
           paddingLeft: 4,
@@ -213,9 +213,9 @@ function StreamingBubble({ content }: { content: string }) {
           borderRadius: '4px 16px 16px 16px',
           fontSize: 14,
           lineHeight: 1.65,
-          color: '#e8e9ed',
-          background: 'rgba(15,15,26,0.9)',
-          border: '1px solid rgba(0,240,255,0.12)',
+          color: 'var(--text-2)',
+          background: 'var(--bg-card)',
+          border: '1px solid var(--accent-cyan-border)',
           wordBreak: 'break-word',
           whiteSpace: 'pre-wrap',
         }}
@@ -224,7 +224,7 @@ function StreamingBubble({ content }: { content: string }) {
         <motion.span
           animate={{ opacity: [1, 0] }}
           transition={{ duration: 0.6, repeat: Infinity, repeatType: 'reverse' }}
-          style={{ color: 'rgb(0,240,255)', fontWeight: 700 }}
+          style={{ color: 'var(--accent-cyan)', fontWeight: 700 }}
         >
           ▋
         </motion.span>
@@ -248,12 +248,12 @@ function PhaseIndicator({ phase }: { phase: Phase }) {
                 borderRadius: 2,
                 background:
                   p < phase
-                    ? 'rgb(0,240,255)'
+                    ? 'var(--accent-cyan)'
                     : p === phase
-                    ? 'linear-gradient(90deg, rgb(0,240,255), rgb(139,92,246))'
-                    : 'rgba(255,255,255,0.1)',
+                    ? 'linear-gradient(90deg, var(--accent-cyan), var(--accent-violet))'
+                    : 'var(--border-base)',
                 transition: 'all 0.3s ease',
-                boxShadow: p === phase ? '0 0 8px rgba(0,240,255,0.4)' : 'none',
+                boxShadow: 'none',
               }}
             />
             <span
@@ -261,7 +261,7 @@ function PhaseIndicator({ phase }: { phase: Phase }) {
                 fontSize: 9,
                 fontFamily: 'var(--font-jetbrains), monospace',
                 letterSpacing: '0.08em',
-                color: p === phase ? 'rgb(0,240,255)' : p < phase ? 'rgba(0,240,255,0.5)' : 'rgba(255,255,255,0.2)',
+                color: p === phase ? 'var(--accent-cyan)' : p < phase ? 'var(--text-3)' : 'var(--text-3)',
                 textTransform: 'uppercase',
                 transition: 'all 0.3s ease',
                 whiteSpace: 'nowrap',
@@ -275,7 +275,7 @@ function PhaseIndicator({ phase }: { phase: Phase }) {
               style={{
                 width: 12,
                 height: 1,
-                background: p < phase ? 'rgba(0,240,255,0.4)' : 'rgba(255,255,255,0.08)',
+                background: p < phase ? 'var(--accent-cyan-border)' : 'var(--border-base)',
                 marginBottom: 14,
                 flexShrink: 0,
                 transition: 'all 0.3s ease',
@@ -306,7 +306,7 @@ function MessagesCounter({ remaining }: { remaining: number }) {
       >
         {remaining} msg{remaining !== 1 ? 's' : ''} remaining
       </span>
-      <div style={{ width: 100, height: 2, background: 'rgba(255,255,255,0.08)', borderRadius: 1 }}>
+      <div style={{ width: 100, height: 2, background: 'var(--border-base)', borderRadius: 1 }}>
         <div
           style={{
             height: '100%',
@@ -511,8 +511,8 @@ export default function ForgeChat() {
                   width: 8,
                   height: 8,
                   borderRadius: '50%',
-                  background: 'rgb(0,240,255)',
-                  boxShadow: '0 0 10px rgba(0,240,255,0.8)',
+                  background: 'var(--accent-cyan)',
+                  boxShadow: '0 0 10px var(--accent-cyan)',
                   flexShrink: 0,
                 }}
               />
@@ -521,7 +521,7 @@ export default function ForgeChat() {
                   fontSize: 11,
                   fontFamily: 'var(--font-jetbrains), monospace',
                   letterSpacing: '0.2em',
-                  color: 'rgb(0,240,255)',
+                  color: 'var(--accent-cyan)',
                   fontWeight: 700,
                   textTransform: 'uppercase',
                 }}
@@ -534,7 +534,7 @@ export default function ForgeChat() {
                 margin: 0,
                 fontSize: 26,
                 fontWeight: 700,
-                color: '#f8f9fa',
+                color: 'var(--text-1)',
                 fontFamily: 'var(--font-space-grotesk), sans-serif',
               }}
             >
@@ -550,7 +550,7 @@ export default function ForgeChat() {
                 Get a brief.
               </span>
             </h1>
-            <p style={{ margin: '6px 0 0', fontSize: 13, color: '#a0a0ab' }}>
+            <p style={{ margin: '6px 0 0', fontSize: 13, color: 'var(--text-3)' }}>
               Answer 10 questions. Forge generates a structured technical brief and sends it to Masab.
             </p>
           </div>
@@ -561,8 +561,8 @@ export default function ForgeChat() {
           <div
             style={{
               padding: '12px 16px',
-              background: 'rgba(15,15,26,0.8)',
-              border: '1px solid rgba(255,255,255,0.06)',
+              background: 'var(--bg-card)',
+              border: '1px solid var(--border-base)',
               borderRadius: 10,
               display: 'flex',
               alignItems: 'center',
@@ -604,8 +604,8 @@ export default function ForgeChat() {
               alignItems: 'center',
               gap: 10,
               padding: '14px 16px',
-              background: 'rgba(0,240,255,0.05)',
-              border: '1px solid rgba(0,240,255,0.2)',
+              background: 'var(--accent-cyan-subtle)',
+              border: '1px solid var(--accent-cyan-border)',
               borderRadius: 12,
               marginBottom: 16,
             }}
@@ -617,8 +617,8 @@ export default function ForgeChat() {
                 width: 16,
                 height: 16,
                 borderRadius: '50%',
-                border: '2px solid rgba(0,240,255,0.2)',
-                borderTopColor: 'rgb(0,240,255)',
+                border: '2px solid var(--accent-cyan-border)',
+                borderTopColor: 'var(--accent-cyan)',
                 flexShrink: 0,
               }}
             />
@@ -626,7 +626,7 @@ export default function ForgeChat() {
               style={{
                 fontSize: 13,
                 fontFamily: 'var(--font-jetbrains), monospace',
-                color: 'rgb(0,240,255)',
+                color: 'var(--accent-cyan)',
                 letterSpacing: '0.06em',
               }}
             >
@@ -664,8 +664,8 @@ export default function ForgeChat() {
       {!state.brief && (
         <div
           style={{
-            background: 'rgba(15,15,26,0.9)',
-            border: `1px solid ${isDisabled ? 'rgba(255,255,255,0.05)' : 'rgba(0,240,255,0.2)'}`,
+            background: 'var(--bg-card)',
+            border: `1px solid ${isDisabled ? 'var(--border-base)' : 'var(--accent-cyan-border)'}`,
             borderRadius: 14,
             padding: '12px 14px',
             display: 'flex',
@@ -703,7 +703,7 @@ export default function ForgeChat() {
               outline: 'none',
               resize: 'none',
               fontSize: 14,
-              color: '#e8e9ed',
+              color: 'var(--text-2)',
               fontFamily: 'var(--font-inter), system-ui, sans-serif',
               lineHeight: 1.6,
               minHeight: 24,
@@ -723,7 +723,7 @@ export default function ForgeChat() {
               border: 'none',
               background:
                 isDisabled || !inputValue.trim()
-                  ? 'rgba(255,255,255,0.06)'
+                  ? 'var(--bg-card)'
                   : 'linear-gradient(135deg, rgb(0,240,255), rgb(139,92,246))',
               cursor: isDisabled || !inputValue.trim() ? 'not-allowed' : 'pointer',
               display: 'flex',
@@ -755,7 +755,7 @@ export default function ForgeChat() {
 
       {/* Done state note */}
       {state.status === 'done' && !state.brief && (
-        <p style={{ textAlign: 'center', fontSize: 13, color: '#a0a0ab', marginTop: 16 }}>
+        <p style={{ textAlign: 'center', fontSize: 13, color: 'var(--text-3)', marginTop: 16 }}>
           Brief generation complete. Check above.
         </p>
       )}

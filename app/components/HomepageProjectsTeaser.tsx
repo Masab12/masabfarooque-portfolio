@@ -69,7 +69,7 @@ export default function HomepageProjectsTeaser() {
           <Link
             href="/portfolio"
             className="inline-flex items-center gap-2 text-sm font-semibold hover:gap-3 transition-all duration-200"
-            style={{ color: 'rgb(0,240,255)' }}
+            style={{ color: 'var(--accent-cyan)' }}
           >
             See Full Portfolio <HiArrowRight className="w-4 h-4" />
           </Link>

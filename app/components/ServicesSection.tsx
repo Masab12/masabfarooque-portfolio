@@ -201,7 +201,7 @@ function ServiceCard({ service, index }: { service: typeof services[0], index: n
               <div key={step} className="flex items-center gap-1.5">
                 <motion.div
                   className="pipeline-step px-3 py-1.5 rounded-lg border text-xs text-text-secondary cursor-default relative overflow-hidden"
-                  style={{ backgroundColor: 'rgba(10,10,15,0.7)', borderColor: 'rgba(0,240,255,0.2)' }}
+                  style={{ backgroundColor: 'var(--bg-card)', borderColor: 'var(--accent-cyan-border)' }}
                   variants={{
                     hidden: { opacity: 0, scale: 0.8, x: -10 },
                     visible: { opacity: 1, scale: 1, x: 0, transition: { duration: 0.38, ease: [0.22, 1, 0.36, 1] } },
@@ -279,7 +279,7 @@ export default function ServicesSection() {
         <div className="mb-16 text-center">
           <motion.h2
             className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-heading font-bold mb-4"
-            style={{ color: '#f8f9fa' }}
+            style={{ color: 'var(--text-1)' }}
             initial={{ opacity: 0, y: 28 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: '-50px' }}

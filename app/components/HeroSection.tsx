@@ -75,11 +75,11 @@ export default function HeroSection() {
         >
           <motion.span
             className="w-2 h-2 rounded-full"
-            style={{ backgroundColor: 'rgb(0,240,255)' }}
+            style={{ backgroundColor: 'var(--accent-cyan)' }}
             animate={{ scale: [1, 1.3, 1], opacity: [1, 0.4, 1] }}
             transition={{ duration: 2, repeat: Infinity }}
           />
-          <span className="text-sm font-medium" style={{ color: 'rgb(0,240,255)' }}>
+          <span className="text-sm font-medium" style={{ color: 'var(--accent-cyan)' }}>
             Level 2 Fiverr Seller
           </span>
         </motion.div>
@@ -126,7 +126,7 @@ export default function HeroSection() {
               <motion.span
                 key={wordIdx}
                 className="font-mono font-semibold block"
-                style={{ color: 'rgb(0,240,255)' }}
+                style={{ color: 'var(--accent-cyan)' }}
                 initial={{ y: '110%', opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}
                 exit={{ y: '-110%', opacity: 0 }}
@@ -192,9 +192,10 @@ export default function HeroSection() {
             onClick={scrollToProjects}
             onMouseMove={handleMouseMove}
             onMouseLeave={() => setMousePosition({ x: 0, y: 0 })}
-            className="magnetic-button group relative px-8 py-4 rounded-xl font-semibold text-void-black w-full sm:w-auto overflow-hidden"
+            className="magnetic-button group relative px-8 py-4 rounded-xl font-semibold w-full sm:w-auto overflow-hidden"
             style={{
               background: 'linear-gradient(135deg, rgb(0,240,255), rgb(139,92,246))',
+              color: 'var(--color-on-accent)',
             }}
             animate={{ x: mousePosition.x, y: mousePosition.y }}
             transition={{ type: 'spring', stiffness: 150, damping: 15 }}
@@ -249,7 +250,7 @@ export default function HeroSection() {
           >
             <motion.div
               className="w-1 h-2 rounded-full"
-              style={{ backgroundColor: 'rgb(0,240,255)' }}
+              style={{ backgroundColor: 'var(--accent-cyan)' }}
               animate={{ y: [0, 12, 0] }}
               transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut' }}
             />

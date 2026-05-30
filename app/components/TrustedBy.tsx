@@ -50,14 +50,14 @@ export default function TrustedBy() {
       className="relative w-full py-8 overflow-hidden"
       style={{
         backgroundColor: BG,
-        borderTop: '1px solid rgba(255,255,255,0.06)',
-        borderBottom: '1px solid rgba(255,255,255,0.06)',
+        borderTop: '1px solid var(--border-base)',
+        borderBottom: '1px solid var(--border-base)',
       }}
     >
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-6">
         <motion.p
           className="text-center text-xs font-bold tracking-widest uppercase font-mono"
-          style={{ color: 'rgba(160,160,171,0.45)' }}
+          style={{ color: 'var(--text-3)' }}
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}

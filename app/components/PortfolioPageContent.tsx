@@ -33,10 +33,10 @@ export default function PortfolioPageContent() {
     <>
       <section className="relative w-full px-4 sm:px-6 lg:px-8 pb-12">
         <div className="relative max-w-7xl mx-auto">
-          <p className="text-xs font-bold tracking-widest uppercase mb-5 font-mono" style={{ color: 'rgb(0,240,255)' }}>
+          <p className="text-xs font-bold tracking-widest uppercase mb-5 font-mono" style={{ color: 'var(--accent-cyan)' }}>
             Selected Work
           </p>
-          <h1 className="font-heading text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold leading-tight mb-4" style={{ color: '#f8f9fa' }}>
+          <h1 className="font-heading text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold leading-tight mb-4" style={{ color: 'var(--text-1)' }}>
             Masab's Portfolio
           </h1>
           <p className="text-text-secondary text-base sm:text-lg max-w-3xl leading-relaxed mb-3">
@@ -80,18 +80,18 @@ export default function PortfolioPageContent() {
         </div>
       </section>
 
-      <section className="relative w-full px-4 sm:px-6 lg:px-8 py-16 border-t" style={{ borderColor: 'rgba(255,255,255,0.06)' }}>
+      <section className="relative w-full px-4 sm:px-6 lg:px-8 py-16 border-t" style={{ borderColor: 'var(--border-base)' }}>
         <div className="max-w-4xl mx-auto text-center">
-          <p className="font-heading text-2xl sm:text-3xl font-bold mb-3" style={{ color: '#f8f9fa' }}>
+          <p className="font-heading text-2xl sm:text-3xl font-bold mb-3" style={{ color: 'var(--text-1)' }}>
             Want to build something like this?
           </p>
           <p className="text-text-secondary text-sm sm:text-base mb-8 max-w-xl mx-auto">
             Every project above was built end to end by Masab — from architecture to deployment.{' '}
-            <Link href="/services" className="underline underline-offset-2 hover:text-electric-cyan transition-colors" style={{ color: 'rgb(0,240,255)' }}>
+            <Link href="/services" className="underline underline-offset-2 hover:opacity-80 transition-opacity" style={{ color: 'var(--accent-cyan)' }}>
               Explore the services
             </Link>{' '}
             or{' '}
-            <Link href="/pricing" className="underline underline-offset-2 hover:opacity-80 transition-opacity" style={{ color: 'rgb(139,92,246)' }}>
+            <Link href="/pricing" className="underline underline-offset-2 hover:opacity-80 transition-opacity" style={{ color: 'var(--accent-violet)' }}>
               view pricing plans
             </Link>{' '}
             before reaching out.
@@ -99,8 +99,8 @@ export default function PortfolioPageContent() {
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
             <Link
               href="/contact"
-              className="inline-flex items-center gap-2 px-7 py-3.5 rounded-xl font-semibold text-void-black"
-              style={{ background: 'linear-gradient(135deg, rgb(0,240,255), rgb(139,92,246))' }}
+              className="inline-flex items-center gap-2 px-7 py-3.5 rounded-xl font-semibold"
+              style={{ background: 'linear-gradient(135deg, rgb(0,240,255), rgb(139,92,246))', color: 'var(--color-on-accent)' }}
             >
               Start a Project with Masab
             </Link>

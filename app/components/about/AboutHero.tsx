@@ -17,7 +17,7 @@ export default function AboutHero() {
           <div className="flex-1 text-center lg:text-left order-2 lg:order-1">
             <motion.p
               className="text-xs font-bold tracking-widest uppercase mb-5 font-mono"
-              style={{ color: 'rgb(0,240,255)' }}
+              style={{ color: 'var(--accent-cyan)' }}
               initial={{ opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.1 }}
@@ -28,7 +28,7 @@ export default function AboutHero() {
             <div className="overflow-hidden mb-5">
               <motion.h1
                 className="font-heading text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold leading-none tracking-tight"
-                style={{ color: '#f8f9fa' }}
+                style={{ color: 'var(--text-1)' }}
                 initial={{ y: '100%' }}
                 animate={{ y: 0 }}
                 transition={{ duration: 0.7, ease: [0.76, 0, 0.24, 1], delay: 0.18 }}
@@ -64,8 +64,8 @@ export default function AboutHero() {
             >
               <Link
                 href="/contact"
-                className="inline-flex items-center gap-2 px-7 py-3.5 rounded-xl font-semibold text-void-black group"
-                style={{ background: 'linear-gradient(135deg, rgb(0,240,255), rgb(139,92,246))' }}
+                className="inline-flex items-center gap-2 px-7 py-3.5 rounded-xl font-semibold group"
+                style={{ background: 'linear-gradient(135deg, rgb(0,240,255), rgb(139,92,246))', color: 'var(--color-on-accent)' }}
               >
                 Work Together
                 <HiArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
@@ -103,7 +103,7 @@ export default function AboutHero() {
                 {/* Inner circle to stops rotating with the ring */}
                 <motion.div
                   className="w-full h-full rounded-full overflow-hidden"
-                  style={{ backgroundColor: '#0a0a0f' }}
+                  style={{ backgroundColor: 'var(--bg-primary)' }}
                   animate={{ rotate: -360 }}
                   transition={{ duration: 12, repeat: Infinity, ease: 'linear' }}
                 >
@@ -128,19 +128,19 @@ export default function AboutHero() {
               {/* Floating badge to location */}
               <motion.div
                 className="absolute -bottom-3 -left-4 flex items-center gap-2 px-3 py-2 rounded-xl glass-card text-xs font-medium"
-                style={{ color: '#f8f9fa', border: '1px solid rgba(0,240,255,0.2)' }}
+                style={{ color: 'var(--text-1)', border: '1px solid rgba(0,240,255,0.2)' }}
                 initial={{ opacity: 0, x: -16, y: 8 }}
                 animate={{ opacity: 1, x: 0, y: 0 }}
                 transition={{ duration: 0.5, delay: 0.7 }}
               >
-                <HiLocationMarker className="w-3.5 h-3.5 flex-shrink-0" style={{ color: 'rgb(0,240,255)' }} />
+                <HiLocationMarker className="w-3.5 h-3.5 flex-shrink-0" style={{ color: 'var(--accent-cyan)' }} />
                 Islamabad, PK
               </motion.div>
 
               {/* Floating badge to rating */}
               <motion.div
                 className="absolute -top-2 -right-4 flex items-center gap-1.5 px-3 py-2 rounded-xl glass-card text-xs font-medium"
-                style={{ color: '#f8f9fa', border: '1px solid rgba(139,92,246,0.2)' }}
+                style={{ color: 'var(--text-1)', border: '1px solid rgba(139,92,246,0.2)' }}
                 initial={{ opacity: 0, x: 16, y: -8 }}
                 animate={{ opacity: 1, x: 0, y: 0 }}
                 transition={{ duration: 0.5, delay: 0.8 }}

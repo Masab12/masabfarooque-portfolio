@@ -52,19 +52,19 @@ export default function Navigation() {
           <div
             className="rounded-2xl px-4 sm:px-5 py-2.5 sm:py-3 flex items-center justify-between"
             style={{
-              backgroundColor: scrolled ? 'rgba(10,10,15,0.9)' : 'rgba(10,10,15,0.5)',
+              backgroundColor: scrolled ? 'var(--nav-bg-scrolled)' : 'var(--nav-bg-default)',
               backdropFilter: 'blur(20px)',
               WebkitBackdropFilter: 'blur(20px)',
-              border: `1px solid ${scrolled ? 'rgba(255,255,255,0.1)' : 'rgba(255,255,255,0.06)'}`,
+              border: `1px solid ${scrolled ? 'var(--nav-border-scrolled)' : 'var(--nav-border-default)'}`,
               transition: 'background-color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease',
-              boxShadow: scrolled ? '0 8px 32px rgba(0,0,0,0.4)' : 'none',
+              boxShadow: scrolled ? '0 8px 32px var(--shadow-color)' : 'none',
             }}
           >
             <Link
               href="/"
               className="font-heading text-xl font-bold text-text-primary hover:text-electric-cyan transition-colors duration-200"
             >
-              MF<span style={{ color: 'rgb(0,240,255)' }}>.</span>
+              MF<span style={{ color: 'var(--accent-cyan)' }}>.</span>
             </Link>
 
             <div className="hidden md:flex items-center gap-1">
@@ -101,11 +101,11 @@ export default function Navigation() {
                     <motion.div
                       className="absolute top-full left-1/2 -translate-x-1/2 mt-2 w-[480px] rounded-2xl p-5"
                       style={{
-                        backgroundColor: 'rgba(10,10,15,0.97)',
+                        backgroundColor: 'var(--bg-primary)',
                         backdropFilter: 'blur(24px)',
                         WebkitBackdropFilter: 'blur(24px)',
-                        border: '1px solid rgba(255,255,255,0.1)',
-                        boxShadow: '0 24px 60px rgba(0,0,0,0.7)',
+                        border: '1px solid var(--border-base)',
+                        boxShadow: '0 24px 60px var(--shadow-color)',
                       }}
                       initial={{ opacity: 0, y: -6, scale: 0.98 }}
                       animate={{ opacity: 1, y: 0, scale: 1 }}
@@ -132,7 +132,7 @@ export default function Navigation() {
                           >
                             <span
                               className="text-sm font-semibold leading-tight"
-                              style={{ color: '#f8f9fa' }}
+                              style={{ color: 'var(--text-1)' }}
                             >
                               {cat.shortTitle}
                             </span>
@@ -144,13 +144,13 @@ export default function Navigation() {
                       </div>
                       <div
                         className="flex items-center justify-between pt-3"
-                        style={{ borderTop: '1px solid rgba(255,255,255,0.06)' }}
+                        style={{ borderTop: '1px solid var(--border-base)' }}
                       >
                         <span className="text-xs text-text-muted">Full breakdowns on the services page</span>
                         <Link
                           href="/services"
                           className="flex items-center gap-1 text-xs font-semibold transition-all duration-150 hover:gap-2"
-                          style={{ color: 'rgb(0,240,255)' }}
+                          style={{ color: 'var(--accent-cyan)' }}
                         >
                           All Services <HiArrowRight className="w-3 h-3" />
                         </Link>
@@ -191,9 +191,9 @@ export default function Navigation() {
                     letterSpacing: '0.06em',
                     padding: '1px 6px',
                     borderRadius: 9999,
-                    background: 'rgba(0,240,255,0.12)',
-                    border: '1px solid rgba(0,240,255,0.3)',
-                    color: 'rgb(0,240,255)',
+                    background: 'var(--accent-cyan-subtle)',
+                    border: '1px solid var(--accent-cyan-border)',
+                    color: 'var(--accent-cyan)',
                   }}
                 >
                   AI
@@ -202,8 +202,8 @@ export default function Navigation() {
               <ThemeToggle />
               <Link
                 href="/contact"
-                className="px-5 py-2.5 rounded-xl text-sm font-semibold text-void-black transition-opacity duration-150 hover:opacity-88"
-                style={{ background: 'linear-gradient(135deg, rgb(0,240,255), rgb(139,92,246))' }}
+                className="px-5 py-2.5 rounded-xl text-sm font-semibold transition-opacity duration-150 hover:opacity-88"
+                style={{ background: 'linear-gradient(135deg, rgb(0,240,255), rgb(139,92,246))', color: 'var(--color-on-accent)' }}
               >
                 Hire Me
               </Link>
@@ -263,10 +263,10 @@ export default function Navigation() {
               <div
                 className="rounded-2xl p-4"
                 style={{
-                  backgroundColor: 'rgba(10,10,15,0.97)',
+                  backgroundColor: 'var(--bg-primary)',
                   backdropFilter: 'blur(20px)',
-                  border: '1px solid rgba(255,255,255,0.1)',
-                  boxShadow: '0 20px 60px rgba(0,0,0,0.6)',
+                  border: '1px solid var(--border-base)',
+                  boxShadow: '0 20px 60px var(--shadow-color)',
                 }}
               >
                 <div className="flex justify-end mb-2">
@@ -306,7 +306,7 @@ export default function Navigation() {
                                 href={`/services#${cat.id}`}
                                 className="flex flex-col gap-0.5 p-3 rounded-xl hover:bg-white/5 transition-colors"
                               >
-                                <span className="text-xs font-semibold" style={{ color: '#f8f9fa' }}>{cat.shortTitle}</span>
+                                <span className="text-xs font-semibold" style={{ color: 'var(--text-1)' }}>{cat.shortTitle}</span>
                                 <span className="text-xs text-text-muted leading-snug line-clamp-2">{cat.description.split('.')[0]}.</span>
                               </Link>
                             ))}
@@ -314,7 +314,7 @@ export default function Navigation() {
                           <Link
                             href="/services"
                             className="flex items-center gap-1.5 mx-2 mb-2 px-3 py-2 rounded-xl text-xs font-semibold transition-colors hover:bg-white/5"
-                            style={{ color: 'rgb(0,240,255)' }}
+                            style={{ color: 'var(--accent-cyan)' }}
                           >
                             View all services <HiArrowRight className="w-3 h-3" />
                           </Link>
@@ -346,9 +346,9 @@ export default function Navigation() {
                         letterSpacing: '0.06em',
                         padding: '1px 6px',
                         borderRadius: 9999,
-                        background: 'rgba(0,240,255,0.12)',
-                        border: '1px solid rgba(0,240,255,0.3)',
-                        color: 'rgb(0,240,255)',
+                        background: 'var(--accent-cyan-subtle)',
+                        border: '1px solid var(--accent-cyan-border)',
+                        color: 'var(--accent-cyan)',
                       }}
                     >
                       AI
@@ -357,8 +357,8 @@ export default function Navigation() {
 
                   <Link
                     href="/contact"
-                    className="mt-1 px-4 py-3 rounded-xl text-sm font-semibold text-void-black text-center"
-                    style={{ background: 'linear-gradient(135deg, rgb(0,240,255), rgb(139,92,246))' }}
+                    className="mt-1 px-4 py-3 rounded-xl text-sm font-semibold text-center"
+                    style={{ background: 'linear-gradient(135deg, rgb(0,240,255), rgb(139,92,246))', color: 'var(--color-on-accent)' }}
                   >
                     Hire Me
                   </Link>

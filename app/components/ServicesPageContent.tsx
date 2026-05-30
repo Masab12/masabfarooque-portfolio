@@ -18,7 +18,7 @@ export default function ServicesPageContent() {
             key={service.id}
             id={service.id}
             className="relative py-16 sm:py-20 border-t"
-            style={{ borderColor: 'rgba(255,255,255,0.06)' }}
+            style={{ borderColor: 'var(--border-base)' }}
           >
             <motion.div
               initial={{ opacity: 0, y: 32 }}
@@ -37,7 +37,7 @@ export default function ServicesPageContent() {
                   <Icon className="w-8 h-8" style={{ color: service.gradientFrom }} />
                 </div>
                 <div>
-                  <h2 className="font-heading text-3xl sm:text-4xl md:text-5xl font-bold" style={{ color: '#f8f9fa' }}>
+                  <h2 className="font-heading text-3xl sm:text-4xl md:text-5xl font-bold" style={{ color: 'var(--text-1)' }}>
                     {service.title}
                   </h2>
                 </div>
@@ -54,7 +54,7 @@ export default function ServicesPageContent() {
                     <div key={step} className="flex items-center gap-2">
                       <motion.div
                         className="px-3 py-1.5 rounded-lg border text-xs text-text-secondary"
-                        style={{ backgroundColor: 'rgba(10,10,15,0.7)', borderColor: `${service.gradientFrom}30` }}
+                        style={{ backgroundColor: 'var(--bg-card)', borderColor: `${service.gradientFrom}30` }}
                         initial={{ opacity: 0, scale: 0.85 }}
                         whileInView={{ opacity: 1, scale: 1 }}
                         viewport={{ once: true }}
@@ -91,14 +91,14 @@ export default function ServicesPageContent() {
                       className="glass-card p-5 rounded-xl h-full hover:border-electric-cyan/25 transition-colors duration-300"
                       glowColor={`${service.gradientFrom}08`}
                     >
-                      <h3 className="font-heading text-base font-bold mb-2" style={{ color: '#f8f9fa' }}>{sub.title}</h3>
+                      <h3 className="font-heading text-base font-bold mb-2" style={{ color: 'var(--text-1)' }}>{sub.title}</h3>
                       <p className="text-text-muted text-sm leading-relaxed mb-4">{sub.description}</p>
                       <div className="flex flex-wrap gap-1.5 mb-4">
                         {sub.techStack.map(tech => (
                           <span
                             key={tech}
                             className="text-xs px-2 py-0.5 rounded-md text-text-muted border"
-                            style={{ backgroundColor: 'rgba(255,255,255,0.03)', borderColor: 'rgba(255,255,255,0.08)' }}
+                            style={{ backgroundColor: 'var(--bg-card)', borderColor: 'var(--border-base)' }}
                           >
                             {tech}
                           </span>

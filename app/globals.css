@@ -15,6 +15,17 @@
   --accent-cyan:  rgb(0,240,255);
   --accent-violet: rgb(139,92,246);
   --shadow-color: rgba(0,0,0,0.4);
+  --color-on-accent: #0a0a0f;
+  --accent-cyan-subtle:  rgba(0,240,255,0.12);
+  --accent-cyan-border:  rgba(0,240,255,0.3);
+  --accent-violet-subtle: rgba(139,92,246,0.12);
+  --accent-violet-border: rgba(139,92,246,0.3);
+
+  /* Nav adaptive backgrounds */
+  --nav-bg-default:      rgba(10,10,15,0.5);
+  --nav-bg-scrolled:     rgba(10,10,15,0.9);
+  --nav-border-default:  rgba(255,255,255,0.06);
+  --nav-border-scrolled: rgba(255,255,255,0.1);
 
   /* Legacy variable aliases (kept for backward compatibility) */
   --void-black: #0a0a0f;
@@ -38,10 +49,22 @@
   --accent-cyan:  #007fa0;
   --accent-violet: #5b35b0;
   --shadow-color: rgba(0,0,0,0.12);
+  --color-on-accent: #0a0a0f;
+  --accent-cyan-subtle:  rgba(0,127,160,0.1);
+  --accent-cyan-border:  rgba(0,127,160,0.28);
+  --accent-violet-subtle: rgba(91,53,176,0.1);
+  --accent-violet-border: rgba(91,53,176,0.28);
+
+  /* Nav adaptive backgrounds */
+  --nav-bg-default:      rgba(245,242,236,0.75);
+  --nav-bg-scrolled:     rgba(245,242,236,0.92);
+  --nav-border-default:  rgba(0,0,0,0.06);
+  --nav-border-scrolled: rgba(0,0,0,0.1);
 
   /* Legacy variable overrides */
   --void-black: #f5f2ec;
   --deep-space: #ebe8e0;
+  --matte-charcoal: #dedad2;
   --electric-cyan: #007fa0;
   --deep-violet: #5b35b0;
 }
@@ -59,7 +82,7 @@ html {
 
 body {
   background-color: var(--void-black);
-  color: #f8f9fa;
+  color: var(--text-1);
   font-family: var(--font-inter), system-ui, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;

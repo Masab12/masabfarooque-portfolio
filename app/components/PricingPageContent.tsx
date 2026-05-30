@@ -32,12 +32,12 @@ const faqs = [
 function FAQItem({ q, a }: { q: string; a: string }) {
   const [open, setOpen] = useState(false);
   return (
-    <div className="border-b" style={{ borderColor: 'rgba(255,255,255,0.06)' }}>
+    <div className="border-b" style={{ borderColor: 'var(--border-base)' }}>
       <button
         onClick={() => setOpen(o => !o)}
         className="w-full flex items-center justify-between py-5 text-left gap-4"
       >
-        <span className="text-sm sm:text-base font-medium" style={{ color: '#f8f9fa' }}>{q}</span>
+        <span className="text-sm sm:text-base font-medium" style={{ color: 'var(--text-1)' }}>{q}</span>
         <motion.span animate={{ rotate: open ? 180 : 0 }} transition={{ duration: 0.22 }} className="flex-shrink-0">
           <HiChevronDown className="w-5 h-5 text-text-muted" />
         </motion.span>
@@ -76,8 +76,8 @@ export default function PricingPageContent() {
               {tier.isFeatured && (
                 <div className="absolute -top-3.5 left-0 right-0 flex justify-center z-10">
                   <span
-                    className="px-3 py-1 rounded-full text-xs font-bold text-void-black"
-                    style={{ background: 'linear-gradient(135deg, rgb(0,240,255), rgb(139,92,246))' }}
+                    className="px-3 py-1 rounded-full text-xs font-bold"
+                    style={{ background: 'linear-gradient(135deg, rgb(0,240,255), rgb(139,92,246))', color: 'var(--color-on-accent)' }}
                   >
                     Most Popular
                   </span>
@@ -88,14 +88,14 @@ export default function PricingPageContent() {
                 style={tier.isFeatured ? { border: '1px solid rgba(0,240,255,0.35)', boxShadow: '0 0 40px rgba(0,240,255,0.08)' } : {}}
               >
                 <div className="mb-5">
-                  <h3 className="font-heading text-xl font-bold mb-1" style={{ color: '#f8f9fa' }}>{tier.name}</h3>
+                  <h3 className="font-heading text-xl font-bold mb-1" style={{ color: 'var(--text-1)' }}>{tier.name}</h3>
                   <p className="text-xs text-text-muted mb-4 leading-relaxed">{tier.tagline}</p>
                   <div className="flex items-end gap-1">
                     {tier.suffix === 'custom' ? (
                       <span className="font-heading text-3xl font-bold" style={{ color: tier.accentColor }}>Custom</span>
                     ) : (
                       <>
-                        <span className="font-heading text-4xl font-bold" style={{ color: '#f8f9fa' }}>
+                        <span className="font-heading text-4xl font-bold" style={{ color: 'var(--text-1)' }}>
                           ${tier.startingAt.toLocaleString()}
                         </span>
                         <span className="text-text-muted text-sm mb-1">{tier.suffix}</span>
@@ -134,7 +134,7 @@ export default function PricingPageContent() {
                 </ul>
 
                 {tier.hasRetainer && tier.retainerNote && (
-                  <p className="text-xs text-text-muted italic border-t pt-3 mb-5" style={{ borderColor: 'rgba(255,255,255,0.06)' }}>
+                  <p className="text-xs text-text-muted italic border-t pt-3 mb-5" style={{ borderColor: 'var(--border-base)' }}>
                     {tier.retainerNote}
                   </p>
                 )}
@@ -144,7 +144,7 @@ export default function PricingPageContent() {
                   className="block w-full text-center py-3 rounded-xl text-sm font-semibold transition-all duration-200"
                   style={tier.isFeatured
                     ? { background: 'linear-gradient(135deg, rgb(0,240,255), rgb(139,92,246))', color: '#0a0a0f' }
-                    : { backgroundColor: 'rgba(255,255,255,0.06)', color: '#f8f9fa', border: '1px solid rgba(255,255,255,0.1)' }
+                    : { backgroundColor: 'var(--bg-card)', color: 'var(--text-1)', border: '1px solid var(--border-base)' }
                   }
                 >
                   {tier.ctaLabel}
@@ -155,7 +155,7 @@ export default function PricingPageContent() {
         </div>
 
         <div className="max-w-3xl mx-auto mb-16">
-          <h2 className="font-heading text-3xl sm:text-4xl font-bold mb-8 text-center" style={{ color: '#f8f9fa' }}>
+          <h2 className="font-heading text-3xl sm:text-4xl font-bold mb-8 text-center" style={{ color: 'var(--text-1)' }}>
             Frequently Asked Questions
           </h2>
           <div>
@@ -166,7 +166,7 @@ export default function PricingPageContent() {
         </div>
 
         <div className="max-w-2xl mx-auto text-center">
-          <h2 className="font-heading text-2xl sm:text-3xl font-bold mb-4" style={{ color: '#f8f9fa' }}>
+          <h2 className="font-heading text-2xl sm:text-3xl font-bold mb-4" style={{ color: 'var(--text-1)' }}>
             Have a unique requirement?
           </h2>
           <p className="text-text-secondary text-sm mb-3">
@@ -174,19 +174,19 @@ export default function PricingPageContent() {
           </p>
           <p className="text-text-muted text-xs mb-6">
             Not sure what you need?{' '}
-            <Link href="/services" className="underline underline-offset-2 hover:text-electric-cyan transition-colors" style={{ color: 'rgb(0,240,255)' }}>
+            <Link href="/services" className="underline underline-offset-2 hover:opacity-80 transition-opacity" style={{ color: 'var(--accent-cyan)' }}>
               Explore Masab's full service breakdown
             </Link>{' '}
             or{' '}
-            <Link href="/portfolio" className="underline underline-offset-2 hover:opacity-80 transition-opacity" style={{ color: 'rgb(139,92,246)' }}>
+            <Link href="/portfolio" className="underline underline-offset-2 hover:opacity-80 transition-opacity" style={{ color: 'var(--accent-violet)' }}>
               browse the project portfolio
             </Link>{' '}
             first.
           </p>
           <Link
             href="/contact?tier=custom"
-            className="inline-flex items-center gap-2 px-7 py-3.5 rounded-xl font-semibold text-void-black"
-            style={{ background: 'linear-gradient(135deg, rgb(0,240,255), rgb(139,92,246))' }}
+            className="inline-flex items-center gap-2 px-7 py-3.5 rounded-xl font-semibold"
+            style={{ background: 'linear-gradient(135deg, rgb(0,240,255), rgb(139,92,246))', color: 'var(--color-on-accent)' }}
           >
             Contact for Pricing <HiArrowRight className="w-4 h-4" />
           </Link>
