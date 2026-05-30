@@ -2,7 +2,21 @@
 @tailwind components;
 @tailwind utilities;
 
+/* ── Theme CSS Variables ─────────────────────────────────────── */
 :root {
+  /* Dark theme (default) */
+  --bg-primary:   #0a0a0f;
+  --bg-secondary: #0f0f1a;
+  --bg-card:      rgba(255,255,255,0.05);
+  --text-1:       #f8f9fa;
+  --text-2:       #e8e9ed;
+  --text-3:       #a0a0ab;
+  --border-base:  rgba(255,255,255,0.08);
+  --accent-cyan:  rgb(0,240,255);
+  --accent-violet: rgb(139,92,246);
+  --shadow-color: rgba(0,0,0,0.4);
+
+  /* Legacy variable aliases (kept for backward compatibility) */
   --void-black: #0a0a0f;
   --deep-space: #0f0f1a;
   --matte-charcoal: #1a1a2e;
@@ -11,6 +25,25 @@
   --amber-glow: rgba(251, 191, 36, 0.9);
   --emerald-glow: rgba(16, 185, 129, 0.9);
   --rose-glow: rgba(244, 63, 94, 0.9);
+}
+
+[data-theme="light"] {
+  --bg-primary:   #f5f2ec;
+  --bg-secondary: #ebe8e0;
+  --bg-card:      rgba(0,0,0,0.04);
+  --text-1:       #141210;
+  --text-2:       #3c3848;
+  --text-3:       #6e6878;
+  --border-base:  rgba(0,0,0,0.1);
+  --accent-cyan:  #007fa0;
+  --accent-violet: #5b35b0;
+  --shadow-color: rgba(0,0,0,0.12);
+
+  /* Legacy variable overrides */
+  --void-black: #f5f2ec;
+  --deep-space: #ebe8e0;
+  --electric-cyan: #007fa0;
+  --deep-violet: #5b35b0;
 }
 
 * {
@@ -405,4 +438,85 @@ img {
   .animated-grid {
     background-size: 90px 90px;
   }
+}
+
+/* ── Light mode overrides ─────────────────────────────────────── */
+[data-theme="light"] body {
+  background-color: var(--bg-primary);
+  color: var(--text-1);
+}
+
+[data-theme="light"] .bg-void-black,
+[data-theme="light"] [class*="bg-void-black"] {
+  background-color: var(--bg-primary) !important;
+}
+
+[data-theme="light"] .text-text-primary { color: var(--text-1) !important; }
+[data-theme="light"] .text-text-secondary { color: var(--text-2) !important; }
+[data-theme="light"] .text-text-muted { color: var(--text-3) !important; }
+
+[data-theme="light"] .glass-card {
+  background: rgba(0,0,0,0.04) !important;
+  border-color: rgba(0,0,0,0.1) !important;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.08) !important;
+}
+
+[data-theme="light"] .glass-nav {
+  background: rgba(245,242,236,0.88) !important;
+  border-color: rgba(0,0,0,0.1) !important;
+}
+
+[data-theme="light"] .section-cyan {
+  background:
+    radial-gradient(ellipse 80% 40% at 50% 0%, rgba(0,127,160,0.07) 0%, transparent 70%),
+    var(--bg-primary) !important;
+}
+
+[data-theme="light"] .section-violet {
+  background:
+    radial-gradient(ellipse 80% 40% at 50% 0%, rgba(91,53,176,0.07) 0%, transparent 70%),
+    var(--bg-primary) !important;
+}
+
+[data-theme="light"] .section-amber {
+  background:
+    radial-gradient(ellipse 80% 40% at 50% 0%, rgba(180,120,20,0.06) 0%, transparent 70%),
+    var(--bg-primary) !important;
+}
+
+[data-theme="light"] .section-emerald {
+  background:
+    radial-gradient(ellipse 80% 40% at 50% 0%, rgba(12,140,90,0.06) 0%, transparent 70%),
+    var(--bg-primary) !important;
+}
+
+[data-theme="light"] .animated-grid {
+  background-image:
+    linear-gradient(rgba(0,0,0,0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0,0,0,0.05) 1px, transparent 1px);
+}
+
+[data-theme="light"] .gradient-text {
+  background: linear-gradient(135deg, var(--accent-cyan) 0%, var(--accent-violet) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Light mode scrollbar */
+[data-theme="light"] ::-webkit-scrollbar-track {
+  background: var(--bg-secondary);
+}
+[data-theme="light"] ::-webkit-scrollbar-thumb {
+  background: rgba(0,127,160,0.3);
+}
+
+/* Film grain more subtle in light mode */
+[data-theme="light"] body::before {
+  opacity: 0.018;
+}
+
+/* Transition for theme switch */
+body, .glass-card, .glass-nav, .bg-void-black {
+  transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease;
 }

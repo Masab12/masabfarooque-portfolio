@@ -4,6 +4,7 @@ import "./globals.css";
 import Script from "next/script";
 import GlobalUI from "./components/GlobalUI";
 import LayoutClient from "./components/LayoutClient";
+import { ThemeProvider } from "./components/ThemeProvider";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -308,8 +309,10 @@ export default function RootLayout({
             gtag('config', 'G-YSMF0ZW4R1');
           `}
         </Script>
-        <GlobalUI />
-        <LayoutClient>{children}</LayoutClient>
+        <ThemeProvider>
+          <GlobalUI />
+          <LayoutClient>{children}</LayoutClient>
+        </ThemeProvider>
       </body>
     </html>
   );

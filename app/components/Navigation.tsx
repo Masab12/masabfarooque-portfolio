@@ -6,6 +6,7 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { HiMenu, HiX, HiChevronDown, HiArrowRight } from 'react-icons/hi';
 import { services } from '@/app/data/services';
+import ThemeToggle from './ThemeToggle';
 
 const navLinks = [
   { label: 'About', href: '/about-masab' },
@@ -198,6 +199,7 @@ export default function Navigation() {
                   AI
                 </span>
               </Link>
+              <ThemeToggle />
               <Link
                 href="/contact"
                 className="px-5 py-2.5 rounded-xl text-sm font-semibold text-void-black transition-opacity duration-150 hover:opacity-88"
@@ -267,6 +269,9 @@ export default function Navigation() {
                   boxShadow: '0 20px 60px rgba(0,0,0,0.6)',
                 }}
               >
+                <div className="flex justify-end mb-2">
+                  <ThemeToggle />
+                </div>
                 <div className="flex flex-col gap-0.5">
                   <Link
                     href="/about-masab"

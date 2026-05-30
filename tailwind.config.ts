@@ -24,21 +24,16 @@ const config: Config = {
         heading: ['var(--font-space-grotesk)', 'var(--font-inter)', 'system-ui', 'sans-serif'],
       },
       colors: {
-        // Base colors - layered dark theme
-        'void-black': '#0a0a0f',
-        'deep-space': '#0f0f1a',
-        'matte-charcoal': '#1a1a2e',
-        
-        // Accent colors - softened neons
-        'electric-cyan': 'rgba(0, 240, 255, 0.9)',
-        'electric-cyan-muted': 'rgba(0, 240, 255, 0.6)',
-        'deep-violet': 'rgba(139, 92, 246, 0.9)',
-        'deep-violet-muted': 'rgba(139, 92, 246, 0.6)',
-        
-        // Text colors
-        'text-primary': '#f8f9fa',
-        'text-secondary': '#e8e9ed',
-        'text-muted': '#a0a0ab',
+        'void-black':              'var(--bg-primary)',
+        'deep-space':              'var(--bg-secondary)',
+        'matte-charcoal':          '#1a1a2e',
+        'electric-cyan':           'var(--accent-cyan)',
+        'electric-cyan-muted':     'var(--accent-cyan)',
+        'deep-violet':             'var(--accent-violet)',
+        'deep-violet-muted':       'var(--accent-violet)',
+        'text-primary':            'var(--text-1)',
+        'text-secondary':          'var(--text-2)',
+        'text-muted':              'var(--text-3)',
       },
       backgroundImage: {
         'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
