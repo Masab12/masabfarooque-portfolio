@@ -13,33 +13,39 @@ function FAQItem({ q, a, index }: { q: string; a: string; index: number }) {
   return (
     <motion.div
       className="border-b"
-      style={{ borderColor: 'rgba(255,255,255,0.06)' }}
+      style={{ borderColor: open ? 'rgba(0,240,255,0.12)' : 'rgba(255,255,255,0.06)', transition: 'border-color 0.25s ease' }}
       initial={{ opacity: 0, y: 16 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: '-40px' }}
-      transition={{ duration: 0.45, delay: index * 0.05, ease: [0.22, 1, 0.36, 1] }}
+      transition={{ duration: 0.42, delay: index * 0.04, ease: [0.22, 1, 0.36, 1] }}
     >
       <button
         onClick={() => setOpen(o => !o)}
-        className="w-full flex items-start justify-between py-5 text-left gap-4"
+        className="w-full flex items-start justify-between py-5 text-left gap-4 group"
         aria-expanded={open}
       >
-        <span className="text-sm sm:text-base font-medium leading-snug" style={{ color: '#f8f9fa' }}>{q}</span>
+        <span
+          className="text-sm sm:text-base font-medium leading-snug transition-colors duration-200"
+          style={{ color: open ? 'rgb(0,240,255)' : '#f8f9fa' }}
+        >
+          {q}
+        </span>
         <motion.span
           animate={{ rotate: open ? 180 : 0 }}
-          transition={{ duration: 0.22 }}
+          transition={{ duration: 0.25, ease: [0.22, 1, 0.36, 1] }}
           className="flex-shrink-0 mt-0.5"
+          style={{ color: open ? 'rgb(0,240,255)' : 'rgba(160,160,171,0.7)' }}
         >
-          <HiChevronDown className="w-5 h-5 text-text-muted" />
+          <HiChevronDown className="w-5 h-5" />
         </motion.span>
       </button>
       <AnimatePresence initial={false}>
         {open && (
           <motion.div
-            initial={{ height: 0, opacity: 0 }}
-            animate={{ height: 'auto', opacity: 1 }}
-            exit={{ height: 0, opacity: 0 }}
-            transition={{ duration: 0.28, ease: [0.22, 1, 0.36, 1] }}
+            initial={{ height: 0, opacity: 0, y: -4 }}
+            animate={{ height: 'auto', opacity: 1, y: 0 }}
+            exit={{ height: 0, opacity: 0, y: -4 }}
+            transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
             className="overflow-hidden"
           >
             <p className="pb-5 text-sm sm:text-base text-text-secondary leading-relaxed">{a}</p>

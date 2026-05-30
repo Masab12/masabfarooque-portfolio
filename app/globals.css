@@ -320,19 +320,37 @@ body::before {
 
 /* Selection Styling */
 ::selection {
-  background-color: rgba(0, 240, 255, 0.3);
+  background-color: rgba(0, 240, 255, 0.22);
   color: #fff;
 }
 
 ::-moz-selection {
-  background-color: rgba(0, 240, 255, 0.3);
+  background-color: rgba(0, 240, 255, 0.22);
   color: #fff;
 }
 
 /* Focus Visible for Accessibility */
 *:focus-visible {
-  outline: 2px solid rgba(0, 240, 255, 0.5);
-  outline-offset: 2px;
+  outline: 2px solid rgba(0, 240, 255, 0.6);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+/* Mobile: prevent tap highlight flash */
+a, button {
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Smooth link underline animation */
+a.animated-underline {
+  background-image: linear-gradient(rgb(0,240,255), rgb(0,240,255));
+  background-size: 0% 1px;
+  background-repeat: no-repeat;
+  background-position: 0 100%;
+  transition: background-size 0.28s ease;
+}
+a.animated-underline:hover {
+  background-size: 100% 1px;
 }
 
 /* Smooth Image Loading */
