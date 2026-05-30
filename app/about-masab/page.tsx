@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import Script from 'next/script';
 import Navigation from '../components/Navigation';
 import Footer from '../components/Footer';
 import BentoAboutSection from '../components/BentoAboutSection';
@@ -70,7 +71,12 @@ export default function AboutPage() {
   return (
     <PageTransition>
       {pageSchemas.map((schema, i) => (
-        <script key={i} type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} />
+        <Script
+          key={i}
+          id={`about-schema-${i}`}
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
+        />
       ))}
       <Navigation />
       <main className="relative bg-void-black overflow-x-hidden pt-28">

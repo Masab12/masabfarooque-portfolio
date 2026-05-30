@@ -262,6 +262,11 @@ export default function RootLayout({
     <html lang="en">
       <head>
         <link rel="canonical" href="https://masabfarooque.com" />
+        {/* Preconnect to external origins for faster resource loading */}
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        <link rel="preconnect" href="https://www.googletagmanager.com" />
+        <link rel="dns-prefetch" href="https://cdn.jsdelivr.net" />
         <link rel="me" href="https://github.com/Masab12" />
         <link rel="me" href="https://www.linkedin.com/in/masabfarooque" />
         <meta name="geo.region" content="PK-IS" />
