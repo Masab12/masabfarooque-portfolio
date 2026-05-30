@@ -1,5 +1,13 @@
-// Supabase client — reserved for when Forge AI is re-enabled.
-// Install @supabase/supabase-js and uncomment when needed.
-export function getSupabase() {
-  throw new Error('Supabase not configured in this build.');
+import { createClient, SupabaseClient } from '@supabase/supabase-js';
+
+let _client: SupabaseClient | null = null;
+
+export function getSupabase(): SupabaseClient {
+  if (!_client) {
+    const url = process.env.NEXT_PUBLIC_SUPABASE_URL;
+    const key = process.env.SUPABASE_SERVICE_ROLE_KEY;
+    if (!url || !key) throw new Error('Supabase env vars not configured.');
+    _client = createClient(url, key);
+  }
+  return _client;
 }
