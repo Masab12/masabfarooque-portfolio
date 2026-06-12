@@ -2,12 +2,14 @@
 
 import { motion } from 'framer-motion';
 import Link from 'next/link';
-import { HiArrowRight, HiCode, HiCog, HiGlobeAlt, HiSparkles } from 'react-icons/hi';
+import { HiArrowRight } from 'react-icons/hi';
+import { TbStack2, TbBrain, TbSpider, TbApi } from 'react-icons/tb';
 import { services } from '@/app/data/services';
 import SpotlightCard from './SpotlightCard';
 import SectionHeading from './SectionHeading';
 
-const icons = [HiGlobeAlt, HiCode, HiCog, HiSparkles];
+// Order matches services.ts: full-stack, ai-ml, scraping-automation, api-development
+const icons = [TbStack2, TbBrain, TbSpider, TbApi];
 
 const containerVariants = {
   hidden: {},
