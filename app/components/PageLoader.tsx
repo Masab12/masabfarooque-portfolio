@@ -50,7 +50,7 @@ export default function PageLoader() {
       {show && (
         <motion.div
           className="fixed inset-0 z-[99999] flex flex-col items-center justify-center overflow-hidden select-none"
-          style={{ backgroundColor: '#0a0a0f' }}
+          style={{ backgroundColor: 'var(--bg-primary)' }}
           exit={{ opacity: 0, scale: 1.04 }}
           transition={{ duration: 0.55, ease: 'easeInOut' }}
         >
@@ -64,7 +64,7 @@ export default function PageLoader() {
             <motion.div
               key={i}
               className={`absolute w-6 h-6 ${cls}`}
-              style={{ borderColor: 'rgba(0,240,255,0.3)' }}
+              style={{ borderColor: 'rgba(191,84,44,0.3)' }}
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: i * 0.07 }}
@@ -74,7 +74,7 @@ export default function PageLoader() {
           {/* System label */}
           <motion.p
             className="absolute top-6 left-12 font-mono"
-            style={{ fontSize: 10, color: 'rgba(0,240,255,0.28)', letterSpacing: '0.25em' }}
+            style={{ fontSize: 10, color: 'rgba(191,84,44,0.28)', letterSpacing: '0.25em' }}
             initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.1 }}
           >
             PORTFOLIO.SYS · v2026
@@ -83,7 +83,7 @@ export default function PageLoader() {
           {/* Coordinates */}
           <motion.p
             className="absolute top-6 right-12 font-mono"
-            style={{ fontSize: 10, color: 'rgba(0,240,255,0.22)', letterSpacing: '0.08em' }}
+            style={{ fontSize: 10, color: 'rgba(191,84,44,0.22)', letterSpacing: '0.08em' }}
             initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.15 }}
           >
             33.6844°N · 73.0479°E
@@ -99,16 +99,16 @@ export default function PageLoader() {
               style={{ position: 'absolute', inset: 0 }}
             >
               {/* Crosshairs */}
-              <line x1={C} y1={C-132} x2={C} y2={C+132} stroke="rgba(0,240,255,0.05)" strokeWidth="1"/>
-              <line x1={C-132} y1={C} x2={C+132} y2={C} stroke="rgba(0,240,255,0.05)" strokeWidth="1"/>
+              <line x1={C} y1={C-132} x2={C} y2={C+132} stroke="rgba(191,84,44,0.05)" strokeWidth="1"/>
+              <line x1={C-132} y1={C} x2={C+132} y2={C} stroke="rgba(191,84,44,0.05)" strokeWidth="1"/>
               {/* Diagonal guides */}
-              <line x1={C-93} y1={C-93} x2={C+93} y2={C+93} stroke="rgba(0,240,255,0.025)" strokeWidth="1"/>
-              <line x1={C+93} y1={C-93} x2={C-93} y2={C+93} stroke="rgba(0,240,255,0.025)" strokeWidth="1"/>
+              <line x1={C-93} y1={C-93} x2={C+93} y2={C+93} stroke="rgba(191,84,44,0.025)" strokeWidth="1"/>
+              <line x1={C+93} y1={C-93} x2={C-93} y2={C+93} stroke="rgba(191,84,44,0.025)" strokeWidth="1"/>
 
               {/* Rings */}
-              <circle cx={C} cy={C} r={R_IN}  fill="none" stroke="rgba(0,240,255,0.07)" strokeWidth="1"/>
-              <circle cx={C} cy={C} r={R_MID} fill="none" stroke="rgba(0,240,255,0.05)" strokeWidth="1"/>
-              <circle cx={C} cy={C} r={R_OUT} fill="none" stroke="rgba(0,240,255,0.1)"  strokeWidth="1" strokeDasharray="3 5"/>
+              <circle cx={C} cy={C} r={R_IN}  fill="none" stroke="rgba(191,84,44,0.07)" strokeWidth="1"/>
+              <circle cx={C} cy={C} r={R_MID} fill="none" stroke="rgba(191,84,44,0.05)" strokeWidth="1"/>
+              <circle cx={C} cy={C} r={R_OUT} fill="none" stroke="rgba(191,84,44,0.1)"  strokeWidth="1" strokeDasharray="3 5"/>
 
               {/* Tick marks on inner ring at each tech position */}
               {TECHS.map((_, i) => {
@@ -120,7 +120,7 @@ export default function PageLoader() {
                     y1={C + (R_IN - 5) * Math.sin(rad)}
                     x2={C + (R_IN + 5) * Math.cos(rad)}
                     y2={C + (R_IN + 5) * Math.sin(rad)}
-                    stroke="rgba(0,240,255,0.18)"
+                    stroke="rgba(191,84,44,0.18)"
                     strokeWidth="1"
                   />
                 );
@@ -134,14 +134,14 @@ export default function PageLoader() {
                 const on = i < activeTechs;
                 return (
                   <g key={tech}>
-                    {on && <circle cx={x} cy={y} r={11} fill="rgba(0,240,255,0.04)"/>}
+                    {on && <circle cx={x} cy={y} r={11} fill="rgba(191,84,44,0.04)"/>}
                     <circle
                       cx={x} cy={y} r={on ? 3.5 : 2}
-                      fill={on ? 'rgb(0,240,255)' : 'rgba(0,240,255,0.18)'}
+                      fill={on ? 'var(--accent-cyan)' : 'rgba(191,84,44,0.18)'}
                       style={{ transition: 'all 0.4s ease' }}
                     />
                     {on && (
-                      <circle cx={x} cy={y} r={3.5} fill="none" stroke="rgba(0,240,255,0.45)" strokeWidth="1"/>
+                      <circle cx={x} cy={y} r={3.5} fill="none" stroke="rgba(191,84,44,0.45)" strokeWidth="1"/>
                     )}
                   </g>
                 );
@@ -159,7 +159,7 @@ export default function PageLoader() {
                 borderRadius: '50%',
                 overflow: 'hidden',
                 background:
-                  'conic-gradient(from 0deg, transparent 0deg, rgba(0,240,255,0.04) 20deg, rgba(0,240,255,0.14) 48deg, transparent 50deg)',
+                  'conic-gradient(from 0deg, transparent 0deg, rgba(191,84,44,0.04) 20deg, rgba(191,84,44,0.14) 48deg, transparent 50deg)',
                 willChange: 'transform',
               }}
               animate={{ rotate: 360 }}
@@ -172,14 +172,14 @@ export default function PageLoader() {
                 <motion.div
                   key={delay}
                   className="absolute inset-0 rounded-full"
-                  style={{ border: '1px solid rgba(0,240,255,0.55)' }}
+                  style={{ border: '1px solid rgba(191,84,44,0.55)' }}
                   animate={{ scale: [1, 3.8], opacity: [0.65, 0] }}
                   transition={{ duration: 2.1, ease: 'easeOut', repeat: Infinity, delay }}
                 />
               ))}
               <div
                 className="absolute inset-0 rounded-full"
-                style={{ background: 'rgb(0,240,255)', boxShadow: '0 0 10px rgba(0,240,255,0.9)' }}
+                style={{ background: 'var(--accent-cyan)', boxShadow: '0 0 10px rgba(191,84,44,0.9)' }}
               />
             </div>
 
@@ -200,7 +200,7 @@ export default function PageLoader() {
                     fontFamily: 'var(--font-jetbrains), monospace',
                     fontSize: 9,
                     letterSpacing: '0.1em',
-                    color: i < activeTechs ? 'rgba(0,240,255,0.7)' : 'rgba(255,255,255,0.11)',
+                    color: i < activeTechs ? 'rgba(191,84,44,0.7)' : 'rgba(255,255,255,0.11)',
                     transition: 'color 0.4s ease',
                     whiteSpace: 'nowrap',
                     pointerEvents: 'none',
@@ -220,7 +220,7 @@ export default function PageLoader() {
                 style={{
                   fontFamily: 'var(--font-jetbrains), monospace',
                   fontSize: 10,
-                  color: 'rgba(0,240,255,0.48)',
+                  color: 'rgba(191,84,44,0.48)',
                   letterSpacing: '0.22em',
                 }}
                 initial={{ opacity: 0, y: 5 }}
@@ -243,7 +243,7 @@ export default function PageLoader() {
               <span
                 className="font-heading text-xl font-bold tracking-[0.3em]"
                 style={{
-                  background: 'linear-gradient(135deg, rgba(0,240,255,0.9) 0%, rgba(139,92,246,0.9) 100%)',
+                  background: 'linear-gradient(135deg, rgba(191,84,44,0.9) 0%, rgba(63,88,168,0.9) 100%)',
                   WebkitBackgroundClip: 'text',
                   WebkitTextFillColor: 'transparent',
                   backgroundClip: 'text',
@@ -260,8 +260,8 @@ export default function PageLoader() {
               <motion.div
                 className="h-full"
                 style={{
-                  background: 'linear-gradient(90deg, rgb(0,240,255), rgb(139,92,246))',
-                  boxShadow: '0 0 6px rgba(0,240,255,0.55)',
+                  background: 'linear-gradient(90deg, var(--accent-cyan), var(--accent-violet))',
+                  boxShadow: '0 0 6px rgba(191,84,44,0.55)',
                 }}
                 animate={{ width: `${progress}%` }}
                 transition={{ ease: 'linear', duration: 0.05 }}
@@ -271,7 +271,7 @@ export default function PageLoader() {
               <span style={{ fontFamily: 'var(--font-jetbrains), monospace', fontSize: 9, color: 'rgba(255,255,255,0.16)', letterSpacing: '0.12em' }}>
                 SYS.INIT
               </span>
-              <span className="tabular-nums" style={{ fontFamily: 'var(--font-jetbrains), monospace', fontSize: 9, color: 'rgba(0,240,255,0.48)', letterSpacing: '0.12em' }}>
+              <span className="tabular-nums" style={{ fontFamily: 'var(--font-jetbrains), monospace', fontSize: 9, color: 'rgba(191,84,44,0.48)', letterSpacing: '0.12em' }}>
                 {String(Math.round(progress)).padStart(3, '0')}%
               </span>
             </div>

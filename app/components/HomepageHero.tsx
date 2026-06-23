@@ -1,195 +1,196 @@
 'use client';
 
-import { useEffect, useRef, useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import dynamic from 'next/dynamic';
+import { motion } from 'framer-motion';
 import Link from 'next/link';
 import { HiArrowRight } from 'react-icons/hi';
-import { SiReact, SiNextdotjs, SiNodedotjs, SiFastapi, SiOpenai } from 'react-icons/si';
-import HeroCanvas from './HeroCanvas';
-import ScrambleText from './ScrambleText';
+import { SiNextdotjs, SiFastapi, SiPostgresql, SiTelegram } from 'react-icons/si';
+import TerminalTyper from './TerminalTyper';
+import Typewriter from './Typewriter';
 
-const HolographicAvatar = dynamic(() => import('./HolographicAvatar'), { ssr: false });
-
-const techStack = [
-  { Icon: SiReact, label: 'React', color: '#61DAFB' },
-  { Icon: SiNextdotjs, label: 'Next.js', color: '#fff' },
-  { Icon: SiNodedotjs, label: 'Node.js', color: '#339933' },
-  { Icon: SiFastapi, label: 'FastAPI', color: '#009688' },
-  { Icon: SiOpenai, label: 'OpenAI', color: '#10A37F' },
+// Mini architecture pipeline shown in the hero panel (references FirstDeal-style builds)
+const pipeline = [
+  { Icon: SiNextdotjs, label: 'Next.js', sub: 'Frontend + Dashboard', color: 'var(--text-1)' },
+  { Icon: SiFastapi, label: 'FastAPI', sub: 'API + Scraper workers', color: 'var(--secondary)' },
+  { Icon: SiPostgresql, label: 'PostgreSQL + Redis', sub: 'Storage + Queues', color: 'var(--primary)' },
+  { Icon: SiTelegram, label: 'Telegram / Email', sub: 'Instant alerts', color: 'var(--tertiary)' },
 ];
 
-const WORDS = ['AI-Powered Platforms', 'Scalable SaaS Apps', 'RAG Pipelines', 'Automation Systems'];
-
-export default function HomepageHero() {
-  const [wordIdx, setWordIdx] = useState(0);
-  const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
-  const btnRef = useRef<HTMLAnchorElement>(null);
-
-  useEffect(() => {
-    const t = setInterval(() => setWordIdx(i => (i + 1) % WORDS.length), 2800);
-    return () => clearInterval(t);
-  }, []);
-
-  const onBtnMouseMove = (e: React.MouseEvent<HTMLAnchorElement>) => {
-    if (!btnRef.current) return;
-    const r = btnRef.current.getBoundingClientRect();
-    setMousePos({ x: (e.clientX - r.left - r.width / 2) * 0.28, y: (e.clientY - r.top - r.height / 2) * 0.28 });
-  };
-
+function PipelinePanel() {
   return (
-    <section id="hero" className="relative w-full min-h-screen flex items-center justify-center bg-void-black px-4" style={{ overflow: 'clip' }}>
-      <HeroCanvas />
-      <div className="hidden md:block animated-grid opacity-40" />
-      <div className="absolute inset-0 bg-gradient-to-b from-void-black/60 via-transparent to-void-black pointer-events-none" />
-      <div className="absolute inset-0 bg-gradient-to-r from-void-black/50 via-transparent to-void-black/30 pointer-events-none" />
+    <div className="matte-block w-full max-w-md p-5 sm:p-6 relative">
+      {/* Window header */}
+      <div className="flex items-center gap-2 mb-5">
+        <span className="w-3 h-3 rounded-full" style={{ background: 'var(--primary)' }} />
+        <span className="w-3 h-3 rounded-full" style={{ background: 'var(--accent-mustard)' }} />
+        <span className="w-3 h-3 rounded-full" style={{ background: 'var(--secondary)' }} />
+        <span className="ml-2 font-mono text-xs text-text-muted">pipeline.architecture</span>
+      </div>
 
-      <div className="relative z-10 w-full max-w-7xl mx-auto py-16 sm:py-20 lg:py-32">
-        <div className="flex flex-col lg:flex-row items-center gap-8 lg:gap-0">
-          <div className="flex-1 text-center lg:text-left">
+      <div className="relative">
+        {pipeline.map(({ Icon, label, sub, color }, i) => (
+          <div key={label} className="relative">
             <motion.div
-              className="mb-5"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 0.3, delay: 0.15 }}
+              className="matte-block flex items-center gap-3 p-3.5 mb-3"
+              initial={{ opacity: 0, x: -16 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: 0.2 + i * 0.12, ease: [0.22, 1, 0.36, 1] }}
+              whileHover={{ y: -2 }}
             >
-              <h1 className="font-heading text-4xl xs:text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold leading-none tracking-tight">
-                <ScrambleText text="Masab Farooque" className="gradient-text inline-block" delay={200} speed={22} />
-              </h1>
-            </motion.div>
-
-            <div className="overflow-hidden mb-8">
-              <motion.h2
-                className="font-heading text-2xl sm:text-3xl md:text-4xl font-bold text-text-primary"
-                initial={{ y: '110%' }}
-                animate={{ y: 0 }}
-                transition={{ duration: 0.75, delay: 0.28, ease: [0.76, 0, 0.24, 1] }}
+              <span
+                className="flex items-center justify-center w-9 h-9 rounded-lg flex-shrink-0"
+                style={{ background: 'var(--bg-secondary)', border: '1px solid var(--border-base)' }}
               >
-                Full Stack Developer
-              </motion.h2>
-            </div>
-
-            <motion.div
-              className="text-lg sm:text-xl text-text-secondary mb-12 h-10 flex items-center gap-2 lg:justify-start justify-center overflow-hidden"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 0.5, delay: 0.52 }}
-            >
-              <span className="font-mono text-text-muted">Building</span>
-              <div className="overflow-hidden h-10 flex items-center">
-                <AnimatePresence mode="wait">
-                  <motion.span
-                    key={wordIdx}
-                    className="font-mono font-semibold block"
-                    style={{ color: 'var(--accent-cyan)' }}
-                    initial={{ y: '110%', opacity: 0 }}
-                    animate={{ y: 0, opacity: 1 }}
-                    exit={{ y: '-110%', opacity: 0 }}
-                    transition={{ duration: 0.36, ease: [0.76, 0, 0.24, 1] }}
-                  >
-                    {WORDS[wordIdx]}
-                  </motion.span>
-                </AnimatePresence>
+                <Icon className="w-5 h-5" style={{ color }} />
+              </span>
+              <div className="min-w-0">
+                <p className="text-sm font-semibold leading-tight" style={{ color: 'var(--text-1)' }}>{label}</p>
+                <p className="text-xs text-text-muted leading-tight">{sub}</p>
               </div>
             </motion.div>
 
-            <motion.div
-              className="flex items-center gap-4 sm:gap-6 mb-12 lg:justify-start justify-center flex-wrap"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.68 }}
-            >
-              {techStack.map(({ Icon, label, color }, i) => (
+            {/* Connector with a traveling data pulse */}
+            {i < pipeline.length - 1 && (
+              <div className="relative h-3 ml-[34px] mb-0">
+                <div className="absolute left-0 top-0 bottom-0 w-px" style={{ background: 'var(--border-base)' }} />
                 <motion.div
-                  key={label}
-                  className="group relative"
-                  initial={{ opacity: 0, scale: 0 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  transition={{ duration: 0.45, delay: 0.78 + i * 0.07, type: 'spring', stiffness: 200 }}
-                >
-                  <div
-                    className="glass-card p-3 sm:p-4 rounded-xl transition-all duration-300 group-hover:scale-110"
-                    onMouseEnter={e => { (e.currentTarget as HTMLElement).style.boxShadow = `0 0 20px ${color}40`; }}
-                    onMouseLeave={e => { (e.currentTarget as HTMLElement).style.boxShadow = 'none'; }}
-                  >
-                    <Icon className="w-6 h-6 sm:w-7 sm:h-7" style={{ color }} />
-                  </div>
-                  <div className="absolute -bottom-7 left-1/2 -translate-x-1/2 opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none">
-                    <span className="text-xs text-text-muted whitespace-nowrap">{label}</span>
-                  </div>
-                </motion.div>
-              ))}
+                  className="absolute left-[-2px] w-[5px] h-[5px] rounded-full"
+                  style={{ background: 'var(--primary)' }}
+                  animate={{ top: ['-2px', '14px'], opacity: [0, 1, 0] }}
+                  transition={{ duration: 1.4, repeat: Infinity, delay: i * 0.35, ease: 'easeInOut' }}
+                />
+              </div>
+            )}
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+export default function HomepageHero() {
+  return (
+    <section
+      id="hero"
+      className="relative w-full min-h-screen flex items-center bg-transparent px-4 sm:px-6 lg:px-8"
+      style={{ overflow: 'clip' }}
+    >
+      {/* Warm wash (global grid lives behind via BackgroundFX) */}
+      <div
+        className="absolute inset-0 pointer-events-none"
+        style={{ background: 'radial-gradient(ellipse 70% 50% at 80% 20%, rgba(191,84,44,0.06), transparent 60%), radial-gradient(ellipse 60% 50% at 10% 80%, rgba(63,88,168,0.05), transparent 60%)' }}
+      />
+
+      <div className="relative z-10 w-full max-w-7xl mx-auto py-28 lg:py-32">
+        <div className="grid lg:grid-cols-[1.1fr_0.9fr] gap-12 lg:gap-10 items-center">
+          {/* Left — copy */}
+          <div className="text-center lg:text-left">
+            <motion.p
+              className="font-mono text-sm sm:text-base mb-3 inline-flex items-center gap-2 lg:justify-start justify-center"
+              style={{ color: 'var(--primary)' }}
+              initial={{ opacity: 0, y: 8 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.1 }}
+            >
+              <motion.span
+                style={{ display: 'inline-block', transformOrigin: '70% 70%' }}
+                animate={{ rotate: [0, 18, -8, 18, 0] }}
+                transition={{ duration: 1.4, delay: 0.6, repeat: Infinity, repeatDelay: 2.5 }}
+              >
+                👋
+              </motion.span>
+              Hi, I&apos;m
+            </motion.p>
+
+            <h1
+              className="font-heading font-bold leading-[0.98] tracking-tight mb-3 min-h-[1.1em]"
+              style={{ color: 'var(--text-1)', fontSize: 'clamp(2.25rem, 5.2vw, 3.9rem)' }}
+            >
+              <Typewriter text="Masab Farooque." speed={85} startDelay={500} />
+            </h1>
+
+            <motion.p
+              className="font-heading font-semibold mb-5"
+              style={{ fontSize: 'clamp(1.1rem, 2.1vw, 1.6rem)', color: 'var(--secondary)' }}
+              initial={{ opacity: 0, y: 12 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 1.8 }}
+            >
+              Full Stack Developer &amp; AI Engineer
+            </motion.p>
+
+            <motion.div
+              className="mb-7 flex lg:justify-start justify-center"
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.55 }}
+            >
+              <TerminalTyper className="max-w-full" />
             </motion.div>
 
-            <motion.div
-              className="flex flex-col sm:flex-row items-center lg:justify-start justify-center gap-4"
-              initial={{ opacity: 0, y: 20 }}
+            <motion.p
+              className="text-base sm:text-lg text-text-secondary leading-relaxed max-w-xl mb-9 mx-auto lg:mx-0"
+              initial={{ opacity: 0, y: 12 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 1.0 }}
+              transition={{ duration: 0.5, delay: 0.62 }}
             >
-              <motion.a
-                ref={btnRef}
-                href="/portfolio"
-                onMouseMove={onBtnMouseMove}
-                onMouseLeave={() => setMousePos({ x: 0, y: 0 })}
-                className="group relative px-8 py-4 rounded-xl font-semibold w-full sm:w-auto text-center overflow-hidden"
-                style={{ background: 'linear-gradient(135deg, rgb(0,240,255), rgb(139,92,246))', color: 'var(--color-on-accent)' }}
-                animate={{ x: mousePos.x, y: mousePos.y }}
-                transition={{ type: 'spring', stiffness: 150, damping: 15 }}
-                whileTap={{ scale: 0.96 }}
-              >
-                <span className="relative z-10 flex items-center justify-center gap-2 font-bold">
-                  View My Work <HiArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-                </span>
-                <motion.div className="absolute inset-0 bg-white/25" initial={{ x: '-100%' }} whileHover={{ x: '100%' }} transition={{ duration: 0.45 }} />
-              </motion.a>
+              I build SaaS platforms, AI pipelines, and automation systems that hold up in
+              production, for clients across 15+ countries. 195+ projects delivered with a 5.0 rating.
+            </motion.p>
 
+            <motion.div
+              className="flex flex-col sm:flex-row items-center lg:justify-start justify-center gap-3.5"
+              initial={{ opacity: 0, y: 16 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.55 }}
+            >
               <Link
-                href="/contact"
-                className="group relative px-8 py-4 glass-card rounded-xl font-semibold text-text-primary w-full sm:w-auto text-center transition-all duration-300 hover:border-electric-cyan/40"
+                href="/portfolio"
+                className="btn-primary group inline-flex items-center justify-center gap-2 px-7 py-3.5 w-full sm:w-auto"
               >
-                Let's Talk
+                View Projects
+                <HiArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+              </Link>
+              <Link
+                href="/services"
+                className="btn-secondary inline-flex items-center justify-center px-7 py-3.5 w-full sm:w-auto uppercase text-sm tracking-wider"
+              >
+                Explore Stack
               </Link>
             </motion.div>
-          </div>
 
-          <div className="hidden lg:flex flex-1 items-center justify-center">
+            {/* Inline credibility row */}
             <motion.div
-              className="w-[480px] h-[500px] relative"
-              initial={{ opacity: 0, scale: 0.75 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 1.1, delay: 0.35, ease: [0.22, 1, 0.36, 1] }}
+              className="flex items-center lg:justify-start justify-center gap-6 mt-10 text-sm"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.5, delay: 0.7 }}
             >
-              <div
-                className="absolute inset-0 blur-3xl opacity-15 rounded-full"
-                style={{ background: 'radial-gradient(ellipse, rgb(0,240,255), rgb(139,92,246))' }}
-              />
-              <HolographicAvatar />
+              {[
+                { n: '195+', l: 'Projects' },
+                { n: '5.0', l: 'Rating' },
+                { n: '100+', l: 'Clients' },
+              ].map((s) => (
+                <div key={s.l} className="text-center lg:text-left">
+                  <div className="font-heading text-2xl font-bold" style={{ color: 'var(--text-1)' }}>{s.n}</div>
+                  <div className="text-xs text-text-muted uppercase tracking-wider">{s.l}</div>
+                </div>
+              ))}
             </motion.div>
           </div>
+
+          {/* Right — architecture panel */}
+          <motion.div
+            className="flex justify-center lg:justify-end"
+            initial={{ opacity: 0, scale: 0.94, y: 20 }}
+            animate={{ opacity: 1, scale: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.4, ease: [0.22, 1, 0.36, 1] }}
+          >
+            <PipelinePanel />
+          </motion.div>
         </div>
       </div>
 
-      <motion.div
-        className="absolute bottom-8 left-1/2 -translate-x-1/2"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 0.6, delay: 1.6 }}
-      >
-        <motion.div
-          className="w-6 h-10 border-2 rounded-full flex items-start justify-center p-2"
-          style={{ borderColor: 'rgba(160,160,171,0.25)' }}
-          animate={{ opacity: [1, 0.4, 1] }}
-          transition={{ duration: 2.5, repeat: Infinity }}
-        >
-          <motion.div
-            className="w-1 h-2 rounded-full"
-            style={{ backgroundColor: 'var(--accent-cyan)' }}
-            animate={{ y: [0, 12, 0] }}
-            transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut' }}
-          />
-        </motion.div>
-      </motion.div>
     </section>
   );
 }

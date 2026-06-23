@@ -29,7 +29,7 @@ export default function ServicesPageContent() {
             >
               <div className="flex items-center gap-4 mb-5">
                 <div
-                  className="p-4 rounded-2xl"
+                  className="p-4 rounded-lg"
                   style={{
                     background: `linear-gradient(135deg, ${service.gradientFrom}30, ${service.gradientTo}20)`,
                     border: `1px solid ${service.gradientFrom}35`,

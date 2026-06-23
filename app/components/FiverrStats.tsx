@@ -73,7 +73,7 @@ function AnimatedStat({ value, label, suffix = '', prefix = '', color, delay }: 
       >
         {/* Glowing background */}
         <motion.div
-          className="absolute inset-0 rounded-2xl blur-xl opacity-20"
+          className="absolute inset-0 rounded-lg blur-xl opacity-20"
           style={{ backgroundColor: color }}
           animate={{
             scale: [1, 1.2, 1],
@@ -118,9 +118,9 @@ function AnimatedStat({ value, label, suffix = '', prefix = '', color, delay }: 
 export default function FiverrStats() {
   return (
     <motion.div
-      className="relative overflow-hidden rounded-3xl p-8 md:p-12 mb-12 md:mb-16"
+      className="relative overflow-hidden rounded-xl p-8 md:p-12 mb-12 md:mb-16"
       style={{
-        background: 'linear-gradient(135deg, rgba(0, 240, 255, 0.03) 0%, rgba(139, 92, 246, 0.03) 100%)',
+        background: 'linear-gradient(135deg, rgba(191,84,44, 0.03) 0%, rgba(63,88,168, 0.03) 100%)',
         border: '1px solid rgba(255, 255, 255, 0.05)',
       }}
       initial={{ opacity: 0, y: 50 }}

@@ -1,103 +1,96 @@
 'use client';
 
 import { motion } from 'framer-motion';
+import Marquee from 'react-fast-marquee';
 import { ComposableMap, Geographies, Geography, Marker } from 'react-simple-maps';
 import { useState } from 'react';
 import CountUp from 'react-countup';
+import { reviews, reviewCountries, totalReviews } from '../data/reviews';
+import ReviewCard from './ReviewCard';
 
-const geoUrl = "https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json";
+// Prefer reviews with a real photo for the testimonial rows
+const withPhoto = [...reviews].sort((a, b) => Number(!!b.avatar) - Number(!!a.avatar));
+const mapRow1 = withPhoto.slice(0, 10);
+const mapRow2 = withPhoto.slice(10, 20);
 
-const clientData = [
-  { country: 'USA', coordinates: [-95.7129, 37.0902], orders: 77, color: '#00F0FF' },
-  { country: 'India', coordinates: [78.9629, 20.5937], orders: 10, color: '#8B5CF6' },
-  { country: 'Canada', coordinates: [-106.3468, 56.1304], orders: 8, color: '#00F0FF' },
-  { country: 'Netherlands', coordinates: [5.2913, 52.1326], orders: 4, color: '#8B5CF6' },
-  { country: 'Pakistan', coordinates: [69.3451, 30.3753], orders: 0, color: '#FF6B6B', isHome: true },
-];
+const geoUrl = 'https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json';
+
+function tierColor(country: string, count: number) {
+  if (country === 'Pakistan') return 'var(--accent-mustard)'; // home base
+  if (count >= 15) return 'var(--primary)';
+  if (count >= 4) return 'var(--secondary)';
+  return 'var(--tertiary)';
+}
+
+const topCountries = reviewCountries.filter((c) => c.country !== 'Pakistan').slice(0, 4);
 
 export default function WorldMap() {
-  const [hoveredCountry, setHoveredCountry] = useState<string | null>(null);
-  const totalOrders = clientData.reduce((sum, country) => sum + country.orders, 0);
+  const [hovered, setHovered] = useState<string | null>(null);
 
   return (
-    <section className="relative w-full bg-void-black py-20 sm:py-24 md:py-32 px-4 sm:px-6 lg:px-8 overflow-hidden">
-      <div className="absolute inset-0 bg-gradient-to-b from-void-black via-matte-charcoal/5 to-void-black pointer-events-none" />
-
+    <section className="relative w-full bg-transparent py-20 sm:py-24 md:py-32 px-4 sm:px-6 lg:px-8 overflow-hidden">
       <div className="relative max-w-7xl mx-auto">
         <motion.div
-          className="mb-16 text-center"
+          className="mb-14 text-center"
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
         >
-          <h2 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-heading font-bold text-text-primary mb-4">
+          <p className="text-xs font-bold tracking-widest uppercase mb-3 font-mono" style={{ color: 'var(--primary)' }}>
             Global Reach
+          </p>
+          <h2 className="text-4xl sm:text-5xl md:text-6xl font-heading font-bold mb-4" style={{ color: 'var(--text-1)' }}>
+            Reviews from {reviewCountries.length} countries
           </h2>
-          <div className="w-20 h-1.5 bg-gradient-to-r from-electric-cyan to-deep-violet rounded-full mx-auto mb-6" />
-          <p className="text-text-secondary text-lg">
-            Serving clients across the globe from Islamabad, Pakistan
+          <p className="text-text-secondary text-base sm:text-lg">
+            Serving clients worldwide from Islamabad, Pakistan
           </p>
         </motion.div>
 
-        {/* Stats */}
+        {/* Top countries by review count */}
         <motion.div
-          className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-12"
+          className="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6 mb-12"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.2 }}
         >
-          {clientData.filter(c => !c.isHome).map((country, index) => (
-            <motion.div
-              key={country.country}
-              className="glass-card rounded-xl p-6 text-center"
-              whileHover={{ scale: 1.05, y: -5 }}
-              transition={{ type: 'spring', stiffness: 300 }}
-            >
+          {topCountries.map((c, index) => (
+            <div key={c.country} className="matte-block matte-hover p-5 text-center">
               <motion.div
-                className="text-4xl font-bold mb-2"
-                style={{ color: country.color }}
+                className="text-3xl sm:text-4xl font-heading font-bold mb-1"
+                style={{ color: tierColor(c.country, c.count) }}
                 initial={{ opacity: 0, scale: 0 }}
                 whileInView={{ opacity: 1, scale: 1 }}
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.1 + 0.3 }}
               >
-                <CountUp end={country.orders} duration={2} />
+                <CountUp end={c.count} duration={2} />
               </motion.div>
-              <div className="text-sm text-text-muted">{country.country}</div>
-            </motion.div>
+              <div className="text-sm text-text-muted">{c.country}</div>
+            </div>
           ))}
         </motion.div>
 
         {/* Map */}
         <motion.div
-          className="glass-card rounded-2xl p-4 md:p-8"
-          initial={{ opacity: 0, scale: 0.9 }}
+          className="matte-block p-4 md:p-8"
+          initial={{ opacity: 0, scale: 0.96 }}
           whileInView={{ opacity: 1, scale: 1 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.8 }}
+          transition={{ duration: 0.7 }}
         >
-          <ComposableMap
-            projection="geoMercator"
-            projectionConfig={{
-              scale: 147,
-              center: [0, 20]
-            }}
-            className="w-full h-auto"
-          >
+          <ComposableMap projection="geoMercator" projectionConfig={{ scale: 147, center: [0, 20] }} className="w-full h-auto">
             <Geographies geography={geoUrl}>
               {({ geographies }) =>
                 geographies.map((geo) => (
                   <Geography
                     key={geo.rsmKey}
                     geography={geo}
-                    fill="#1a1a1f"
-                    stroke="#333"
-                    strokeWidth={0.5}
                     style={{
-                      default: { outline: 'none' },
-                      hover: { fill: '#2a2a2f', outline: 'none' },
+                      default: { fill: 'var(--matte-charcoal)', stroke: 'var(--border-base)', strokeWidth: 0.5, outline: 'none' },
+                      hover: { fill: 'var(--bg-secondary)', stroke: 'var(--border-strong)', strokeWidth: 0.5, outline: 'none' },
                       pressed: { outline: 'none' },
                     }}
                   />
@@ -105,105 +98,66 @@ export default function WorldMap() {
               }
             </Geographies>
 
-            {/* Markers */}
-            {clientData.map((country) => (
-              <Marker
-                key={country.country}
-                coordinates={country.coordinates as [number, number]}
-                onMouseEnter={() => setHoveredCountry(country.country)}
-                onMouseLeave={() => setHoveredCountry(null)}
-              >
-                {/* Pulse effect */}
-                <motion.circle
-                  r={country.isHome ? 8 : 6}
-                  fill={country.color}
-                  opacity={0.3}
-                  animate={{
-                    r: country.isHome ? [8, 16, 8] : [6, 12, 6],
-                    opacity: [0.3, 0.1, 0.3],
-                  }}
-                  transition={{
-                    duration: 2,
-                    repeat: Infinity,
-                    ease: "easeInOut"
-                  }}
-                />
-                
-                {/* Main marker */}
-                <motion.circle
-                  r={country.isHome ? 6 : 4}
-                  fill={country.color}
-                  stroke="#fff"
-                  strokeWidth={1}
-                  initial={{ scale: 0 }}
-                  animate={{ scale: 1 }}
-                  transition={{ delay: 0.5, type: 'spring' }}
-                  whileHover={{ scale: 1.5 }}
-                  style={{ cursor: 'pointer' }}
-                />
-
-                {/* Tooltip */}
-                {hoveredCountry === country.country && (
-                  <motion.g
-                    initial={{ opacity: 0, y: 10 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.2 }}
-                  >
-                    <rect
-                      x={-40}
-                      y={-35}
-                      width={80}
-                      height={25}
-                      fill="#0a0a0f"
-                      stroke={country.color}
-                      strokeWidth={1}
-                      rx={4}
-                    />
-                    <text
-                      textAnchor="middle"
-                      y={-22}
-                      style={{ 
-                        fill: '#fff', 
-                        fontSize: '10px', 
-                        fontWeight: 'bold' 
-                      }}
-                    >
-                      {country.country}
-                    </text>
-                    <text
-                      textAnchor="middle"
-                      y={-12}
-                      style={{ 
-                        fill: country.color, 
-                        fontSize: '9px' 
-                      }}
-                    >
-                      {country.isHome ? 'Home Base' : `${country.orders} orders`}
-                    </text>
-                  </motion.g>
-                )}
-              </Marker>
-            ))}
+            {reviewCountries.map((c) => {
+              const color = tierColor(c.country, c.count);
+              const isHome = c.country === 'Pakistan';
+              const r = isHome ? 6 : Math.min(7, 3 + c.count / 12);
+              return (
+                <Marker
+                  key={c.country}
+                  coordinates={c.coordinates}
+                  onMouseEnter={() => setHovered(c.country)}
+                  onMouseLeave={() => setHovered(null)}
+                >
+                  <motion.circle
+                    r={r + 3}
+                    fill={color}
+                    opacity={0.25}
+                    animate={{ r: [r + 3, r + 9, r + 3], opacity: [0.25, 0.05, 0.25] }}
+                    transition={{ duration: 2.4, repeat: Infinity, ease: 'easeInOut' }}
+                  />
+                  <motion.circle
+                    r={r}
+                    fill={color}
+                    stroke="#fff"
+                    strokeWidth={0.8}
+                    initial={{ scale: 0 }}
+                    animate={{ scale: 1 }}
+                    transition={{ delay: 0.4, type: 'spring' }}
+                    whileHover={{ scale: 1.4 }}
+                    style={{ cursor: 'pointer' }}
+                  />
+                  {hovered === c.country && (
+                    <motion.g initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.18 }}>
+                      <rect x={-46} y={-38} width={92} height={28} rx={5} fill="var(--bg-primary)" stroke={color} strokeWidth={1} />
+                      <text textAnchor="middle" y={-25} style={{ fill: 'var(--text-1)', fontSize: '9px', fontWeight: 700 }}>
+                        {c.country}
+                      </text>
+                      <text textAnchor="middle" y={-15} style={{ fill: color, fontSize: '8px' }}>
+                        {isHome ? 'Home Base' : `${c.count} review${c.count > 1 ? 's' : ''}`}
+                      </text>
+                    </motion.g>
+                  )}
+                </Marker>
+              );
+            })}
           </ComposableMap>
 
-          {/* Legend */}
-          <div className="mt-6 flex flex-wrap justify-center gap-6">
-            <div className="flex items-center gap-2">
-              <div className="w-3 h-3 rounded-full bg-electric-cyan animate-pulse" />
-              <span className="text-sm text-text-secondary">High Activity</span>
-            </div>
-            <div className="flex items-center gap-2">
-              <div className="w-3 h-3 rounded-full bg-deep-violet animate-pulse" />
-              <span className="text-sm text-text-secondary">Medium Activity</span>
-            </div>
-            <div className="flex items-center gap-2">
-              <div className="w-3 h-3 rounded-full bg-red-500 animate-pulse" />
-              <span className="text-sm text-text-secondary">Home Base</span>
-            </div>
+          <div className="mt-6 flex flex-wrap justify-center gap-5">
+            {[
+              { c: 'var(--primary)', l: '15+ reviews' },
+              { c: 'var(--secondary)', l: '4-14 reviews' },
+              { c: 'var(--tertiary)', l: '1-3 reviews' },
+              { c: 'var(--accent-mustard)', l: 'Home base' },
+            ].map((x) => (
+              <div key={x.l} className="flex items-center gap-2">
+                <span className="w-3 h-3 rounded-full" style={{ background: x.c }} />
+                <span className="text-sm text-text-secondary">{x.l}</span>
+              </div>
+            ))}
           </div>
         </motion.div>
 
-        {/* Total Orders */}
         <motion.div
           className="mt-12 text-center"
           initial={{ opacity: 0, y: 20 }}
@@ -211,12 +165,36 @@ export default function WorldMap() {
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.4 }}
         >
-          <div className="text-6xl md:text-8xl font-bold bg-gradient-to-r from-electric-cyan to-deep-violet bg-clip-text text-transparent">
-            <CountUp end={totalOrders} duration={3} />+
+          <div className="text-5xl md:text-7xl font-heading font-bold" style={{ color: 'var(--primary)' }}>
+            <CountUp end={totalReviews} duration={3} />+
           </div>
-          <div className="text-xl text-text-secondary mt-2">Orders Delivered Worldwide</div>
+          <div className="text-lg text-text-secondary mt-2">Five-star reviews and counting</div>
         </motion.div>
       </div>
+
+      {/* Testimonial cards — two drifting rows under the map */}
+      <motion.div
+        className="relative mt-16 space-y-4 sm:space-y-5"
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.6 }}
+      >
+        <Marquee gradient={false} speed={24} pauseOnHover>
+          {mapRow1.map((r) => (
+            <div key={r.id} className="w-[300px] sm:w-[340px] mx-2.5">
+              <ReviewCard review={r} className="h-full" />
+            </div>
+          ))}
+        </Marquee>
+        <Marquee gradient={false} speed={24} direction="right" pauseOnHover>
+          {mapRow2.map((r) => (
+            <div key={r.id} className="w-[300px] sm:w-[340px] mx-2.5">
+              <ReviewCard review={r} className="h-full" />
+            </div>
+          ))}
+        </Marquee>
+      </motion.div>
     </section>
   );
 }

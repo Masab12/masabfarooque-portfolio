@@ -105,12 +105,12 @@ export default function ForgeBrief({ brief }: ForgeBriefProps) {
 
     // Core Features
     checkPage(30);
-    addText('CORE FEATURES', margin, y, { fontSize: 9, bold: true, color: [139, 92, 246] });
+    addText('CORE FEATURES', margin, y, { fontSize: 9, bold: true, color: [63, 88, 168] });
     y += 7;
     project.core_features.forEach((f: CoreFeature) => {
       checkPage(8);
       const pColor: [number, number, number] =
-        f.priority === 'P1' ? [0, 200, 215] : f.priority === 'P2' ? [139, 92, 246] : [120, 120, 130];
+        f.priority === 'P1' ? [0, 200, 215] : f.priority === 'P2' ? [63, 88, 168] : [120, 120, 130];
       addText(`[${f.priority}]`, margin, y, { fontSize: 9, bold: true, color: pColor });
       addText(f.feature, margin + 12, y, { fontSize: 10, color: [220, 220, 235], maxWidth: contentW - 14 });
       y += 6;
@@ -127,7 +127,7 @@ export default function ForgeBrief({ brief }: ForgeBriefProps) {
 
     // Milestones
     checkPage(20);
-    addText('MILESTONES', margin, y, { fontSize: 9, bold: true, color: [139, 92, 246] });
+    addText('MILESTONES', margin, y, { fontSize: 9, bold: true, color: [63, 88, 168] });
     y += 7;
     milestones.forEach((m: Milestone, i: number) => {
       checkPage(20);
@@ -192,7 +192,7 @@ export default function ForgeBrief({ brief }: ForgeBriefProps) {
       <div
         style={{
           padding: '20px 24px',
-          background: 'linear-gradient(135deg, rgba(0,240,255,0.06), rgba(139,92,246,0.06))',
+          background: 'linear-gradient(135deg, rgba(191,84,44,0.06), rgba(63,88,168,0.06))',
           borderBottom: '1px solid var(--border-base)',
           display: 'flex',
           alignItems: 'center',
@@ -252,10 +252,10 @@ export default function ForgeBrief({ brief }: ForgeBriefProps) {
             href="/contact"
             style={{
               padding: '9px 18px',
-              background: 'linear-gradient(135deg, rgb(0,240,255), rgb(139,92,246))',
+              background: 'var(--primary)',
               border: 'none',
               borderRadius: 10,
-              color: '#0a0a0f',
+              color: 'var(--bg-primary)',
               fontSize: 13,
               fontWeight: 700,
               cursor: 'pointer',
@@ -460,7 +460,7 @@ export default function ForgeBrief({ brief }: ForgeBriefProps) {
           style={{
             marginTop: 8,
             padding: '20px 24px',
-            background: 'linear-gradient(135deg, rgba(0,240,255,0.06), rgba(139,92,246,0.06))',
+            background: 'linear-gradient(135deg, rgba(191,84,44,0.06), rgba(63,88,168,0.06))',
             border: '1px solid var(--border-base)',
             borderRadius: 12,
             textAlign: 'center',
@@ -472,9 +472,9 @@ export default function ForgeBrief({ brief }: ForgeBriefProps) {
             style={{
               display: 'inline-block',
               padding: '11px 28px',
-              background: 'linear-gradient(135deg, rgb(0,240,255), rgb(139,92,246))',
+              background: 'var(--primary)',
               borderRadius: 10,
-              color: '#0a0a0f',
+              color: 'var(--bg-primary)',
               fontSize: 14,
               fontWeight: 700,
               textDecoration: 'none',

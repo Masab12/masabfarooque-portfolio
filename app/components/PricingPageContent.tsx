@@ -77,15 +77,15 @@ export default function PricingPageContent() {
                 <div className="absolute -top-3.5 left-0 right-0 flex justify-center z-10">
                   <span
                     className="px-3 py-1 rounded-full text-xs font-bold"
-                    style={{ background: 'linear-gradient(135deg, rgb(0,240,255), rgb(139,92,246))', color: 'var(--color-on-accent)' }}
+                    style={{ background: 'var(--primary)', color: 'var(--color-on-accent)' }}
                   >
                     Most Popular
                   </span>
                 </div>
               )}
               <div
-                className="glass-card p-6 rounded-2xl h-full flex flex-col"
-                style={tier.isFeatured ? { border: '1px solid rgba(0,240,255,0.35)', boxShadow: '0 0 40px rgba(0,240,255,0.08)' } : {}}
+                className="glass-card p-6 rounded-lg h-full flex flex-col"
+                style={tier.isFeatured ? { border: '1px solid rgba(191,84,44,0.35)', boxShadow: '0 0 40px rgba(191,84,44,0.08)' } : {}}
               >
                 <div className="mb-5">
                   <h3 className="font-heading text-xl font-bold mb-1" style={{ color: 'var(--text-1)' }}>{tier.name}</h3>
@@ -143,7 +143,7 @@ export default function PricingPageContent() {
                   href={tier.ctaHref}
                   className="block w-full text-center py-3 rounded-xl text-sm font-semibold transition-all duration-200"
                   style={tier.isFeatured
-                    ? { background: 'linear-gradient(135deg, rgb(0,240,255), rgb(139,92,246))', color: '#0a0a0f' }
+                    ? { background: 'var(--primary)', color: 'var(--bg-primary)' }
                     : { backgroundColor: 'var(--bg-card)', color: 'var(--text-1)', border: '1px solid var(--border-base)' }
                   }
                 >
@@ -186,7 +186,7 @@ export default function PricingPageContent() {
           <Link
             href="/contact?tier=custom"
             className="inline-flex items-center gap-2 px-7 py-3.5 rounded-xl font-semibold"
-            style={{ background: 'linear-gradient(135deg, rgb(0,240,255), rgb(139,92,246))', color: 'var(--color-on-accent)' }}
+            style={{ background: 'var(--primary)', color: 'var(--color-on-accent)' }}
           >
             Contact for Pricing <HiArrowRight className="w-4 h-4" />
           </Link>

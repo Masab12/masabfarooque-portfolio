@@ -3,6 +3,7 @@ import Navigation from '../components/Navigation';
 import Footer from '../components/Footer';
 import PageTransition from '../components/PageTransition';
 import ServicesPageContent from '../components/ServicesPageContent';
+import TerminalTyper from '../components/TerminalTyper';
 import Link from 'next/link';
 import { HiArrowRight } from 'react-icons/hi';
 
@@ -80,13 +81,16 @@ export default function ServicesPage() {
         <script key={i} type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} />
       ))}
       <Navigation />
-      <main className="relative bg-void-black overflow-x-hidden pt-28">
+      <main className="relative bg-transparent overflow-x-hidden pt-28">
         <section className="relative w-full px-4 sm:px-6 lg:px-8 pb-16">
           <div className="relative max-w-5xl mx-auto">
             <p className="text-xs font-bold tracking-widest uppercase mb-5 font-mono" style={{ color: 'var(--accent-cyan)' }}>Services</p>
             <h1 className="font-heading text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold leading-tight mb-5" style={{ color: 'var(--text-1)' }}>
               What I Build
             </h1>
+            <div className="mb-5">
+              <TerminalTyper phrases={['next build  ✓ compiled', 'fastapi serve  ✓ 200 OK', 'celery worker  ✓ ready', 'playwright run  ✓ scraped']} />
+            </div>
             <p className="text-text-secondary text-base sm:text-lg max-w-2xl leading-relaxed mb-3">
               Four core service areas. Every project is production code, clean architecture, tested, and documented.
             </p>
@@ -120,14 +124,14 @@ export default function ServicesPage() {
 
         <ServicesPageContent />
 
-        <section className="relative w-full bg-void-black py-20 px-4 sm:px-6 lg:px-8">
+        <section className="relative w-full bg-transparent py-20 px-4 sm:px-6 lg:px-8">
           <div className="max-w-3xl mx-auto text-center">
             <h2 className="font-heading text-3xl sm:text-4xl font-bold mb-4" style={{ color: 'var(--text-1)' }}>
               Not sure which service fits?
             </h2>
             <p className="text-text-secondary text-base mb-8">Tell me what you are building and I will point you in the right direction.</p>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-              <Link href="/contact" className="inline-flex items-center gap-2 px-7 py-3.5 rounded-xl font-semibold" style={{ background: 'linear-gradient(135deg, rgb(0,240,255), rgb(139,92,246))', color: 'var(--color-on-accent)' }}>
+              <Link href="/contact" className="inline-flex items-center gap-2 px-7 py-3.5 rounded-xl font-semibold" style={{ background: 'var(--primary)', color: 'var(--color-on-accent)' }}>
                 Get in Touch <HiArrowRight className="w-4 h-4" />
               </Link>
               <Link href="/pricing" className="inline-flex items-center gap-2 px-7 py-3.5 glass-card rounded-xl font-semibold text-text-primary hover:border-electric-cyan/40 transition-all">

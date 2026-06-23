@@ -72,7 +72,7 @@ export default function IdentityArsenalSection() {
   return (
     <section
       id="identity"
-      className="relative w-full bg-void-black py-20 sm:py-24 md:py-32 px-4 sm:px-6 lg:px-8"
+      className="relative w-full bg-transparent py-20 sm:py-24 md:py-32 px-4 sm:px-6 lg:px-8"
     >
       <div className="absolute inset-0 bg-gradient-to-b from-void-black via-matte-charcoal/10 to-void-black pointer-events-none" />
 
@@ -96,7 +96,7 @@ export default function IdentityArsenalSection() {
 
         <div className="grid grid-cols-1 lg:grid-cols-5 gap-6 md:gap-8 mb-12 md:mb-16">
           <motion.div
-            className="lg:col-span-3 glass-card rounded-2xl p-6 md:p-8"
+            className="lg:col-span-3 glass-card rounded-lg p-6 md:p-8"
             initial={{ opacity: 0, x: -30 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
@@ -119,7 +119,7 @@ export default function IdentityArsenalSection() {
           </motion.div>
 
           <motion.div
-            className="lg:col-span-2 glass-card rounded-2xl p-6 md:p-8"
+            className="lg:col-span-2 glass-card rounded-lg p-6 md:p-8"
             initial={{ opacity: 0, x: 30 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
@@ -135,12 +135,12 @@ export default function IdentityArsenalSection() {
                   href={link.url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="group flex items-center justify-between p-4 rounded-xl bg-void-black/50 border border-white/5 hover:border-electric-cyan/30 transition-all duration-300"
+                  className="group flex items-center justify-between p-4 rounded-xl bg-transparent/50 border border-white/5 hover:border-electric-cyan/30 transition-all duration-300"
                   initial={{ opacity: 0, x: 20 }}
                   whileInView={{ opacity: 1, x: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.4, delay: 0.3 + i * 0.1 }}
-                  whileHover={{ x: 4, backgroundColor: 'rgba(0, 240, 255, 0.05)' }}
+                  whileHover={{ x: 4, backgroundColor: 'rgba(191,84,44, 0.05)' }}
                 >
                   <div className="flex items-center gap-3">
                     <div className="text-text-secondary group-hover:text-electric-cyan transition-colors">
@@ -169,7 +169,7 @@ export default function IdentityArsenalSection() {
         <FiverrStats />
 
         <motion.div
-          className="glass-card rounded-2xl p-6 md:p-10"
+          className="glass-card rounded-lg p-6 md:p-10"
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -194,12 +194,12 @@ export default function IdentityArsenalSection() {
                   {category.skills.map((skill) => (
                     <motion.span
                       key={skill}
-                      className={`px-3 py-2 rounded-lg border bg-void-black/50 text-sm text-text-secondary cursor-default ${category.borderColor} transition-all duration-300`}
+                      className={`px-3 py-2 rounded-lg border bg-transparent/50 text-sm text-text-secondary cursor-default ${category.borderColor} transition-all duration-300`}
                       whileHover={{
                         scale: 1.05,
                         color: '#ffffff',
-                        borderColor: 'rgba(0,240,255,0.4)',
-                        backgroundColor: 'rgba(0,240,255,0.1)',
+                        borderColor: 'rgba(191,84,44,0.4)',
+                        backgroundColor: 'rgba(191,84,44,0.1)',
                       }}
                       transition={{ type: 'spring', stiffness: 400, damping: 17 }}
                     >

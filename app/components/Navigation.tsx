@@ -47,31 +47,30 @@ export default function Navigation() {
 
   return (
     <>
-      <nav className="fixed top-0 left-0 right-0 z-50 px-3 sm:px-6 pt-3 sm:pt-4">
-        <div className="max-w-7xl mx-auto">
-          <div
-            className="rounded-2xl px-4 sm:px-5 py-2.5 sm:py-3 flex items-center justify-between"
-            style={{
-              backgroundColor: scrolled ? 'var(--nav-bg-scrolled)' : 'var(--nav-bg-default)',
-              backdropFilter: 'blur(20px)',
-              WebkitBackdropFilter: 'blur(20px)',
-              border: `1px solid ${scrolled ? 'var(--nav-border-scrolled)' : 'var(--nav-border-default)'}`,
-              transition: 'background-color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease',
-              boxShadow: scrolled ? '0 8px 32px var(--shadow-color)' : 'none',
-            }}
-          >
+      <nav className="fixed top-0 left-0 right-0 z-50">
+        <div
+          style={{
+            backgroundColor: scrolled ? 'var(--nav-bg-scrolled)' : 'var(--nav-bg-default)',
+            backdropFilter: 'blur(20px)',
+            WebkitBackdropFilter: 'blur(20px)',
+            borderBottom: `1px solid ${scrolled ? 'var(--nav-border-scrolled)' : 'var(--nav-border-default)'}`,
+            transition: 'background-color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease',
+            boxShadow: scrolled ? '0 6px 24px var(--shadow-color)' : 'none',
+          }}
+        >
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
             <Link
               href="/"
-              className="font-heading text-xl font-bold text-text-primary hover:text-electric-cyan transition-colors duration-200"
+              className="font-heading text-lg sm:text-xl font-bold text-text-primary transition-colors duration-200 tracking-tight"
             >
-              MF<span style={{ color: 'var(--accent-cyan)' }}>.</span>
+              Masab Farooque<span style={{ color: 'var(--accent-cyan)' }}>.</span>
             </Link>
 
             <div className="hidden md:flex items-center gap-1">
               <Link
                 href="/about-masab"
                 className={`px-4 py-2 rounded-xl text-sm font-medium transition-colors duration-150 ${
-                  isActive('/about-masab') ? 'text-electric-cyan bg-electric-cyan/10' : 'text-text-secondary hover:text-text-primary hover:bg-white/5'
+                  isActive('/about-masab') ? 'text-[var(--primary)] bg-[var(--accent-cyan-subtle)]' : 'text-text-secondary hover:text-text-primary hover:bg-[var(--accent-cyan-subtle)]'
                 }`}
               >
                 About
@@ -84,7 +83,7 @@ export default function Navigation() {
               >
                 <button
                   className={`flex items-center gap-1.5 px-4 py-2 rounded-xl text-sm font-medium transition-colors duration-150 ${
-                    isActive('/services') ? 'text-electric-cyan bg-electric-cyan/10' : 'text-text-secondary hover:text-text-primary hover:bg-white/5'
+                    isActive('/services') ? 'text-[var(--primary)] bg-[var(--accent-cyan-subtle)]' : 'text-text-secondary hover:text-text-primary hover:bg-[var(--accent-cyan-subtle)]'
                   }`}
                 >
                   Services
@@ -99,7 +98,7 @@ export default function Navigation() {
                 <AnimatePresence>
                   {servicesOpen && (
                     <motion.div
-                      className="absolute top-full left-1/2 -translate-x-1/2 mt-2 w-[480px] rounded-2xl p-5"
+                      className="absolute top-full left-1/2 -translate-x-1/2 mt-2 w-[480px] rounded-lg p-5"
                       style={{
                         backgroundColor: 'var(--bg-primary)',
                         backdropFilter: 'blur(24px)',
@@ -119,7 +118,7 @@ export default function Navigation() {
                           <Link
                             key={cat.id}
                             href={`/services#${cat.id}`}
-                            className="group flex flex-col gap-1 p-3.5 rounded-xl transition-all duration-150 hover:bg-white/6"
+                            className="group flex flex-col gap-1 p-3.5 rounded-xl transition-all duration-150 hover:bg-[var(--accent-cyan-subtle)]"
                             style={{ border: '1px solid transparent' }}
                             onMouseEnter={e => {
                               (e.currentTarget as HTMLElement).style.borderColor = `${cat.gradientFrom}35`;
@@ -165,7 +164,7 @@ export default function Navigation() {
                   key={link.href}
                   href={link.href}
                   className={`px-4 py-2 rounded-xl text-sm font-medium transition-colors duration-150 ${
-                    isActive(link.href) ? 'text-electric-cyan bg-electric-cyan/10' : 'text-text-secondary hover:text-text-primary hover:bg-white/5'
+                    isActive(link.href) ? 'text-[var(--primary)] bg-[var(--accent-cyan-subtle)]' : 'text-text-secondary hover:text-text-primary hover:bg-[var(--accent-cyan-subtle)]'
                   }`}
                 >
                   {link.label}
@@ -178,8 +177,8 @@ export default function Navigation() {
                 href="/forge"
                 className={`flex items-center gap-1.5 px-4 py-2 rounded-xl text-sm font-medium transition-all duration-150 ${
                   isActive('/forge')
-                    ? 'text-electric-cyan bg-electric-cyan/10'
-                    : 'text-text-secondary hover:text-text-primary hover:bg-white/5'
+                    ? 'text-[var(--primary)] bg-[var(--accent-cyan-subtle)]'
+                    : 'text-text-secondary hover:text-text-primary hover:bg-[var(--accent-cyan-subtle)]'
                 }`}
               >
                 Forge
@@ -202,8 +201,8 @@ export default function Navigation() {
               <ThemeToggle />
               <Link
                 href="/contact"
-                className="px-5 py-2.5 rounded-xl text-sm font-semibold transition-opacity duration-150 hover:opacity-88"
-                style={{ background: 'linear-gradient(135deg, rgb(0,240,255), rgb(139,92,246))', color: 'var(--color-on-accent)' }}
+                data-cursor-hover
+                className="btn-primary px-5 py-2.5 text-sm"
               >
                 Hire Me
               </Link>
@@ -211,7 +210,7 @@ export default function Navigation() {
 
             <button
               onClick={() => setMobileOpen(o => !o)}
-              className="md:hidden w-10 h-10 flex items-center justify-center rounded-xl hover:bg-white/5 transition-colors"
+              className="md:hidden w-10 h-10 flex items-center justify-center rounded-xl hover:bg-[var(--accent-cyan-subtle)] transition-colors"
               aria-label="Toggle menu"
             >
               <AnimatePresence mode="wait">
@@ -261,7 +260,7 @@ export default function Navigation() {
               transition={{ duration: 0.22, ease: [0.22, 1, 0.36, 1] }}
             >
               <div
-                className="rounded-2xl p-4"
+                className="rounded-lg p-4"
                 style={{
                   backgroundColor: 'var(--bg-primary)',
                   backdropFilter: 'blur(20px)',
@@ -275,7 +274,7 @@ export default function Navigation() {
                 <div className="flex flex-col gap-0.5">
                   <Link
                     href="/about-masab"
-                    className={`px-4 py-3 rounded-xl text-sm font-medium transition-colors ${isActive('/about-masab') ? 'text-electric-cyan bg-electric-cyan/10' : 'text-text-secondary hover:text-text-primary hover:bg-white/5'}`}
+                    className={`px-4 py-3 rounded-xl text-sm font-medium transition-colors ${isActive('/about-masab') ? 'text-[var(--primary)] bg-[var(--accent-cyan-subtle)]' : 'text-text-secondary hover:text-text-primary hover:bg-[var(--accent-cyan-subtle)]'}`}
                   >
                     About
                   </Link>
@@ -283,7 +282,7 @@ export default function Navigation() {
                   <div>
                     <button
                       onClick={() => setMobileServicesOpen(o => !o)}
-                      className="w-full flex items-center justify-between px-4 py-3 rounded-xl text-sm font-medium text-text-secondary hover:text-text-primary hover:bg-white/5 transition-colors"
+                      className="w-full flex items-center justify-between px-4 py-3 rounded-xl text-sm font-medium text-text-secondary hover:text-text-primary hover:bg-[var(--accent-cyan-subtle)] transition-colors"
                     >
                       Services
                       <motion.span animate={{ rotate: mobileServicesOpen ? 180 : 0 }} transition={{ duration: 0.2 }}>
@@ -304,7 +303,7 @@ export default function Navigation() {
                               <Link
                                 key={cat.id}
                                 href={`/services#${cat.id}`}
-                                className="flex flex-col gap-0.5 p-3 rounded-xl hover:bg-white/5 transition-colors"
+                                className="flex flex-col gap-0.5 p-3 rounded-xl hover:bg-[var(--accent-cyan-subtle)] transition-colors"
                               >
                                 <span className="text-xs font-semibold" style={{ color: 'var(--text-1)' }}>{cat.shortTitle}</span>
                                 <span className="text-xs text-text-muted leading-snug line-clamp-2">{cat.description.split('.')[0]}.</span>
@@ -313,7 +312,7 @@ export default function Navigation() {
                           </div>
                           <Link
                             href="/services"
-                            className="flex items-center gap-1.5 mx-2 mb-2 px-3 py-2 rounded-xl text-xs font-semibold transition-colors hover:bg-white/5"
+                            className="flex items-center gap-1.5 mx-2 mb-2 px-3 py-2 rounded-xl text-xs font-semibold transition-colors hover:bg-[var(--accent-cyan-subtle)]"
                             style={{ color: 'var(--accent-cyan)' }}
                           >
                             View all services <HiArrowRight className="w-3 h-3" />
@@ -327,7 +326,7 @@ export default function Navigation() {
                     <Link
                       key={link.href}
                       href={link.href}
-                      className={`px-4 py-3 rounded-xl text-sm font-medium transition-colors ${isActive(link.href) ? 'text-electric-cyan bg-electric-cyan/10' : 'text-text-secondary hover:text-text-primary hover:bg-white/5'}`}
+                      className={`px-4 py-3 rounded-xl text-sm font-medium transition-colors ${isActive(link.href) ? 'text-[var(--primary)] bg-[var(--accent-cyan-subtle)]' : 'text-text-secondary hover:text-text-primary hover:bg-[var(--accent-cyan-subtle)]'}`}
                     >
                       {link.label}
                     </Link>
@@ -335,7 +334,7 @@ export default function Navigation() {
 
                   <Link
                     href="/forge"
-                    className={`flex items-center gap-2 px-4 py-3 rounded-xl text-sm font-medium transition-colors ${isActive('/forge') ? 'text-electric-cyan bg-electric-cyan/10' : 'text-text-secondary hover:text-text-primary hover:bg-white/5'}`}
+                    className={`flex items-center gap-2 px-4 py-3 rounded-xl text-sm font-medium transition-colors ${isActive('/forge') ? 'text-[var(--primary)] bg-[var(--accent-cyan-subtle)]' : 'text-text-secondary hover:text-text-primary hover:bg-[var(--accent-cyan-subtle)]'}`}
                   >
                     Forge
                     <span
@@ -357,8 +356,7 @@ export default function Navigation() {
 
                   <Link
                     href="/contact"
-                    className="mt-1 px-4 py-3 rounded-xl text-sm font-semibold text-center"
-                    style={{ background: 'linear-gradient(135deg, rgb(0,240,255), rgb(139,92,246))', color: 'var(--color-on-accent)' }}
+                    className="btn-primary mt-1 px-4 py-3 text-sm text-center"
                   >
                     Hire Me
                   </Link>

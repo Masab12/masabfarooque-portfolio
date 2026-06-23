@@ -4,7 +4,7 @@ import dynamic from 'next/dynamic';
 
 const FiverrReviews = dynamic(() => import('./FiverrReviews'), {
   ssr: false,
-  loading: () => <div className="min-h-[30vh] bg-void-black" />,
+  loading: () => <div className="min-h-[30vh] bg-transparent" />,
 });
 
 export default function ClientFiverrReviews() {

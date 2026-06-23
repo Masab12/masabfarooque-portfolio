@@ -83,7 +83,7 @@ export default function ProjectModal({ isOpen, onClose, project }: ProjectModalP
           <div className="fixed inset-0 z-[201] overflow-y-auto">
             <div className="flex min-h-full items-center justify-center p-3 sm:p-6">
               <motion.div
-                className="relative w-full max-w-4xl rounded-2xl border overflow-hidden flex flex-col"
+                className="relative w-full max-w-4xl rounded-lg border overflow-hidden flex flex-col"
                 style={{
                   backgroundColor: 'var(--bg-secondary)',
                   borderColor: 'var(--border-base)',
@@ -109,7 +109,7 @@ export default function ProjectModal({ isOpen, onClose, project }: ProjectModalP
                 <div className="overflow-y-auto">
 
                   {/* ---- Image Gallery ---- */}
-                  <div className="relative bg-void-black" style={{ height: '260px' }}>
+                  <div className="relative bg-transparent" style={{ height: '260px' }}>
                     {/* Sliding image */}
                     <div className="absolute inset-0 overflow-hidden">
                       <AnimatePresence initial={false} custom={direction} mode="popLayout">
@@ -308,8 +308,8 @@ export default function ProjectModal({ isOpen, onClose, project }: ProjectModalP
                             rel="noopener noreferrer"
                             className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl font-semibold text-sm transition-all hover:opacity-90"
                             style={{
-                              background: 'linear-gradient(135deg, rgb(0,240,255), rgb(139,92,246))',
-                              color: '#0a0a0f',
+                              background: 'var(--primary)',
+                              color: 'var(--bg-primary)',
                             }}
                           >
                             <FiExternalLink className="w-4 h-4" />

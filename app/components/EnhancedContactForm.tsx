@@ -119,7 +119,7 @@ export default function EnhancedContactForm({ service, tier }: { service?: strin
         type="submit"
         disabled={status === 'loading'}
         className="w-full py-4 rounded-xl font-semibold relative overflow-hidden group disabled:opacity-50 disabled:cursor-not-allowed"
-        style={{ background: 'linear-gradient(135deg, rgb(0,240,255), rgb(139,92,246))', color: 'var(--color-on-accent)' }}
+        style={{ background: 'var(--primary)', color: 'var(--color-on-accent)' }}
         whileHover={status !== 'loading' ? { scale: 1.02 } : {}}
         whileTap={status !== 'loading' ? { scale: 0.98 } : {}}
       >

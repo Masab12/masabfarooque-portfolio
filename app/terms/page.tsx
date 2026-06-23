@@ -16,7 +16,7 @@ export default function TermsPage() {
   return (
     <>
       <Navigation />
-      <main className="relative bg-void-black min-h-screen pt-32 pb-20 px-4 sm:px-6 lg:px-8">
+      <main className="relative bg-transparent min-h-screen pt-32 pb-20 px-4 sm:px-6 lg:px-8">
         <div className="max-w-3xl mx-auto">
 
           <div className="mb-12">
@@ -26,7 +26,7 @@ export default function TermsPage() {
             <h1 className="font-heading text-4xl sm:text-5xl font-bold mb-4" style={{ color: 'var(--text-1)' }}>
               Terms of Service
             </h1>
-            <div className="w-14 h-1 rounded-full mb-4" style={{ background: 'linear-gradient(90deg, rgb(139,92,246), rgb(0,240,255))' }} />
+            <div className="w-14 h-1 rounded-full mb-4" style={{ background: 'linear-gradient(90deg, var(--accent-violet), var(--accent-cyan))' }} />
             <p className="text-text-muted text-sm">Last updated: {LAST_UPDATED}</p>
           </div>
 

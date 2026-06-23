@@ -31,7 +31,7 @@ export default function InitiateContactSection() {
   ];
 
   return (
-    <section id="contact" className="relative bg-void-black py-20 sm:py-24 md:py-32 px-4 sm:px-6 lg:px-8">
+    <section id="contact" className="relative bg-transparent py-20 sm:py-24 md:py-32 px-4 sm:px-6 lg:px-8">
       <div className="absolute inset-0 bg-gradient-to-t from-void-black via-matte-charcoal/10 to-void-black pointer-events-none" />
 
       <div className="relative max-w-7xl mx-auto">
@@ -53,7 +53,7 @@ export default function InitiateContactSection() {
 
         <div className="grid grid-cols-1 lg:grid-cols-5 gap-6 md:gap-8 items-start">
           <motion.div
-            className="lg:col-span-3 glass-card rounded-2xl p-6 md:p-8"
+            className="lg:col-span-3 glass-card rounded-lg p-6 md:p-8"
             initial={{ opacity: 0, x: -30 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
@@ -64,7 +64,7 @@ export default function InitiateContactSection() {
 
           <div className="lg:col-span-2 space-y-6">
             <motion.div
-              className="glass-card rounded-2xl p-6 md:p-8"
+              className="glass-card rounded-lg p-6 md:p-8"
               initial={{ opacity: 0, x: 30 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
@@ -104,7 +104,7 @@ export default function InitiateContactSection() {
             </motion.div>
 
             <motion.div
-              className="glass-card rounded-2xl p-6 md:p-8"
+              className="glass-card rounded-lg p-6 md:p-8"
               initial={{ opacity: 0, x: 30 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
@@ -120,12 +120,12 @@ export default function InitiateContactSection() {
                     href={link.url}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="group flex flex-col items-center gap-2 p-4 rounded-xl bg-void-black/50 border border-white/5 hover:border-electric-cyan/30 transition-all duration-300"
+                    className="group flex flex-col items-center gap-2 p-4 rounded-xl bg-transparent/50 border border-white/5 hover:border-electric-cyan/30 transition-all duration-300"
                     initial={{ opacity: 0, y: 15 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.4, delay: 0.4 + i * 0.1 }}
-                    whileHover={{ scale: 1.05, y: -4, backgroundColor: 'rgba(0,240,255,0.05)' }}
+                    whileHover={{ scale: 1.05, y: -4, backgroundColor: 'rgba(191,84,44,0.05)' }}
                   >
                     <div className="w-10 h-10 rounded-lg bg-electric-cyan/5 flex items-center justify-center text-text-secondary group-hover:text-electric-cyan group-hover:bg-electric-cyan/10 transition-all duration-300">
                       {link.name === 'Fiverr' && (

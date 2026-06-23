@@ -14,7 +14,7 @@ export default function ForgePage() {
   return (
     <>
       <Navigation />
-      <main className="relative bg-void-black min-h-screen flex flex-col items-center justify-center px-4 text-center">
+      <main className="relative bg-transparent min-h-screen flex flex-col items-center justify-center px-4 text-center">
 
         {/* Background glow */}
         <div
@@ -23,7 +23,7 @@ export default function ForgePage() {
             width: 600,
             height: 300,
             borderRadius: '50%',
-            background: 'radial-gradient(ellipse, rgba(0,240,255,0.06) 0%, transparent 70%)',
+            background: 'radial-gradient(ellipse, rgba(191,84,44,0.06) 0%, transparent 70%)',
             top: '50%',
             left: '50%',
             transform: 'translate(-50%, -60%)',
@@ -57,7 +57,7 @@ export default function ForgePage() {
           </h1>
           <div
             className="w-16 h-1 rounded-full mx-auto mb-8"
-            style={{ background: 'linear-gradient(90deg, rgb(0,240,255), rgb(139,92,246))' }}
+            style={{ background: 'linear-gradient(90deg, var(--accent-cyan), var(--accent-violet))' }}
           />
 
           {/* Description */}
@@ -74,7 +74,7 @@ export default function ForgePage() {
           <Link
             href="/contact"
             className="inline-flex items-center gap-2 px-8 py-4 rounded-xl font-semibold"
-            style={{ background: 'linear-gradient(135deg, rgb(0,240,255), rgb(139,92,246))', color: 'var(--color-on-accent)' }}
+            style={{ background: 'var(--primary)', color: 'var(--color-on-accent)' }}
           >
             Start a Project
           </Link>

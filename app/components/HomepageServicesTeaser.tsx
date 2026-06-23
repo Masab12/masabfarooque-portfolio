@@ -43,7 +43,7 @@ export default function HomepageServicesTeaser() {
             const Icon = icons[i];
             return (
               <motion.div key={service.id} variants={cardVariants}>
-                <SpotlightCard className="glass-card p-6 sm:p-8 rounded-2xl h-full hover:border-electric-cyan/25 transition-colors duration-300 group">
+                <SpotlightCard className="glass-card p-6 sm:p-8 rounded-lg h-full hover:border-electric-cyan/25 transition-colors duration-300 group">
                   <div className="flex items-start gap-4 mb-4">
                     <div
                       className="p-3 rounded-xl flex-shrink-0 group-hover:scale-110 transition-transform duration-300"

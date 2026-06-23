@@ -34,7 +34,7 @@ function SpotlightCard({
       onMouseLeave={() => setHovering(false)}
       style={{
         background: hovering
-          ? `radial-gradient(500px circle at ${pos.x}px ${pos.y}px, rgba(0,240,255,0.05) 0%, transparent 60%)`
+          ? `radial-gradient(500px circle at ${pos.x}px ${pos.y}px, rgba(191,84,44,0.05) 0%, transparent 60%)`
           : undefined,
       }}
     >
@@ -115,7 +115,7 @@ export default function BentoAboutSection() {
       <div className="absolute inset-0 bg-gradient-to-b from-void-black via-deep-space/30 to-void-black pointer-events-none" />
       <div
         className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-64 h-64 sm:w-[500px] sm:h-[500px] rounded-full blur-3xl pointer-events-none"
-        style={{ backgroundColor: 'rgba(0,240,255,0.03)' }}
+        style={{ backgroundColor: 'rgba(191,84,44,0.03)' }}
       />
 
       <div className="relative max-w-7xl mx-auto">
@@ -134,7 +134,7 @@ export default function BentoAboutSection() {
           </motion.h2>
           <motion.div
             className="w-16 sm:w-20 h-1 sm:h-1.5 rounded-full mx-auto"
-            style={{ background: 'linear-gradient(90deg, rgb(0,240,255), rgb(139,92,246))' }}
+            style={{ background: 'linear-gradient(90deg, var(--accent-cyan), var(--accent-violet))' }}
             initial={{ scaleX: 0, opacity: 0 }}
             whileInView={{ scaleX: 1, opacity: 1 }}
             viewport={{ once: true, margin: '-60px' }}
@@ -152,7 +152,7 @@ export default function BentoAboutSection() {
         >
           {/* Professional Background to 2 cols */}
           <motion.div variants={cardVariants} className="sm:col-span-2">
-            <SpotlightCard className="glass-card p-5 sm:p-7 lg:p-8 rounded-2xl sm:rounded-3xl h-full group transition-colors duration-300 hover:border-[rgba(0,240,255,0.25)]">
+            <SpotlightCard className="glass-card p-5 sm:p-7 lg:p-8 rounded-lg sm:rounded-xl h-full group transition-colors duration-300 hover:border-[rgba(191,84,44,0.25)]">
               <div className="flex items-center gap-2 mb-4">
                 <span className="text-base sm:text-lg font-semibold" style={{ color: 'var(--text-1)' }}>
                   Professional Background
@@ -206,7 +206,7 @@ export default function BentoAboutSection() {
 
           {/* Location */}
           <motion.div variants={cardVariants}>
-            <SpotlightCard className="glass-card p-5 sm:p-7 rounded-2xl sm:rounded-3xl h-full min-h-[180px] flex flex-col items-center justify-center text-center transition-colors duration-300 hover:border-[rgba(0,240,255,0.25)]">
+            <SpotlightCard className="glass-card p-5 sm:p-7 rounded-lg sm:rounded-xl h-full min-h-[180px] flex flex-col items-center justify-center text-center transition-colors duration-300 hover:border-[rgba(191,84,44,0.25)]">
               <motion.div
                 whileHover={{ scale: 1.15, rotate: 6 }}
                 transition={{ type: 'spring', stiffness: 300 }}
@@ -220,7 +220,7 @@ export default function BentoAboutSection() {
 
           {/* Achievements to 2 cols, NO overflow-hidden so stats aren't clipped */}
           <motion.div variants={cardVariants} className="sm:col-span-2">
-            <SpotlightCard className="glass-card p-5 sm:p-7 lg:p-8 rounded-2xl sm:rounded-3xl h-full transition-colors duration-300 hover:border-[rgba(139,92,246,0.25)]">
+            <SpotlightCard className="glass-card p-5 sm:p-7 lg:p-8 rounded-lg sm:rounded-xl h-full transition-colors duration-300 hover:border-[rgba(63,88,168,0.25)]">
               <div className="text-base sm:text-lg font-semibold mb-1" style={{ color: 'var(--text-1)' }}>
                 Achievements
               </div>
@@ -230,7 +230,7 @@ export default function BentoAboutSection() {
 
           {/* Fiverr Status */}
           <motion.div variants={cardVariants}>
-            <SpotlightCard className="glass-card p-5 sm:p-7 rounded-2xl sm:rounded-3xl h-full min-h-[180px] flex flex-col items-center justify-center text-center transition-colors duration-300 hover:border-[rgba(139,92,246,0.25)]">
+            <SpotlightCard className="glass-card p-5 sm:p-7 rounded-lg sm:rounded-xl h-full min-h-[180px] flex flex-col items-center justify-center text-center transition-colors duration-300 hover:border-[rgba(63,88,168,0.25)]">
               <motion.div
                 whileHover={{ scale: 1.15, rotate: -6 }}
                 transition={{ type: 'spring', stiffness: 300 }}

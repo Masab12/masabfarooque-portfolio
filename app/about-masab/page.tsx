@@ -8,7 +8,7 @@ import AwardsSection from '../components/about/AwardsSection';
 import SkillsRadar from '../components/about/SkillsRadar';
 import PageTransition from '../components/PageTransition';
 import ClientWorldMap from '../components/ClientWorldMap';
-import ClientFiverrReviews from '../components/ClientFiverrReviews';
+import ReviewSlider from '../components/ReviewSlider';
 import AboutHero from '../components/about/AboutHero';
 import FAQSection from '../components/about/FAQSection';
 import { faqs } from '../components/about/faqData';
@@ -79,7 +79,7 @@ export default function AboutPage() {
         />
       ))}
       <Navigation />
-      <main className="relative bg-void-black overflow-x-hidden pt-28">
+      <main className="relative bg-transparent overflow-x-hidden pt-28">
         <AboutHero />
 
         <BentoAboutSection />
@@ -87,10 +87,22 @@ export default function AboutPage() {
         <AwardsSection />
         <SkillsRadar />
         <ClientWorldMap />
-        <ClientFiverrReviews />
+        <section className="relative w-full px-4 sm:px-6 lg:px-8 py-16 sm:py-20 border-t" style={{ borderColor: 'var(--border-base)' }}>
+          <div className="max-w-3xl mx-auto">
+            <div className="mb-10 text-center">
+              <p className="text-xs font-bold tracking-widest uppercase mb-3 font-mono" style={{ color: 'var(--primary)' }}>
+                Client Testimonials
+              </p>
+              <h2 className="font-heading text-3xl sm:text-4xl md:text-5xl font-bold" style={{ color: 'var(--text-1)' }}>
+                What people say about working with Masab
+              </h2>
+            </div>
+            <ReviewSlider />
+          </div>
+        </section>
         <FAQSection />
 
-        <section className="relative w-full bg-void-black py-20 px-4 sm:px-6 lg:px-8">
+        <section className="relative w-full bg-transparent py-20 px-4 sm:px-6 lg:px-8">
           <div className="max-w-3xl mx-auto text-center">
             <h2 className="font-heading text-3xl sm:text-4xl font-bold mb-4" style={{ color: 'var(--text-1)' }}>
               Want to build something together?
@@ -108,7 +120,7 @@ export default function AboutPage() {
               <Link
                 href="/contact"
                 className="inline-flex items-center gap-2 px-7 py-3.5 rounded-xl font-semibold"
-                style={{ background: 'linear-gradient(135deg, rgb(0,240,255), rgb(139,92,246))', color: 'var(--color-on-accent)' }}
+                style={{ background: 'var(--primary)', color: 'var(--color-on-accent)' }}
               >
                 Start a Project <HiArrowRight className="w-4 h-4" />
               </Link>

@@ -29,7 +29,7 @@ export default function FilterBar({ active, onChange }: FilterBarProps) {
             onClick={() => onChange(f.value)}
             className="relative px-4 py-2.5 rounded-xl text-sm font-medium whitespace-nowrap flex-shrink-0 transition-colors duration-200 min-h-[44px] flex items-center"
             style={{
-              color: isActive ? '#0a0a0f' : 'rgba(160,160,171,0.9)',
+              color: isActive ? 'var(--bg-primary)' : 'rgba(160,160,171,0.9)',
               backgroundColor: isActive ? undefined : 'rgba(255,255,255,0.04)',
               border: isActive ? 'none' : '1px solid rgba(255,255,255,0.08)',
             }}
@@ -39,7 +39,7 @@ export default function FilterBar({ active, onChange }: FilterBarProps) {
               <motion.span
                 layoutId="filter-pill"
                 className="absolute inset-0 rounded-xl"
-                style={{ background: 'linear-gradient(135deg, rgb(0,240,255), rgb(139,92,246))' }}
+                style={{ background: 'var(--primary)' }}
                 transition={{ type: 'spring', stiffness: 380, damping: 30 }}
               />
             )}

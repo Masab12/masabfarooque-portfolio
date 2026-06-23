@@ -30,10 +30,10 @@ export default function FloatingElements() {
   }, [isMobile]);
 
   const elements = [
-    { size: 300, speed: 0.02, color: 'rgba(0, 240, 255, 0.15)', left: '10%', top: '20%' },
-    { size: 350, speed: 0.015, color: 'rgba(139, 92, 246, 0.15)', left: '80%', top: '30%' },
-    { size: 280, speed: 0.025, color: 'rgba(0, 240, 255, 0.12)', left: '20%', top: '70%' },
-    { size: 320, speed: 0.018, color: 'rgba(139, 92, 246, 0.12)', left: '70%', top: '60%' },
+    { size: 300, speed: 0.02, color: 'rgba(191,84,44, 0.15)', left: '10%', top: '20%' },
+    { size: 350, speed: 0.015, color: 'rgba(63,88,168, 0.15)', left: '80%', top: '30%' },
+    { size: 280, speed: 0.025, color: 'rgba(191,84,44, 0.12)', left: '20%', top: '70%' },
+    { size: 320, speed: 0.018, color: 'rgba(63,88,168, 0.12)', left: '70%', top: '60%' },
   ];
 
   return (

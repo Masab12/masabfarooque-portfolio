@@ -129,8 +129,8 @@ export default function ContactForm() {
   };
 
   const inputClasses = (hasError: boolean) =>
-    `w-full px-4 py-3.5 bg-void-black/60 border ${hasError ? 'border-red-500/60 focus:border-red-500' : 'border-white/10 focus:border-electric-cyan/60'
-    } rounded-xl focus:outline-none focus:shadow-[0_0_20px_rgba(0,240,255,0.15)] transition-all duration-300 text-sm text-text-primary placeholder-text-muted`;
+    `w-full px-4 py-3.5 bg-transparent/60 border ${hasError ? 'border-red-500/60 focus:border-red-500' : 'border-white/10 focus:border-electric-cyan/60'
+    } rounded-xl focus:outline-none focus:shadow-[0_0_20px_rgba(191,84,44,0.15)] transition-all duration-300 text-sm text-text-primary placeholder-text-muted`;
 
   return (
     <form onSubmit={handleSubmit} className="space-y-5">

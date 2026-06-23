@@ -14,14 +14,14 @@ export default function SelectedArchitecturesSection() {
     <>
       <section
         id="projects"
-        className="relative bg-void-black py-20 sm:py-24 md:py-32 px-4 sm:px-6 lg:px-8"
+        className="relative bg-transparent py-20 sm:py-24 md:py-32 px-4 sm:px-6 lg:px-8"
       >
         <div className="absolute inset-0 bg-gradient-to-b from-void-black via-matte-charcoal/5 to-void-black pointer-events-none" />
 
         {/* Decorative ambient glow */}
         <div
           className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[600px] h-[300px] rounded-full blur-3xl pointer-events-none"
-          style={{ backgroundColor: 'rgba(139,92,246,0.04)' }}
+          style={{ backgroundColor: 'rgba(63,88,168,0.04)' }}
         />
 
         <div className="relative max-w-7xl mx-auto">
@@ -40,7 +40,7 @@ export default function SelectedArchitecturesSection() {
             </motion.h2>
             <motion.div
               className="w-20 h-1.5 rounded-full mb-5"
-              style={{ background: 'linear-gradient(90deg, rgb(0,240,255), rgb(139,92,246))' }}
+              style={{ background: 'linear-gradient(90deg, var(--accent-cyan), var(--accent-violet))' }}
               initial={{ scaleX: 0, opacity: 0 }}
               whileInView={{ scaleX: 1, opacity: 1 }}
               viewport={{ once: true, margin: '-50px' }}

@@ -34,7 +34,7 @@ export default function ProjectCard({
         tiltMaxAngleY={6}
         glareEnable={true}
         glareMaxOpacity={0.08}
-        glareColor="rgba(0,240,255,0.6)"
+        glareColor="rgba(191,84,44,0.6)"
         glarePosition="all"
         glareBorderRadius="16px"
         scale={1.015}
@@ -42,15 +42,15 @@ export default function ProjectCard({
         className="h-full"
       >
         <motion.div
-          className="group glass-card rounded-2xl overflow-hidden cursor-pointer h-full flex flex-col"
+          className="group glass-card rounded-lg overflow-hidden cursor-pointer h-full flex flex-col"
           onClick={onClick}
           style={{ transformStyle: 'preserve-3d' }}
-          whileHover={{ boxShadow: '0 24px 60px rgba(0,0,0,0.5), 0 0 40px rgba(0,240,255,0.06)' }}
+          whileHover={{ boxShadow: '0 24px 60px rgba(0,0,0,0.5), 0 0 40px rgba(191,84,44,0.06)' }}
           transition={{ duration: 0.3 }}
         >
           {/* Image */}
-          <div className="relative h-52 sm:h-60 md:h-64 bg-void-black overflow-hidden">
-            <div className="absolute inset-0 bg-gradient-to-br from-[rgba(0,240,255,0.08)] via-transparent to-[rgba(139,92,246,0.06)]" />
+          <div className="relative h-52 sm:h-60 md:h-64 bg-transparent overflow-hidden">
+            <div className="absolute inset-0 bg-gradient-to-br from-[rgba(191,84,44,0.08)] via-transparent to-[rgba(63,88,168,0.06)]" />
 
             <div className="absolute inset-0">
               <Image
@@ -70,7 +70,7 @@ export default function ProjectCard({
             {/* Hover CTA overlay */}
             <motion.div
               className="absolute inset-0 flex items-center justify-center"
-              style={{ backgroundColor: 'rgba(0,240,255,0.04)' }}
+              style={{ backgroundColor: 'rgba(191,84,44,0.04)' }}
               initial={{ opacity: 0 }}
               whileHover={{ opacity: 1 }}
               transition={{ duration: 0.25 }}
@@ -132,7 +132,7 @@ export default function ProjectCard({
           {/* Bottom accent */}
           <motion.div
             className="h-0.5 rounded-b-2xl"
-            style={{ background: 'linear-gradient(90deg, rgb(0,240,255), rgb(139,92,246))' }}
+            style={{ background: 'linear-gradient(90deg, var(--accent-cyan), var(--accent-violet))' }}
             initial={{ scaleX: 0, opacity: 0 }}
             whileHover={{ scaleX: 1, opacity: 1 }}
             transition={{ duration: 0.35 }}

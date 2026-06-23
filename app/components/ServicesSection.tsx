@@ -131,7 +131,7 @@ function ServiceCard({ service, index }: { service: typeof services[0]; index: n
       onMouseMove={onMouseMove}
     >
       <div
-        className="glass-card rounded-2xl p-7 md:p-8 h-full relative overflow-hidden transition-all duration-300"
+        className="glass-card rounded-lg p-7 md:p-8 h-full relative overflow-hidden transition-all duration-300"
         style={{
           background: isHovered
             ? `radial-gradient(500px circle at ${spotPos.x}px ${spotPos.y}px, ${service.accentColor}08 0%, transparent 60%)`
@@ -256,7 +256,7 @@ export default function ServicesSection() {
   return (
     <section
       id="services"
-      className="relative w-full bg-void-black py-20 sm:py-24 md:py-32 px-4 sm:px-6 lg:px-8"
+      className="relative w-full bg-transparent py-20 sm:py-24 md:py-32 px-4 sm:px-6 lg:px-8"
     >
       <div className="absolute inset-0 bg-gradient-to-b from-void-black via-matte-charcoal/5 to-void-black pointer-events-none" />
 
@@ -279,7 +279,7 @@ export default function ServicesSection() {
           </motion.h2>
           <motion.div
             className="w-20 h-1.5 rounded-full mx-auto mb-6"
-            style={{ background: 'linear-gradient(90deg, rgb(0,240,255), rgb(139,92,246))' }}
+            style={{ background: 'linear-gradient(90deg, var(--accent-cyan), var(--accent-violet))' }}
             initial={{ scaleX: 0, opacity: 0 }}
             whileInView={{ scaleX: 1, opacity: 1 }}
             viewport={{ once: true, margin: '-50px' }}

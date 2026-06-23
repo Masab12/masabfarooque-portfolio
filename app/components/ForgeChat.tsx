@@ -541,7 +541,7 @@ export default function ForgeChat() {
               Scope your project.{' '}
               <span
                 style={{
-                  background: 'linear-gradient(135deg, rgb(0,240,255), rgb(139,92,246))',
+                  background: 'var(--primary)',
                   WebkitBackgroundClip: 'text',
                   WebkitTextFillColor: 'transparent',
                   backgroundClip: 'text',
@@ -724,7 +724,7 @@ export default function ForgeChat() {
               background:
                 isDisabled || !inputValue.trim()
                   ? 'var(--bg-card)'
-                  : 'linear-gradient(135deg, rgb(0,240,255), rgb(139,92,246))',
+                  : 'var(--primary)',
               cursor: isDisabled || !inputValue.trim() ? 'not-allowed' : 'pointer',
               display: 'flex',
               alignItems: 'center',
@@ -736,14 +736,14 @@ export default function ForgeChat() {
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none">
               <path
                 d="M22 2L11 13"
-                stroke={isDisabled || !inputValue.trim() ? 'rgba(255,255,255,0.3)' : '#0a0a0f'}
+                stroke={isDisabled || !inputValue.trim() ? 'rgba(255,255,255,0.3)' : 'var(--bg-primary)'}
                 strokeWidth="2"
                 strokeLinecap="round"
                 strokeLinejoin="round"
               />
               <path
                 d="M22 2L15 22L11 13L2 9L22 2Z"
-                stroke={isDisabled || !inputValue.trim() ? 'rgba(255,255,255,0.3)' : '#0a0a0f'}
+                stroke={isDisabled || !inputValue.trim() ? 'rgba(255,255,255,0.3)' : 'var(--bg-primary)'}
                 strokeWidth="2"
                 strokeLinecap="round"
                 strokeLinejoin="round"

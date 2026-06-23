@@ -7,6 +7,7 @@ import Link from 'next/link';
 import { projects } from '@/app/data/projects';
 import type { Project, ProjectCategory } from '@/app/data/projects';
 import FilterBar from './portfolio/FilterBar';
+import ReviewsPaginated from './ReviewsPaginated';
 
 const ProjectCard = dynamic(() => import('./ProjectCard'), { ssr: false });
 const ProjectModal = dynamic(() => import('./ProjectModal'), { ssr: false });
@@ -80,6 +81,8 @@ export default function PortfolioPageContent() {
         </div>
       </section>
 
+      <ReviewsPaginated />
+
       <section className="relative w-full px-4 sm:px-6 lg:px-8 py-16 border-t" style={{ borderColor: 'var(--border-base)' }}>
         <div className="max-w-4xl mx-auto text-center">
           <p className="font-heading text-2xl sm:text-3xl font-bold mb-3" style={{ color: 'var(--text-1)' }}>
@@ -100,7 +103,7 @@ export default function PortfolioPageContent() {
             <Link
               href="/contact"
               className="inline-flex items-center gap-2 px-7 py-3.5 rounded-xl font-semibold"
-              style={{ background: 'linear-gradient(135deg, rgb(0,240,255), rgb(139,92,246))', color: 'var(--color-on-accent)' }}
+              style={{ background: 'var(--primary)', color: 'var(--color-on-accent)' }}
             >
               Start a Project with Masab
             </Link>

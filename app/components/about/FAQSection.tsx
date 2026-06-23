@@ -58,7 +58,7 @@ function FAQItem({ q, a, index }: { q: string; a: string; index: number }) {
 
 export default function FAQSection() {
   return (
-    <section className="relative w-full bg-void-black py-16 sm:py-20 px-4 sm:px-6 lg:px-8">
+    <section className="relative w-full bg-transparent py-16 sm:py-20 px-4 sm:px-6 lg:px-8">
       <div className="relative max-w-3xl mx-auto">
         <motion.div
           className="text-center mb-12"
@@ -70,7 +70,7 @@ export default function FAQSection() {
           <h2 className="font-heading text-3xl sm:text-4xl md:text-5xl font-bold mb-4" style={{ color: 'var(--text-1)' }}>
             Frequently Asked Questions
           </h2>
-          <div className="w-16 h-1 rounded-full mx-auto" style={{ background: 'linear-gradient(90deg, rgb(0,240,255), rgb(139,92,246))' }} />
+          <div className="w-16 h-1 rounded-full mx-auto" style={{ background: 'linear-gradient(90deg, var(--accent-cyan), var(--accent-violet))' }} />
           <p className="mt-4 text-text-secondary text-sm sm:text-base max-w-xl mx-auto">
             Common questions about Masab, his background, how he works, and what he builds.
           </p>

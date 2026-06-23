@@ -134,7 +134,7 @@ function ReviewCard({ review }: { review: Review }) {
       whileHover={{ y: -8 }}
       transition={{ type: 'spring', stiffness: 300, damping: 20 }}
     >
-      <div className="h-full glass-card rounded-2xl p-6 border border-white/5 hover:border-electric-cyan/30 transition-all duration-300 flex flex-col">
+      <div className="h-full glass-card rounded-lg p-6 border border-white/5 hover:border-electric-cyan/30 transition-all duration-300 flex flex-col">
         {/* Header */}
         <div className="flex items-start justify-between mb-4">
           <div className="flex-1">
@@ -190,7 +190,7 @@ export default function FiverrReviews() {
   const [isPaused, setIsPaused] = useState(false);
 
   return (
-    <section className="relative w-full bg-void-black py-20 sm:py-24 md:py-32 px-4 sm:px-6 lg:px-8 overflow-hidden">
+    <section className="relative w-full bg-transparent py-20 sm:py-24 md:py-32 px-4 sm:px-6 lg:px-8 overflow-hidden">
       <div className="absolute inset-0 bg-gradient-to-b from-void-black via-matte-charcoal/5 to-void-black pointer-events-none" />
 
       <div className="relative max-w-7xl mx-auto mb-12">
@@ -260,7 +260,7 @@ export default function FiverrReviews() {
         viewport={{ once: true }}
         transition={{ duration: 0.6, delay: 0.2 }}
       >
-        <div className="glass-card rounded-2xl p-6 md:p-8">
+        <div className="glass-card rounded-lg p-6 md:p-8">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
             <div>
               <div className="text-3xl md:text-4xl font-bold text-electric-cyan mb-1">134</div>

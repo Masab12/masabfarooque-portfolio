@@ -8,7 +8,7 @@ export default function HomepageCTA() {
   return (
     <section className="section-violet relative w-full py-20 sm:py-28 px-4 sm:px-6 lg:px-8 overflow-hidden">
       <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[300px] rounded-full blur-3xl opacity-10" style={{ background: 'radial-gradient(ellipse, rgb(0,240,255), rgb(139,92,246))' }} />
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[300px] rounded-full blur-3xl opacity-10" style={{ background: 'radial-gradient(ellipse, var(--accent-cyan), var(--accent-violet))' }} />
       </div>
 
       <div className="relative max-w-4xl mx-auto text-center">
@@ -43,7 +43,7 @@ export default function HomepageCTA() {
           <Link
             href="/contact"
             className="group inline-flex items-center gap-2 px-8 py-4 rounded-xl font-bold transition-opacity hover:opacity-90"
-            style={{ background: 'linear-gradient(135deg, rgb(0,240,255), rgb(139,92,246))', color: 'var(--color-on-accent)' }}
+            style={{ background: 'var(--primary)', color: 'var(--color-on-accent)' }}
           >
             Start a Project <HiArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
           </Link>

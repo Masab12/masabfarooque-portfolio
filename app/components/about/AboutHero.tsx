@@ -4,6 +4,7 @@ import { motion } from 'framer-motion';
 import Image from 'next/image';
 import Link from 'next/link';
 import { HiArrowRight, HiLocationMarker, HiStar } from 'react-icons/hi';
+import TerminalTyper from '../TerminalTyper';
 
 export default function AboutHero() {
   return (
@@ -47,6 +48,15 @@ export default function AboutHero() {
               Full stack developer from Islamabad, Pakistan. Started freelancing during university, won awards in national game jams, and transitioned to AI and web development in 2023.
             </motion.p>
 
+            <motion.div
+              className="mb-6"
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.46 }}
+            >
+              <TerminalTyper phrases={['unity → web  ✓ pivoted 2023', '195+ orders  ✓ shipped', 'level 2 seller  ✓', '15+ countries  ✓ served']} />
+            </motion.div>
+
             <motion.p
               className="text-text-muted text-sm sm:text-base max-w-xl leading-relaxed mb-8"
               initial={{ opacity: 0, y: 12 }}
@@ -65,7 +75,7 @@ export default function AboutHero() {
               <Link
                 href="/contact"
                 className="inline-flex items-center gap-2 px-7 py-3.5 rounded-xl font-semibold group"
-                style={{ background: 'linear-gradient(135deg, rgb(0,240,255), rgb(139,92,246))', color: 'var(--color-on-accent)' }}
+                style={{ background: 'var(--primary)', color: 'var(--color-on-accent)' }}
               >
                 Work Together
                 <HiArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
@@ -90,13 +100,13 @@ export default function AboutHero() {
               {/* Ambient glow */}
               <div
                 className="absolute inset-0 rounded-full blur-3xl opacity-30 scale-110"
-                style={{ background: 'radial-gradient(circle, rgb(0,240,255), rgb(139,92,246))' }}
+                style={{ background: 'radial-gradient(circle, var(--accent-cyan), var(--accent-violet))' }}
               />
 
               {/* Gradient ring */}
               <motion.div
                 className="relative w-52 h-52 xs:w-60 xs:h-60 sm:w-72 sm:h-72 lg:w-80 lg:h-80 rounded-full p-[3px]"
-                style={{ background: 'linear-gradient(135deg, rgb(0,240,255), rgb(139,92,246), rgb(0,240,255))' }}
+                style={{ background: 'linear-gradient(135deg, var(--accent-cyan), var(--accent-violet), var(--accent-cyan))' }}
                 animate={{ rotate: 360 }}
                 transition={{ duration: 12, repeat: Infinity, ease: 'linear' }}
               >
@@ -128,7 +138,7 @@ export default function AboutHero() {
               {/* Floating badge to location */}
               <motion.div
                 className="absolute -bottom-3 -left-4 flex items-center gap-2 px-3 py-2 rounded-xl glass-card text-xs font-medium"
-                style={{ color: 'var(--text-1)', border: '1px solid rgba(0,240,255,0.2)' }}
+                style={{ color: 'var(--text-1)', border: '1px solid rgba(191,84,44,0.2)' }}
                 initial={{ opacity: 0, x: -16, y: 8 }}
                 animate={{ opacity: 1, x: 0, y: 0 }}
                 transition={{ duration: 0.5, delay: 0.7 }}
@@ -140,7 +150,7 @@ export default function AboutHero() {
               {/* Floating badge to rating */}
               <motion.div
                 className="absolute -top-2 -right-4 flex items-center gap-1.5 px-3 py-2 rounded-xl glass-card text-xs font-medium"
-                style={{ color: 'var(--text-1)', border: '1px solid rgba(139,92,246,0.2)' }}
+                style={{ color: 'var(--text-1)', border: '1px solid rgba(63,88,168,0.2)' }}
                 initial={{ opacity: 0, x: 16, y: -8 }}
                 animate={{ opacity: 1, x: 0, y: 0 }}
                 transition={{ duration: 0.5, delay: 0.8 }}

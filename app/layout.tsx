@@ -4,6 +4,7 @@ import "./globals.css";
 import Script from "next/script";
 import GlobalUI from "./components/GlobalUI";
 import LayoutClient from "./components/LayoutClient";
+import BackgroundFX from "./components/BackgroundFX";
 import { ThemeProvider } from "./components/ThemeProvider";
 
 const inter = Inter({
@@ -310,6 +311,7 @@ export default function RootLayout({
           `}
         </Script>
         <ThemeProvider>
+          <BackgroundFX />
           <GlobalUI />
           <LayoutClient>{children}</LayoutClient>
         </ThemeProvider>

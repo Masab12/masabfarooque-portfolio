@@ -40,7 +40,7 @@ export default function HomePage() {
     <PageTransition>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(homepageSchema) }} />
       <Navigation />
-      <main className="relative bg-void-black overflow-x-hidden">
+      <main className="relative bg-transparent overflow-x-hidden">
         <HomepageHero />
         <TrustedBy />
         <TechStackMarquee />

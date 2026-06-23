@@ -55,7 +55,7 @@ export default function SkillsRadar() {
           <h2 className="font-heading text-3xl sm:text-4xl md:text-5xl font-bold mb-4" style={{ color: 'var(--text-1)' }}>
             Skill Profile
           </h2>
-          <div className="w-16 h-1 rounded-full mx-auto" style={{ background: 'linear-gradient(90deg, rgb(0,240,255), rgb(139,92,246))' }} />
+          <div className="w-16 h-1 rounded-full mx-auto" style={{ background: 'linear-gradient(90deg, var(--accent-cyan), var(--accent-violet))' }} />
         </motion.div>
 
         <div ref={ref} className="flex flex-col lg:flex-row items-center gap-6 lg:gap-10">
@@ -154,7 +154,7 @@ export default function SkillsRadar() {
                 <div className="h-1.5 rounded-full overflow-hidden" style={{ backgroundColor: 'var(--border-base)' }}>
                   <motion.div
                     className="h-full rounded-full"
-                    style={{ background: 'linear-gradient(90deg, rgb(0,240,255), rgb(139,92,246))' }}
+                    style={{ background: 'linear-gradient(90deg, var(--accent-cyan), var(--accent-violet))' }}
                     initial={{ width: 0 }}
                     animate={inView ? { width: `${skill.value}%` } : {}}
                     transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1], delay: 0.2 + i * 0.07 }}

@@ -6,8 +6,8 @@ import { timeline } from '@/app/data/timeline';
 import type { AccentColor } from '@/app/data/timeline';
 
 const colorMap: Record<AccentColor, { border: string; bg: string; dot: string; tag: string }> = {
-  cyan:   { border: 'rgba(0,240,255,0.35)',   bg: 'rgba(0,240,255,0.06)',   dot: 'rgb(0,240,255)',    tag: 'rgba(0,240,255,0.12)' },
-  violet: { border: 'rgba(139,92,246,0.35)',  bg: 'rgba(139,92,246,0.06)', dot: 'rgb(139,92,246)',   tag: 'rgba(139,92,246,0.12)' },
+  cyan:   { border: 'rgba(191,84,44,0.35)',   bg: 'rgba(191,84,44,0.06)',   dot: 'var(--accent-cyan)',    tag: 'rgba(191,84,44,0.12)' },
+  violet: { border: 'rgba(63,88,168,0.35)',  bg: 'rgba(63,88,168,0.06)', dot: 'var(--accent-violet)',   tag: 'rgba(63,88,168,0.12)' },
   gold:   { border: 'rgba(251,191,36,0.45)',  bg: 'rgba(251,191,36,0.07)', dot: 'rgb(251,191,36)',   tag: 'rgba(251,191,36,0.12)' },
   silver: { border: 'rgba(200,200,220,0.35)', bg: 'rgba(200,200,220,0.06)', dot: 'rgb(200,200,220)', tag: 'rgba(200,200,220,0.1)' },
   green:  { border: 'rgba(16,185,129,0.35)',  bg: 'rgba(16,185,129,0.06)', dot: 'rgb(16,185,129)',   tag: 'rgba(16,185,129,0.12)' },
@@ -56,7 +56,7 @@ function TimelineItem({ entry, index }: { entry: typeof timeline[0]; index: numb
       <div className="pr-6 flex justify-end">
         {isLeft ? (
           <motion.div
-            className="glass-card p-5 rounded-2xl w-full max-w-xs border"
+            className="glass-card p-5 rounded-lg w-full max-w-xs border"
             style={{ borderColor: c.border, backgroundColor: c.bg }}
             initial={{ opacity: 0, x: -24 }}
             animate={inView ? { opacity: 1, x: 0 } : {}}
@@ -85,7 +85,7 @@ function TimelineItem({ entry, index }: { entry: typeof timeline[0]; index: numb
       <div className="pl-6 flex justify-start">
         {!isLeft ? (
           <motion.div
-            className="glass-card p-5 rounded-2xl w-full max-w-xs border"
+            className="glass-card p-5 rounded-lg w-full max-w-xs border"
             style={{ borderColor: c.border, backgroundColor: c.bg }}
             initial={{ opacity: 0, x: 24 }}
             animate={inView ? { opacity: 1, x: 0 } : {}}
@@ -116,7 +116,7 @@ function MobileTimelineItem({ entry }: { entry: typeof timeline[0] }) {
         />
       </div>
       <motion.div
-        className="glass-card p-4 rounded-2xl flex-1 border"
+        className="glass-card p-4 rounded-lg flex-1 border"
         style={{ borderColor: c.border, backgroundColor: c.bg }}
         initial={{ opacity: 0, x: 16 }}
         animate={inView ? { opacity: 1, x: 0 } : {}}
@@ -145,7 +145,7 @@ function AnimatedLine() {
       <motion.div
         className="absolute inset-x-0 top-0"
         style={{
-          background: 'linear-gradient(to bottom, rgb(0,240,255), rgb(139,92,246), rgb(0,240,255))',
+          background: 'linear-gradient(to bottom, var(--accent-cyan), var(--accent-violet), var(--accent-cyan))',
           scaleY,
           transformOrigin: 'top',
           height: '100%',
@@ -172,7 +172,7 @@ function MobileLineTrack() {
       <motion.div
         className="absolute inset-x-0 top-0 h-full"
         style={{
-          background: 'linear-gradient(to bottom, rgb(0,240,255), rgb(139,92,246))',
+          background: 'linear-gradient(to bottom, var(--accent-cyan), var(--accent-violet))',
           scaleY,
           transformOrigin: 'top',
         }}
@@ -195,7 +195,7 @@ export default function TimelineSection() {
           <h2 className="font-heading text-4xl sm:text-5xl md:text-6xl font-bold mb-4" style={{ color: 'var(--text-1)' }}>
             The Journey
           </h2>
-          <div className="w-20 h-1 rounded-full mx-auto" style={{ background: 'linear-gradient(90deg, rgb(0,240,255), rgb(139,92,246))' }} />
+          <div className="w-20 h-1 rounded-full mx-auto" style={{ background: 'linear-gradient(90deg, var(--accent-cyan), var(--accent-violet))' }} />
           <p className="mt-4 text-text-secondary text-base sm:text-lg max-w-xl mx-auto">
             From a university student writing blog posts to building SaaS platforms for clients in 15 countries.
           </p>

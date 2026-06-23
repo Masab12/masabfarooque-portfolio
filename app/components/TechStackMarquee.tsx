@@ -45,7 +45,7 @@ const techStackRow2 = [
 
 export default function TechStackMarquee() {
   return (
-    <section className="relative w-full bg-void-black py-16 sm:py-20 overflow-hidden">
+    <section className="relative w-full bg-transparent py-16 sm:py-20 overflow-hidden">
       {/* Background Glow */}
       <div className="absolute inset-0 bg-gradient-to-b from-void-black via-deep-space/50 to-void-black pointer-events-none" />
 
@@ -63,7 +63,7 @@ export default function TechStackMarquee() {
           </motion.h2>
           <motion.div
             className="w-16 sm:w-20 h-1 sm:h-1.5 rounded-full mx-auto mb-4"
-            style={{ background: 'linear-gradient(90deg, rgb(0,240,255), rgb(139,92,246))' }}
+            style={{ background: 'linear-gradient(90deg, var(--accent-cyan), var(--accent-violet))' }}
             initial={{ scaleX: 0, opacity: 0 }}
             whileInView={{ scaleX: 1, opacity: 1 }}
             viewport={{ once: true, margin: '-40px' }}
@@ -100,7 +100,7 @@ export default function TechStackMarquee() {
               whileHover={{ scale: 1.1 }}
               transition={{ type: 'spring', stiffness: 300 }}
             >
-              <div className="glass-card p-6 sm:p-8 rounded-2xl flex flex-col items-center gap-3 min-w-[120px] sm:min-w-[140px] hover:border-electric-cyan/30 transition-all duration-300 group">
+              <div className="glass-card p-6 sm:p-8 rounded-lg flex flex-col items-center gap-3 min-w-[120px] sm:min-w-[140px] hover:border-electric-cyan/30 transition-all duration-300 group">
                 <tech.Icon
                   className="w-10 h-10 sm:w-12 sm:h-12 transition-all duration-300 group-hover:scale-110"
                   style={{ color: tech.color }}
@@ -130,7 +130,7 @@ export default function TechStackMarquee() {
               whileHover={{ scale: 1.1 }}
               transition={{ type: 'spring', stiffness: 300 }}
             >
-              <div className="glass-card p-6 sm:p-8 rounded-2xl flex flex-col items-center gap-3 min-w-[120px] sm:min-w-[140px] hover:border-deep-violet/30 transition-all duration-300 group">
+              <div className="glass-card p-6 sm:p-8 rounded-lg flex flex-col items-center gap-3 min-w-[120px] sm:min-w-[140px] hover:border-deep-violet/30 transition-all duration-300 group">
                 <tech.Icon
                   className="w-10 h-10 sm:w-12 sm:h-12 transition-all duration-300 group-hover:scale-110"
                   style={{ color: tech.color }}

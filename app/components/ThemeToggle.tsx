@@ -19,8 +19,8 @@ export default function ThemeToggle() {
         width: 36,
         height: 36,
         borderRadius: '50%',
-        border: `1px solid ${isDark ? 'rgba(0,240,255,0.25)' : 'rgba(0,127,160,0.3)'}`,
-        background: isDark ? 'rgba(0,240,255,0.07)' : 'rgba(0,127,160,0.08)',
+        border: `1px solid ${isDark ? 'rgba(191,84,44,0.25)' : 'var(--accent-cyan-border)'}`,
+        background: isDark ? 'rgba(191,84,44,0.07)' : 'var(--accent-cyan-subtle)',
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
@@ -44,7 +44,7 @@ export default function ThemeToggle() {
             transition={{ duration: 0.22 }}
           >
             <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"
-              stroke="rgb(0,240,255)" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
+              stroke="var(--accent-cyan)" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
           </motion.svg>
         ) : (
           <motion.svg
@@ -55,15 +55,15 @@ export default function ThemeToggle() {
             exit={{ rotate: -30, opacity: 0, scale: 0.7 }}
             transition={{ duration: 0.22 }}
           >
-            <circle cx="12" cy="12" r="4" stroke="#007fa0" strokeWidth="1.8"/>
-            <line x1="12" y1="2" x2="12" y2="4" stroke="#007fa0" strokeWidth="1.8" strokeLinecap="round"/>
-            <line x1="12" y1="20" x2="12" y2="22" stroke="#007fa0" strokeWidth="1.8" strokeLinecap="round"/>
-            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64" stroke="#007fa0" strokeWidth="1.8" strokeLinecap="round"/>
-            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78" stroke="#007fa0" strokeWidth="1.8" strokeLinecap="round"/>
-            <line x1="2" y1="12" x2="4" y2="12" stroke="#007fa0" strokeWidth="1.8" strokeLinecap="round"/>
-            <line x1="20" y1="12" x2="22" y2="12" stroke="#007fa0" strokeWidth="1.8" strokeLinecap="round"/>
-            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36" stroke="#007fa0" strokeWidth="1.8" strokeLinecap="round"/>
-            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22" stroke="#007fa0" strokeWidth="1.8" strokeLinecap="round"/>
+            <circle cx="12" cy="12" r="4" stroke="var(--accent-cyan)" strokeWidth="1.8"/>
+            <line x1="12" y1="2" x2="12" y2="4" stroke="var(--accent-cyan)" strokeWidth="1.8" strokeLinecap="round"/>
+            <line x1="12" y1="20" x2="12" y2="22" stroke="var(--accent-cyan)" strokeWidth="1.8" strokeLinecap="round"/>
+            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64" stroke="var(--accent-cyan)" strokeWidth="1.8" strokeLinecap="round"/>
+            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78" stroke="var(--accent-cyan)" strokeWidth="1.8" strokeLinecap="round"/>
+            <line x1="2" y1="12" x2="4" y2="12" stroke="var(--accent-cyan)" strokeWidth="1.8" strokeLinecap="round"/>
+            <line x1="20" y1="12" x2="22" y2="12" stroke="var(--accent-cyan)" strokeWidth="1.8" strokeLinecap="round"/>
+            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36" stroke="var(--accent-cyan)" strokeWidth="1.8" strokeLinecap="round"/>
+            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22" stroke="var(--accent-cyan)" strokeWidth="1.8" strokeLinecap="round"/>
           </motion.svg>
         )}
       </AnimatePresence>

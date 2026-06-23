@@ -52,7 +52,7 @@ export default function HeroSection() {
   return (
     <section
       id="hero"
-      className="relative w-full min-h-screen flex items-center justify-center bg-void-black px-4 overflow-hidden"
+      className="relative w-full min-h-screen flex items-center justify-center bg-transparent px-4 overflow-hidden"
     >
       {/* Interactive particle canvas */}
       <HeroCanvas />
@@ -194,7 +194,7 @@ export default function HeroSection() {
             onMouseLeave={() => setMousePosition({ x: 0, y: 0 })}
             className="magnetic-button group relative px-8 py-4 rounded-xl font-semibold w-full sm:w-auto overflow-hidden"
             style={{
-              background: 'linear-gradient(135deg, rgb(0,240,255), rgb(139,92,246))',
+              background: 'var(--primary)',
               color: 'var(--color-on-accent)',
             }}
             animate={{ x: mousePosition.x, y: mousePosition.y }}
@@ -221,7 +221,7 @@ export default function HeroSection() {
             whileTap={{ scale: 0.96 }}
             style={{ border: '1px solid rgba(255,255,255,0.1)' }}
             onMouseEnter={e => {
-              (e.currentTarget as HTMLElement).style.borderColor = 'rgba(0,240,255,0.4)';
+              (e.currentTarget as HTMLElement).style.borderColor = 'rgba(191,84,44,0.4)';
             }}
             onMouseLeave={e => {
               (e.currentTarget as HTMLElement).style.borderColor = 'rgba(255,255,255,0.1)';
@@ -230,7 +230,7 @@ export default function HeroSection() {
             <span className="relative z-10">Get In Touch</span>
             <motion.div
               className="absolute inset-0 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-              style={{ background: 'rgba(0,240,255,0.07)' }}
+              style={{ background: 'rgba(191,84,44,0.07)' }}
             />
           </motion.a>
         </motion.div>

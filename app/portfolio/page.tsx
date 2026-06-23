@@ -54,7 +54,7 @@ export default function PortfolioPage() {
         <script key={i} type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} />
       ))}
       <Navigation />
-      <main className="relative bg-void-black overflow-x-hidden pt-28">
+      <main className="relative bg-transparent overflow-x-hidden pt-28">
         <PortfolioPageContent />
       </main>
       <Footer />

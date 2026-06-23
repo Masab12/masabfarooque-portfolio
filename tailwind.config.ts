@@ -34,12 +34,20 @@ const config: Config = {
         'text-primary':            'var(--text-1)',
         'text-secondary':          'var(--text-2)',
         'text-muted':              'var(--text-3)',
+        // Editorial semantic accents
+        'primary':                 'var(--primary)',
+        'primary-deep':            'var(--primary-deep)',
+        'secondary':               'var(--secondary)',
+        'tertiary':                'var(--tertiary)',
+        'mustard':                 'var(--accent-mustard)',
+        'border-strong':           'var(--border-strong)',
+        'surface-card':            'var(--bg-card)',
       },
       backgroundImage: {
         'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
         'gradient-conic': 'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
-        'ambient-glow': 'radial-gradient(circle at 50% 50%, rgba(0, 240, 255, 0.1) 0%, transparent 50%)',
-        'ambient-glow-violet': 'radial-gradient(circle at 50% 50%, rgba(139, 92, 246, 0.1) 0%, transparent 50%)',
+        'ambient-glow': 'radial-gradient(circle at 50% 50%, rgba(191, 84, 44, 0.10) 0%, transparent 50%)',
+        'ambient-glow-violet': 'radial-gradient(circle at 50% 50%, rgba(63, 88, 168, 0.10) 0%, transparent 50%)',
       },
       animation: {
         'gradient': 'gradient 8s linear infinite',

@@ -60,7 +60,7 @@ export default function AwardsSection() {
           <h2 className="font-heading text-3xl sm:text-4xl md:text-5xl font-bold mb-4" style={{ color: 'var(--text-1)' }}>
             Recognition
           </h2>
-          <div className="w-16 h-1 rounded-full mx-auto" style={{ background: 'linear-gradient(90deg, rgb(251,191,36), rgb(0,240,255))' }} />
+          <div className="w-16 h-1 rounded-full mx-auto" style={{ background: 'linear-gradient(90deg, rgb(251,191,36), var(--accent-cyan))' }} />
           <p className="mt-4 text-text-secondary text-sm sm:text-base max-w-lg mx-auto">
             Three awards across national game jams in Pakistan between 2020 and 2022.
           </p>
@@ -77,7 +77,7 @@ export default function AwardsSection() {
             >
               <Tilt tiltMaxAngleX={6} tiltMaxAngleY={6} glareEnable={false} scale={1.02}>
                 <div
-                  className="p-6 rounded-2xl border h-full"
+                  className="p-6 rounded-lg border h-full"
                   style={{ backgroundColor: award.bg, borderColor: award.border, boxShadow: `0 0 30px ${award.shadow}` }}
                 >
                   <div className="text-3xl mb-4">{award.emoji}</div>

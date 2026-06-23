@@ -30,7 +30,7 @@ const serviceLinks = [
 export default function Footer() {
   return (
     <footer
-      className="relative bg-void-black border-t pt-14 pb-10 px-4 sm:px-6 md:px-8"
+      className="relative bg-transparent border-t pt-14 pb-10 px-4 sm:px-6 md:px-8"
       style={{ borderColor: 'var(--border-base)' }}
     >
       <div className="max-w-7xl mx-auto">
@@ -122,7 +122,7 @@ export default function Footer() {
             <Link
               href="/contact"
               className="inline-block px-5 py-2.5 rounded-xl text-sm font-semibold"
-              style={{ background: 'linear-gradient(135deg, rgb(0,240,255), rgb(139,92,246))', color: 'var(--color-on-accent)' }}
+              style={{ background: 'var(--primary)', color: 'var(--color-on-accent)' }}
             >
               Start a Project
             </Link>

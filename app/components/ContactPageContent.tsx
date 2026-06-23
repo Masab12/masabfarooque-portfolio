@@ -9,6 +9,7 @@ import { SiGithub, SiUpwork } from 'react-icons/si';
 import { FaLinkedin } from 'react-icons/fa';
 import FiverrIcon from './icons/FiverrIcon';
 import EnhancedContactForm from './EnhancedContactForm';
+import TerminalTyper from './TerminalTyper';
 
 const contactCards = [
   {
@@ -62,9 +63,12 @@ export default function ContactPageContent() {
           <h1 className="font-heading text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold leading-tight mb-5" style={{ color: 'var(--text-1)' }}>
             Start a Conversation
           </h1>
-          <p className="text-text-secondary text-base sm:text-lg max-w-xl mx-auto leading-relaxed">
+          <p className="text-text-secondary text-base sm:text-lg max-w-xl mx-auto leading-relaxed mb-6">
             Describe your project. I will get back to you within 24 hours with a clear plan and honest assessment.
           </p>
+          <div className="flex justify-center">
+            <TerminalTyper phrases={['open inbox  ✓', 'reply < 24h  ✓ guaranteed', 'scope project  ✓', 'kickoff call  ✓ booked']} />
+          </div>
         </motion.div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16">
@@ -139,7 +143,7 @@ export default function ContactPageContent() {
                       rel="noopener noreferrer"
                       aria-label={link.label}
                       className="flex items-center gap-2 px-4 py-2.5 glass-card rounded-xl text-sm text-text-secondary hover:text-text-primary transition-all duration-200"
-                      whileHover={{ scale: 1.05, borderColor: 'rgba(0,240,255,0.3)' }}
+                      whileHover={{ scale: 1.05, borderColor: 'rgba(191,84,44,0.3)' }}
                       whileTap={{ scale: 0.96 }}
                     >
                       <Icon className="w-4 h-4" />
@@ -152,7 +156,7 @@ export default function ContactPageContent() {
           </motion.div>
 
           <motion.div
-            className="glass-card p-6 sm:p-8 rounded-2xl"
+            className="glass-card p-6 sm:p-8 rounded-lg"
             initial={{ opacity: 0, x: 24 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.6, delay: 0.18, ease: [0.22, 1, 0.36, 1] }}
