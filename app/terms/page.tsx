@@ -1,126 +1,157 @@
 import type { Metadata } from 'next';
-import Navigation from '../components/Navigation';
-import Footer from '../components/Footer';
 import Link from 'next/link';
+import { site } from '@/app/data/site';
+import PageHead from '@/app/components/core/PageHead';
+import { LegalSection, LegalList } from '@/app/components/core/Legal';
+import { ArrowLong } from '@/app/components/marks';
 
 export const metadata: Metadata = {
-  title: 'Terms of Service | Masab Farooque',
-  description: 'Terms of Service for freelance development projects with Masab Farooque — scope, payment, IP, and liability.',
-  alternates: { canonical: 'https://masabfarooque.com/terms' },
-  robots: { index: true, follow: true },
+  title: 'Terms',
+  description:
+    'Terms for freelance development work with Masab Farooque. Scope, payment, ownership, confidentiality and liability.',
+  alternates: { canonical: `${site.url}/terms` },
 };
 
-const LAST_UPDATED = 'May 28, 2026';
+const LAST_UPDATED = 'August 1, 2026';
 
 export default function TermsPage() {
   return (
     <>
-      <Navigation />
-      <main className="relative bg-transparent min-h-screen pt-32 pb-20 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-3xl mx-auto">
+      <PageHead
+        index="05"
+        label="Legal"
+        title="Terms"
+        intro={`The terms that apply to development work I take on. Last updated ${LAST_UPDATED}.`}
+      />
 
-          <div className="mb-12">
-            <p className="text-xs font-mono tracking-widest uppercase mb-3" style={{ color: 'var(--accent-violet)' }}>
-              Legal
-            </p>
-            <h1 className="font-heading text-4xl sm:text-5xl font-bold mb-4" style={{ color: 'var(--text-1)' }}>
-              Terms of Service
-            </h1>
-            <div className="w-14 h-1 rounded-full mb-4" style={{ background: 'linear-gradient(90deg, var(--accent-violet), var(--accent-cyan))' }} />
-            <p className="text-text-muted text-sm">Last updated: {LAST_UPDATED}</p>
-          </div>
+      <div className="shell py-14 md:py-20">
+        <LegalSection index="01" title="About these terms">
+          <p>
+            These terms cover freelance development work carried out by Masab Farooque, a sole
+            trader in Islamabad, Pakistan, for clients who engage me through this site, Fiverr,
+            Upwork or a direct agreement.
+          </p>
+          <p>
+            Engaging me means you accept these terms. If you hire me through Fiverr or Upwork,
+            their platform terms apply alongside these.
+          </p>
+        </LegalSection>
 
-          <div className="space-y-10 text-text-secondary text-sm sm:text-base leading-relaxed">
+        <LegalSection index="02" title="Scope">
+          <p>
+            Scope, deliverables, timeline and payment are agreed in writing before work starts,
+            through a proposal, a platform order brief or an email exchange.
+          </p>
+          <p>
+            Anything outside that agreement is a new request and is quoted separately. I can
+            decline a request that conflicts with the original scope.
+          </p>
+        </LegalSection>
 
-            <section>
-              <h2 className="font-heading text-xl font-semibold mb-3" style={{ color: 'var(--text-1)' }}>1. About These Terms</h2>
-              <p>
-                These Terms of Service govern any freelance development work undertaken by <strong className="text-text-primary">Masab Farooque</strong> (a sole trader operating from Islamabad, Pakistan) for clients who engage with me through this website, Fiverr, Upwork, or direct agreement.
-              </p>
-              <p className="mt-3">
-                By engaging my services, you agree to these terms. If you are engaging through Fiverr or Upwork, their platform terms also apply alongside these.
-              </p>
-            </section>
+        <LegalSection index="03" title="Payment">
+          <LegalList
+            items={[
+              'Direct projects: a deposit, usually fifty percent, before work begins, with the balance due on delivery.',
+              'Fiverr and Upwork projects: handled by the platform milestone or escrow system.',
+              'Invoices unpaid fourteen days after delivery may carry a late fee of five percent per seven days.',
+              'All figures are in US dollars unless agreed otherwise.',
+            ]}
+          />
+        </LegalSection>
 
-            <section>
-              <h2 className="font-heading text-xl font-semibold mb-3" style={{ color: 'var(--text-1)' }}>2. Scope of Work</h2>
-              <p>All project scope, deliverables, timeline, and payment terms will be agreed upon in writing before work begins — either through a project proposal, Fiverr/Upwork order brief, or email exchange.</p>
-              <p className="mt-3">Work outside the agreed scope constitutes a new request and will be quoted separately. I reserve the right to decline requests that conflict with the original project scope.</p>
-            </section>
+        <LegalSection index="04" title="Revisions and delivery">
+          <p>
+            Every project includes a reasonable number of revisions, set out in the scope. A
+            revision that changes the requirements is new scope.
+          </p>
+          <p>
+            Timelines are estimates based on the scope at the time of agreement. Delays caused by
+            late feedback, scope changes or third party services are outside my control.
+          </p>
+        </LegalSection>
 
-            <section>
-              <h2 className="font-heading text-xl font-semibold mb-3" style={{ color: 'var(--text-1)' }}>3. Payment</h2>
-              <ul className="space-y-2 list-disc list-inside text-text-muted">
-                <li><span className="text-text-secondary">Direct projects: a deposit (typically 50%) is required before work begins. The remaining balance is due on delivery.</span></li>
-                <li><span className="text-text-secondary">Fiverr / Upwork projects: payments are governed by the respective platform's milestone or escrow system.</span></li>
-                <li><span className="text-text-secondary">Invoices not settled within 14 days of delivery may incur a late fee of 5% per 7 days.</span></li>
-                <li><span className="text-text-secondary">All prices are quoted in USD unless otherwise agreed.</span></li>
-              </ul>
-            </section>
+        <LegalSection index="05" title="Ownership">
+          <p>
+            Once payment is complete, you own the custom code and deliverables built specifically
+            for your project.
+          </p>
+          <p>
+            I keep ownership of reusable utilities and boilerplate that are not specific to your
+            project. Open source libraries used in the build stay under their own licences.
+          </p>
+          <p>
+            I may show the project in my portfolio, including name, description and screenshots,
+            unless you ask me in writing not to before the project starts.
+          </p>
+        </LegalSection>
 
-            <section>
-              <h2 className="font-heading text-xl font-semibold mb-3" style={{ color: 'var(--text-1)' }}>4. Revisions & Delivery</h2>
-              <p>Each project includes a reasonable number of revisions as agreed in the project scope. Revisions that constitute a change in requirements are treated as new scope.</p>
-              <p className="mt-3">Timelines are estimates based on the agreed scope at the time of engagement. Delays caused by late client feedback, scope changes, or third-party dependencies (APIs, hosting, etc.) are not my responsibility.</p>
-            </section>
+        <LegalSection index="06" title="Confidentiality">
+          <p>
+            Project details, business logic and any data shared with me are treated as
+            confidential and are not disclosed without your written consent, except where the law
+            requires it. If you need an NDA, raise it before work begins.
+          </p>
+        </LegalSection>
 
-            <section>
-              <h2 className="font-heading text-xl font-semibold mb-3" style={{ color: 'var(--text-1)' }}>5. Intellectual Property</h2>
-              <p>Upon receipt of full payment, you receive full ownership of the custom code and deliverables I produce specifically for your project.</p>
-              <p className="mt-3">I retain ownership of any reusable utilities, libraries, or boilerplate code that is not specific to your project. Open-source libraries and frameworks used in the build are governed by their respective licences.</p>
-              <p className="mt-3">I may reference the project in my portfolio (name, description, and screenshots) unless you request otherwise in writing before project start.</p>
-            </section>
+        <LegalSection index="07" title="Liability">
+          <p>
+            I do careful work, but no one can guarantee that software runs without fault in every
+            environment after delivery.
+          </p>
+          <p>
+            My total liability for any claim arising from a project is capped at the fees paid for
+            that project. I am not liable for indirect, consequential or loss of profit damages.
+          </p>
+        </LegalSection>
 
-            <section>
-              <h2 className="font-heading text-xl font-semibold mb-3" style={{ color: 'var(--text-1)' }}>6. Confidentiality</h2>
-              <p>I treat all project details, business logic, and client data shared during a project as confidential. I will not disclose this information to third parties without your written consent, except as required by law.</p>
-              <p className="mt-3">If your project requires an NDA, please raise this before work begins.</p>
-            </section>
+        <LegalSection index="08" title="Cancellation">
+          <p>Either side can cancel with written notice. If you cancel after work has started:</p>
+          <LegalList
+            items={[
+              'Any deposit already paid is not refundable.',
+              'Work completed up to the cancellation date is invoiced at the agreed rate.',
+              'Everything produced up to that point is delivered to you once payment clears.',
+            ]}
+          />
+        </LegalSection>
 
-            <section>
-              <h2 className="font-heading text-xl font-semibold mb-3" style={{ color: 'var(--text-1)' }}>7. Limitation of Liability</h2>
-              <p>I deliver my work with care and professionalism. However, I cannot guarantee uninterrupted or error-free operation of software in all environments after delivery.</p>
-              <p className="mt-3">My total liability for any claim arising from a project will not exceed the total fees paid for that specific project. I am not liable for indirect, consequential, or loss-of-profit damages.</p>
-            </section>
+        <LegalSection index="09" title="Governing law">
+          <p>
+            These terms are governed by the laws of Pakistan. Disputes are settled by good faith
+            negotiation first, and failing that by binding arbitration or the competent courts of
+            Islamabad.
+          </p>
+        </LegalSection>
 
-            <section>
-              <h2 className="font-heading text-xl font-semibold mb-3" style={{ color: 'var(--text-1)' }}>8. Cancellation</h2>
-              <p>Either party may cancel a project with written notice. If you cancel after work has begun:</p>
-              <ul className="mt-3 space-y-1.5 list-disc list-inside text-text-muted">
-                <li><span className="text-text-secondary">Any deposit paid is non-refundable.</span></li>
-                <li><span className="text-text-secondary">Work completed to the cancellation date will be invoiced at the agreed rate.</span></li>
-                <li><span className="text-text-secondary">All work produced to that point will be delivered to you upon payment.</span></li>
-              </ul>
-            </section>
+        <LegalSection index="10" title="Contact">
+          <p>
+            Questions about these terms, email{' '}
+            <a href={`mailto:${site.email}`} className="text-brass hover:underline">
+              {site.email}
+            </a>
+            .
+          </p>
+        </LegalSection>
 
-            <section>
-              <h2 className="font-heading text-xl font-semibold mb-3" style={{ color: 'var(--text-1)' }}>9. Governing Law</h2>
-              <p>These terms are governed by the laws of Pakistan. Any disputes will be resolved through good-faith negotiation first. If that fails, disputes shall be submitted to binding arbitration or the competent courts of Islamabad.</p>
-            </section>
-
-            <section>
-              <h2 className="font-heading text-xl font-semibold mb-3" style={{ color: 'var(--text-1)' }}>10. Contact</h2>
-              <p>
-                Questions about these terms? Email me at{' '}
-                <a href="mailto:masabfarooque1122@gmail.com" className="underline underline-offset-2 hover:opacity-80 transition-opacity" style={{ color: 'var(--accent-cyan)' }}>
-                  masabfarooque1122@gmail.com
-                </a>
-              </p>
-            </section>
-
-            <div className="pt-6 border-t" style={{ borderColor: 'var(--border-base)' }}>
-              <Link href="/privacy" className="text-sm underline underline-offset-2 hover:opacity-80 transition-opacity mr-6" style={{ color: 'var(--accent-cyan)' }}>
-                Privacy Policy
-              </Link>
-              <Link href="/contact" className="text-sm underline underline-offset-2 hover:opacity-80 transition-opacity" style={{ color: 'var(--accent-violet)' }}>
-                Contact Me
-              </Link>
-            </div>
-
-          </div>
+        <div className="mt-12 flex flex-wrap gap-4">
+          <Link
+            href="/privacy"
+            className="group inline-flex items-center gap-3 border px-5 py-3 text-sm transition-colors duration-500 hover:border-brass"
+            style={{ borderColor: 'var(--line-2)' }}
+          >
+            Privacy
+            <ArrowLong size={15} className="text-brass transition-transform group-hover:translate-x-1" />
+          </Link>
+          <Link
+            href="/contact"
+            className="group inline-flex items-center gap-3 border px-5 py-3 text-sm transition-colors duration-500 hover:border-brass"
+            style={{ borderColor: 'var(--line-2)' }}
+          >
+            Contact
+            <ArrowLong size={15} className="text-brass transition-transform group-hover:translate-x-1" />
+          </Link>
         </div>
-      </main>
-      <Footer />
+      </div>
     </>
   );
 }

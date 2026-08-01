@@ -1,107 +1,73 @@
-import type { Metadata } from "next";
-import { Inter, JetBrains_Mono, Space_Grotesk } from "next/font/google";
-import "./globals.css";
-import Script from "next/script";
-import GlobalUI from "./components/GlobalUI";
-import LayoutClient from "./components/LayoutClient";
-import BackgroundFX from "./components/BackgroundFX";
-import { ThemeProvider } from "./components/ThemeProvider";
-
-const inter = Inter({
-  subsets: ["latin"],
-  variable: "--font-inter",
-  display: 'swap',
-});
-
-const jetbrainsMono = JetBrains_Mono({
-  subsets: ["latin"],
-  variable: "--font-jetbrains",
-  display: 'swap',
-});
-
-const spaceGrotesk = Space_Grotesk({
-  subsets: ["latin"],
-  variable: "--font-space-grotesk",
-  weight: ["400", "500", "600", "700"],
-  display: 'swap',
-});
+import type { Metadata } from 'next';
+import Script from 'next/script';
+import './globals.css';
+import { displayFont, sansFont, monoFont } from './lib/fonts';
+import { site } from './data/site';
+import SmoothScroll from './components/core/SmoothScroll';
+import Cursor from './components/core/Cursor';
+import Intro from './components/core/Intro';
+import ScrollRail from './components/core/ScrollRail';
+import Nav from './components/core/Nav';
+import Footer from './components/core/Footer';
 
 export const viewport = {
   width: 'device-width',
   initialScale: 1,
   maximumScale: 5,
+  themeColor: '#0a0908',
 };
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://masabfarooque.com'),
+  metadataBase: new URL(site.url),
   title: {
-    default: 'Masab | Masab Farooque - Full Stack Developer & AI Engineer | Level 2 Fiverr Seller',
-    template: '%s | Masab Farooque'
+    default: 'Masab Farooque | Full Stack Engineer, SaaS and AI Systems',
+    template: '%s | Masab Farooque',
   },
-  description: 'Masab Farooque (masab) is a Level 2 Fiverr Seller and Full Stack Developer from Islamabad, Pakistan. Expert in Next.js, React, FastAPI, AI Engineering, LangChain, and RAG systems. 195+ completed orders across 15+ countries.',
+  description:
+    'Masab Farooque is a full stack engineer in Islamabad building SaaS platforms, AI systems and data pipelines. Next.js, FastAPI, Go on AWS. 148 reviews at a 4.85 average from clients in 23 countries.',
   keywords: [
-    'masab',
     'Masab Farooque',
-    'masab farooque',
-    'masab developer',
-    'masab full stack developer',
-    'masab fiverr',
-    'masab islamabad',
-    'masab pakistan',
-    'masab AI developer',
-    'Level 2 Fiverr Seller',
-    'Full Stack Developer',
-    'AI Engineer',
-    'Next.js Developer',
-    'React Developer',
-    'FastAPI Developer',
-    'Web Developer Islamabad',
-    'Pakistan Developer',
-    'Fiverr Developer',
-    'Upwork Developer',
-    'AI Solutions',
-    'Web Development',
-    'LangChain Developer',
-    'OpenAI Developer',
-    'TypeScript Developer',
-    'Node.js Developer',
-    'Python Developer',
-    'COMSATS Graduate',
-    'Freelance Developer',
-    'Remote Developer',
-    'RAG systems',
+    'masab',
+    'full stack engineer',
+    'full stack developer Islamabad',
+    'Next.js developer',
+    'FastAPI developer',
+    'Go developer',
+    'AI engineer',
     'SaaS developer',
-    'web scraping developer'
+    'web scraping developer',
+    'RAG systems',
+    'LangChain developer',
+    'Claude API developer',
+    'freelance developer Pakistan',
+    'Fiverr Level 2 seller',
   ],
-  authors: [{ name: 'Masab Farooque', url: 'https://masabfarooque.com' }],
-  creator: 'Masab Farooque',
-  publisher: 'Masab Farooque',
-  formatDetection: {
-    email: false,
-    address: false,
-    telephone: false,
-  },
+  authors: [{ name: site.name, url: site.url }],
+  creator: site.name,
+  publisher: site.name,
+  formatDetection: { email: false, address: false, telephone: false },
   openGraph: {
     type: 'website',
     locale: 'en_US',
-    url: 'https://masabfarooque.com',
-    siteName: 'Masab Farooque Portfolio',
-    title: 'Masab Farooque | Level 2 Fiverr Seller - Full Stack Developer & AI Engineer',
-    description: 'Level 2 Fiverr Seller from Islamabad, Pakistan. Expert in Full Stack Development, AI Engineering, Next.js, React, and FastAPI. Building modern web applications and AI solutions.',
+    url: site.url,
+    siteName: `${site.name}, Full Stack Engineer`,
+    title: 'Masab Farooque | Full Stack Engineer, SaaS and AI Systems',
+    description:
+      'SaaS platforms, AI systems and data pipelines, built end to end. Islamabad, working with teams across Europe, North America and Asia.',
     images: [
       {
-        url: '/og-image.jpg',
+        url: '/og-image.webp',
         width: 1200,
         height: 630,
-        alt: 'Masab Farooque - Full Stack Developer & AI Engineer',
-      }
+        alt: 'Masab Farooque, Full Stack Engineer',
+      },
     ],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Masab Farooque | Level 2 Fiverr Seller - Full Stack Developer',
-    description: 'Level 2 Fiverr Seller specializing in Full Stack Development and AI Engineering. Based in Islamabad, Pakistan.',
-    images: ['/og-image.jpg'],
+    title: 'Masab Farooque | Full Stack Engineer',
+    description: 'SaaS platforms, AI systems and data pipelines, built end to end.',
+    images: ['/og-image.webp'],
   },
   robots: {
     index: true,
@@ -114,179 +80,77 @@ export const metadata: Metadata = {
       'max-snippet': -1,
     },
   },
-  alternates: {
-    canonical: 'https://masabfarooque.com',
-  },
-  verification: {
-    google: 'LOtZbkopd2oM3L6gSNc1MvlKumkMwPRF37ct409NYX8',
-  },
+  alternates: { canonical: site.url },
+  verification: { google: 'LOtZbkopd2oM3L6gSNc1MvlKumkMwPRF37ct409NYX8' },
 };
 
 const personSchema = {
   '@context': 'https://schema.org',
   '@type': 'Person',
-  name: 'Masab Farooque',
-  url: 'https://masabfarooque.com',
-  image: 'https://masabfarooque.com/og-image.jpg',
-  jobTitle: 'Full Stack Developer & AI Engineer',
-  worksFor: {
-    '@type': 'Organization',
-    name: 'Fiverr',
-  },
-  description: 'Level 2 Fiverr Seller specializing in Full Stack Development and AI Engineering',
-  email: 'masabfarooque1122@gmail.com',
+  name: site.name,
+  url: site.url,
+  image: `${site.url}/og-image.webp`,
+  jobTitle: 'Full Stack Engineer',
+  description:
+    'Full stack engineer building SaaS platforms, AI systems and data pipelines for teams worldwide.',
+  email: site.email,
   telephone: '+923045624189',
   address: {
     '@type': 'PostalAddress',
     addressLocality: 'Islamabad',
     addressCountry: 'Pakistan',
   },
-  alumniOf: {
-    '@type': 'Organization',
-    name: 'COMSATS University Islamabad',
-  },
+  alumniOf: { '@type': 'Organization', name: 'COMSATS University Islamabad' },
   sameAs: [
-    'https://www.fiverr.com/p_scribbles/portfolio/',
-    'https://upwork.com/freelancers/~01e34b32d5b254495d',
     'https://github.com/Masab12',
     'https://www.linkedin.com/in/masabfarooque',
-    'https://www.instagram.com/masabfarooque',
+    'https://www.fiverr.com/p_scribbles',
+    'https://upwork.com/freelancers/~01e34b32d5b254495d',
   ],
   knowsAbout: [
     'Full Stack Development',
-    'AI Engineering',
     'Next.js',
     'React',
-    'FastAPI',
-    'Node.js',
-    'Python',
     'TypeScript',
-    'LangChain',
-    'OpenAI',
-    'Web Development',
-  ],
-};
-
-const professionalServiceSchema = {
-  '@context': 'https://schema.org',
-  '@type': 'ProfessionalService',
-  name: 'Masab Farooque - Full Stack Development Services',
-  image: 'https://masabfarooque.com/og-image.jpg',
-  '@id': 'https://masabfarooque.com',
-  url: 'https://masabfarooque.com',
-  telephone: '+923045624189',
-  email: 'masabfarooque1122@gmail.com',
-  address: {
-    '@type': 'PostalAddress',
-    addressLocality: 'Islamabad',
-    addressCountry: 'Pakistan',
-  },
-  geo: {
-    '@type': 'GeoCoordinates',
-    latitude: 33.6844,
-    longitude: 73.0479,
-  },
-  priceRange: '$$$',
-  description: 'Professional Full Stack Development and AI Engineering services. Specializing in Next.js, React, FastAPI, and AI solutions.',
-  areaServed: 'Worldwide',
-  serviceType: [
-    'Full Stack Development',
+    'Go',
+    'FastAPI',
+    'Python',
+    'AWS Lambda',
+    'PostgreSQL',
     'AI Engineering',
-    'Web Application Development',
-    'API Development',
-    'AI Integration',
-  ],
-  aggregateRating: {
-    '@type': 'AggregateRating',
-    ratingValue: '5.0',
-    reviewCount: '139',
-    bestRating: '5',
-    worstRating: '1',
-  },
-  review: [
-    {
-      '@type': 'Review',
-      author: { '@type': 'Person', name: 'Lucas Swarts' },
-      reviewRating: { '@type': 'Rating', ratingValue: '5', bestRating: '5' },
-      reviewBody: 'Absolutely amazing work. I have never had this experience with anyone before. Masab truly went above and beyond with unbelievable dedication and effort. He has a very strong understanding of complex scraping and everything that comes with it. The end product is a fully working SaaS platform.',
-      datePublished: '2025-02',
-    },
-    {
-      '@type': 'Review',
-      author: { '@type': 'Person', name: 'ksharma222' },
-      reviewRating: { '@type': 'Rating', ratingValue: '5', bestRating: '5' },
-      reviewBody: "Doesn't get better than this. He is the best in the business. His expertise are outstanding and response is even better. There is nothing Masab can't figure out.",
-      datePublished: '2025-01',
-    },
-    {
-      '@type': 'Review',
-      author: { '@type': 'Person', name: 'Roger L.' },
-      reviewRating: { '@type': 'Rating', ratingValue: '5', bestRating: '5' },
-      reviewBody: 'I highly recommend Masab to anyone looking for advanced AI systems, business automation, or full-stack development. I approached him with a complete business management system powered by multilingual AI. The execution was outstanding.',
-      datePublished: '2024-12',
-    },
-    {
-      '@type': 'Review',
-      author: { '@type': 'Person', name: 'adouatt' },
-      reviewRating: { '@type': 'Rating', ratingValue: '5', bestRating: '5' },
-      reviewBody: 'Masab is someone who is easy to work with. He went over and beyond on each phase of this project. I am excited for the rest!',
-      datePublished: '2025-03',
-    },
-    {
-      '@type': 'Review',
-      author: { '@type': 'Person', name: 'amanjoshi752004' },
-      reviewRating: { '@type': 'Rating', ratingValue: '5', bestRating: '5' },
-      reviewBody: 'Always a pleasure working with Masab Farooque! This is my 5th time hiring him, and as always, he delivers excellent work with professionalism and consistency. Highly reliable and skilled.',
-      datePublished: '2024-11',
-    },
+    'Retrieval Augmented Generation',
+    'Web Scraping',
   ],
 };
 
 const websiteSchema = {
   '@context': 'https://schema.org',
   '@type': 'WebSite',
-  name: 'Masab Farooque Portfolio',
-  url: 'https://masabfarooque.com',
-  description: 'Portfolio of Masab Farooque - Level 2 Fiverr Seller, Full Stack Developer & AI Engineer',
-  author: {
-    '@type': 'Person',
-    name: 'Masab Farooque',
-  },
+  name: `${site.name} Portfolio`,
+  url: site.url,
+  description: 'Portfolio of Masab Farooque, full stack engineer.',
+  author: { '@type': 'Person', name: site.name },
   inLanguage: 'en-US',
 };
 
-export default function RootLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html
+      lang="en"
+      data-theme="dark"
+      className={`${displayFont.variable} ${sansFont.variable} ${monoFont.variable}`}
+    >
       <head>
-        <link rel="canonical" href="https://masabfarooque.com" />
-        {/* Preconnect to external origins for faster resource loading */}
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-        <link rel="preconnect" href="https://www.googletagmanager.com" />
-        <link rel="dns-prefetch" href="https://cdn.jsdelivr.net" />
-        <link rel="me" href="https://github.com/Masab12" />
-        <link rel="me" href="https://www.linkedin.com/in/masabfarooque" />
+        <link rel="canonical" href={site.url} />
         <meta name="geo.region" content="PK-IS" />
         <meta name="geo.placename" content="Islamabad" />
         <meta name="geo.position" content="33.6844;73.0479" />
-        <meta name="ICBM" content="33.6844, 73.0479" />
-        <meta name="author" content="Masab Farooque" />
-        <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1" />
-        
+        <link rel="me" href="https://github.com/Masab12" />
+        <link rel="me" href="https://www.linkedin.com/in/masabfarooque" />
         <Script
           id="person-schema"
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(personSchema) }}
-        />
-        <Script
-          id="service-schema"
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(professionalServiceSchema) }}
         />
         <Script
           id="website-schema"
@@ -294,10 +158,7 @@ export default function RootLayout({
           dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteSchema) }}
         />
       </head>
-      <body
-        className={`${inter.variable} ${jetbrainsMono.variable} ${spaceGrotesk.variable} font-sans antialiased overflow-x-hidden`}
-      >
-        {/* Google Analytics */}
+      <body className="font-sans antialiased">
         <Script
           src="https://www.googletagmanager.com/gtag/js?id=G-YSMF0ZW4R1"
           strategy="afterInteractive"
@@ -310,11 +171,25 @@ export default function RootLayout({
             gtag('config', 'G-YSMF0ZW4R1');
           `}
         </Script>
-        <ThemeProvider>
-          <BackgroundFX />
-          <GlobalUI />
-          <LayoutClient>{children}</LayoutClient>
-        </ThemeProvider>
+
+        <a
+          href="#main"
+          className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-[100] focus:border focus:px-4 focus:py-2"
+          style={{ background: 'var(--ink-2)', borderColor: 'var(--brass-edge)' }}
+        >
+          Skip to content
+        </a>
+
+        <Intro />
+        <div className="grain" aria-hidden />
+        <Cursor />
+        <ScrollRail />
+
+        <SmoothScroll>
+          <Nav />
+          <main id="main">{children}</main>
+          <Footer />
+        </SmoothScroll>
       </body>
     </html>
   );

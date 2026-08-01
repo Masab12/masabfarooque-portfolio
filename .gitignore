@@ -47,3 +47,9 @@ coverage/
 *.tsbuildinfo
 next-env.d.ts
 .cache/
+
+# Files replaced by the 2026 rebuild, safe to remove
+_to_delete/
+
+# Local agent settings
+.claude/

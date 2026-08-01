@@ -1,163 +1,264 @@
+/**
+ * Turns a Fiverr review export into a typed data file.
+ *
+ * Drop a fresh export into /public as either
+ *   fiverr_reviews_*.json   (array of review objects, preferred)
+ *   fiverr_reviews_*.csv    (flattened export)
+ * then run:
+ *   node scripts/gen-reviews.mjs
+ *
+ * It picks the newest export it can find, keeps one entry per buyer with
+ * their most substantial words, and writes the SHOWCASE_COUNT most recent
+ * five star reviews to app/data/reviews.ts.
+ */
+
 import fs from 'node:fs';
 import path from 'node:path';
+import { fileURLToPath } from 'node:url';
 
-const CSV = 'public/fiverr_reviews_17490123_20260621_152316.csv';
+const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
+const publicDir = path.join(root, 'public');
+const outFile = path.join(root, 'app', 'data', 'reviews.ts');
 
-// Minimal RFC4180 parser (handles quoted fields, embedded commas/quotes/newlines)
-function parseCSV(str) {
+const SHOWCASE_COUNT = 28;
+const MIN_COMMENT_LENGTH = 24;
+/**
+ * The Fiverr account goes back to 2015 and its early reviews are for writing
+ * work, not engineering. Only the software era is shown.
+ */
+const SHOWCASE_SINCE = '2025-01-01';
+/** Repeat buyers can appear twice, since those are separate projects. */
+const MAX_PER_BUYER = 2;
+
+/* ── Input ─────────────────────────────────────────────────────── */
+
+function pickLatestExport() {
+  const files = fs
+    .readdirSync(publicDir)
+    .filter((f) => /^fiverr_reviews_.*\.(json|csv)$/i.test(f))
+    .sort();
+  if (files.length === 0) return null;
+  // A JSON export always wins over a CSV of the same vintage.
+  const json = files.filter((f) => f.toLowerCase().endsWith('.json'));
+  const pool = json.length > 0 ? json : files;
+  return path.join(publicDir, pool[pool.length - 1]);
+}
+
+/** Minimal RFC 4180 parser. Handles quoted fields, embedded commas and newlines. */
+function parseCsv(text) {
   const rows = [];
   let row = [];
-  let cur = '';
-  let q = false;
-  for (let i = 0; i < str.length; i++) {
-    const c = str[i];
-    if (q) {
-      if (c === '"') {
-        if (str[i + 1] === '"') { cur += '"'; i++; }
-        else q = false;
-      } else cur += c;
-    } else {
-      if (c === '"') q = true;
-      else if (c === ',') { row.push(cur); cur = ''; }
-      else if (c === '\n') { row.push(cur); rows.push(row); row = []; cur = ''; }
-      else if (c === '\r') { /* skip */ }
-      else cur += c;
+  let field = '';
+  let quoted = false;
+
+  for (let i = 0; i < text.length; i += 1) {
+    const char = text[i];
+
+    if (quoted) {
+      if (char === '"') {
+        if (text[i + 1] === '"') {
+          field += '"';
+          i += 1;
+        } else {
+          quoted = false;
+        }
+      } else {
+        field += char;
+      }
+      continue;
     }
+
+    if (char === '"') quoted = true;
+    else if (char === ',') {
+      row.push(field);
+      field = '';
+    } else if (char === '\n') {
+      row.push(field);
+      rows.push(row);
+      row = [];
+      field = '';
+    } else if (char !== '\r') field += char;
   }
-  if (cur.length || row.length) { row.push(cur); rows.push(row); }
+
+  if (field.length > 0 || row.length > 0) {
+    row.push(field);
+    rows.push(row);
+  }
+
   return rows;
 }
 
-// Country → [lng, lat] for map markers
-const COORDS = {
-  'United States': [-95.7129, 37.0902],
-  'United Kingdom': [-3.436, 55.3781],
-  'Canada': [-106.3468, 56.1304],
-  'Australia': [133.7751, -25.2744],
-  'Germany': [10.4515, 51.1657],
-  'Netherlands': [5.2913, 52.1326],
-  'France': [2.2137, 46.2276],
-  'Spain': [-3.7492, 40.4637],
-  'Italy': [12.5674, 41.8719],
-  'Belgium': [4.4699, 50.5039],
-  'Switzerland': [8.2275, 46.8182],
-  'Austria': [14.5501, 47.5162],
-  'Ireland': [-8.2439, 53.4129],
-  'Sweden': [18.6435, 60.1282],
-  'Norway': [8.4689, 60.472],
-  'Denmark': [9.5018, 56.2639],
-  'Finland': [25.7482, 61.9241],
-  'Portugal': [-8.2245, 39.3999],
-  'Poland': [19.1451, 51.9194],
-  'Pakistan': [69.3451, 30.3753],
-  'India': [78.9629, 20.5937],
-  'United Arab Emirates': [53.8478, 23.4241],
-  'Saudi Arabia': [45.0792, 23.8859],
-  'Israel': [34.8516, 31.0461],
-  'Singapore': [103.8198, 1.3521],
-  'Japan': [138.2529, 36.2048],
-  'Hong Kong': [114.1694, 22.3193],
-  'New Zealand': [174.886, -40.9006],
-  'Brazil': [-51.9253, -14.235],
-  'Mexico': [-102.5528, 23.6345],
-  'South Africa': [22.9375, -30.5595],
-  'Turkey': [35.2433, 38.9637],
-  'Greece': [21.8243, 39.0742],
-  'Romania': [24.9668, 45.9432],
-  'Czechia': [15.473, 49.8175],
-  'Egypt': [30.8025, 26.8206],
-  'Nigeria': [8.6753, 9.082],
-  'Kenya': [37.9062, -0.0236],
-  'Malaysia': [101.9758, 4.2105],
-  'Indonesia': [113.9213, -0.7893],
-  'Philippines': [121.774, 12.8797],
-  'Thailand': [100.9925, 15.87],
-  'Qatar': [51.1839, 25.3548],
-  'Kuwait': [47.4818, 29.3117],
-  'Hungary': [19.5033, 47.1625],
-  'Ukraine': [31.1656, 48.3794],
-  'Colombia': [-74.2973, 4.5709],
-  'Argentina': [-63.6167, -38.4161],
-  'Chile': [-71.5430, -35.6751],
-  'Estonia': [25.0136, 58.5953],
-  'China': [104.1954, 35.8617],
-  'Maldives': [73.2207, 3.2028],
-};
+function readExport(file) {
+  const raw = fs.readFileSync(file, 'utf8').replace(/^﻿/, '');
 
-const raw = fs.readFileSync(CSV, 'utf8');
-const rows = parseCSV(raw);
-const head = rows[0].map((h) => h.replace(/^﻿/, '').trim());
-const ix = Object.fromEntries(head.map((h, i) => [h, i]));
-const data = rows.slice(1).filter((r) => r.length >= head.length - 3);
+  if (file.toLowerCase().endsWith('.json')) {
+    const parsed = JSON.parse(raw);
+    return Array.isArray(parsed) ? parsed : (parsed.reviews ?? []);
+  }
 
-const get = (r, k) => (r[ix[k]] ?? '').trim();
-
-const reviews = [];
-const countryCount = {};
-
-for (const r of data) {
-  const comment = get(r, 'comment');
-  const lang = get(r, 'comment_language');
-  const rating = Number(get(r, 'value')) || 0;
-  const cancelled = get(r, 'is_cancelled_order') === 'True';
-
-  // Only genuine 5-star, non-cancelled, English reviews with a comment.
-  if (!comment || lang !== 'en' || rating < 5 || cancelled) continue;
-
-  const country = get(r, 'reviewer_country');
-  if (country) countryCount[country] = (countryCount[country] || 0) + 1;
-
-  reviews.push({
-    id: get(r, 'id') || `${get(r, 'username')}-${reviews.length}`,
-    name: get(r, 'username') || 'Client',
-    country,
-    countryCode: get(r, 'reviewer_country_code'),
-    avatar: get(r, 'user_image_url'),
-    rating: 5,
-    date: (get(r, 'created_at') || '').slice(0, 10),
-    repeat: get(r, 'repeat_buyer') === 'True',
-    comment,
-  });
+  const rows = parseCsv(raw).filter((r) => r.length > 1);
+  const header = rows.shift().map((h) => h.trim());
+  return rows.map((r) => Object.fromEntries(header.map((key, i) => [key, r[i]])));
 }
 
-// Newest first (latest → oldest).
-reviews.sort((a, b) => (b.date || '').localeCompare(a.date || ''));
+/* ── Cleaning ──────────────────────────────────────────────────── */
 
-const reviewCountries = Object.entries(countryCount)
-  .filter(([c]) => COORDS[c])
-  .map(([country, count]) => ({ country, count, coordinates: COORDS[country] }))
-  .sort((a, b) => b.count - a.count);
+/**
+ * Buyers paste stars, hearts and other pictographs into reviews. None of that
+ * belongs in this design, so it is stripped along with odd whitespace and any
+ * dash a buyer used as a sentence break.
+ */
+function cleanComment(value) {
+  return String(value ?? '')
+    .replace(/[\u{1F000}-\u{1FAFF}\u{2190}-\u{27BF}\u{2B00}-\u{2BFF}\u{FE0F}\u{20E3}]/gu, '')
+    .replace(/[   ]/g, ' ')
+    .replace(/[‘’]/g, "'")
+    .replace(/[“”]/g, '"')
+    .replace(/\s*[—–]\s*/g, ', ')
+    .replace(/\s+/g, ' ')
+    .trim();
+}
 
-const missing = Object.keys(countryCount).filter((c) => !COORDS[c]);
+function titleCase(value) {
+  return String(value).replace(/\b[a-z]/g, (c) => c.toUpperCase());
+}
 
-const out = `// AUTO-GENERATED from ${path.basename(CSV)} by scripts/gen-reviews.mjs
-// Do not edit by hand. Re-run: node scripts/gen-reviews.mjs
+/** Fiverr sends a few countries under two names. */
+const COUNTRY_ALIASES = {
+  'The Netherlands': 'Netherlands',
+  'United States of America': 'United States',
+  'Great Britain': 'United Kingdom',
+};
+
+function normaliseCountry(value) {
+  const name = String(value ?? '').trim();
+  return COUNTRY_ALIASES[name] ?? name;
+}
+
+function truthy(value) {
+  return value === true || value === 'True' || value === 'true';
+}
+
+/* ── Build ─────────────────────────────────────────────────────── */
+
+const source = pickLatestExport();
+if (!source) {
+  console.error('No fiverr_reviews_* export found in /public. Nothing to generate.');
+  process.exit(1);
+}
+
+const records = readExport(source)
+  .map((r) => ({
+    id: String(r.id ?? ''),
+    name: String(r.username ?? '').trim(),
+    country: normaliseCountry(r.reviewer_country),
+    countryCode: String(r.reviewer_country_code ?? '').trim().toUpperCase(),
+    rating: Number(r.value ?? 0),
+    comment: cleanComment(r.comment),
+    date: String(r.created_at ?? ''),
+    avatar: String(r.user_image_url ?? '').trim(),
+    price: String(r.order_price_range_usd ?? '').trim(),
+    days: Number(r.order_duration_in_days ?? 0) || null,
+    cancelled: truthy(r.is_cancelled_order),
+    industry: Array.isArray(r.reviewer_industry)
+      ? r.reviewer_industry.filter(Boolean).join(', ')
+      : String(r.reviewer_industry ?? ''),
+  }))
+  .filter((r) => r.id && r.name && r.date && !r.cancelled);
+
+const allCount = records.length;
+const average = records.reduce((s, r) => s + r.rating, 0) / Math.max(records.length, 1);
+const countries = new Set(records.map((r) => r.country).filter(Boolean));
+
+// Orders per buyer. Repeat buyers are the strongest signal in the export, so
+// the count is surfaced on the card rather than thrown away.
+const orders = new Map();
+records.forEach((r) => orders.set(r.name, (orders.get(r.name) ?? 0) + 1));
+const repeatShare = [...orders.values()].filter((n) => n > 1).length / Math.max(orders.size, 1);
+
+// Avatars are attached per buyer, since Fiverr only sends the photo on some
+// rows even when the same person has left several reviews.
+const avatarByBuyer = new Map();
+records.forEach((r) => {
+  if (r.avatar && !avatarByBuyer.has(r.name)) avatarByBuyer.set(r.name, r.avatar);
+});
+
+const eligible = records
+  .filter(
+    (r) =>
+      r.rating >= 5 && r.comment.length >= MIN_COMMENT_LENGTH && r.date >= SHOWCASE_SINCE,
+  )
+  .sort((a, b) => (a.date < b.date ? 1 : -1));
+
+// Each buyer contributes their fullest reviews, capped, then the whole set is
+// laid out newest first.
+const byBuyer = new Map();
+eligible.forEach((r) => {
+  const list = byBuyer.get(r.name) ?? [];
+  list.push(r);
+  byBuyer.set(r.name, list);
+});
+
+const showcase = [...byBuyer.values()]
+  .flatMap((list) =>
+    [...list].sort((a, b) => b.comment.length - a.comment.length).slice(0, MAX_PER_BUYER),
+  )
+  .sort((a, b) => (a.date < b.date ? 1 : -1))
+  .slice(0, SHOWCASE_COUNT)
+  .map((r) => ({
+    id: r.id,
+    name: r.name,
+    country: r.country,
+    countryCode: r.countryCode,
+    rating: r.rating,
+    comment: r.comment,
+    date: r.date,
+    avatar: r.avatar || avatarByBuyer.get(r.name) || null,
+    price: r.price,
+    days: r.days,
+    orders: orders.get(r.name) ?? 1,
+    industry: r.industry ? titleCase(r.industry) : null,
+  }));
+
+const newest = showcase[0]?.date?.slice(0, 10) ?? '';
+const oldest = showcase[showcase.length - 1]?.date?.slice(0, 10) ?? '';
+
+const file = `/**
+ * Generated by scripts/gen-reviews.mjs. Do not edit by hand.
+ * Source export: ${path.basename(source)}
+ * ${showcase.length} buyers, most recent first, ${newest} back to ${oldest}.
+ */
 
 export interface Review {
   id: string;
   name: string;
   country: string;
   countryCode: string;
-  avatar: string;
   rating: number;
-  date: string;
-  repeat: boolean;
   comment: string;
+  date: string;
+  avatar: string | null;
+  price: string;
+  days: number | null;
+  /** How many orders this buyer has reviewed in total. */
+  orders: number;
+  industry: string | null;
 }
 
-export interface ReviewCountry {
-  country: string;
-  count: number;
-  coordinates: [number, number];
-}
+export const reviewSummary = {
+  total: ${allCount},
+  average: ${average.toFixed(2)},
+  countries: ${countries.size},
+  repeatShare: ${Math.round(repeatShare * 100)},
+  newest: '${newest}',
+  profileUrl: 'https://www.fiverr.com/p_scribbles',
+} as const;
 
-export const reviews: Review[] = ${JSON.stringify(reviews, null, 2)};
-
-export const reviewCountries: ReviewCountry[] = ${JSON.stringify(reviewCountries, null, 2)};
-
-export const totalReviews = ${reviews.length};
+export const reviews: Review[] = ${JSON.stringify(showcase, null, 2)};
 `;
 
-fs.writeFileSync('app/data/reviews.ts', out);
-console.log(`Wrote app/data/reviews.ts — ${reviews.length} English reviews, ${reviewCountries.length} mapped countries.`);
-if (missing.length) console.log('Countries without coords (not on map):', missing.join(', '));
+fs.writeFileSync(outFile, file, 'utf8');
+console.log(
+  `Wrote ${showcase.length} reviews to app/data/reviews.ts from ${path.basename(source)} ` +
+    `(${allCount} reviews, ${orders.size} buyers, ${countries.size} countries).`,
+);
