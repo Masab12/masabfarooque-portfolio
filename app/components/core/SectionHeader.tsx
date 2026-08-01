@@ -1,51 +1,38 @@
 import Reveal from './Reveal';
-import TextReveal from './TextReveal';
+import WordsPullUpMultiStyle from '@/app/components/motion/WordsPullUpMultiStyle';
 
 type Props = {
-  index: string;
   label: string;
   title: string;
-  note?: string;
-  align?: 'left' | 'split';
+  subtitle?: string;
   className?: string;
 };
 
 /**
- * The header used by every section. An index number, a label, the heading and
- * an optional note in the opposite corner. Same rhythm everywhere, which is
- * what makes the page feel edited rather than assembled.
+ * Every section opens the same way: a small label, then a two line statement
+ * where the second line drops back to grey. Same rhythm as the feature grid,
+ * so the page reads as one continuous piece.
  */
-export default function SectionHeader({
-  index,
-  label,
-  title,
-  note,
-  align = 'split',
-  className = '',
-}: Props) {
+export default function SectionHeader({ label, title, subtitle, className = '' }: Props) {
   return (
     <header className={className}>
-      <Reveal className="flex items-baseline gap-4" y={14}>
-        <span className="mono text-[0.7rem] text-brass">{index}</span>
-        <span className="eyebrow">{label}</span>
-        <span className="mt-[-2px] h-px flex-1" style={{ background: 'var(--line)' }} />
+      <Reveal y={12}>
+        <p className="text-[10px] text-primary sm:text-xs">{label}</p>
       </Reveal>
 
-      <div
-        className={`mt-7 flex flex-col gap-6 ${
-          align === 'split' ? 'md:flex-row md:items-end md:justify-between' : ''
-        }`}
-      >
-        <TextReveal
-          as="h2"
-          text={title}
-          mode="words"
-          className="display wash max-w-[16ch] text-[clamp(2.4rem,6.2vw,5.2rem)]"
+      <div className="mt-5 max-w-4xl">
+        <WordsPullUpMultiStyle
+          align="left"
+          className="text-xl font-normal sm:text-2xl md:text-3xl lg:text-4xl"
+          segments={[{ text: title }]}
         />
-        {note ? (
-          <Reveal delay={0.12}>
-            <p className="max-w-sm text-sm leading-relaxed text-bone-2 md:text-right">{note}</p>
-          </Reveal>
+        {subtitle ? (
+          <WordsPullUpMultiStyle
+            align="left"
+            delayOffset={0.15}
+            className="text-xl font-normal text-gray-500 sm:text-2xl md:text-3xl lg:text-4xl"
+            segments={[{ text: subtitle }]}
+          />
         ) : null}
       </div>
     </header>

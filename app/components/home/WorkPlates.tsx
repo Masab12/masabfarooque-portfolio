@@ -53,10 +53,9 @@ export default function WorkPlates() {
     <section className="relative py-20 md:py-32" id="work">
       <div className="shell">
         <SectionHeader
-          index="03"
           label="Selected work"
-          title="Three builds worth reading about"
-          note="Each of these went from an empty repository to something in daily use. Full case studies live on the work page."
+          title="Three builds worth reading about."
+          subtitle="Empty repository to daily use, three times over."
         />
       </div>
 
@@ -69,7 +68,7 @@ export default function WorkPlates() {
               style={{
                 top: `calc(var(--nav-h) + ${i * 16}px)`,
                 borderColor: 'var(--line-2)',
-                background: 'var(--ink-1)',
+                background: 'var(--surface-1)',
                 borderRadius: 'clamp(18px, 2.4vw, 34px)',
                 transformOrigin: 'center top',
                 willChange: 'transform',
@@ -80,25 +79,25 @@ export default function WorkPlates() {
                   <div>
                     <div className="flex items-center justify-between">
                       <span
-                        className="display text-[clamp(3rem,7vw,6.5rem)] leading-none"
-                        style={{ color: 'transparent', WebkitTextStroke: '1px var(--brass-edge)' }}
+                        className="text-[clamp(3rem,7vw,6.5rem)] leading-none"
+                        style={{ color: 'transparent', WebkitTextStroke: '1px var(--line-2)' }}
                       >
                         0{i + 1}
                       </span>
-                      <span className="mono text-[0.65rem] text-bone-3">{project.year}</span>
+                      <span className="text-[0.65rem] text-gray-500">{project.year}</span>
                     </div>
 
-                    <p className="eyebrow mt-6">
+                    <p className="label mt-6">
                       {categoryLabels[project.category]}
                       <span className="mx-2 opacity-40">/</span>
                       {project.client}
                     </p>
 
-                    <h3 className="display-tight mt-3 text-[clamp(1.8rem,3.6vw,3rem)] text-bone">
+                    <h3 className="mt-3 text-[clamp(1.8rem,3.6vw,3rem)] text-cream">
                       {project.title}
                     </h3>
 
-                    <p className="mt-4 max-w-md text-sm leading-relaxed text-bone-2">
+                    <p className="mt-4 max-w-md text-sm leading-relaxed text-gray-400">
                       {project.summary}
                     </p>
 
@@ -106,8 +105,8 @@ export default function WorkPlates() {
                       <dl className="mt-7 grid grid-cols-3 gap-4 border-t pt-5" style={{ borderColor: 'var(--line)' }}>
                         {project.metrics.slice(0, 3).map((m) => (
                           <div key={m.label}>
-                            <dt className="mono text-[0.95rem] text-brass">{m.value}</dt>
-                            <dd className="eyebrow mt-1.5 text-[0.55rem] leading-snug">{m.label}</dd>
+                            <dt className="text-[0.95rem] text-primary">{m.value}</dt>
+                            <dd className="label mt-1.5 text-[0.55rem] leading-snug">{m.label}</dd>
                           </div>
                         ))}
                       </dl>
@@ -118,13 +117,13 @@ export default function WorkPlates() {
                     <Link
                       href={`/portfolio/${project.slug}`}
                       data-cursor="Read case study"
-                      className="group inline-flex items-center gap-3 border px-5 py-3 text-sm transition-colors duration-500 hover:border-brass"
+                      className="group inline-flex items-center gap-3 border px-5 py-3 text-sm transition-colors duration-500 hover:border-hair2"
                       style={{ borderColor: 'var(--line-2)' }}
                     >
                       Case study
                       <ArrowLong
                         size={15}
-                        className="text-brass transition-transform duration-500 group-hover:translate-x-1"
+                        className="text-primary transition-transform duration-500 group-hover:translate-x-1"
                       />
                     </Link>
                     {project.liveUrl ? (
@@ -132,7 +131,7 @@ export default function WorkPlates() {
                         href={project.liveUrl}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="inline-flex items-center gap-2 px-2 py-3 text-sm text-bone-2 transition-colors hover:text-brass"
+                        className="inline-flex items-center gap-2 px-2 py-3 text-sm text-gray-400 transition-colors hover:text-primary"
                       >
                         Live site
                         <ArrowDiagonal size={13} />
@@ -174,14 +173,14 @@ export default function WorkPlates() {
           <Link
             href="/portfolio"
             data-cursor="All projects"
-            className="group inline-flex items-center gap-4 border px-8 py-4 transition-colors duration-500 hover:border-brass"
+            className="group inline-flex items-center gap-4 border px-8 py-4 transition-colors duration-500 hover:border-hair2"
             style={{ borderColor: 'var(--line-2)' }}
           >
-            <span className="mono text-[0.7rem] text-brass">08</span>
+            <span className="text-[0.7rem] text-primary">08</span>
             <span className="text-sm">See every project</span>
             <ArrowLong
               size={16}
-              className="text-brass transition-transform duration-500 group-hover:translate-x-1.5"
+              className="text-primary transition-transform duration-500 group-hover:translate-x-1.5"
             />
           </Link>
         </Reveal>

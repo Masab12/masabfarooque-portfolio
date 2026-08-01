@@ -1,73 +1,73 @@
 'use client';
 
 import Link from 'next/link';
+import { motion } from 'framer-motion';
 import { site } from '@/app/data/site';
-import { ArrowLong, Spark } from '@/app/components/marks';
+import { ArrowLong } from '@/app/components/marks';
+import WordsPullUpMultiStyle from '@/app/components/motion/WordsPullUpMultiStyle';
 import Magnetic from '@/app/components/core/Magnetic';
-import TextReveal from '@/app/components/core/TextReveal';
-import Reveal from '@/app/components/core/Reveal';
+
+const EASE = [0.16, 1, 0.3, 1] as const;
 
 export default function ContactCTA() {
   return (
-    <section className="relative overflow-hidden py-24 md:py-40">
-      <div className="warp" />
-      <div
-        aria-hidden
-        className="pointer-events-none absolute left-1/2 top-1/2 h-[70vmin] w-[70vmin] -translate-x-1/2 -translate-y-1/2 rounded-full"
-        style={{
-          background: 'radial-gradient(circle, rgba(200,155,82,0.10), transparent 68%)',
-          filter: 'blur(30px)',
-        }}
-      />
+    <section className="bg-black px-4 py-12 sm:px-6 md:px-8 md:py-20">
+      <div className="relative mx-auto max-w-6xl overflow-hidden rounded-2xl bg-[#101010] px-5 py-20 text-center sm:px-10 md:rounded-[2rem] md:py-28">
+        <div className="bg-noise pointer-events-none absolute inset-0 opacity-[0.12]" />
 
-      <div className="shell relative text-center">
-        <Reveal className="mb-8 flex items-center justify-center gap-3" y={12}>
-          <Spark size={11} className="text-brass" />
-          <span className="eyebrow">{site.availability}</span>
-          <Spark size={11} className="text-brass" />
-        </Reveal>
+        <div className="relative">
+          <p className="text-[10px] text-primary sm:text-xs">{site.availability}</p>
 
-        <TextReveal
-          as="h2"
-          mode="words"
-          text="Have something worth building"
-          className="display wash mx-auto max-w-[13ch] text-[clamp(2.6rem,8.5vw,7.5rem)]"
-        />
+          <div className="mx-auto mt-8 max-w-3xl">
+            <WordsPullUpMultiStyle
+              className="text-3xl leading-[0.95] sm:text-4xl sm:leading-[0.9] md:text-5xl lg:text-6xl"
+              segments={[
+                { text: 'Tell me what you are' },
+                { text: 'trying to build.', className: 'serif-italic' },
+              ]}
+            />
+          </div>
 
-        <Reveal delay={0.15} className="mx-auto mt-8 max-w-xl">
-          <p className="lede">
-            Tell me what you are trying to make and what is in the way. If I am the right
-            person you will get a scope and a number. If I am not, I will say so.
-          </p>
-        </Reveal>
-
-        <Reveal delay={0.25} className="mt-12 flex flex-col items-center justify-center gap-5 sm:flex-row">
-          <Magnetic radius={120} pull={0.3}>
-            <Link
-              href="/contact"
-              data-cursor="Say hello"
-              className="group relative inline-flex items-center gap-4 overflow-hidden px-10 py-5 text-sm uppercase tracking-[0.16em]"
-              style={{ background: 'var(--brass)', color: 'var(--ink)' }}
-            >
-              <span className="relative z-10">Start a project</span>
-              <ArrowLong
-                size={17}
-                className="relative z-10 transition-transform duration-500 group-hover:translate-x-1.5"
-              />
-              <span
-                className="absolute inset-0 origin-left scale-x-0 transition-transform duration-[650ms] ease-out group-hover:scale-x-100"
-                style={{ background: 'var(--brass-hi)' }}
-              />
-            </Link>
-          </Magnetic>
-
-          <a
-            href={`mailto:${site.email}`}
-            className="display-tight text-[clamp(1rem,1.6vw,1.3rem)] text-bone-2 underline-offset-8 transition-colors duration-500 hover:text-brass hover:underline"
+          <motion.p
+            initial={{ y: 20, opacity: 0 }}
+            whileInView={{ y: 0, opacity: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8, delay: 0.3, ease: EASE }}
+            className="mx-auto mt-7 max-w-xl text-xs text-primary/70 sm:text-sm md:text-base"
+            style={{ lineHeight: 1.5 }}
           >
-            {site.email}
-          </a>
-        </Reveal>
+            If I am the right person you will get a scope and a number in writing. If I am
+            not, I will say so and point you somewhere better.
+          </motion.p>
+
+          <motion.div
+            initial={{ y: 20, opacity: 0 }}
+            whileInView={{ y: 0, opacity: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8, delay: 0.45, ease: EASE }}
+            className="mt-10 flex flex-col items-center justify-center gap-5 sm:flex-row"
+          >
+            <Magnetic radius={110} pull={0.28}>
+              <Link
+                href="/contact"
+                data-cursor="Say hello"
+                className="group inline-flex items-center gap-2 rounded-full bg-primary py-1.5 pl-6 pr-1.5 text-sm font-medium text-black transition-all duration-300 hover:gap-3 sm:text-base"
+              >
+                Start a project
+                <span className="flex h-9 w-9 items-center justify-center rounded-full bg-black transition-transform duration-300 group-hover:scale-110 sm:h-10 sm:w-10">
+                  <ArrowLong size={16} className="text-cream" />
+                </span>
+              </Link>
+            </Magnetic>
+
+            <a
+              href={`mailto:${site.email}`}
+              className="text-sm text-gray-400 underline-offset-8 transition-colors duration-300 hover:text-cream hover:underline"
+            >
+              {site.email}
+            </a>
+          </motion.div>
+        </div>
       </div>
     </section>
   );

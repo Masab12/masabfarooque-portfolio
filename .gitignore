@@ -48,8 +48,7 @@ coverage/
 next-env.d.ts
 .cache/
 
-# Files replaced by the 2026 rebuild, safe to remove
+# Session scratch, safe to delete
 _to_delete/
-
-# Local agent settings
-.claude/
+_commit-message.txt
+.claude/settings.local.json

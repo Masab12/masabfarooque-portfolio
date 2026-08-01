@@ -6,7 +6,7 @@ import { projects, getProject, categoryLabels } from '@/app/data/projects';
 import { site } from '@/app/data/site';
 import { ArrowLong, ArrowDiagonal, MarkCheck, Spark } from '@/app/components/marks';
 import Reveal from '@/app/components/core/Reveal';
-import TextReveal from '@/app/components/core/TextReveal';
+import WordsPullUp from '@/app/components/motion/WordsPullUp';
 import ContactCTA from '@/app/components/home/ContactCTA';
 
 export function generateStaticParams() {
@@ -59,28 +59,26 @@ export default async function CaseStudyPage({ params }: { params: Promise<{ slug
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} />
 
       <header className="relative overflow-hidden pt-[calc(var(--nav-h)+3.5rem)]">
-        <div className="warp" />
-
+  
         <div className="shell relative">
           <Reveal className="flex flex-wrap items-center gap-x-4 gap-y-2" y={12}>
-            <Link href="/portfolio" className="eyebrow transition-colors hover:text-brass">
+            <Link href="/portfolio" className="label transition-colors hover:text-primary">
               Work
             </Link>
-            <span className="eyebrow opacity-40">/</span>
-            <span className="eyebrow text-brass">{categoryLabels[project.category]}</span>
-            <span className="eyebrow opacity-40">/</span>
-            <span className="eyebrow">{project.year}</span>
+            <span className="label opacity-40">/</span>
+            <span className="label text-primary">{categoryLabels[project.category]}</span>
+            <span className="label opacity-40">/</span>
+            <span className="label">{project.year}</span>
           </Reveal>
 
-          <TextReveal
+          <WordsPullUp
             as="h1"
-            mode="words"
             text={project.title}
-            className="display wash mt-7 text-[clamp(2.8rem,10vw,8.5rem)] uppercase"
+            className="mt-7 text-[clamp(2.6rem,9vw,7.5rem)] font-medium leading-[0.85] tracking-[-0.06em]"
           />
 
           <Reveal delay={0.12} className="mt-7 max-w-2xl">
-            <p className="lede">{project.summary}</p>
+            <p className="text-lede">{project.summary}</p>
           </Reveal>
 
           <Reveal
@@ -90,16 +88,16 @@ export default async function CaseStudyPage({ params }: { params: Promise<{ slug
             style={{ borderColor: 'var(--line)' }}
           >
             <div>
-              <p className="eyebrow mb-2">Client</p>
-              <p className="text-sm text-bone">{project.client}</p>
+              <p className="label mb-2">Client</p>
+              <p className="text-sm text-cream">{project.client}</p>
             </div>
             <div>
-              <p className="eyebrow mb-2">Year</p>
-              <p className="text-sm text-bone">{project.year}</p>
+              <p className="label mb-2">Year</p>
+              <p className="text-sm text-cream">{project.year}</p>
             </div>
             <div className="col-span-2">
-              <p className="eyebrow mb-2">Role</p>
-              <p className="text-sm text-bone">{project.role}</p>
+              <p className="label mb-2">Role</p>
+              <p className="text-sm text-cream">{project.role}</p>
             </div>
           </Reveal>
         </div>
@@ -134,19 +132,19 @@ export default async function CaseStudyPage({ params }: { params: Promise<{ slug
           <Reveal className="md:col-span-3" y={16}>
             <div className="sticky top-[calc(var(--nav-h)+2rem)]">
               <div className="flex items-center gap-3">
-                <Spark size={10} className="text-brass" />
-                <span className="eyebrow">Overview</span>
+                <Spark size={10} className="text-primary" />
+                <span className="label">Overview</span>
               </div>
               {project.liveUrl ? (
                 <a
                   href={project.liveUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="group mt-6 inline-flex items-center gap-2 border px-4 py-2.5 text-xs transition-colors duration-500 hover:border-brass"
+                  className="group mt-6 inline-flex items-center gap-2 border px-4 py-2.5 text-xs transition-colors duration-500 hover:border-hair2"
                   style={{ borderColor: 'var(--line-2)' }}
                 >
                   Visit live site
-                  <ArrowDiagonal size={12} className="text-brass" />
+                  <ArrowDiagonal size={12} className="text-primary" />
                 </a>
               ) : null}
             </div>
@@ -155,7 +153,7 @@ export default async function CaseStudyPage({ params }: { params: Promise<{ slug
           <div className="space-y-6 md:col-span-8 md:col-start-5">
             {project.overview.map((paragraph, i) => (
               <Reveal key={i} delay={i * 0.06}>
-                <p className="text-[1.02rem] leading-[1.75] text-bone-2">{paragraph}</p>
+                <p className="text-[1.02rem] leading-[1.75] text-gray-400">{paragraph}</p>
               </Reveal>
             ))}
           </div>
@@ -171,11 +169,11 @@ export default async function CaseStudyPage({ params }: { params: Promise<{ slug
               style={{ background: 'var(--line)' }}
             >
               {project.metrics.map((metric) => (
-                <div key={metric.label} className="p-7 md:p-10" style={{ background: 'var(--ink)' }}>
-                  <p className="display-tight text-[clamp(1.8rem,4vw,3.2rem)] text-brass">
+                <div key={metric.label} className="p-7 md:p-10" style={{ background: 'var(--bg)' }}>
+                  <p className="text-[clamp(1.8rem,4vw,3.2rem)] text-primary">
                     {metric.value}
                   </p>
-                  <p className="eyebrow mt-3">{metric.label}</p>
+                  <p className="label mt-3">{metric.label}</p>
                 </div>
               ))}
             </Reveal>
@@ -187,14 +185,14 @@ export default async function CaseStudyPage({ params }: { params: Promise<{ slug
         <div className="grid gap-12 md:grid-cols-12">
           <div className="md:col-span-6">
             <Reveal className="flex items-center gap-3" y={12}>
-              <span className="mono text-[0.7rem] text-brass">A</span>
-              <span className="eyebrow">What it does</span>
+              <span className="text-[0.7rem] text-primary">A</span>
+              <span className="label">What it does</span>
             </Reveal>
             <ul className="mt-7 space-y-4">
               {project.features.map((feature, i) => (
                 <Reveal as="li" key={feature} delay={i * 0.04}>
-                  <span className="flex gap-4 border-b pb-4 text-sm leading-relaxed text-bone-2" style={{ borderColor: 'var(--line)' }}>
-                    <MarkCheck size={16} className="mt-0.5 shrink-0 text-brass" />
+                  <span className="flex gap-4 border-b pb-4 text-sm leading-relaxed text-gray-400" style={{ borderColor: 'var(--line)' }}>
+                    <MarkCheck size={16} className="mt-0.5 shrink-0 text-primary" />
                     {feature}
                   </span>
                 </Reveal>
@@ -204,14 +202,14 @@ export default async function CaseStudyPage({ params }: { params: Promise<{ slug
 
           <div className="md:col-span-5 md:col-start-8">
             <Reveal className="flex items-center gap-3" y={12}>
-              <span className="mono text-[0.7rem] text-brass">B</span>
-              <span className="eyebrow">The hard parts</span>
+              <span className="text-[0.7rem] text-primary">B</span>
+              <span className="label">The hard parts</span>
             </Reveal>
             <ul className="mt-7 space-y-4">
               {project.challenges.map((challenge, i) => (
                 <Reveal as="li" key={challenge} delay={i * 0.04}>
-                  <span className="flex gap-4 border-b pb-4 text-sm leading-relaxed text-bone-2" style={{ borderColor: 'var(--line)' }}>
-                    <span className="mt-2 h-px w-4 shrink-0" style={{ background: 'var(--ember)' }} />
+                  <span className="flex gap-4 border-b pb-4 text-sm leading-relaxed text-gray-400" style={{ borderColor: 'var(--line)' }}>
+                    <span className="mt-2 h-px w-4 shrink-0" style={{ background: 'var(--gray-500)' }} />
                     {challenge}
                   </span>
                 </Reveal>
@@ -219,12 +217,12 @@ export default async function CaseStudyPage({ params }: { params: Promise<{ slug
             </ul>
 
             <Reveal delay={0.15} className="mt-10">
-              <p className="eyebrow mb-4">Built with</p>
+              <p className="label mb-4">Built with</p>
               <div className="flex flex-wrap gap-2">
                 {project.stack.map((tech) => (
                   <span
                     key={tech}
-                    className="mono border px-3 py-1.5 text-[0.62rem] text-bone-2"
+                    className="border px-3 py-1.5 text-[0.62rem] text-gray-400"
                     style={{ borderColor: 'var(--line-2)' }}
                   >
                     {tech}
@@ -239,7 +237,7 @@ export default async function CaseStudyPage({ params }: { params: Promise<{ slug
       {project.images.length > 1 ? (
         <section className="shell pb-16 md:pb-24">
           <Reveal className="flex items-center gap-4" y={12}>
-            <span className="eyebrow whitespace-nowrap">Screens</span>
+            <span className="label whitespace-nowrap">Screens</span>
             <span className="h-px flex-1" style={{ background: 'var(--line)' }} />
           </Reveal>
 
@@ -272,14 +270,14 @@ export default async function CaseStudyPage({ params }: { params: Promise<{ slug
         <Link href={`/portfolio/${next.slug}`} className="group block" data-cursor="Next project">
           <div className="shell flex flex-col gap-6 py-14 md:flex-row md:items-center md:justify-between md:py-20">
             <div>
-              <p className="eyebrow mb-4">Next project</p>
-              <p className="display text-[clamp(2.2rem,6vw,4.6rem)] uppercase text-bone transition-colors duration-500 group-hover:text-brass">
+              <p className="label mb-4">Next project</p>
+              <p className="text-[clamp(2.2rem,6vw,4.6rem)] uppercase text-cream transition-colors duration-500 group-hover:text-primary">
                 {next.title}
               </p>
             </div>
             <ArrowLong
               size={44}
-              className="text-brass transition-transform duration-700 group-hover:translate-x-4"
+              className="text-primary transition-transform duration-700 group-hover:translate-x-4"
             />
           </div>
         </Link>

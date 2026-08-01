@@ -34,7 +34,6 @@ export default function WorkPage() {
       />
 
       <PageHead
-        index="01"
         label="Work"
         title="Things I built and shipped"
         intro="Eight projects that reached real users. Each one lists what it does, how it is put together and what was hard about it, because that is the part worth reading."

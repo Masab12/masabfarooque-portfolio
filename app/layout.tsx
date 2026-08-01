@@ -1,12 +1,10 @@
 import type { Metadata } from 'next';
 import Script from 'next/script';
 import './globals.css';
-import { displayFont, sansFont, monoFont } from './lib/fonts';
+import { sansFont, serifFont } from './lib/fonts';
 import { site } from './data/site';
 import SmoothScroll from './components/core/SmoothScroll';
 import Cursor from './components/core/Cursor';
-import Intro from './components/core/Intro';
-import ScrollRail from './components/core/ScrollRail';
 import Nav from './components/core/Nav';
 import Footer from './components/core/Footer';
 
@@ -14,7 +12,7 @@ export const viewport = {
   width: 'device-width',
   initialScale: 1,
   maximumScale: 5,
-  themeColor: '#0a0908',
+  themeColor: '#000000',
 };
 
 export const metadata: Metadata = {
@@ -138,7 +136,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
     <html
       lang="en"
       data-theme="dark"
-      className={`${displayFont.variable} ${sansFont.variable} ${monoFont.variable}`}
+      className={`${sansFont.variable} ${serifFont.variable}`}
     >
       <head>
         <link rel="canonical" href={site.url} />
@@ -175,15 +173,12 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
         <a
           href="#main"
           className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-[100] focus:border focus:px-4 focus:py-2"
-          style={{ background: 'var(--ink-2)', borderColor: 'var(--brass-edge)' }}
+          style={{ background: 'var(--surface-2)', borderColor: 'var(--line-2)' }}
         >
           Skip to content
         </a>
 
-        <Intro />
-        <div className="grain" aria-hidden />
         <Cursor />
-        <ScrollRail />
 
         <SmoothScroll>
           <Nav />

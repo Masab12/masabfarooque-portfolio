@@ -4,7 +4,7 @@ import { useEffect, useRef, useState } from 'react';
 import { lerp, prefersReducedMotion } from '@/app/lib/motion';
 
 /**
- * A two part cursor. A hard brass dot that tracks the pointer exactly and a
+ * A two part cursor. A hard cream dot that tracks the pointer exactly and a
  * thin ring that trails behind it. Any element carrying data-cursor swaps the
  * ring for a filled disc with that label written inside it.
  */
@@ -74,7 +74,7 @@ export default function Cursor() {
     <div aria-hidden className="pointer-events-none fixed inset-0 z-[70] hidden md:block">
       <div
         ref={dotRef}
-        className="fixed left-0 top-0 h-[5px] w-[5px] rounded-full bg-[var(--brass-hi)]"
+        className="fixed left-0 top-0 h-[5px] w-[5px] rounded-full bg-[var(--cream)]"
         style={{ opacity: visible && !label ? 1 : 0, transition: 'opacity 200ms ease' }}
       />
       <div
@@ -83,16 +83,16 @@ export default function Cursor() {
         style={{
           width: label ? 84 : active ? 44 : 30,
           height: label ? 84 : active ? 44 : 30,
-          border: `1px solid ${label ? 'transparent' : 'var(--brass-edge)'}`,
-          background: label ? 'var(--brass)' : 'transparent',
-          color: 'var(--ink)',
+          border: `1px solid ${label ? 'transparent' : 'var(--line-2)'}`,
+          background: label ? 'var(--cream)' : 'transparent',
+          color: 'var(--bg)',
           opacity: visible ? 1 : 0,
           transition:
             'width 340ms cubic-bezier(0.16,1,0.3,1), height 340ms cubic-bezier(0.16,1,0.3,1), background 240ms ease, border-color 240ms ease, opacity 220ms ease',
         }}
       >
         {label ? (
-          <span className="mono text-center text-[9px] uppercase leading-tight tracking-[0.16em]">
+          <span className="text-center text-[9px] uppercase leading-tight tracking-[0.16em]">
             {label}
           </span>
         ) : null}

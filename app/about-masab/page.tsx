@@ -5,7 +5,7 @@ import { capabilities } from '@/app/data/capabilities';
 import { faqs } from '@/app/data/timeline';
 import PageHead from '@/app/components/core/PageHead';
 import Reveal from '@/app/components/core/Reveal';
-import TextReveal from '@/app/components/core/TextReveal';
+import ScrollLetters from '@/app/components/motion/ScrollLetters';
 import Timeline from '@/app/components/about/Timeline';
 import Faq from '@/app/components/about/Faq';
 import ContactCTA from '@/app/components/home/ContactCTA';
@@ -61,7 +61,6 @@ export default function AboutPage() {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
 
       <PageHead
-        index="02"
         label="About"
         title="Masab Farooque"
         intro="I am a full stack engineer in Islamabad. I started with games, moved to the web, and now spend my days on the parts of a product that decide whether it survives contact with real users."
@@ -109,18 +108,18 @@ export default function AboutPage() {
               rel="noopener noreferrer"
               download={cv.fileName}
               data-cursor="Download PDF"
-              className="group mt-6 flex items-center justify-between border px-5 py-4 transition-colors duration-500 hover:border-brass"
+              className="group mt-6 flex items-center justify-between border px-5 py-4 transition-colors duration-500 hover:border-hair2"
               style={{ borderColor: 'var(--line-2)' }}
             >
               <span>
-                <span className="block text-sm text-bone">{cv.label}</span>
-                <span className="eyebrow mt-1.5 block">
+                <span className="block text-sm text-cream">{cv.label}</span>
+                <span className="label mt-1.5 block">
                   PDF, {cv.size}, updated {cv.updated}
                 </span>
               </span>
               <MarkDocument
                 size={20}
-                className="text-brass transition-transform duration-500 group-hover:translate-y-0.5"
+                className="text-primary transition-transform duration-500 group-hover:translate-y-0.5"
               />
             </a>
 
@@ -131,7 +130,7 @@ export default function AboutPage() {
                   href={s.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="group inline-flex items-center gap-2 text-sm text-bone-2 transition-colors hover:text-brass"
+                  className="group inline-flex items-center gap-2 text-sm text-gray-400 transition-colors hover:text-primary"
                 >
                   {s.label}
                   <ArrowDiagonal size={11} className="opacity-0 transition-opacity group-hover:opacity-70" />
@@ -142,18 +141,16 @@ export default function AboutPage() {
 
           <div className="md:col-span-6 md:col-start-7">
             <Reveal className="flex items-center gap-3" y={12}>
-              <Spark size={10} className="text-brass" />
-              <span className="eyebrow">The long version</span>
+              <Spark size={10} className="text-primary" />
+              <span className="label">The long version</span>
             </Reveal>
 
-            <TextReveal
-              as="p"
-              mode="read"
-              className="display-tight mt-7 text-[clamp(1.2rem,2.1vw,1.7rem)] leading-[1.4] text-bone"
+            <ScrollLetters
+              className="mt-7 text-[clamp(1.2rem,2.1vw,1.7rem)] leading-[1.4] text-cream"
               text="I started building because I wanted to make games, and games taught me the thing I still care about most: a system is only good when it feels right to the person using it."
             />
 
-            <div className="mt-8 space-y-5 text-[0.98rem] leading-[1.75] text-bone-2">
+            <div className="mt-8 space-y-5 text-[0.98rem] leading-[1.75] text-gray-400">
               <p>
                 Between 2020 and 2023 I shipped Unity games, won a few competitions, and learned
                 to work to a deadline that does not move. Two of those games passed ten thousand
@@ -186,8 +183,8 @@ export default function AboutPage() {
       <section className="border-y" style={{ borderColor: 'var(--line)' }}>
         <div className="shell py-16 md:py-24">
           <Reveal className="flex items-baseline gap-4" y={12}>
-            <span className="mono text-[0.7rem] text-brass">A</span>
-            <span className="eyebrow">The path so far</span>
+            <span className="text-[0.7rem] text-primary">A</span>
+            <span className="label">The path so far</span>
             <span className="mt-[-2px] h-px flex-1" style={{ background: 'var(--line)' }} />
           </Reveal>
 
@@ -199,19 +196,19 @@ export default function AboutPage() {
 
       <section className="shell py-16 md:py-24">
         <Reveal className="flex items-baseline gap-4" y={12}>
-          <span className="mono text-[0.7rem] text-brass">B</span>
-          <span className="eyebrow">Tools I reach for</span>
+          <span className="text-[0.7rem] text-primary">B</span>
+          <span className="label">Tools I reach for</span>
           <span className="mt-[-2px] h-px flex-1" style={{ background: 'var(--line)' }} />
         </Reveal>
 
         <div className="mt-10 grid gap-px md:grid-cols-3" style={{ background: 'var(--line)' }}>
           {toolGroups.map((group) => (
-            <div key={group.label} className="p-6 md:p-8" style={{ background: 'var(--ink)' }}>
-              <p className="eyebrow mb-4">{group.label}</p>
+            <div key={group.label} className="p-6 md:p-8" style={{ background: 'var(--bg)' }}>
+              <p className="label mb-4">{group.label}</p>
               <ul className="space-y-2">
                 {group.items.map((item) => (
-                  <li key={item} className="flex items-center gap-3 text-sm text-bone-2">
-                    <span className="h-px w-3" style={{ background: 'var(--brass)' }} />
+                  <li key={item} className="flex items-center gap-3 text-sm text-gray-400">
+                    <span className="h-px w-3" style={{ background: 'var(--cream)' }} />
                     {item}
                   </li>
                 ))}
@@ -227,8 +224,8 @@ export default function AboutPage() {
               className="border p-5"
               style={{ borderColor: 'var(--line)', borderRadius: '10px' }}
             >
-              <p className="mono text-[0.6rem] text-brass">{cap.index}</p>
-              <p className="mt-2 text-sm text-bone">{cap.title}</p>
+              <p className="text-[0.6rem] text-primary">{cap.index}</p>
+              <p className="mt-2 text-sm text-cream">{cap.title}</p>
             </div>
           ))}
         </Reveal>
@@ -237,8 +234,8 @@ export default function AboutPage() {
       <section className="border-t" style={{ borderColor: 'var(--line)' }}>
         <div className="shell py-16 md:py-24">
           <Reveal className="flex items-baseline gap-4" y={12}>
-            <span className="mono text-[0.7rem] text-brass">C</span>
-            <span className="eyebrow">Questions I get asked</span>
+            <span className="text-[0.7rem] text-primary">C</span>
+            <span className="label">Questions I get asked</span>
             <span className="mt-[-2px] h-px flex-1" style={{ background: 'var(--line)' }} />
           </Reveal>
 

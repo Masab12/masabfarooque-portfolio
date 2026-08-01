@@ -18,7 +18,6 @@ export default function TermsPage() {
   return (
     <>
       <PageHead
-        index="05"
         label="Legal"
         title="Terms"
         intro={`The terms that apply to development work I take on. Last updated ${LAST_UPDATED}.`}
@@ -126,7 +125,7 @@ export default function TermsPage() {
         <LegalSection index="10" title="Contact">
           <p>
             Questions about these terms, email{' '}
-            <a href={`mailto:${site.email}`} className="text-brass hover:underline">
+            <a href={`mailto:${site.email}`} className="text-primary hover:underline">
               {site.email}
             </a>
             .
@@ -136,19 +135,19 @@ export default function TermsPage() {
         <div className="mt-12 flex flex-wrap gap-4">
           <Link
             href="/privacy"
-            className="group inline-flex items-center gap-3 border px-5 py-3 text-sm transition-colors duration-500 hover:border-brass"
+            className="group inline-flex items-center gap-3 border px-5 py-3 text-sm transition-colors duration-500 hover:border-hair2"
             style={{ borderColor: 'var(--line-2)' }}
           >
             Privacy
-            <ArrowLong size={15} className="text-brass transition-transform group-hover:translate-x-1" />
+            <ArrowLong size={15} className="text-primary transition-transform group-hover:translate-x-1" />
           </Link>
           <Link
             href="/contact"
-            className="group inline-flex items-center gap-3 border px-5 py-3 text-sm transition-colors duration-500 hover:border-brass"
+            className="group inline-flex items-center gap-3 border px-5 py-3 text-sm transition-colors duration-500 hover:border-hair2"
             style={{ borderColor: 'var(--line-2)' }}
           >
             Contact
-            <ArrowLong size={15} className="text-brass transition-transform group-hover:translate-x-1" />
+            <ArrowLong size={15} className="text-primary transition-transform group-hover:translate-x-1" />
           </Link>
         </div>
       </div>

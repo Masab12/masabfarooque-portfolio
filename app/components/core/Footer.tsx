@@ -21,28 +21,28 @@ export default function Footer() {
   const year = new Date().getFullYear();
 
   return (
-    <footer className="relative border-t" style={{ borderColor: 'var(--line)', background: 'var(--ink-1)' }}>
+    <footer className="relative border-t" style={{ borderColor: 'var(--line)', background: 'var(--surface-1)' }}>
       <div className="shell py-14 md:py-20">
         <div className="grid gap-12 md:grid-cols-12">
           <div className="md:col-span-5">
-            <Monogram size={40} className="text-brass" />
-            <p className="mt-6 max-w-sm text-sm leading-relaxed text-bone-2">
+            <Monogram size={40} className="text-primary" />
+            <p className="mt-6 max-w-sm text-sm leading-relaxed text-gray-400">
               {site.tagline} Based in {site.location}, working with teams across Europe, North
               America and Asia.
             </p>
             <a
               href={`mailto:${site.email}`}
-              className="display-tight mt-7 inline-block text-[clamp(1.35rem,3vw,2rem)] text-bone transition-colors duration-500 hover:text-brass"
+              className="mt-7 inline-block text-[clamp(1.35rem,3vw,2rem)] text-cream transition-colors duration-500 hover:text-primary"
             >
               {site.email}
             </a>
           </div>
 
           <div className="md:col-span-3 md:col-start-7">
-            <p className="eyebrow">Pages</p>
+            <p className="label">Pages</p>
             <ul className="mt-5 space-y-2.5">
               <li>
-                <Link href="/" className="text-sm text-bone-2 transition-colors hover:text-brass">
+                <Link href="/" className="text-sm text-gray-400 transition-colors hover:text-primary">
                   Home
                 </Link>
               </li>
@@ -50,7 +50,7 @@ export default function Footer() {
                 <li key={item.href}>
                   <Link
                     href={item.href}
-                    className="text-sm text-bone-2 transition-colors hover:text-brass"
+                    className="text-sm text-gray-400 transition-colors hover:text-primary"
                   >
                     {item.label}
                   </Link>
@@ -62,7 +62,7 @@ export default function Footer() {
                   target="_blank"
                   rel="noopener noreferrer"
                   download={cv.fileName}
-                  className="group inline-flex items-center gap-2 text-sm text-bone-2 transition-colors hover:text-brass"
+                  className="group inline-flex items-center gap-2 text-sm text-gray-400 transition-colors hover:text-primary"
                 >
                   <MarkDocument size={14} className="opacity-60 group-hover:opacity-100" />
                   Download CV
@@ -72,7 +72,7 @@ export default function Footer() {
           </div>
 
           <div className="md:col-span-3">
-            <p className="eyebrow">Elsewhere</p>
+            <p className="label">Elsewhere</p>
             <ul className="mt-5 space-y-2.5">
               {socials.map((s) => {
                 const Glyph = glyphs[s.glyph as keyof typeof glyphs];
@@ -82,7 +82,7 @@ export default function Footer() {
                       href={s.href}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="group inline-flex items-center gap-2.5 text-sm text-bone-2 transition-colors hover:text-brass"
+                      className="group inline-flex items-center gap-2.5 text-sm text-gray-400 transition-colors hover:text-primary"
                     >
                       <Glyph size={15} className="opacity-60 group-hover:opacity-100" />
                       {s.label}
@@ -101,17 +101,17 @@ export default function Footer() {
         <div className="rule mt-14" />
 
         <div className="mt-6 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
-          <p className="eyebrow">
+          <p className="label">
             {year} {site.name}
           </p>
-          <p className="eyebrow max-w-md sm:text-right">
+          <p className="label max-w-md sm:text-right">
             Built with Next.js, GSAP and Lenis. Set in Fraunces, Manrope and IBM Plex Mono.
           </p>
           <div className="flex gap-5">
-            <Link href="/privacy" className="eyebrow hover:text-brass">
+            <Link href="/privacy" className="label hover:text-primary">
               Privacy
             </Link>
-            <Link href="/terms" className="eyebrow hover:text-brass">
+            <Link href="/terms" className="label hover:text-primary">
               Terms
             </Link>
           </div>

@@ -48,11 +48,11 @@ function Avatar({ review }: { review: Review }) {
   return (
     <span
       aria-hidden
-      className="mono flex h-11 w-11 shrink-0 items-center justify-center rounded-full text-[0.7rem]"
+      className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full text-[0.7rem]"
       style={{
-        border: '1px solid var(--brass-edge)',
-        background: 'var(--brass-veil)',
-        color: 'var(--brass)',
+        border: '1px solid var(--line-2)',
+        background: 'rgba(225,224,204,0.08)',
+        color: 'var(--cream)',
       }}
     >
       {initials(review.name)}
@@ -63,16 +63,16 @@ function Avatar({ review }: { review: Review }) {
 function ReviewCard({ review }: { review: Review }) {
   return (
     <figure
-      className="group relative overflow-hidden border p-6 transition-colors duration-500 hover:border-brass"
+      className="group relative overflow-hidden border p-6 transition-colors duration-500 hover:border-hair2"
       style={{
         borderColor: 'var(--line)',
-        background: 'var(--ink-1)',
+        background: 'var(--surface-1)',
         borderRadius: 'clamp(10px, 1.2vw, 18px)',
       }}
     >
-      <Quote size={26} className="mb-4 text-brass opacity-30" />
+      <Quote size={26} className="mb-4 text-primary opacity-30" />
 
-      <blockquote className="text-[0.9rem] leading-relaxed text-bone-2">
+      <blockquote className="text-[0.9rem] leading-relaxed text-gray-400">
         <span
           style={{
             display: '-webkit-box',
@@ -88,21 +88,21 @@ function ReviewCard({ review }: { review: Review }) {
       <figcaption className="mt-6 flex items-center gap-3 border-t pt-5" style={{ borderColor: 'var(--line)' }}>
         <Avatar review={review} />
         <div className="min-w-0 flex-1">
-          <p className="truncate text-sm text-bone">{review.name}</p>
-          <p className="mono mt-1 text-[0.6rem] text-bone-3">
+          <p className="truncate text-sm text-cream">{review.name}</p>
+          <p className="mt-1 text-[0.6rem] text-gray-500">
             {review.country || 'Fiverr client'}
             <span className="mx-1.5 opacity-40">/</span>
             {formatDate(review.date)}
           </p>
         </div>
         <div className="flex flex-col items-end gap-1.5">
-          <span className="flex gap-0.5 text-brass" aria-label={`${review.rating} out of 5`}>
+          <span className="flex gap-0.5 text-primary" aria-label={`${review.rating} out of 5`}>
             {Array.from({ length: review.rating }).map((_, i) => (
               <RatingMark key={i} size={8} />
             ))}
           </span>
           {review.orders > 1 ? (
-            <span className="mono text-[0.55rem] text-brass">{review.orders} orders</span>
+            <span className="text-[0.55rem] text-primary">{review.orders} orders</span>
           ) : null}
         </div>
       </figcaption>
@@ -181,10 +181,9 @@ export default function Testimonials() {
     <section className="relative overflow-hidden py-20 md:py-32" id="reviews">
       <div className="shell">
         <SectionHeader
-          index="05"
           label="Client words"
-          title="Twenty five clients, unedited"
-          note="Pulled straight from the Fiverr profile, newest first. Nothing rewritten, nothing cherry picked beyond keeping the software era."
+          title="Twenty five clients, unedited."
+          subtitle="Pulled from Fiverr, newest first, nothing rewritten."
         />
 
         <Reveal
@@ -197,11 +196,11 @@ export default function Testimonials() {
             { value: String(reviewSummary.countries), label: 'Client countries' },
             { value: `${reviewSummary.repeatShare}%`, label: 'Clients who came back' },
           ].map((item) => (
-            <div key={item.label} className="p-6 md:p-8" style={{ background: 'var(--ink-1)' }}>
-              <p className="display-tight text-[clamp(1.8rem,3.4vw,2.7rem)] text-brass">
+            <div key={item.label} className="p-6 md:p-8" style={{ background: 'var(--surface-1)' }}>
+              <p className="text-[clamp(1.8rem,3.4vw,2.7rem)] text-primary">
                 {item.value}
               </p>
-              <p className="eyebrow mt-2.5">{item.label}</p>
+              <p className="label mt-2.5">{item.label}</p>
             </div>
           ))}
         </Reveal>
@@ -224,7 +223,7 @@ export default function Testimonials() {
           className="mt-12 flex flex-col items-start justify-between gap-5 border-t pt-7 sm:flex-row sm:items-center"
           style={{ borderColor: 'var(--line)' }}
         >
-          <p className="max-w-xl text-xs leading-relaxed text-bone-3">
+          <p className="max-w-xl text-xs leading-relaxed text-gray-500">
             Reviews and profile photos are imported from my Fiverr seller profile and shown as
             written by the client. Fiverr is a trademark of its owner and this site is not
             affiliated with or endorsed by Fiverr.
@@ -233,14 +232,14 @@ export default function Testimonials() {
             href={reviewSummary.profileUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="group inline-flex shrink-0 items-center gap-3 border px-5 py-3 text-sm transition-colors duration-500 hover:border-brass"
+            className="group inline-flex shrink-0 items-center gap-3 border px-5 py-3 text-sm transition-colors duration-500 hover:border-hair2"
             style={{ borderColor: 'var(--line-2)' }}
           >
-            <GlyphFiverr size={16} className="text-brass" />
+            <GlyphFiverr size={16} className="text-primary" />
             Verify on Fiverr
             <ArrowDiagonal
               size={13}
-              className="text-brass transition-transform duration-500 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+              className="text-primary transition-transform duration-500 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
             />
           </a>
         </Reveal>

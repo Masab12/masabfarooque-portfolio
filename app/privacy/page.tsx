@@ -18,7 +18,6 @@ export default function PrivacyPage() {
   return (
     <>
       <PageHead
-        index="04"
         label="Legal"
         title="Privacy"
         intro={`How your information is handled on this site. Last updated ${LAST_UPDATED}.`}
@@ -33,7 +32,7 @@ export default function PrivacyPage() {
           </p>
           <p>
             Contact:{' '}
-            <a href={`mailto:${site.email}`} className="text-brass hover:underline">
+            <a href={`mailto:${site.email}`} className="text-primary hover:underline">
               {site.email}
             </a>
           </p>
@@ -119,19 +118,19 @@ export default function PrivacyPage() {
         <div className="mt-12 flex flex-wrap gap-4">
           <Link
             href="/terms"
-            className="group inline-flex items-center gap-3 border px-5 py-3 text-sm transition-colors duration-500 hover:border-brass"
+            className="group inline-flex items-center gap-3 border px-5 py-3 text-sm transition-colors duration-500 hover:border-hair2"
             style={{ borderColor: 'var(--line-2)' }}
           >
             Terms
-            <ArrowLong size={15} className="text-brass transition-transform group-hover:translate-x-1" />
+            <ArrowLong size={15} className="text-primary transition-transform group-hover:translate-x-1" />
           </Link>
           <Link
             href="/contact"
-            className="group inline-flex items-center gap-3 border px-5 py-3 text-sm transition-colors duration-500 hover:border-brass"
+            className="group inline-flex items-center gap-3 border px-5 py-3 text-sm transition-colors duration-500 hover:border-hair2"
             style={{ borderColor: 'var(--line-2)' }}
           >
             Contact
-            <ArrowLong size={15} className="text-brass transition-transform group-hover:translate-x-1" />
+            <ArrowLong size={15} className="text-primary transition-transform group-hover:translate-x-1" />
           </Link>
         </div>
       </div>

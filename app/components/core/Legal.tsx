@@ -13,10 +13,10 @@ export function LegalSection({
     <Reveal as="section" className="border-t py-8" y={16} style={{ borderColor: 'var(--line)' }}>
       <div className="grid gap-4 md:grid-cols-12">
         <h2 className="md:col-span-4">
-          <span className="mono mr-3 text-[0.65rem] text-brass">{index}</span>
-          <span className="display-tight text-[1.05rem] text-bone">{title}</span>
+          <span className="mr-3 text-[0.65rem] text-primary">{index}</span>
+          <span className="text-[1.05rem] text-cream">{title}</span>
         </h2>
-        <div className="space-y-4 text-sm leading-relaxed text-bone-2 md:col-span-7 md:col-start-6">
+        <div className="space-y-4 text-sm leading-relaxed text-gray-400 md:col-span-7 md:col-start-6">
           {children}
         </div>
       </div>
@@ -29,7 +29,7 @@ export function LegalList({ items }: { items: string[] }) {
     <ul className="space-y-2.5">
       {items.map((item) => (
         <li key={item} className="flex gap-3">
-          <span className="mt-[0.6rem] h-px w-3 shrink-0" style={{ background: 'var(--brass)' }} />
+          <span className="mt-[0.6rem] h-px w-3 shrink-0" style={{ background: 'var(--cream)' }} />
           {item}
         </li>
       ))}

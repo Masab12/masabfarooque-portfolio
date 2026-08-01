@@ -1,8 +1,11 @@
 # masabfarooque.com
 
 Portfolio of Masab Farooque, full stack engineer. Next.js 16 App Router,
-TypeScript, Tailwind, GSAP and Lenis. Dark only, single brass accent, no icon
-library anywhere in the project.
+TypeScript, Tailwind, Framer Motion, GSAP and Lenis. Black ground, warm cream
+type, cinematic video backdrops, no icon library anywhere in the project.
+
+Type is Almarai everywhere with Instrument Serif italic as the only accent
+voice. Both are self hosted.
 
 ## Running it
 
@@ -24,10 +27,12 @@ app/
     work/          project index
     about/         timeline and FAQ
     contact/       contact form
+    motion/        WordsPullUp, WordsPullUpMultiStyle and ScrollLetters
     marks/         every SVG glyph on the site, drawn by hand
   lib/             font loading and GSAP helpers
 public/
-  fonts/           self hosted Fraunces, Manrope and IBM Plex Mono
+  fonts/           self hosted Almarai and Instrument Serif
+  video/           generated poster frames for the hero and feature video
   projects/        case study imagery, WebP only
   CV/              downloadable CV, linked from the nav, about page and footer
 scripts/
@@ -41,6 +46,7 @@ scripts/
 | `node scripts/optimise-images.mjs` | Converts any PNG or JPEG in `/public` to WebP, caps width at 1800px and deletes the source |
 | `node scripts/generate-sitemap.mjs` | Rewrites `public/sitemap.xml`, including one entry per case study. Runs automatically after `npm run build` |
 | `node scripts/gen-og.mjs` | Regenerates `public/og-image.webp` using the real site fonts. Needs `npm i -D playwright` first |
+| `node scripts/gen-posters.mjs` | Regenerates the dark video poster frames in `public/video`. Needs `npm i -D playwright` first |
 
 ### Updating the reviews
 
@@ -58,6 +64,13 @@ constants at the top of the file to change any of that.
 Add an entry to `app/data/projects.ts`. The case study page, the work index,
 the sitemap and the JSON-LD all read from that one array. Drop the imagery in
 `public/projects` and run `node scripts/optimise-images.mjs`.
+
+### Swapping the video
+
+The hero and the first feature card play video. Both URLs live in one place,
+`media` in `app/data/site.ts`, alongside their poster frames. Point them at
+your own footage and nothing else has to change. The posters are deliberately
+dark so cream type still reads if a video is slow or blocked.
 
 ## Notes
 

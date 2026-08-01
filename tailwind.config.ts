@@ -4,51 +4,29 @@ const config: Config = {
   content: ['./app/**/*.{js,ts,jsx,tsx,mdx}'],
   theme: {
     extend: {
-      screens: {
-        xs: '480px',
-        '3xl': '1800px',
-      },
-      maxWidth: {
-        shell: '96rem',
-      },
+      screens: { xs: '480px', '3xl': '1800px' },
+      maxWidth: { shell: '88rem' },
       fontFamily: {
         sans: ['var(--font-sans)', 'system-ui', 'sans-serif'],
-        display: ['var(--font-display)', 'Georgia', 'serif'],
-        mono: ['var(--font-mono)', 'monospace'],
+        serif: ['var(--font-serif)', 'Georgia', 'serif'],
       },
       colors: {
-        ink: {
-          DEFAULT: 'var(--ink)',
-          1: 'var(--ink-1)',
-          2: 'var(--ink-2)',
-          3: 'var(--ink-3)',
-          4: 'var(--ink-4)',
+        primary: '#DEDBC8',
+        cream: '#E1E0CC',
+        surface: {
+          1: '#101010',
+          2: '#212121',
+          3: '#2a2a2a',
         },
-        bone: {
-          DEFAULT: 'var(--bone)',
-          2: 'var(--bone-2)',
-          3: 'var(--bone-3)',
-        },
-        brass: {
-          DEFAULT: 'var(--brass)',
-          hi: 'var(--brass-hi)',
-          lo: 'var(--brass-lo)',
-        },
-        ember: 'var(--ember)',
       },
       borderColor: {
         DEFAULT: 'var(--line)',
         hair: 'var(--line)',
         hair2: 'var(--line-2)',
-        hair3: 'var(--line-3)',
-        brass: 'var(--brass-edge)',
       },
       transitionTimingFunction: {
         out: 'cubic-bezier(0.16, 1, 0.3, 1)',
-        io: 'cubic-bezier(0.65, 0, 0.35, 1)',
-      },
-      boxShadow: {
-        plate: 'var(--shadow-plate)',
+        card: 'cubic-bezier(0.22, 1, 0.36, 1)',
       },
     },
   },

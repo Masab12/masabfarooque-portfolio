@@ -1,41 +1,33 @@
 import localFont from 'next/font/local';
 
 /**
- * Type system.
+ * Two families, nothing else.
  *
- * Display  Fraunces        variable serif, high contrast, WONK + SOFT axes on
- * Sans     Manrope         variable grotesk for body and interface
- * Mono     IBM Plex Mono   for meta labels, indices and data
- *
- * All three are self hosted so the site never waits on a third party font CDN.
+ * Almarai carries everything: headings, body, labels, numbers. Instrument
+ * Serif appears only in italic, as an accent inside a sentence. Both are self
+ * hosted so the page never blocks on a third party font CDN.
  */
 
-export const displayFont = localFont({
-  src: [
-    { path: '../../public/fonts/Fraunces-Variable.woff2', weight: '100 900', style: 'normal' },
-    { path: '../../public/fonts/Fraunces-VariableItalic.woff2', weight: '100 900', style: 'italic' },
-  ],
-  variable: '--font-display',
-  display: 'swap',
-  preload: true,
-  fallback: ['Georgia', 'Times New Roman', 'serif'],
-});
-
 export const sansFont = localFont({
-  src: [{ path: '../../public/fonts/Manrope-Variable.woff2', weight: '200 800', style: 'normal' }],
+  src: [
+    { path: '../../public/fonts/Almarai-300.woff2', weight: '300', style: 'normal' },
+    { path: '../../public/fonts/Almarai-400.woff2', weight: '400', style: 'normal' },
+    { path: '../../public/fonts/Almarai-700.woff2', weight: '700', style: 'normal' },
+    { path: '../../public/fonts/Almarai-800.woff2', weight: '800', style: 'normal' },
+  ],
   variable: '--font-sans',
   display: 'swap',
   preload: true,
-  fallback: ['system-ui', '-apple-system', 'Segoe UI', 'sans-serif'],
+  fallback: ['system-ui', '-apple-system', 'Segoe UI', 'Roboto', 'sans-serif'],
 });
 
-export const monoFont = localFont({
+export const serifFont = localFont({
   src: [
-    { path: '../../public/fonts/IBMPlexMono-400.woff2', weight: '400', style: 'normal' },
-    { path: '../../public/fonts/IBMPlexMono-500.woff2', weight: '500', style: 'normal' },
+    { path: '../../public/fonts/InstrumentSerif-Italic.woff2', weight: '400', style: 'italic' },
+    { path: '../../public/fonts/InstrumentSerif.woff2', weight: '400', style: 'normal' },
   ],
-  variable: '--font-mono',
+  variable: '--font-serif',
   display: 'swap',
-  preload: false,
-  fallback: ['ui-monospace', 'SFMono-Regular', 'Menlo', 'monospace'],
+  preload: true,
+  fallback: ['Georgia', 'Times New Roman', 'serif'],
 });

@@ -24,9 +24,24 @@ export const cv = {
 
 export const nav = [
   { label: 'Work', href: '/portfolio', index: '01' },
-  { label: 'About', href: '/about-masab', index: '02' },
-  { label: 'Contact', href: '/contact', index: '03' },
+  { label: 'Capabilities', href: '/#capabilities', index: '02' },
+  { label: 'Reviews', href: '/#reviews', index: '03' },
+  { label: 'About', href: '/about-masab', index: '04' },
+  { label: 'Contact', href: '/contact', index: '05' },
 ] as const;
+
+/**
+ * Motion backdrops. Swap these two URLs for your own footage and the whole
+ * hero and feature grid re-skin without touching a component.
+ */
+export const media = {
+  heroVideo:
+    'https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260405_170732_8a9ccda6-5cff-4628-b164-059c500a2b41.mp4',
+  heroPoster: '/video/hero-poster.webp',
+  featureVideo:
+    'https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260406_133058_0504132a-0cf3-4450-a370-8ea3b05c95d4.mp4',
+  featurePoster: '/video/feature-poster.webp',
+} as const;
 
 export const socials = [
   { label: 'GitHub', handle: 'Masab12', href: 'https://github.com/Masab12', glyph: 'github' },

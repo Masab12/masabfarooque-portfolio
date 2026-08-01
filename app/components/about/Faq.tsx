@@ -15,7 +15,7 @@ export default function Faq() {
         const isOpen = open === i;
         return (
           <Reveal key={faq.question} delay={i * 0.04} y={16}>
-            <div className="border-t" style={{ borderColor: isOpen ? 'var(--brass-edge)' : 'var(--line)' }}>
+            <div className="border-t" style={{ borderColor: isOpen ? 'var(--line-2)' : 'var(--line)' }}>
               <button
                 type="button"
                 onClick={() => setOpen(isOpen ? null : i)}
@@ -23,12 +23,12 @@ export default function Faq() {
                 className="flex w-full items-start justify-between gap-6 py-6 text-left"
               >
                 <span className="flex gap-5">
-                  <span className="mono mt-1 text-[0.65rem] text-brass">
+                  <span className="mt-1 text-[0.65rem] text-primary">
                     {String(i + 1).padStart(2, '0')}
                   </span>
                   <span
-                    className="display-tight text-[clamp(1.05rem,1.9vw,1.45rem)] transition-colors duration-400"
-                    style={{ color: isOpen ? 'var(--brass)' : 'var(--bone)' }}
+                    className="text-[clamp(1.05rem,1.9vw,1.45rem)] transition-colors duration-400"
+                    style={{ color: isOpen ? 'var(--cream)' : 'var(--cream)' }}
                   >
                     {faq.question}
                   </span>
@@ -36,9 +36,9 @@ export default function Faq() {
                 <span
                   className="mt-1 flex h-7 w-7 shrink-0 items-center justify-center border transition-all duration-500"
                   style={{
-                    borderColor: isOpen ? 'var(--brass-edge)' : 'var(--line-2)',
+                    borderColor: isOpen ? 'var(--line-2)' : 'var(--line-2)',
                     transform: isOpen ? 'rotate(45deg)' : 'rotate(0deg)',
-                    color: isOpen ? 'var(--brass)' : 'var(--bone-2)',
+                    color: isOpen ? 'var(--cream)' : 'var(--gray-400)',
                   }}
                 >
                   <PlusMark size={13} />
@@ -54,7 +54,7 @@ export default function Faq() {
                     transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
                     className="overflow-hidden"
                   >
-                    <p className="max-w-2xl pb-7 pl-[3.1rem] text-sm leading-relaxed text-bone-2">
+                    <p className="max-w-2xl pb-7 pl-[3.1rem] text-sm leading-relaxed text-gray-400">
                       {faq.answer}
                     </p>
                   </motion.div>

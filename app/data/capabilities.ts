@@ -8,13 +8,14 @@ export interface Capability {
   tools: string[];
 }
 
+/** The long form list, used on the about page. */
 export const capabilities: Capability[] = [
   {
     index: '01',
     title: 'Full stack product build',
     mark: 'stack',
     description:
-      'One person owning the database, the API, the interface and the deploy. That means fewer handoffs, fewer gaps and a codebase that stays coherent because one head held the whole shape of it.',
+      'One person owning the database, the API, the interface and the deploy. Fewer handoffs, fewer gaps, and a codebase that stays coherent because one head held the whole shape of it.',
     tools: ['Next.js', 'React', 'TypeScript', 'Node.js', 'NestJS', 'Go', 'PostgreSQL'],
   },
   {
@@ -56,6 +57,52 @@ export const capabilities: Capability[] = [
     description:
       'Rendering strategy, Core Web Vitals, structured data and the migration work that makes a site legible to crawlers. I have taken client sites from client side rendering to server rendering and watched the numbers move.',
     tools: ['SSR and ISR', 'Core Web Vitals', 'Schema.org', 'Lighthouse', 'Analytics'],
+  },
+];
+
+/** The three cards beside the video on the homepage. */
+export interface FeatureCard {
+  number: string;
+  title: string;
+  mark: 'stack' | 'core' | 'vault';
+  items: string[];
+  href: string;
+}
+
+export const featureCards: FeatureCard[] = [
+  {
+    number: '01',
+    title: 'Systems design.',
+    mark: 'stack',
+    items: [
+      'Schema and service boundaries drawn before any code exists',
+      'Queues, retries and idempotent jobs that survive a bad night',
+      'Deployment topology you can hand to an ops team',
+      'Written scope in plain language, agreed before work starts',
+    ],
+    href: '/portfolio/navia',
+  },
+  {
+    number: '02',
+    title: 'AI that ships.',
+    mark: 'core',
+    items: [
+      'Document parsing across PDF, DOCX and pasted email threads',
+      'Retrieval over your own material so the voice stays yours',
+      'Guardrails, fallbacks and a cost budget per request',
+    ],
+    href: '/portfolio/the-proposal-maker',
+  },
+  {
+    number: '03',
+    title: 'Handover kit.',
+    mark: 'vault',
+    items: [
+      'A repository your next developer can read without me',
+      'Deployed, documented and walked through on a call',
+      'A support window after launch, not a disappearing act',
+    ],
+    href: '/contact',
   },
 ];
 

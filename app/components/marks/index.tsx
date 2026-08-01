@@ -68,7 +68,7 @@ export function Monogram({ size = 40, className }: { size?: number; className?: 
   );
 }
 
-/** A four point brass star used as a separator between marquee items. */
+/** A four point star used as a separator between items. */
 export function Spark({ size = 12, className }: { size?: number; className?: string }) {
   return (
     <svg width={size} height={size} viewBox="0 0 24 24" fill="currentColor" className={className} aria-hidden focusable="false">
@@ -324,7 +324,7 @@ export function GlyphFiverr({ size = 18, className }: { size?: number; className
       <rect x="2" y="2" width="20" height="20" rx="4" fill="currentColor" />
       <path
         d="M14.6 8.2h-2.3v-.4c0-.6.4-.9 1-.9h1.3V4.6h-1.6c-2 0-3.3 1.2-3.3 3.1v.5H8.2v2.4h1.5V17h2.6v-6.4h2.3V17h2.6v-8.8h-2.6Z"
-        fill="var(--ink)"
+        fill="var(--bg)"
       />
     </svg>
   );
@@ -365,7 +365,7 @@ export function LogoChord({ className, style }: LogoProps) {
         y="19.5"
         fill="currentColor"
         opacity="0.55"
-        fontFamily="var(--font-mono), monospace"
+        fontFamily="var(--font-sans), sans-serif"
         fontSize="13"
         letterSpacing="0"
       >
@@ -419,7 +419,7 @@ export function LogoMindstorm({ className, style }: LogoProps) {
         y="19.5"
         fill="currentColor"
         opacity="0.5"
-        fontFamily="var(--font-mono), monospace"
+        fontFamily="var(--font-sans), sans-serif"
         fontSize="11"
       >
         STUDIOS

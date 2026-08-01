@@ -102,20 +102,20 @@ export default function ContactForm() {
     return (
       <div
         className="flex flex-col items-start gap-5 border p-10"
-        style={{ borderColor: 'var(--brass-edge)', background: 'var(--brass-veil)' }}
+        style={{ borderColor: 'var(--line-2)', background: 'rgba(225,224,204,0.08)' }}
       >
-        <MarkCheck size={30} className="text-brass" />
-        <h3 className="display-tight text-[clamp(1.4rem,2.6vw,2rem)] text-bone">
+        <MarkCheck size={30} className="text-primary" />
+        <h3 className="text-[clamp(1.4rem,2.6vw,2rem)] text-cream">
           Message sent
         </h3>
-        <p className="max-w-md text-sm leading-relaxed text-bone-2">
+        <p className="max-w-md text-sm leading-relaxed text-gray-400">
           Thanks for writing. I read everything myself and reply within one working day, usually
           sooner. If it is urgent, email me directly and put the word urgent in the subject.
         </p>
         <button
           type="button"
           onClick={() => setStatus('idle')}
-          className="mono text-[0.65rem] uppercase tracking-[0.18em] text-brass hover:underline"
+          className="text-[0.65rem] uppercase tracking-[0.18em] text-primary hover:underline"
         >
           Send another
         </button>
@@ -127,36 +127,36 @@ export default function ContactForm() {
     <form onSubmit={onSubmit} noValidate className="space-y-7">
       <div className="grid gap-7 sm:grid-cols-2">
         <label className="block">
-          <span className="eyebrow">Your name</span>
+          <span className="label">Your name</span>
           <input
             type="text"
             value={fields.name}
             onChange={update('name')}
             autoComplete="name"
-            className="mt-3 w-full border-b bg-transparent pb-3 text-[0.95rem] outline-none transition-colors focus:border-brass"
+            className="mt-3 w-full border-b bg-transparent pb-3 text-[0.95rem] outline-none transition-colors focus:border-hair2"
             style={inputStyle}
             placeholder="Jane Doe"
           />
           {errors.name ? (
-            <span className="mono mt-2 block text-[0.6rem]" style={{ color: 'var(--ember)' }}>
+            <span className="mt-2 block text-[0.6rem]" style={{ color: 'var(--gray-500)' }}>
               {errors.name}
             </span>
           ) : null}
         </label>
 
         <label className="block">
-          <span className="eyebrow">Email</span>
+          <span className="label">Email</span>
           <input
             type="email"
             value={fields.email}
             onChange={update('email')}
             autoComplete="email"
-            className="mt-3 w-full border-b bg-transparent pb-3 text-[0.95rem] outline-none transition-colors focus:border-brass"
+            className="mt-3 w-full border-b bg-transparent pb-3 text-[0.95rem] outline-none transition-colors focus:border-hair2"
             style={inputStyle}
             placeholder="jane@company.com"
           />
           {errors.email ? (
-            <span className="mono mt-2 block text-[0.6rem]" style={{ color: 'var(--ember)' }}>
+            <span className="mt-2 block text-[0.6rem]" style={{ color: 'var(--gray-500)' }}>
               {errors.email}
             </span>
           ) : null}
@@ -165,25 +165,25 @@ export default function ContactForm() {
 
       <div className="grid gap-7 sm:grid-cols-3">
         <label className="block">
-          <span className="eyebrow">Company, optional</span>
+          <span className="label">Company, optional</span>
           <input
             type="text"
             value={fields.company}
             onChange={update('company')}
             autoComplete="organization"
-            className="mt-3 w-full border-b bg-transparent pb-3 text-[0.95rem] outline-none transition-colors focus:border-brass"
+            className="mt-3 w-full border-b bg-transparent pb-3 text-[0.95rem] outline-none transition-colors focus:border-hair2"
             style={inputStyle}
             placeholder="Where you work"
           />
         </label>
 
         <label className="block">
-          <span className="eyebrow">What you need</span>
+          <span className="label">What you need</span>
           <select
             value={fields.kind}
             onChange={update('kind')}
-            className="mt-3 w-full appearance-none border-b bg-transparent pb-3 text-[0.95rem] outline-none transition-colors focus:border-brass"
-            style={{ ...inputStyle, color: fields.kind ? 'var(--bone)' : 'var(--bone-3)' }}
+            className="mt-3 w-full appearance-none border-b bg-transparent pb-3 text-[0.95rem] outline-none transition-colors focus:border-hair2"
+            style={{ ...inputStyle, color: fields.kind ? 'var(--cream)' : 'var(--gray-500)' }}
           >
             <option value="">Choose one</option>
             {kinds.map((kind) => (
@@ -195,12 +195,12 @@ export default function ContactForm() {
         </label>
 
         <label className="block">
-          <span className="eyebrow">Timeline</span>
+          <span className="label">Timeline</span>
           <select
             value={fields.timeline}
             onChange={update('timeline')}
-            className="mt-3 w-full appearance-none border-b bg-transparent pb-3 text-[0.95rem] outline-none transition-colors focus:border-brass"
-            style={{ ...inputStyle, color: fields.timeline ? 'var(--bone)' : 'var(--bone-3)' }}
+            className="mt-3 w-full appearance-none border-b bg-transparent pb-3 text-[0.95rem] outline-none transition-colors focus:border-hair2"
+            style={{ ...inputStyle, color: fields.timeline ? 'var(--cream)' : 'var(--gray-500)' }}
           >
             <option value="">Choose one</option>
             {timelines.map((t) => (
@@ -213,24 +213,24 @@ export default function ContactForm() {
       </div>
 
       <label className="block">
-        <span className="eyebrow">What are you building</span>
+        <span className="label">What are you building</span>
         <textarea
           value={fields.message}
           onChange={update('message')}
           rows={5}
-          className="mt-3 w-full resize-none border-b bg-transparent pb-3 text-[0.95rem] leading-relaxed outline-none transition-colors focus:border-brass"
+          className="mt-3 w-full resize-none border-b bg-transparent pb-3 text-[0.95rem] leading-relaxed outline-none transition-colors focus:border-hair2"
           style={inputStyle}
           placeholder="What the product does, who it is for, and what is currently in the way."
         />
         {errors.message ? (
-          <span className="mono mt-2 block text-[0.6rem]" style={{ color: 'var(--ember)' }}>
+          <span className="mt-2 block text-[0.6rem]" style={{ color: 'var(--gray-500)' }}>
             {errors.message}
           </span>
         ) : null}
       </label>
 
       {status === 'error' ? (
-        <p className="mono text-[0.65rem]" style={{ color: 'var(--ember)' }}>
+        <p className="text-[0.65rem]" style={{ color: 'var(--gray-500)' }}>
           Something went wrong sending that. Please email me directly and I will pick it up.
         </p>
       ) : null}
@@ -242,7 +242,7 @@ export default function ContactForm() {
             disabled={status === 'sending'}
             data-cursor="Send it"
             className="group relative inline-flex items-center gap-4 overflow-hidden px-9 py-4 text-sm uppercase tracking-[0.16em] disabled:opacity-60"
-            style={{ background: 'var(--brass)', color: 'var(--ink)' }}
+            style={{ background: 'var(--cream)', color: 'var(--bg)' }}
           >
             <span className="relative z-10">
               {status === 'sending' ? 'Sending' : 'Send message'}
@@ -253,7 +253,7 @@ export default function ContactForm() {
             />
             <span
               className="absolute inset-0 origin-left scale-x-0 transition-transform duration-[650ms] ease-out group-hover:scale-x-100"
-              style={{ background: 'var(--brass-hi)' }}
+              style={{ background: 'var(--cream)' }}
             />
           </button>
         </Magnetic>
