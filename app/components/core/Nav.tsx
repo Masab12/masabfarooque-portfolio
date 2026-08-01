@@ -31,15 +31,16 @@ export default function Nav() {
 
   return (
     <>
-      <header className="pointer-events-none fixed inset-x-0 top-0 z-50 px-4 md:px-6">
-        <div className="relative mx-auto flex max-w-[88rem] items-start justify-between">
+      <header className="pointer-events-none fixed inset-x-0 top-0 z-50">
+        <div className="relative mx-auto flex w-full max-w-[1800px] items-start justify-between px-3 sm:px-4 md:px-6">
           <Link
             href="/"
             aria-label="Home"
-            className="pointer-events-auto flex items-center gap-2 rounded-b-2xl bg-black px-4 py-2.5 md:rounded-b-3xl md:px-5"
+            className="pointer-events-auto flex items-center gap-2 rounded-b-xl bg-black px-3 py-2.5 sm:rounded-b-2xl sm:px-4 md:rounded-b-3xl md:px-5"
           >
             <Monogram size={22} className="text-cream" />
             <span className="hidden text-sm sm:inline">{site.name}</span>
+            <span className="text-sm sm:hidden">{site.shortName}</span>
           </Link>
 
           <nav className="pointer-events-auto absolute left-1/2 top-0 hidden -translate-x-1/2 md:block">
@@ -57,7 +58,7 @@ export default function Nav() {
             </div>
           </nav>
 
-          <div className="pointer-events-auto flex items-center gap-2 rounded-b-2xl bg-black px-3 py-2.5 md:rounded-b-3xl md:px-5">
+          <div className="pointer-events-auto flex items-center gap-3 rounded-b-xl bg-black px-3 py-2.5 sm:rounded-b-2xl sm:px-4 md:rounded-b-3xl md:px-5">
             <a
               href={cv.href}
               target="_blank"

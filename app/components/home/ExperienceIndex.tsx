@@ -55,7 +55,7 @@ export default function ExperienceIndex() {
           subtitle="Two product teams now. Studios and agencies before."
         />
 
-        <div className="mt-14 md:mt-20">
+        <div className="mt-10 md:mt-14">
           {roles.map((role, i) => {
             const isOpen = open === role.id;
             return (
@@ -68,40 +68,38 @@ export default function ExperienceIndex() {
                     type="button"
                     onClick={() => setOpen(isOpen ? null : role.id)}
                     aria-expanded={isOpen}
-                    className="group grid w-full grid-cols-12 items-center gap-4 py-6 text-left transition-colors duration-500 md:py-8"
+                    className="group flex w-full items-start gap-4 py-6 text-left md:grid md:grid-cols-12 md:items-center md:gap-6 md:py-8"
                   >
-                    <span className="col-span-3 md:col-span-2">
-                      <span className="text-[0.7rem] text-gray-500">
-                        {role.from}
-                        <span className="mx-1 opacity-40">to</span>
-                        {role.to}
-                      </span>
-                    </span>
-
-                    <span className="col-span-9 flex h-8 items-center md:col-span-3">
-                      <span className="flex h-full items-center opacity-90 transition-opacity duration-500 group-hover:opacity-100">
+                    {/* Phone: name, role and dates stack. Desktop: one row. */}
+                    <span className="min-w-0 flex-1 md:col-span-5 md:flex md:items-center md:gap-5">
+                      <span className="hidden h-7 shrink-0 items-center opacity-80 transition-opacity duration-500 group-hover:opacity-100 md:flex">
                         <RoleLogo role={role} />
                       </span>
-                    </span>
-
-                    <span
-                      className="col-span-9 text-[0.95rem] md:col-span-4"
-                      style={{ color: isOpen ? 'var(--cream)' : 'var(--cream)' }}
-                    >
-                      {role.title}
-                      <span className="ml-3 hidden text-[0.65rem] text-gray-500 lg:inline">
-                        {role.type}
+                      <span className="min-w-0">
+                        <span className="block truncate text-[0.95rem] text-cream md:text-base">
+                          {role.company}
+                        </span>
+                        <span className="mt-1 block text-[0.7rem] text-gray-500 md:hidden">
+                          {role.period}
+                        </span>
                       </span>
                     </span>
 
-                    <span className="col-span-3 flex items-center justify-end gap-4 md:col-span-3">
-                      <span className="hidden text-[0.65rem] text-gray-500 sm:inline">
+                    <span className="hidden min-w-0 md:col-span-4 md:block">
+                      <span className="block truncate text-[0.95rem] text-gray-400">
+                        {role.title}
+                      </span>
+                      <span className="mt-1 block text-[0.65rem] text-gray-500">{role.type}</span>
+                    </span>
+
+                    <span className="flex shrink-0 items-center gap-4 md:col-span-3 md:justify-end">
+                      <span className="hidden text-[0.7rem] text-gray-500 md:inline">
                         {role.period}
                       </span>
                       <span
-                        className="flex h-8 w-8 shrink-0 items-center justify-center border transition-all duration-500"
+                        className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full border transition-all duration-500"
                         style={{
-                          borderColor: isOpen ? 'var(--line-2)' : 'var(--line-2)',
+                          borderColor: 'var(--line-2)',
                           transform: isOpen ? 'rotate(45deg)' : 'rotate(0deg)',
                           color: isOpen ? 'var(--cream)' : 'var(--gray-400)',
                         }}
@@ -110,6 +108,13 @@ export default function ExperienceIndex() {
                       </span>
                     </span>
                   </button>
+
+                  {/* The role title only fits beside the company from md up. */}
+                  <p className="-mt-3 mb-5 text-[0.8rem] text-gray-400 md:hidden">
+                    {role.title}
+                    <span className="mx-2 opacity-40">/</span>
+                    {role.type}
+                  </p>
 
                   <AnimatePresence initial={false}>
                     {isOpen ? (
@@ -121,10 +126,12 @@ export default function ExperienceIndex() {
                         transition={{ duration: 0.55, ease: [0.16, 1, 0.3, 1] }}
                         className="overflow-hidden"
                       >
-                        <div className="grid gap-8 pb-10 md:grid-cols-12">
-                          <p className="text-lede md:col-span-5">{role.summary}</p>
+                        <div className="grid gap-7 pb-9 md:grid-cols-12 md:gap-8">
+                          <p className="text-sm leading-relaxed text-gray-400 md:col-span-5 md:text-[0.95rem]">
+                            {role.summary}
+                          </p>
 
-                          <ul className="space-y-3 md:col-span-5">
+                          <ul className="space-y-3 md:col-span-4">
                             {role.highlights.map((line) => (
                               <li key={line} className="flex gap-3 text-sm leading-relaxed text-gray-400">
                                 <span
@@ -136,7 +143,7 @@ export default function ExperienceIndex() {
                             ))}
                           </ul>
 
-                          <div className="md:col-span-2">
+                          <div className="md:col-span-3">
                             <p className="label mb-3">Stack</p>
                             <div className="flex flex-wrap gap-1.5">
                               {role.stack.map((tech) => (

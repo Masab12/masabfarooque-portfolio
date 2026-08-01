@@ -23,34 +23,34 @@ export default function Features() {
   const inView = useInView(ref, { once: true, margin: '-100px' });
 
   return (
-    <section id="capabilities" className="snap-band relative bg-black px-4 py-16 sm:px-6 md:px-8 md:py-24">
+    <section id="capabilities" className="snap-start relative bg-black py-14 sm:py-20 md:py-24 lg:py-28">
       <div className="bg-noise pointer-events-none absolute inset-0 opacity-[0.15]" />
 
-      <div className="relative mx-auto max-w-[88rem]">
+      <div className="shell relative">
         <div className="max-w-3xl">
           <WordsPullUpMultiStyle
             align="left"
-            className="text-xl font-normal sm:text-2xl md:text-3xl lg:text-4xl"
+            className="text-lg font-normal leading-snug sm:text-2xl md:text-3xl lg:text-4xl"
             segments={[{ text: 'Studio grade engineering for products that have to work.' }]}
           />
           <WordsPullUpMultiStyle
             align="left"
             delayOffset={0.15}
-            className="text-xl font-normal text-gray-500 sm:text-2xl md:text-3xl lg:text-4xl"
+            className="text-lg font-normal leading-snug text-gray-500 sm:text-2xl md:text-3xl lg:text-4xl"
             segments={[{ text: 'Built once. Handed over clean.' }]}
           />
         </div>
 
         <div
           ref={ref}
-          className="mt-10 grid grid-cols-1 gap-3 md:grid-cols-2 sm:gap-2 md:gap-1 lg:h-[480px] lg:grid-cols-4"
+          className="mt-9 grid grid-cols-1 gap-3 sm:grid-cols-2 sm:gap-3 lg:grid-cols-4 lg:gap-3 lg:min-h-[480px]"
         >
           {/* Video card */}
           <motion.div
             initial={{ scale: 0.95, opacity: 0 }}
             animate={inView ? { scale: 1, opacity: 1 } : {}}
             transition={{ duration: 0.8, delay: 0, ease: CARD_EASE }}
-            className="relative h-[300px] overflow-hidden rounded-xl lg:h-full"
+            className="relative h-[260px] overflow-hidden rounded-xl sm:h-[320px] lg:h-auto lg:min-h-full"
           >
             <video
               className="absolute inset-0 h-full w-full object-cover"

@@ -16,7 +16,7 @@ type Props = {
 export default function PageHead({ label, title, intro, meta, showAsterisk = true }: Props) {
   return (
     <header className="relative px-4 pt-24 sm:px-6 md:px-8 md:pt-32">
-      <div className="mx-auto max-w-[88rem]">
+      <div className="shell">
         <Reveal y={12}>
           <p className="text-[10px] text-primary sm:text-xs">{label}</p>
         </Reveal>

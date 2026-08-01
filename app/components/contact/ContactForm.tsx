@@ -163,7 +163,7 @@ export default function ContactForm() {
         </label>
       </div>
 
-      <div className="grid gap-7 sm:grid-cols-3">
+      <div className="grid gap-7 sm:grid-cols-2 lg:grid-cols-3">
         <label className="block">
           <span className="label">Company, optional</span>
           <input

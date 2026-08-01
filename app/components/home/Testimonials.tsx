@@ -174,7 +174,7 @@ export default function Testimonials() {
         />
 
         <Reveal
-          className="mt-12 grid gap-px overflow-hidden border md:grid-cols-4"
+          className="mt-10 grid grid-cols-2 gap-px overflow-hidden rounded-xl border lg:grid-cols-4"
           style={{ borderColor: 'var(--line)', background: 'var(--line)' }}
         >
           {[
@@ -183,8 +183,8 @@ export default function Testimonials() {
             { value: String(reviewSummary.countries), label: 'Client countries' },
             { value: `${reviewSummary.repeatShare}%`, label: 'Clients who came back' },
           ].map((item) => (
-            <div key={item.label} className="p-6 md:p-8" style={{ background: 'var(--surface-1)' }}>
-              <p className="text-[clamp(1.8rem,3.4vw,2.7rem)] text-primary">
+            <div key={item.label} className="p-5 sm:p-6 md:p-8" style={{ background: 'var(--surface-1)' }}>
+              <p className="text-[clamp(1.4rem,3.4vw,2.7rem)] text-primary">
                 {item.value}
               </p>
               <p className="label mt-2.5">{item.label}</p>
@@ -194,7 +194,7 @@ export default function Testimonials() {
 
         <div
           ref={ref}
-          className="mt-10 grid gap-5"
+          className="mt-8 grid gap-4 sm:gap-5"
           style={{ gridTemplateColumns: `repeat(${columnCount}, minmax(0, 1fr))` }}
         >
           {columns.map((column, i) => (
@@ -211,7 +211,7 @@ export default function Testimonials() {
         </div>
 
         <Reveal
-          className="mt-12 flex flex-col items-start justify-between gap-5 border-t pt-7 sm:flex-row sm:items-center"
+          className="mt-10 flex flex-col items-start justify-between gap-5 border-t pt-7 lg:flex-row lg:items-center"
           style={{ borderColor: 'var(--line)' }}
         >
           <p className="max-w-xl text-xs leading-relaxed text-gray-500">

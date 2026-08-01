@@ -22,25 +22,26 @@ export default function Footer() {
   const year = new Date().getFullYear();
 
   return (
-    <footer className="bg-black px-4 pb-6 sm:px-6 md:px-8">
-      <div className="mx-auto max-w-[88rem] overflow-hidden rounded-2xl bg-[#101010] md:rounded-[2rem]">
+    <footer className="bg-black pb-4 sm:pb-6">
+      <div className="shell">
+      <div className="overflow-hidden rounded-2xl bg-[#101010] md:rounded-[2rem]">
         {/* The address is the loudest thing down here, on purpose */}
-        <div className="border-b px-6 py-12 md:px-10 md:py-16" style={{ borderColor: 'var(--line)' }}>
+        <div className="border-b px-5 py-10 sm:px-8 sm:py-12 md:px-10 md:py-16" style={{ borderColor: 'var(--line)' }}>
           <p className="label">Start here</p>
           <a
             href={`mailto:${site.email}`}
-            className="group mt-4 inline-flex flex-wrap items-baseline gap-x-4 gap-y-2 text-[clamp(1.6rem,5.5vw,3.6rem)] font-medium leading-[1] tracking-[-0.045em] text-cream transition-opacity duration-300 hover:opacity-70"
+            className="group mt-4 flex flex-wrap items-center gap-x-4 gap-y-2 break-all text-[clamp(1.25rem,5.2vw,3.4rem)] font-medium leading-[1.05] tracking-[-0.04em] text-cream transition-opacity duration-300 hover:opacity-70"
           >
             {site.email}
             <ArrowLong
-              size={28}
-              className="text-primary transition-transform duration-500 group-hover:translate-x-2"
+              size={22}
+              className="shrink-0 text-primary transition-transform duration-500 group-hover:translate-x-2 sm:size-7"
             />
           </a>
         </div>
 
-        <div className="grid gap-10 px-6 py-12 md:grid-cols-12 md:px-10 md:py-14">
-          <div className="md:col-span-4">
+        <div className="grid grid-cols-1 gap-9 px-5 py-10 sm:grid-cols-2 sm:px-8 sm:py-12 lg:grid-cols-12 lg:gap-8 md:px-10 md:py-14">
+          <div className="sm:col-span-2 lg:col-span-4">
             <Monogram size={30} className="text-cream" />
             <p className="mt-5 max-w-xs text-xs leading-relaxed text-gray-400 sm:text-sm">
               {site.tagline} Working from {site.location} with product teams and agencies
@@ -53,7 +54,7 @@ export default function Footer() {
             </p>
           </div>
 
-          <nav className="md:col-span-2 md:col-start-6">
+          <nav className="lg:col-span-2 lg:col-start-6">
             <p className="label">Pages</p>
             <ul className="mt-5 space-y-3">
               <li>
@@ -77,7 +78,7 @@ export default function Footer() {
             </ul>
           </nav>
 
-          <div className="md:col-span-2">
+          <div className="lg:col-span-2">
             <p className="label">Elsewhere</p>
             <ul className="mt-5 space-y-3">
               {socials.map((s) => {
@@ -103,7 +104,7 @@ export default function Footer() {
             </ul>
           </div>
 
-          <div className="md:col-span-3">
+          <div className="sm:col-span-2 lg:col-span-3">
             <p className="label">Document</p>
             <a
               href={cv.href}
@@ -111,7 +112,7 @@ export default function Footer() {
               rel="noopener noreferrer"
               download={cv.fileName}
               data-cursor="Download PDF"
-              className="group mt-5 flex items-center justify-between gap-3 rounded-xl bg-[#212121] px-4 py-3.5 transition-colors duration-300 hover:bg-[#2a2a2a]"
+              className="group mt-5 flex max-w-xs items-center justify-between gap-3 rounded-xl bg-[#212121] px-4 py-3.5 transition-colors duration-300 hover:bg-[#2a2a2a]"
             >
               <span>
                 <span className="block text-sm text-cream">CV</span>
@@ -126,13 +127,13 @@ export default function Footer() {
         </div>
 
         <div
-          className="flex flex-col gap-4 border-t px-6 py-6 sm:flex-row sm:items-center sm:justify-between md:px-10"
+          className="flex flex-col gap-3 border-t px-5 py-6 sm:px-8 lg:flex-row lg:items-center lg:justify-between md:px-10"
           style={{ borderColor: 'var(--line)' }}
         >
           <p className="label">
             {year} {site.name}
           </p>
-          <p className="label order-last sm:order-none">
+          <p className="label order-last lg:order-none">
             Next.js, Framer Motion, Almarai and Instrument Serif
           </p>
           <div className="flex gap-6">
@@ -144,6 +145,7 @@ export default function Footer() {
             </Link>
           </div>
         </div>
+      </div>
       </div>
     </footer>
   );

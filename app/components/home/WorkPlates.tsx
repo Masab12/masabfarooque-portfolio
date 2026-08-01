@@ -36,12 +36,14 @@ function Plate({
   const dim = useTransform(progress, [start, 1], [1, 0.55]);
   const filter = useTransform(dim, (v) => `brightness(${v})`);
 
+  // Sticky stacking needs room to breathe. Below md the plates simply follow
+  // one another, which is the only thing that reads well on a phone.
   return (
-    <div className="h-[86vh] md:h-[92vh]">
+    <div className="mb-5 md:mb-0 md:h-[92vh]">
       <motion.article
-        className="sticky overflow-hidden rounded-2xl border md:rounded-[2rem]"
+        className="overflow-hidden rounded-2xl border md:sticky md:rounded-[2rem]"
         style={{
-          top: `calc(4rem + ${index * 14}px)`,
+          top: `calc(4.5rem + ${index * 14}px)`,
           borderColor: 'var(--line)',
           background: 'var(--surface-1)',
           transformOrigin: 'center top',
@@ -50,7 +52,7 @@ function Plate({
         }}
       >
         <div className="grid md:grid-cols-12">
-          <div className="flex flex-col justify-between p-6 md:col-span-5 md:p-9 lg:p-11">
+          <div className="flex flex-col justify-between p-5 sm:p-7 md:col-span-5 md:p-9 lg:p-11">
             <div>
               <div className="flex items-baseline justify-between">
                 <span className="text-[clamp(2.4rem,5vw,4rem)] font-medium leading-none tracking-[-0.06em] text-gray-500">
@@ -75,7 +77,7 @@ function Plate({
 
               {project.metrics ? (
                 <dl
-                  className="mt-7 grid grid-cols-3 gap-4 border-t pt-5"
+                  className="mt-6 grid grid-cols-3 gap-3 border-t pt-5 sm:gap-4"
                   style={{ borderColor: 'var(--line)' }}
                 >
                   {project.metrics.slice(0, 3).map((m) => (
