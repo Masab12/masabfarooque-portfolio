@@ -10,7 +10,7 @@ const EASE = [0.16, 1, 0.3, 1] as const;
 
 export default function Hero() {
   return (
-    <section className="h-screen w-full p-4 md:p-6">
+    <section className="snap-band h-screen w-full p-4 md:p-6">
       <div className="relative h-full w-full overflow-hidden rounded-2xl md:rounded-[2rem]">
         <video
           className="absolute inset-0 h-full w-full object-cover"
@@ -70,8 +70,9 @@ export default function Hero() {
                 style={{ lineHeight: 1.2 }}
               >
                 Masab Farooque is a full stack engineer in Islamabad building SaaS
-                platforms, AI systems and data pipelines. One person from schema to
-                interface, first commit to deploy, for teams in 23 countries.
+                platforms, AI systems and data pipelines. Brought in as an external
+                resource by product teams and agencies in 23 countries, from schema
+                to interface, first commit to deploy.
               </motion.p>
 
               <motion.div

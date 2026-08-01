@@ -48,7 +48,7 @@ export const capabilities: Capability[] = [
     mark: 'frame',
     description:
       'Front ends that feel considered. Real typography, real spacing, scroll and pointer motion that carries meaning instead of decorating the page. Accessible and quick on a mid range phone.',
-    tools: ['GSAP', 'Lenis', 'Framer Motion', 'Tailwind CSS', 'Canvas', 'WebGL'],
+    tools: ['Framer Motion', 'Tailwind CSS', 'Canvas', 'WebGL', 'Scroll driven UI'],
   },
   {
     index: '06',

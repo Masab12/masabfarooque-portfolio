@@ -1,11 +1,12 @@
 'use client';
 
 import { useEffect, useMemo, useRef, useState } from 'react';
+import { motion, useScroll, useTransform } from 'framer-motion';
 import { reviews, reviewSummary, type Review } from '@/app/data/reviews';
 import { RatingMark, Quote, ArrowDiagonal, GlyphFiverr } from '@/app/components/marks';
-import { initGsap, prefersReducedMotion } from '@/app/lib/motion';
+import Section from '@/app/components/core/Section';
 import SectionHeader from '@/app/components/core/SectionHeader';
-import Reveal from '@/app/components/core/Reveal';
+import Reveal from '@/app/components/motion/Reveal';
 
 const MONTHS = [
   'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
@@ -152,34 +153,20 @@ export default function Testimonials() {
     return cols;
   }, [columnCount]);
 
-  useEffect(() => {
-    const el = ref.current;
-    if (!el || prefersReducedMotion()) return;
-    if (window.innerWidth < 1024) return;
-
-    const { gsap } = initGsap();
-
-    const ctx = gsap.context(() => {
-      gsap.utils.toArray<HTMLElement>('[data-column]').forEach((column, i) => {
-        const drift = [44, -26, 62][i] ?? 0;
-        gsap.fromTo(
-          column,
-          { y: drift },
-          {
-            y: -drift,
-            ease: 'none',
-            scrollTrigger: { trigger: el, start: 'top bottom', end: 'bottom top', scrub: 0.8 },
-          },
-        );
-      });
-    }, el);
-
-    return () => ctx.revert();
-  }, []);
+  // Columns drift at slightly different rates as the block passes, which keeps
+  // a long wall of quotes from reading as one static slab.
+  const { scrollYProgress } = useScroll({
+    target: ref,
+    offset: ['start end', 'end start'],
+  });
+  const driftA = useTransform(scrollYProgress, [0, 1], [36, -36]);
+  const driftB = useTransform(scrollYProgress, [0, 1], [-22, 22]);
+  const driftC = useTransform(scrollYProgress, [0, 1], [52, -52]);
+  const drifts = [driftA, driftB, driftC];
 
   return (
-    <section className="relative overflow-hidden py-20 md:py-32" id="reviews">
-      <div className="shell">
+    <Section id="reviews">
+      <div>
         <SectionHeader
           label="Client words"
           title="Twenty five clients, unedited."
@@ -211,11 +198,15 @@ export default function Testimonials() {
           style={{ gridTemplateColumns: `repeat(${columnCount}, minmax(0, 1fr))` }}
         >
           {columns.map((column, i) => (
-            <div key={i} data-column className="flex flex-col gap-5">
+            <motion.div
+              key={i}
+              className="flex flex-col gap-5"
+              style={columnCount === 3 ? { y: drifts[i] } : undefined}
+            >
               {column.map((review) => (
                 <ReviewCard key={review.id} review={review} />
               ))}
-            </div>
+            </motion.div>
           ))}
         </div>
 
@@ -244,6 +235,6 @@ export default function Testimonials() {
           </a>
         </Reveal>
       </div>
-    </section>
+    </Section>
   );
 }

@@ -1,9 +1,9 @@
 'use client';
 
-import { useEffect, useRef } from 'react';
+import { useRef } from 'react';
+import { motion, useScroll, useSpring } from 'framer-motion';
 import { timeline } from '@/app/data/timeline';
-import { initGsap, prefersReducedMotion } from '@/app/lib/motion';
-import Reveal from '@/app/components/core/Reveal';
+import Reveal from '@/app/components/motion/Reveal';
 
 const kindLabels = {
   education: 'Education',
@@ -16,27 +16,12 @@ const kindLabels = {
 export default function Timeline() {
   const ref = useRef<HTMLDivElement>(null);
 
-  useEffect(() => {
-    const el = ref.current;
-    if (!el || prefersReducedMotion()) return;
-
-    const { gsap } = initGsap();
-
-    const ctx = gsap.context(() => {
-      gsap.fromTo(
-        '[data-spine]',
-        { scaleY: 0 },
-        {
-          scaleY: 1,
-          ease: 'none',
-          transformOrigin: 'top',
-          scrollTrigger: { trigger: el, start: 'top 70%', end: 'bottom 80%', scrub: 0.6 },
-        },
-      );
-    }, el);
-
-    return () => ctx.revert();
-  }, []);
+  // The spine draws itself down the column as the list is read.
+  const { scrollYProgress } = useScroll({
+    target: ref,
+    offset: ['start 0.7', 'end 0.8'],
+  });
+  const spine = useSpring(scrollYProgress, { stiffness: 90, damping: 24, restDelta: 0.001 });
 
   return (
     <div ref={ref} className="relative">
@@ -44,10 +29,9 @@ export default function Timeline() {
         className="absolute bottom-0 left-[7px] top-2 w-px md:left-[calc(16.6667%-1px)]"
         style={{ background: 'var(--line)' }}
       />
-      <div
-        data-spine
+      <motion.div
         className="absolute bottom-0 left-[7px] top-2 w-px origin-top md:left-[calc(16.6667%-1px)]"
-        style={{ background: 'var(--cream)', transform: 'scaleY(0)' }}
+        style={{ background: 'var(--cream)', scaleY: spine }}
       />
 
       <ol>

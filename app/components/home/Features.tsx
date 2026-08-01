@@ -23,7 +23,7 @@ export default function Features() {
   const inView = useInView(ref, { once: true, margin: '-100px' });
 
   return (
-    <section id="capabilities" className="relative min-h-screen bg-black px-4 py-16 sm:px-6 md:px-8 md:py-24">
+    <section id="capabilities" className="snap-band relative bg-black px-4 py-16 sm:px-6 md:px-8 md:py-24">
       <div className="bg-noise pointer-events-none absolute inset-0 opacity-[0.15]" />
 
       <div className="relative mx-auto max-w-[88rem]">

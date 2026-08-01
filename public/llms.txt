@@ -1,11 +1,12 @@
 # Masab Farooque, Full Stack Engineer
 
-> Masab Farooque is a full stack engineer based in Islamabad, Pakistan. He
-> builds SaaS platforms, AI systems, data pipelines and full stack web
-> applications end to end. 195 plus completed orders and 148 five star reviews
-> from clients in 23 countries.
+> Masab Farooque is a full stack engineer based in Islamabad, Pakistan. He is
+> brought in as an external resource by product teams and agencies to build
+> SaaS platforms, AI systems, data pipelines and full stack web applications
+> end to end. 195 plus completed orders and 148 reviews at a 4.85 average from
+> clients in 23 countries. Company names appear only under Experience.
 
-## Current work
+## Experience
 
 - Chord.fm, Full Stack Engineer, June 2026 to present. Browser based audio and
   video editor for podcasters and creators. Built the Music Library panel from
@@ -63,7 +64,7 @@ LangChain, retrieval augmented generation.
 
 ## Contact
 
-- Email: masabfarooque1122@gmail.com
+- Email: contact@masabfarooque.com
 - GitHub: https://github.com/Masab12
 - LinkedIn: https://www.linkedin.com/in/masabfarooque
 - Fiverr: https://www.fiverr.com/p_scribbles

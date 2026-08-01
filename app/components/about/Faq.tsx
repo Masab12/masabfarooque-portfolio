@@ -4,7 +4,7 @@ import { useState } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 import { faqs } from '@/app/data/timeline';
 import { PlusMark } from '@/app/components/marks';
-import Reveal from '@/app/components/core/Reveal';
+import Reveal from '@/app/components/motion/Reveal';
 
 export default function Faq() {
   const [open, setOpen] = useState<number | null>(0);

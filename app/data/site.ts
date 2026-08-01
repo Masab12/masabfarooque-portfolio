@@ -7,7 +7,7 @@ export const site = {
   tagline: 'I design and build software that holds up after launch.',
   location: 'Islamabad, Pakistan',
   timezone: 'PKT, UTC +5',
-  email: 'masabfarooque1122@gmail.com',
+  email: 'contact@masabfarooque.com',
   phone: '+92 304 5624189',
   url: 'https://masabfarooque.com',
   availability: 'Open to new work',

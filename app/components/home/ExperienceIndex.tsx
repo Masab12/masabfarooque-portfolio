@@ -5,8 +5,9 @@ import Image from 'next/image';
 import { AnimatePresence, motion } from 'framer-motion';
 import { roles } from '@/app/data/experience';
 import { ArrowDiagonal, LogoChord, LogoPenta, LogoMindstorm, PlusMark } from '@/app/components/marks';
+import Section from '@/app/components/core/Section';
 import SectionHeader from '@/app/components/core/SectionHeader';
-import Reveal from '@/app/components/core/Reveal';
+import Reveal from '@/app/components/motion/Reveal';
 
 const drawn = {
   chord: LogoChord,
@@ -46,12 +47,12 @@ export default function ExperienceIndex() {
   const [open, setOpen] = useState<string | null>(roles[0].id);
 
   return (
-    <section className="relative py-20 md:py-32" id="experience">
-      <div className="shell">
+    <Section id="experience">
+      <div>
         <SectionHeader
-          label="Where I have worked"
-          title="Teams that shipped with me."
-          subtitle="Two product teams now. Several studios before."
+          label="Experience"
+          title="Companies I have worked with."
+          subtitle="Two product teams now. Studios and agencies before."
         />
 
         <div className="mt-14 md:mt-20">
@@ -171,6 +172,6 @@ export default function ExperienceIndex() {
           <div className="rule" />
         </div>
       </div>
-    </section>
+    </Section>
   );
 }

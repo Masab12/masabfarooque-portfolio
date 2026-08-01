@@ -11,7 +11,7 @@ const EASE = [0.16, 1, 0.3, 1] as const;
 
 export default function ContactCTA() {
   return (
-    <section className="bg-black px-4 py-12 sm:px-6 md:px-8 md:py-20">
+    <section className="snap-band bg-black px-4 py-16 sm:px-6 md:px-8 md:py-24">
       <div className="relative mx-auto max-w-6xl overflow-hidden rounded-2xl bg-[#101010] px-5 py-20 text-center sm:px-10 md:rounded-[2rem] md:py-28">
         <div className="bg-noise pointer-events-none absolute inset-0 opacity-[0.12]" />
 

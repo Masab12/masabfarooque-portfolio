@@ -5,7 +5,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { projects, categoryLabels, type ProjectCategory } from '@/app/data/projects';
 import { ArrowLong, ArrowDiagonal } from '@/app/components/marks';
-import Reveal from '@/app/components/core/Reveal';
+import Reveal from '@/app/components/motion/Reveal';
 
 const filters: { id: 'all' | ProjectCategory; label: string }[] = [
   { id: 'all', label: 'Everything' },
@@ -27,7 +27,7 @@ export default function WorkIndex() {
     <>
       <Reveal
         className="sticky top-[var(--nav-h)] z-20 -mx-[var(--gutter)] mb-10 border-y px-[var(--gutter)] py-4 backdrop-blur"
-        style={{ borderColor: 'var(--line)', background: 'rgba(10,9,8,0.82)' }}
+        style={{ borderColor: 'var(--line)', background: 'rgba(0,0,0,0.82)' }}
         y={0}
       >
         <div className="no-scrollbar flex items-center gap-1 overflow-x-auto">
@@ -86,7 +86,7 @@ export default function WorkIndex() {
                     className="pointer-events-none absolute inset-0 transition-opacity duration-700 group-hover:opacity-60"
                     style={{
                       background:
-                        'linear-gradient(180deg, rgba(10,9,8,0.05), rgba(10,9,8,0.72))',
+                        'linear-gradient(180deg, rgba(0,0,0,0.05), rgba(0,0,0,0.72))',
                     }}
                   />
                   <span
@@ -99,7 +99,7 @@ export default function WorkIndex() {
                       className="border px-2.5 py-1 text-[0.55rem] uppercase tracking-[0.14em] backdrop-blur"
                       style={{
                         borderColor: 'var(--line-2)',
-                        background: 'rgba(10,9,8,0.5)',
+                        background: 'rgba(0,0,0,0.5)',
                         color: 'var(--cream)',
                       }}
                     >

@@ -32,7 +32,7 @@ export const projects: Project[] = [
   {
     slug: 'navia',
     title: 'Navia',
-    client: 'Navia Health',
+    client: 'Health data company',
     year: '2026',
     category: 'saas',
     summary:
@@ -88,7 +88,7 @@ export const projects: Project[] = [
   {
     slug: 'the-proposal-maker',
     title: 'The Proposal Maker',
-    client: 'Skylight Studio',
+    client: 'Engineering studio',
     year: '2026',
     category: 'ai',
     summary:
@@ -98,7 +98,7 @@ export const projects: Project[] = [
       'Upload a PDF, a DOCX, a drawing set, or paste an email thread. Claude reads the documents and surfaces project type, location, contacts and scope details. Every extracted field is editable with one click, so a wrong address never reaches the client.',
       'The tool then pulls the closest matches from the firm past proposal library and writes with the tone, structure and standard terms the firm actually uses. The proposal builds section by section in real time while you watch, and you can edit inline before sending it as a share link, a PDF or a Word file.',
     ],
-    role: 'Full stack engineer at Skylight Studio. Document parsing, retrieval, streaming generation and interface.',
+    role: 'External engineer on the product team. Document parsing, retrieval, streaming generation and interface.',
     stack: ['Next.js', 'TypeScript', 'Claude API', 'PostgreSQL', 'Vector search', 'Tailwind CSS'],
     features: [
       'Accepts PDF, DOCX, drawing sets and pasted email threads',
@@ -126,7 +126,7 @@ export const projects: Project[] = [
   {
     slug: 'firstdeal',
     title: 'FirstDeal',
-    client: 'Fixels.nl',
+    client: 'Netherlands agency',
     year: '2026',
     category: 'data',
     summary:
@@ -136,7 +136,7 @@ export const projects: Project[] = [
       'Users build precise monitors filtered on price, mileage, fuel type, condition, NAP history, import status, doors and horsepower. Behind that sits a FastAPI and Celery backend on Redis running thousands of concurrent scraping jobs, with rate limit handling and recovery when a marketplace changes its markup.',
       'I built the whole product: scraper architecture, notification pipeline, three tier Stripe billing, user dashboard, admin panel, referral system, push notifications, PWA support and the front end design.',
     ],
-    role: 'Sole engineer at Fixels.nl. Scrapers, backend, billing, front end.',
+    role: 'Sole engineer, brought in as an external resource. Scrapers, backend, billing, front end.',
     stack: ['Next.js', 'FastAPI', 'Python', 'PostgreSQL', 'Redis', 'Celery', 'Stripe', 'Telegram API'],
     features: [
       'Real time monitoring across three marketplaces at once',
@@ -171,13 +171,13 @@ export const projects: Project[] = [
   {
     slug: 'hice-ai',
     title: 'Hice.AI',
-    client: 'Hice',
+    client: 'Business software company',
     year: '2025',
     category: 'ai',
     summary:
       'A multi tenant business management platform where AI agents run the operations work that used to be forms.',
     overview: [
-      'Hice.AI replaces a wall of admin screens with instructions in plain language. Ask it to onboard an employee, log a timesheet or produce a report and an agent performs the operation against the real data model.',
+      'The platform replaces a wall of admin screens with instructions in plain language. Ask it to onboard an employee, log a timesheet or produce a report and an agent performs the operation against the real data model.',
       'Multi tenancy was the hard requirement. Every company on the platform is fully isolated through row level security in Supabase, so an agent can never reach across a tenant boundary even if a prompt tries to make it.',
       'The intent layer decides what the user actually wants before anything is written, which is what keeps an AI driven admin tool from being dangerous.',
     ],
@@ -203,13 +203,13 @@ export const projects: Project[] = [
   {
     slug: 'janua-financial',
     title: 'JANUA Financial',
-    client: 'JANUA',
+    client: 'Financial analysis firm',
     year: '2025',
     category: 'product',
     summary:
       'Financial analysis for European accounting standards, from scanned statements to a report you can hand to a board.',
     overview: [
-      'JANUA takes financial documents in whatever state they arrive, reads them with OCR, and turns them into more than fifty ratios and metrics without anyone retyping a number.',
+      'The tool takes financial documents in whatever state they arrive, reads them with OCR, and turns them into more than fifty ratios and metrics without anyone retyping a number.',
       'On top of the raw ratios it runs an Altman Z Score for bankruptcy risk, ROI and NPV for investment decisions, and multi currency handling for European markets.',
       'The output is a formatted PDF report with charts, generated programmatically, so an analysis that used to take an afternoon in a spreadsheet takes a few minutes.',
     ],
@@ -236,7 +236,7 @@ export const projects: Project[] = [
   {
     slug: 'rotishoti-ai',
     title: 'RotiShoti AI',
-    client: 'Independent',
+    client: 'Independent build',
     year: '2025',
     category: 'ai',
     summary:
@@ -266,7 +266,7 @@ export const projects: Project[] = [
   {
     slug: 'javea-denia-rentals',
     title: 'Javea Denia Rentals',
-    client: 'Fixels.nl',
+    client: 'Netherlands agency',
     year: '2025',
     category: 'product',
     summary:
@@ -276,7 +276,7 @@ export const projects: Project[] = [
       'Next.js handles a fast, search friendly front end in English and Spanish. An Express backend manages inventory, pricing rules and the booking calendar, with Stripe taking payment and automated email confirming it.',
       'The owner gets an admin dashboard for fleet and bookings, which is what turned it from a brochure site into the way the business runs.',
     ],
-    role: 'Sole engineer at Fixels.nl.',
+    role: 'Sole engineer, brought in as an external resource.',
     stack: ['Next.js', 'Express.js', 'Node.js', 'Stripe', 'MongoDB', 'Tailwind CSS'],
     features: [
       'Live availability and online booking',
@@ -298,13 +298,13 @@ export const projects: Project[] = [
   {
     slug: 'apple-music-validator',
     title: 'Apple Music Metadata Validator',
-    client: 'VerseOne',
+    client: 'Music distributor',
     year: '2025',
     category: 'product',
     summary:
       'Catches the metadata errors that get music releases rejected, before they ever reach Apple Music.',
     overview: [
-      'VerseOne distributes music, and a single malformed field can hold up a release for days. This tool checks an export before it is submitted and flags everything that would fail.',
+      'The client distributes music, and a single malformed field can hold up a release for days. This tool checks an export before it is submitted and flags everything that would fail.',
       'The parser handles the role format used by iMusician, for example primary:Artist Name;producer:Name, and normalises each contributor. It also finds where real data starts in an Excel file on its own, skipping header rows and blank lines without configuration.',
       'Validation follows the Apple Music style guide, including duplicate detection by title, artist and ISRC together. Fields that can be inferred from existing data are filled in automatically, which removes most of the manual correction work.',
     ],

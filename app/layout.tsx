@@ -3,7 +3,6 @@ import Script from 'next/script';
 import './globals.css';
 import { sansFont, serifFont } from './lib/fonts';
 import { site } from './data/site';
-import SmoothScroll from './components/core/SmoothScroll';
 import Cursor from './components/core/Cursor';
 import Nav from './components/core/Nav';
 import Footer from './components/core/Footer';
@@ -180,11 +179,9 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
 
         <Cursor />
 
-        <SmoothScroll>
-          <Nav />
-          <main id="main">{children}</main>
-          <Footer />
-        </SmoothScroll>
+        <Nav />
+        <main id="main">{children}</main>
+        <Footer />
       </body>
     </html>
   );

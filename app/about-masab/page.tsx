@@ -4,7 +4,7 @@ import { cv, site, socials } from '@/app/data/site';
 import { capabilities } from '@/app/data/capabilities';
 import { faqs } from '@/app/data/timeline';
 import PageHead from '@/app/components/core/PageHead';
-import Reveal from '@/app/components/core/Reveal';
+import Reveal from '@/app/components/motion/Reveal';
 import ScrollLetters from '@/app/components/motion/ScrollLetters';
 import Timeline from '@/app/components/about/Timeline';
 import Faq from '@/app/components/about/Faq';
@@ -35,7 +35,7 @@ const toolGroups = [
   },
   {
     label: 'Front end',
-    items: ['Next.js', 'React', 'Tailwind CSS', 'GSAP', 'Lenis', 'Framer Motion'],
+    items: ['Next.js', 'React', 'Tailwind CSS', 'Framer Motion', 'Canvas', 'Web animations'],
   },
   {
     label: 'Back end',
@@ -92,7 +92,7 @@ export default function AboutPage() {
                 className="pointer-events-none absolute inset-0"
                 style={{
                   background:
-                    'linear-gradient(200deg, rgba(200,155,82,0.16), transparent 45%, rgba(10,9,8,0.62))',
+                    'linear-gradient(200deg, rgba(225,224,204,0.10), transparent 45%, rgba(0,0,0,0.62))',
                   mixBlendMode: 'multiply',
                 }}
               />
@@ -166,10 +166,11 @@ export default function AboutPage() {
               </p>
               <p>
                 Since then I have delivered more than one hundred and ninety orders to clients in
-                twenty three countries, founded a publication that reached a hundred thousand
-                monthly readers, and joined two product teams. Today I write Go services on AWS
-                Lambda for a browser based audio editor at Chord.fm, and build AI assisted
-                internal tooling at Skylight Studio.
+                twenty three countries and founded a publication that reached a hundred thousand
+                monthly readers. Today I sit inside two product teams as an external engineer,
+                writing Go services on AWS Lambda for a browser based audio editor and building
+                AI assisted internal tooling for an engineering studio. The companies are named
+                further down this page, under experience.
               </p>
               <p>
                 I work best when I own the whole thing. Schema to interface, first commit to

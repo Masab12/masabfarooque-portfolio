@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 import { site, socials } from '@/app/data/site';
 import { process as steps } from '@/app/data/capabilities';
 import PageHead from '@/app/components/core/PageHead';
-import Reveal from '@/app/components/core/Reveal';
+import Reveal from '@/app/components/motion/Reveal';
 import ContactForm from '@/app/components/contact/ContactForm';
 import {
   MarkMail,

@@ -5,7 +5,7 @@ import { notFound } from 'next/navigation';
 import { projects, getProject, categoryLabels } from '@/app/data/projects';
 import { site } from '@/app/data/site';
 import { ArrowLong, ArrowDiagonal, MarkCheck, Spark } from '@/app/components/marks';
-import Reveal from '@/app/components/core/Reveal';
+import Reveal from '@/app/components/motion/Reveal';
 import WordsPullUp from '@/app/components/motion/WordsPullUp';
 import ContactCTA from '@/app/components/home/ContactCTA';
 
@@ -120,7 +120,7 @@ export default async function CaseStudyPage({ params }: { params: Promise<{ slug
             <span
               className="pointer-events-none absolute inset-0"
               style={{
-                background: 'linear-gradient(180deg, rgba(200,155,82,0.06), rgba(10,9,8,0.4))',
+                background: 'linear-gradient(180deg, rgba(225,224,204,0.05), rgba(0,0,0,0.45))',
               }}
             />
           </div>

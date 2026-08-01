@@ -5,7 +5,7 @@ import ScrollLetters from '@/app/components/motion/ScrollLetters';
 
 export default function Statement() {
   return (
-    <section className="bg-black px-4 py-12 sm:px-6 md:px-8 md:py-20">
+    <section className="snap-band bg-black px-4 py-16 sm:px-6 md:px-8 md:py-24">
       <div className="mx-auto max-w-6xl rounded-2xl bg-[#101010] px-5 py-16 text-center sm:px-10 md:rounded-[2rem] md:py-24 lg:py-28">
         <p className="text-[10px] text-primary sm:text-xs">Full stack engineering</p>
 
@@ -26,7 +26,7 @@ export default function Statement() {
         <div className="mx-auto mt-10 max-w-2xl">
           <ScrollLetters
             className="text-xs leading-relaxed text-[#DEDBC8] sm:text-sm md:text-base"
-            text="Over the last three years I have shipped products for Chord.fm, a browser based audio editor in Berlin, and Skylight Studio, where I built an AI proposal tool on the Claude API. Before that I took FirstDeal and Javea Denia Rentals from an empty repository to paying users at Fixels.nl in the Netherlands. Together that work has earned 148 reviews at a 4.85 average from clients in 23 countries."
+            text="Companies bring me in as an external resource when something has to be built properly and there is nobody free to own it. Over the last three years that has meant a browser based audio editor, an AI proposal tool, a marketplace monitoring platform and a booking system, each taken from an empty repository to real users. Together that work has earned 148 reviews at a 4.85 average from clients in 23 countries."
           />
         </div>
       </div>

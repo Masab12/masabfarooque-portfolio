@@ -1,4 +1,4 @@
-import Reveal from './Reveal';
+import Reveal from '@/app/components/motion/Reveal';
 
 export function LegalSection({
   index,
