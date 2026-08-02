@@ -1,120 +1,139 @@
 import type { Metadata } from 'next';
-import Navigation from '../components/Navigation';
-import Footer from '../components/Footer';
 import Link from 'next/link';
+import { site } from '@/app/data/site';
+import PageHead from '@/app/components/core/PageHead';
+import { LegalSection, LegalList } from '@/app/components/core/Legal';
+import { ArrowLong } from '@/app/components/marks';
 
 export const metadata: Metadata = {
-  title: 'Privacy Policy | Masab Farooque',
-  description: 'Privacy Policy for masabfarooque.com — how your data is collected and used when you contact Masab Farooque.',
-  alternates: { canonical: 'https://masabfarooque.com/privacy' },
-  robots: { index: true, follow: true },
+  title: 'Privacy',
+  description:
+    'How your data is collected, used and kept when you contact Masab Farooque through masabfarooque.com.',
+  alternates: { canonical: `${site.url}/privacy` },
 };
 
-const LAST_UPDATED = 'May 28, 2026';
+const LAST_UPDATED = 'August 1, 2026';
 
 export default function PrivacyPage() {
   return (
     <>
-      <Navigation />
-      <main className="relative bg-transparent min-h-screen pt-32 pb-20 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-3xl mx-auto">
+      <PageHead
+        label="Legal"
+        title="Privacy"
+        intro={`How your information is handled on this site. Last updated ${LAST_UPDATED}.`}
+      />
 
-          <div className="mb-12">
-            <p className="text-xs font-mono tracking-widest uppercase mb-3" style={{ color: 'var(--accent-cyan)' }}>
-              Legal
-            </p>
-            <h1 className="font-heading text-4xl sm:text-5xl font-bold mb-4" style={{ color: 'var(--text-1)' }}>
-              Privacy Policy
-            </h1>
-            <div className="w-14 h-1 rounded-full mb-4" style={{ background: 'linear-gradient(90deg, var(--accent-cyan), var(--accent-violet))' }} />
-            <p className="text-text-muted text-sm">Last updated: {LAST_UPDATED}</p>
-          </div>
+      <div className="shell py-14 md:py-20">
+        <LegalSection index="01" title="Who I am">
+          <p>
+            This site is run by Masab Farooque, an independent developer based in Islamabad,
+            Pakistan. The words I, me and my in this policy refer to me personally, not to a
+            company or an agency.
+          </p>
+          <p>
+            Contact:{' '}
+            <a href={`mailto:${site.email}`} className="text-primary hover:underline">
+              {site.email}
+            </a>
+          </p>
+        </LegalSection>
 
-          <div className="prose-section space-y-10 text-text-secondary text-sm sm:text-base leading-relaxed">
+        <LegalSection index="02" title="What I collect">
+          <p>I only collect what you choose to send through the contact form:</p>
+          <LegalList
+            items={[
+              'Your name',
+              'Your email address',
+              'Your company name, if you add one',
+              'The project type and timeline you select',
+              'The message you write',
+            ]}
+          />
+          <p>
+            I do not use tracking pixels, fingerprinting or behavioural profiling. The site does
+            use Google Analytics for aggregate visit counts, which you can block with any standard
+            content blocker.
+          </p>
+        </LegalSection>
 
-            <section>
-              <h2 className="font-heading text-xl font-semibold mb-3" style={{ color: 'var(--text-1)' }}>1. Who I Am</h2>
-              <p>
-                This website is operated by <strong className="text-text-primary">Masab Farooque</strong>, a solo freelance
-                developer based in Islamabad, Pakistan. &ldquo;I&rdquo;, &ldquo;me&rdquo;, or &ldquo;my&rdquo; in this policy
-                refers to Masab Farooque personally, not a company or agency.
-              </p>
-              <p className="mt-3">
-                Contact: <a href="mailto:masabfarooque1122@gmail.com" className="underline underline-offset-2 hover:opacity-80 transition-opacity" style={{ color: 'var(--accent-cyan)' }}>masabfarooque1122@gmail.com</a>
-              </p>
-            </section>
+        <LegalSection index="03" title="How I use it">
+          <LegalList
+            items={[
+              'To reply to your enquiry',
+              'To work out whether the project is a good fit',
+              'To continue an ongoing project conversation',
+            ]}
+          />
+          <p>
+            I will never sell, rent or pass your details to a third party for marketing.
+          </p>
+        </LegalSection>
 
-            <section>
-              <h2 className="font-heading text-xl font-semibold mb-3" style={{ color: 'var(--text-1)' }}>2. What Data I Collect</h2>
-              <p>I only collect information you voluntarily provide through the contact form on this site:</p>
-              <ul className="mt-3 space-y-1.5 list-disc list-inside text-text-muted">
-                <li><span className="text-text-secondary">Your name</span></li>
-                <li><span className="text-text-secondary">Your email address</span></li>
-                <li><span className="text-text-secondary">Your project description or message</span></li>
-                <li><span className="text-text-secondary">Optional: budget range or service type</span></li>
-              </ul>
-              <p className="mt-3">I do not use tracking pixels, fingerprinting, or behavioural analytics. I do not collect IP addresses, device data, or browsing history.</p>
-            </section>
+        <LegalSection index="04" title="Third parties">
+          <p>
+            Contact form messages are delivered through EmailJS, which processes the submission to
+            send the email and does not keep it afterwards. Client review photos on this site are
+            served directly by Fiverr, which means your browser requests them from Fiverr when you
+            view the reviews section.
+          </p>
+        </LegalSection>
 
-            <section>
-              <h2 className="font-heading text-xl font-semibold mb-3" style={{ color: 'var(--text-1)' }}>3. How I Use Your Data</h2>
-              <p>The information you submit is used solely to:</p>
-              <ul className="mt-3 space-y-1.5 list-disc list-inside text-text-muted">
-                <li><span className="text-text-secondary">Respond to your enquiry about a project</span></li>
-                <li><span className="text-text-secondary">Assess whether your project is a good fit</span></li>
-                <li><span className="text-text-secondary">Follow up on ongoing project discussions</span></li>
-              </ul>
-              <p className="mt-3">I will never sell, rent, or share your personal information with third parties for marketing purposes.</p>
-            </section>
+        <LegalSection index="05" title="Cookies and storage">
+          <p>
+            No tracking cookies are set by me. The site stores one small session flag in your
+            browser so the opening animation does not play twice in the same visit. That value
+            never leaves your device.
+          </p>
+        </LegalSection>
 
-            <section>
-              <h2 className="font-heading text-xl font-semibold mb-3" style={{ color: 'var(--text-1)' }}>4. Third-Party Services</h2>
-              <p>Contact form submissions are routed through <strong className="text-text-primary">EmailJS</strong> to deliver messages to my inbox. EmailJS processes the submitted data to send the email and does not store it beyond delivery. You can review their privacy policy at <a href="https://www.emailjs.com/legal/privacy-policy/" target="_blank" rel="noopener noreferrer" className="underline underline-offset-2 hover:opacity-80 transition-opacity" style={{ color: 'var(--accent-cyan)' }}>emailjs.com</a>.</p>
-              <p className="mt-3">The world map on the About page loads geographic data from <strong className="text-text-primary">jsDelivr CDN</strong> (a public CDN). No personal data is sent to jsDelivr.</p>
-            </section>
+        <LegalSection index="06" title="Retention">
+          <p>
+            Email correspondence stays in my inbox for as long as it is useful to manage the
+            conversation, and no longer than two years after the last message. You can ask me to
+            delete it at any point.
+          </p>
+        </LegalSection>
 
-            <section>
-              <h2 className="font-heading text-xl font-semibold mb-3" style={{ color: 'var(--text-1)' }}>5. Cookies</h2>
-              <p>This website does not use cookies for tracking or analytics. The site may use browser-level session storage for UI state (e.g. scroll position) but this data never leaves your device and is not sent to any server.</p>
-            </section>
+        <LegalSection index="07" title="Your rights">
+          <LegalList
+            items={[
+              'Ask what personal data I hold about you',
+              'Ask me to correct anything inaccurate',
+              'Ask me to delete it',
+              'Withdraw consent at any time',
+            ]}
+          />
+          <p>
+            Email me and I will reply within seventy two hours.
+          </p>
+        </LegalSection>
 
-            <section>
-              <h2 className="font-heading text-xl font-semibold mb-3" style={{ color: 'var(--text-1)' }}>6. Data Retention</h2>
-              <p>
-                Email correspondence is retained in my personal email inbox for as long as necessary to manage project discussions, typically no longer than 2 years after the last contact. You can request deletion at any time by emailing me.
-              </p>
-            </section>
+        <LegalSection index="08" title="Changes">
+          <p>
+            If this policy changes in a meaningful way I will update the date at the top of the
+            page. Continuing to use the site after that means you accept the updated version.
+          </p>
+        </LegalSection>
 
-            <section>
-              <h2 className="font-heading text-xl font-semibold mb-3" style={{ color: 'var(--text-1)' }}>7. Your Rights</h2>
-              <p>You have the right to:</p>
-              <ul className="mt-3 space-y-1.5 list-disc list-inside text-text-muted">
-                <li><span className="text-text-secondary">Request access to any personal data I hold about you</span></li>
-                <li><span className="text-text-secondary">Request correction of inaccurate data</span></li>
-                <li><span className="text-text-secondary">Request deletion of your data</span></li>
-                <li><span className="text-text-secondary">Withdraw consent at any time</span></li>
-              </ul>
-              <p className="mt-3">To exercise any of these rights, email <a href="mailto:masabfarooque1122@gmail.com" className="underline underline-offset-2 hover:opacity-80 transition-opacity" style={{ color: 'var(--accent-cyan)' }}>masabfarooque1122@gmail.com</a> and I will respond within 72 hours.</p>
-            </section>
-
-            <section>
-              <h2 className="font-heading text-xl font-semibold mb-3" style={{ color: 'var(--text-1)' }}>8. Changes to This Policy</h2>
-              <p>If I make material changes to this policy, I will update the &ldquo;Last updated&rdquo; date at the top of this page. Continued use of the site after changes constitutes acceptance of the updated policy.</p>
-            </section>
-
-            <div className="pt-6 border-t" style={{ borderColor: 'var(--border-base)' }}>
-              <Link href="/terms" className="text-sm underline underline-offset-2 hover:opacity-80 transition-opacity mr-6" style={{ color: 'var(--accent-violet)' }}>
-                Terms of Service
-              </Link>
-              <Link href="/contact" className="text-sm underline underline-offset-2 hover:opacity-80 transition-opacity" style={{ color: 'var(--accent-cyan)' }}>
-                Contact Me
-              </Link>
-            </div>
-
-          </div>
+        <div className="mt-12 flex flex-wrap gap-4">
+          <Link
+            href="/terms"
+            className="group inline-flex items-center gap-3 border px-5 py-3 text-sm transition-colors duration-500 hover:border-hair2"
+            style={{ borderColor: 'var(--line-2)' }}
+          >
+            Terms
+            <ArrowLong size={15} className="text-primary transition-transform group-hover:translate-x-1" />
+          </Link>
+          <Link
+            href="/contact"
+            className="group inline-flex items-center gap-3 border px-5 py-3 text-sm transition-colors duration-500 hover:border-hair2"
+            style={{ borderColor: 'var(--line-2)' }}
+          >
+            Contact
+            <ArrowLong size={15} className="text-primary transition-transform group-hover:translate-x-1" />
+          </Link>
         </div>
-      </main>
-      <Footer />
+      </div>
     </>
   );
 }

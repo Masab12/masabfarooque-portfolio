@@ -47,3 +47,8 @@ coverage/
 *.tsbuildinfo
 next-env.d.ts
 .cache/
+
+# Session scratch, safe to delete
+_to_delete/
+_commit-message.txt
+.claude/settings.local.json

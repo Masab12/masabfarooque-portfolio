@@ -1,149 +1,132 @@
-export type TimelineType = 'education' | 'work' | 'freelance' | 'achievement' | 'transition' | 'founder';
-export type AccentColor = 'cyan' | 'violet' | 'gold' | 'silver' | 'green';
-
 export interface TimelineEntry {
-  id: string;
   year: string;
   title: string;
-  organization?: string;
-  type: TimelineType;
-  description: string;
+  org?: string;
+  body: string;
+  kind: 'education' | 'work' | 'award' | 'shift' | 'founder';
   tags?: string[];
-  accentColor: AccentColor;
-  isAward?: boolean;
 }
 
 export const timeline: TimelineEntry[] = [
   {
-    id: 'comsats',
     year: '2019',
-    title: 'Joined COMSATS University Islamabad',
-    organization: 'COMSATS University, Wah Campus',
-    type: 'education',
-    description: 'Started a Bachelor of Science in Computer Science. Began taking small freelance projects and writing work on the side from the first semester to build real skills beyond the classroom.',
-    tags: ['Computer Science', 'Islamabad', 'B.Sc. CS'],
-    accentColor: 'cyan',
+    title: 'Started Computer Science',
+    org: 'COMSATS University Islamabad, Wah Campus',
+    kind: 'education',
+    body: 'Began a four year Computer Science degree and started taking small paid projects in the first semester, because reading about software is not the same as shipping it.',
+    tags: ['B.Sc. Computer Science'],
   },
   {
-    id: '10static',
-    year: 'Feb 2020 to Sep 2020',
+    year: '2020',
     title: 'Unity Developer',
-    organization: '10Static Studios',
-    type: 'work',
-    description: 'Developed and published two Android games, Twirly Ball and Little Monster Jump, using Unity and C#. Implemented physics-based mechanics and fine-tuned gameplay loops, resulting in 10,000+ combined downloads on the Play Store.',
-    tags: ['Unity', 'C#', 'Android', '10k+ Downloads'],
-    accentColor: 'violet',
+    org: '10Static Studios',
+    kind: 'work',
+    body: 'Shipped two Android games, Twirly Ball and Little Monster Jump, built in Unity and C#. Together they passed ten thousand downloads on the Play Store.',
+    tags: ['Unity', 'C#', '10k downloads'],
   },
   {
-    id: 'hustler-award',
     year: '2020',
     title: 'The Hustler Award',
-    organization: 'Epiphany Games',
-    type: 'achievement',
-    description: 'Won The Hustler Award at Epiphany Games, recognized for drive, work ethic, and output at one of the game jam competitions.',
-    tags: ['Award', 'Epiphany', 'Recognition'],
-    accentColor: 'gold',
-    isAward: true,
+    org: 'Epiphany Games',
+    kind: 'award',
+    body: 'Recognised for output and work rate across the competition.',
   },
   {
-    id: 'mindstorm-2021',
-    year: 'Jun 2021 to Sep 2021',
-    title: 'Unity Game Development Intern',
-    organization: 'Mindstorm Studios',
-    type: 'work',
-    description: 'Developed Bizarre Adventures, a hyper-casual runner game focused on retention and engagement loops. Applied core loop optimization, player psychology concepts, and rapid prototyping methodologies to create an engaging gameplay experience.',
-    tags: ['Unity', 'Mindstorm', 'Hyper-Casual', 'Game Design'],
-    accentColor: 'cyan',
+    year: '2021',
+    title: 'Game Development Fellow',
+    org: 'Mindstorm Studios',
+    kind: 'work',
+    body: 'Built Bizarre Adventures, a hyper casual runner. First real lesson in retention loops and in tuning something until it feels right rather than until it compiles.',
+    tags: ['Unity', 'Game design'],
   },
   {
-    id: 'mindstorm-2022',
-    year: 'Jun 2022 to Sep 2022',
-    title: 'Unity Game Development Intern',
-    organization: 'Mindstorm Studios',
-    type: 'work',
-    description: 'Developed Titanic Rescue, a hyper-casual survival game. Focused on gameplay balancing, core loop design, level design, editor scripting, and Unity component architecture. The game won Best Mechanics Award and was selected for incubation.',
-    tags: ['Unity', 'Titanic Rescue', 'Best Mechanics', 'Incubation'],
-    accentColor: 'violet',
-  },
-  {
-    id: 'best-mechanics',
     year: '2022',
     title: 'Best Mechanics Award',
-    organization: 'Rookie Game Jam by Mindstorm Studios',
-    type: 'achievement',
-    description: 'Won the Best Mechanics Award at the Rookie Game Jam organized by Mindstorm Studios for Titanic Rescue. The game was also selected for incubation.',
-    tags: ['Award', 'Best Mechanics', 'Mindstorm', 'Incubation'],
-    accentColor: 'gold',
-    isAward: true,
+    org: 'Rookie Game Jam, Mindstorm Studios',
+    kind: 'award',
+    body: 'Won Best Mechanics for Titanic Rescue, which was then selected for incubation.',
   },
   {
-    id: 'food-planet',
     year: '2022',
-    title: 'Runner-Up at Developers Game Jam 2.0',
-    organization: 'Developers Game Jam 2.0',
-    type: 'achievement',
-    description: "Placed runner-up at Developers Game Jam 2.0 with the game Food Planet, competing against developers from across Pakistan.",
-    tags: ['Runner-Up', 'Food Planet', 'Game Jam', 'Pakistan'],
-    accentColor: 'silver',
-    isAward: true,
+    title: 'Runner up, Developers Game Jam 2.0',
+    org: 'Developers Game Jam',
+    kind: 'award',
+    body: 'Placed second nationally with Food Planet, against teams from across Pakistan.',
   },
   {
-    id: 'graduated',
-    year: 'Jan 2023',
-    title: 'Graduated, B.Sc. Computer Science',
-    organization: 'COMSATS University Islamabad, Wah Campus',
-    type: 'education',
-    description: 'Completed a four-year Computer Science degree. By graduation, already had three years of professional game development experience across multiple studios and national competitions.',
-    tags: ['Graduated', 'Computer Science', 'COMSATS', 'B.Sc.'],
-    accentColor: 'cyan',
+    year: '2023',
+    title: 'Graduated',
+    org: 'COMSATS University Islamabad',
+    kind: 'education',
+    body: 'Finished the degree after three internships and a six month full time job, plus a set of competition results.',
   },
   {
-    id: 'mindstorm-2023',
-    year: 'Jun 2023 to Aug 2023',
-    title: 'Unity Game Development Intern',
-    organization: 'Mindstorm Studios',
-    type: 'work',
-    description: "Developed Backyard Defense, a strategic tower defense game featuring multi-layered AI pathfinding algorithms, dynamic enemy spawning systems, and balanced progression mechanics. Participated in advanced workshops on game architecture patterns and performance optimization.",
-    tags: ['Unity', 'Tower Defense', 'AI Pathfinding', 'Mindstorm'],
-    accentColor: 'violet',
+    year: '2023',
+    title: 'Moved into web and AI',
+    kind: 'shift',
+    body: 'A deliberate pivot out of games. Learned Next.js, Node.js, FastAPI, NestJS, LangChain and retrieval architectures, then started taking web clients and building products with them.',
+    tags: ['Next.js', 'FastAPI', 'LangChain'],
   },
   {
-    id: 'web-transition',
-    year: 'Late 2023',
-    title: 'Transitioned to Web Development and AI',
-    type: 'transition',
-    description: 'Made a deliberate pivot from game development into full stack web and AI engineering. Learned Next.js, Node.js, FastAPI, NestJS, LangChain, and RAG architectures. Started taking web development clients on Fiverr and quickly began building SaaS products.',
-    tags: ['Next.js', 'FastAPI', 'LangChain', 'AI', 'Career Pivot'],
-    accentColor: 'green',
+    year: '2024',
+    title: 'Web Developer and SEO',
+    org: 'PentaByteX',
+    kind: 'work',
+    body: 'Built client sites on React, Next.js, WordPress and Shopify, and led the migration from client side to server side rendering across the portfolio.',
+    tags: ['React', 'Next.js', 'SSR'],
   },
   {
-    id: 'replayjutsu',
-    year: 'Mar 2024 to Nov 2024',
-    title: 'Founder',
-    organization: 'ReplayJutsu',
-    type: 'founder',
-    description: 'Founded and scaled an online gaming publication to over 100,000 monthly active users. Developed and executed a comprehensive content strategy based on entity SEO and technical optimization, establishing the site as an authority in its niche.',
-    tags: ['Founder', '100k+ Users', 'Entity SEO', 'Publishing'],
-    accentColor: 'violet',
+    year: '2025',
+    title: 'Web Developer',
+    org: 'Fixels.nl',
+    kind: 'work',
+    body: 'Shipped Javea Denia Rentals and FirstDeal.nl, one booking platform and one monitoring SaaS, both from empty repository to paying users.',
+    tags: ['FastAPI', 'Celery', 'Stripe'],
   },
   {
-    id: 'pentabytex',
-    year: 'Jul 2024 to Feb 2025',
-    title: 'SEO Web Developer',
-    organization: 'PentaByteX',
-    type: 'work',
-    description: 'Developed and optimized client websites for enhanced SEO performance using React, Next.js, and various CMS platforms including WordPress and Shopify. Led technical implementations including successful migrations from CSR to SSR for improved search engine visibility.',
-    tags: ['React', 'Next.js', 'SEO', 'WordPress', 'Shopify', 'SSR'],
-    accentColor: 'cyan',
+    year: '2026',
+    title: 'Full Stack Engineer',
+    org: 'Skylight Studio and Chord.fm',
+    kind: 'work',
+    body: 'Two product teams at once. Internal tooling and AI proposal generation at Skylight Studio, and the browser based audio editor at Chord.fm.',
+    tags: ['Next.js', 'AWS Lambda', 'Claude API'],
+  },
+];
+
+export interface Faq {
+  question: string;
+  answer: string;
+}
+
+export const faqs: Faq[] = [
+  {
+    question: 'What kind of work are you the right fit for?',
+    answer:
+      'Products with a real backend. SaaS platforms, AI systems that touch live data, scraping and pipeline work, and full applications that need one person to own the whole stack. If the hard part is a marketing page, you can hire cheaper than me.',
   },
   {
-    id: 'fiverr-l2',
-    year: '2023 to Present',
-    title: 'Level 2 Fiverr Seller',
-    organization: 'Fiverr',
-    type: 'freelance',
-    description: 'Reached Level 2 seller status with 195+ completed orders across Europe, North America, and Asia. Projects include SaaS platforms, AI pipelines, web scrapers, marketplace tools, and full stack apps for clients in 15+ countries.',
-    tags: ['Fiverr Level 2', '195+ Orders', '15+ Countries', 'SaaS', 'AI'],
-    accentColor: 'cyan',
+    question: 'How do you usually charge?',
+    answer:
+      'Fixed price per milestone once the scope is written down, or a monthly rate for ongoing product work. I put the number in writing before anything starts, and it does not move unless the scope does.',
+  },
+  {
+    question: 'How long does a project take?',
+    answer:
+      'A focused build is usually two to six weeks. A full platform with billing, admin and integrations is typically two to four months. You get a schedule with the scope, not after it.',
+  },
+  {
+    question: 'Do you work with existing codebases?',
+    answer:
+      'Yes. A large share of my work is picking up something half finished, understanding it, and getting it to production. I will tell you honestly whether it is worth continuing or worth rebuilding.',
+  },
+  {
+    question: 'What happens after handover?',
+    answer:
+      'You get the repository, the deployment and the documentation. I stay available for a support window after launch, and most clients keep me on for the next phase, which is where the repeat orders come from.',
+  },
+  {
+    question: 'Where are you based and does it matter?',
+    answer:
+      'Islamabad, Pakistan, on UTC plus five. I have delivered to clients in more than fifteen countries and keep overlap hours with Europe and North America. Time zone has never been the reason a project slipped.',
   },
 ];

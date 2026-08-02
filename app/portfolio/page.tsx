@@ -1,63 +1,55 @@
 import type { Metadata } from 'next';
-import Navigation from '../components/Navigation';
-import Footer from '../components/Footer';
-import PageTransition from '../components/PageTransition';
-import PortfolioPageContent from '../components/PortfolioPageContent';
-import { projects } from '../data/projects';
+import { projects } from '@/app/data/projects';
+import { site } from '@/app/data/site';
+import PageHead from '@/app/components/core/PageHead';
+import WorkIndex from '@/app/components/work/WorkIndex';
+import ContactCTA from '@/app/components/home/ContactCTA';
 
 export const metadata: Metadata = {
-  title: "Masab Farooque's Portfolio | SaaS, AI, Web Scraping & Full Stack Projects",
-  description: 'Real projects built by Masab Farooque. SaaS platforms, AI systems, marketplaces, and scrapers for clients in Europe, North America, and Asia. Every project is production code built solo from scratch.',
-  keywords: ['masab portfolio', 'masab projects', 'masab farooque work', 'full stack portfolio pakistan', 'ai projects masab', 'saas developer portfolio'],
-  alternates: { canonical: 'https://masabfarooque.com/portfolio' },
-  openGraph: {
-    url: 'https://masabfarooque.com/portfolio',
-    title: "Masab Farooque's Portfolio | Real Production Projects",
-    description: 'SaaS platforms, AI pipelines, web scrapers, and full stack apps built solo by Masab Farooque for clients in 15 countries.',
-  },
+  title: 'Work',
+  description:
+    'Case studies from Masab Farooque: SaaS platforms, AI systems, data pipelines and product builds, each taken from an empty repository to production.',
+  alternates: { canonical: `${site.url}/portfolio` },
 };
 
-const pageSchemas = [
-  {
-    '@context': 'https://schema.org',
-    '@type': 'BreadcrumbList',
-    itemListElement: [
-      { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://masabfarooque.com' },
-      { '@type': 'ListItem', position: 2, name: 'Portfolio', item: 'https://masabfarooque.com/portfolio' },
-    ],
-  },
-  {
-    '@context': 'https://schema.org',
-    '@type': 'ItemList',
-    name: "Masab Farooque's Project Portfolio",
-    description: 'A selection of production systems built by Masab Farooque across full stack development, AI, SaaS, and web scraping.',
-    itemListElement: projects.map((p, i) => ({
-      '@type': 'ListItem',
-      position: i + 1,
-      item: {
-        '@type': 'SoftwareApplication',
-        name: p.title,
-        description: p.description,
-        applicationCategory: 'WebApplication',
-        author: { '@type': 'Person', name: 'Masab Farooque' },
-        ...(p.liveUrl ? { url: p.liveUrl } : {}),
-        keywords: p.technologies.join(', '),
-      },
-    })),
-  },
-];
+const listSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'CollectionPage',
+  name: 'Work by Masab Farooque',
+  url: `${site.url}/portfolio`,
+  hasPart: projects.map((p) => ({
+    '@type': 'CreativeWork',
+    name: p.title,
+    description: p.summary,
+    url: `${site.url}/portfolio/${p.slug}`,
+  })),
+};
 
-export default function PortfolioPage() {
+export default function WorkPage() {
   return (
-    <PageTransition>
-      {pageSchemas.map((schema, i) => (
-        <script key={i} type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} />
-      ))}
-      <Navigation />
-      <main className="relative bg-transparent overflow-x-hidden pt-28">
-        <PortfolioPageContent />
-      </main>
-      <Footer />
-    </PageTransition>
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(listSchema) }}
+      />
+
+      <PageHead
+        label="Work"
+        title="Things I built and shipped"
+        intro="Eight projects that reached real users. Each one lists what it does, how it is put together and what was hard about it, because that is the part worth reading."
+        meta={[
+          { label: 'Projects', value: String(projects.length) },
+          { label: 'Built solo', value: '5 of 8' },
+          { label: 'In production', value: '5 live' },
+          { label: 'Span', value: '2025 to 2026' },
+        ]}
+      />
+
+      <section className="shell py-14 md:py-20">
+        <WorkIndex />
+      </section>
+
+      <ContactCTA />
+    </>
   );
 }

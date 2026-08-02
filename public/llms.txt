@@ -1,93 +1,71 @@
-# Masab Farooque — Full Stack Developer & AI Engineer
+# Masab Farooque, Full Stack Engineer
 
-> Masab Farooque is a Level 2 Fiverr Seller and full stack developer from Islamabad, Pakistan. He builds SaaS platforms, AI pipelines, web scrapers, and full stack web applications for clients across 15 countries. 195 plus completed orders since 2023.
+> Masab Farooque is a full stack engineer based in Islamabad, Pakistan. He is
+> brought in as an external resource by product teams and agencies to build
+> SaaS platforms, AI systems, data pipelines and full stack web applications
+> end to end. 195 plus completed orders and 148 reviews at a 4.85 average from
+> clients in 23 countries. Company names appear only under Experience.
 
-## About
+## Experience
 
-Masab Farooque graduated from COMSATS University Islamabad with a Bachelor of Science in Computer Science in January 2023. During university he worked as a Unity game developer at 10Static Studios and completed three internships at Mindstorm Studios, where he won the Best Mechanics Award at the Rookie Game Jam 2022 and placed runner-up at Developers Game Jam 2.0. He also won The Hustler Award at Epiphany Games in 2020 and participated in seven national game jams across Pakistan.
+- Chord.fm, Full Stack Engineer, June 2026 to present. Browser based audio and
+  video editor for podcasters and creators. Built the Music Library panel from
+  scratch, including waveform playback with click to seek. Backend written in Go
+  on AWS Lambda with DynamoDB, API Gateway and S3.
+- Skylight Studio, Full Stack Engineer, March 2026 to present. Next.js internal
+  tooling platform for the Engineering Solutions team, including The Proposal
+  Maker, an AI assisted tool that reads an RFP or email thread with Claude and
+  drafts a branded proposal section by section.
 
-After graduating in 2023 he transitioned fully into web development and AI engineering. He reached Level 2 seller status on Fiverr with 195 plus completed orders. He also founded ReplayJutsu, an online gaming publication that grew to 100,000 plus monthly active users, and worked as an SEO Web Developer at PentaByteX from July 2024 to February 2025.
+## Background
 
-He is a solo developer, not a team or agency. Every project is designed, built, and deployed by him.
+Bachelor of Science in Computer Science, COMSATS University Islamabad, 2023.
+Unity game developer at 10Static Studios and fellow at Mindstorm Studios from
+2020 to 2023. Won Best Mechanics at the Rookie Game Jam 2022, The Hustler Award
+at Epiphany Games in 2020, and placed runner up at Developers Game Jam 2.0.
+Founded ReplayJutsu, a gaming publication that reached 100,000 monthly active
+users. SEO Web Developer at PentaByteX from September 2024 to February 2025.
+Web Developer at Fixels.nl from November 2025 to April 2026, where he shipped
+Javea Denia Rentals and FirstDeal.nl.
 
-## Website
+He works solo, not as an agency. Every project is designed, built and deployed
+by him.
 
-- Homepage: https://masabfarooque.com — Introduction, featured projects, client reviews, and trusted by logos.
-- About: https://masabfarooque.com/about-masab — Full biography, career timeline, game jam awards, skill radar chart, and world map of clients.
-- Services: https://masabfarooque.com/services — Detailed breakdown of four service categories with sub-services.
-- Portfolio: https://masabfarooque.com/portfolio — All completed projects with tech stacks, descriptions, and links.
-- Pricing: https://masabfarooque.com/pricing — Transparent pricing tiers with feature breakdowns and FAQ.
-- Contact: https://masabfarooque.com/contact — Contact form, email, and social links.
+## Pages
 
-## Services
+- Homepage: https://masabfarooque.com
+- Work: https://masabfarooque.com/portfolio
+- About: https://masabfarooque.com/about-masab
+- Contact: https://masabfarooque.com/contact
 
-Masab provides four core service categories:
+## Case studies
 
-### Full Stack Development
-Complete web applications from database to UI. React, Next.js, Node.js, and NestJS on the frontend and backend. PostgreSQL via Supabase for data, Redis for caching, Docker for deployment. Projects include SaaS platforms, e-commerce systems, client portals, and MVPs.
+- Navia: https://masabfarooque.com/portfolio/navia
+- The Proposal Maker: https://masabfarooque.com/portfolio/the-proposal-maker
+- FirstDeal: https://masabfarooque.com/portfolio/firstdeal
+- Hice.AI: https://masabfarooque.com/portfolio/hice-ai
+- JANUA Financial: https://masabfarooque.com/portfolio/janua-financial
+- RotiShoti AI: https://masabfarooque.com/portfolio/rotishoti-ai
+- Javea Denia Rentals: https://masabfarooque.com/portfolio/javea-denia-rentals
+- Apple Music Metadata Validator: https://masabfarooque.com/portfolio/apple-music-validator
 
-### AI and Machine Learning Integration
-LangChain and LangGraph agents, RAG pipelines with vector databases, OpenAI and Anthropic integrations, AI chatbots with conversation memory, and multi-step workflow automation. Full production-grade AI systems with circuit breakers, caching, and structured logging.
+## Capabilities
 
-### Web Scraping and Automation
-Custom web scrapers using Playwright, Selenium, and Puppeteer. Celery and Redis for distributed task queuing. Anti-bot bypass, pagination handling, and clean structured data output. Browser automation for login flows, form submissions, and file downloads.
+Full stack product build, AI systems and agents, data pipelines and scraping,
+SaaS platforms with billing and multi tenancy, interfaces with motion,
+performance and technical SEO.
 
-### API Development
-FastAPI and NestJS REST APIs with OpenAPI documentation, JWT authentication, role-based access, and consistent error handling. Third-party integrations with Stripe, Telegram, Twilio, and Google APIs. Performance optimization with Redis caching and connection pooling.
+## Stack
 
-## Featured Projects
-
-### Navia
-A rare disease intelligence platform aggregating data from nine global medical sources. Backend handles 460,000 plus clinical trials, 270,000 plus publications, and 10,000 plus diseases. Built with Next.js 14, FastAPI, PostgreSQL, Celery, Redis, and OpenAI. Includes Stripe subscriptions, GDPR compliance, and an admin BI dashboard.
-Live: https://navia.health
-
-### FirstDeal
-A full stack SaaS platform for the Dutch and German second-hand car market. Monitors Marktplaats, 2dehands.be, and Kleinanzeigen in real time with instant Telegram and email alerts. Built with Next.js, FastAPI, PostgreSQL, Redis, Celery, and Stripe. Three pricing tiers, admin panel, referral system, PWA support.
-Live: https://firstdeal.nl
-
-### Hice.AI
-A multi-tenant AI business management platform. LangChain agents handle natural language commands for HR, time tracking, and reporting. Row-level security via Supabase. Docker deployed.
-Live: https://app.hice.ai
-
-### Javea Denia Rentals
-A vehicle rental platform for tourists on Costa Blanca. Real-time availability, Stripe payments, multi-language support, and admin dashboard.
-Live: https://www.javea-denia-rentals.com
-
-### JANUA Financial
-An enterprise financial analysis tool for European businesses. OCR from PDFs, 50 plus financial ratios, Altman Z-Score, and professional PDF report generation.
-Live: https://janua-financial-analysis-rho.vercel.app
-
-### RotiShoti AI
-An AI-powered food discovery platform for Pakistani cuisine. Semantic search, natural language queries, location-aware recommendations, and Groq LLaMA models for fast responses.
-
-### Apple Music Metadata Validator
-A React web app for VerseOne that validates music metadata files before Apple Music submission. Parses iMusician CSV and Excel formats, checks Apple style guide rules, detects duplicates by title, artist, and ISRC.
-
-## Tech Stack
-
-Frontend: React, Next.js, TypeScript, Tailwind CSS, Zustand, Framer Motion
-Backend: FastAPI, Node.js, NestJS, Express.js
-AI and ML: OpenAI, Anthropic Claude, LangChain, LangGraph, pgvector, RAG pipelines, Groq
-Databases: PostgreSQL, MongoDB, Supabase, Redis, SQLite
-Automation: Celery, Playwright, Selenium, Puppeteer
-DevOps: Docker, Vercel, Hostinger Node.js, GitHub
-Payments: Stripe
-Other: Telegram API, Twilio, Google APIs, JWT, OAuth
-
-## Pricing
-
-- Starter Launch: From $299. Single-page React or Next.js website with contact form, SEO, and deployment.
-- Scale Stack: From $1,200. Full stack app with auth, database, admin dashboard, API integrations, and Stripe billing.
-- AI Automation Suite: From $3,500. Everything in Scale Stack plus LangChain agents, RAG pipelines, OpenAI integration, and automated workflows.
-- Custom: Contact for pricing. Large-scale SaaS, AI agent ecosystems, scraping infrastructure, and long-term partnerships.
+TypeScript, Python, Go, SQL, Next.js, React, Tailwind CSS, GSAP, Lenis,
+FastAPI, Node.js, NestJS, Celery, Redis, PostgreSQL, Supabase, DynamoDB,
+MongoDB, AWS Lambda, API Gateway, S3, Docker, Stripe, Claude API, OpenAI, Groq,
+LangChain, retrieval augmented generation.
 
 ## Contact
 
-Email: masabfarooque1122@gmail.com
-Location: Islamabad, Pakistan
-Timezone: PKT UTC+5
-Fiverr: https://www.fiverr.com/p_scribbles/portfolio/
-Upwork: https://upwork.com/freelancers/~01e34b32d5b254495d
-GitHub: https://github.com/Masab12
-LinkedIn: https://www.linkedin.com/in/masabfarooque
-Response time: Within 24 hours
+- Email: contact@masabfarooque.com
+- GitHub: https://github.com/Masab12
+- LinkedIn: https://www.linkedin.com/in/masabfarooque
+- Fiverr: https://www.fiverr.com/p_scribbles
+- Upwork: https://upwork.com/freelancers/~01e34b32d5b254495d

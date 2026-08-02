@@ -1,18 +1,8 @@
-<svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-  <!-- Background -->
-  <rect width="32" height="32" rx="6" fill="#0A0A0F"/>
-  
-  <!-- Gradient border effect -->
-  <rect x="1" y="1" width="30" height="30" rx="5" stroke="url(#gradient)" stroke-width="2"/>
-  
-  <!-- MF Text -->
-  <text x="16" y="22" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#00F0FF" text-anchor="middle">MF</text>
-  
-  <!-- Gradient definition -->
-  <defs>
-    <linearGradient id="gradient" x1="0" y1="0" x2="32" y2="32" gradientUnits="userSpaceOnUse">
-      <stop offset="0%" stop-color="#00F0FF"/>
-      <stop offset="100%" stop-color="#8B5CF6"/>
-    </linearGradient>
-  </defs>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" width="48" height="48">
+  <rect width="48" height="48" fill="#0a0908"/>
+  <g stroke="#c89b52" stroke-width="3" stroke-linecap="square" fill="none">
+    <path d="M7 37V11l10.5 15L28 11v26"/>
+    <path d="M34 37V11h9"/>
+    <path d="M34 24h7"/>
+  </g>
 </svg>
