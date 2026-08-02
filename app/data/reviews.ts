@@ -22,7 +22,7 @@ export interface Review {
 
 export const reviewSummary = {
   total: 148,
-  average: 4.85,
+  average: 5,
   countries: 23,
   repeatShare: 31,
   newest: '2026-07-21',

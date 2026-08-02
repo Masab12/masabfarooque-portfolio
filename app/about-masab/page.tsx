@@ -166,11 +166,11 @@ export default function AboutPage() {
               </p>
               <p>
                 Since then I have delivered more than one hundred and ninety orders to clients in
-                twenty three countries and founded a publication that reached a hundred thousand
-                monthly readers. Today I sit inside two product teams as an external engineer,
-                writing Go services on AWS Lambda for a browser based audio editor and building
-                AI assisted internal tooling for an engineering studio. The companies are named
-                further down this page, under experience.
+                twenty three countries. Today I sit inside two product teams as an external
+                engineer, building AI assisted internal tooling for an engineering studio and a
+                browser based audio editor for a media team. Solo work keeps running alongside
+                that, platforms like FirstDeal and Javea Denia Rentals that I took from an empty
+                repository to paying users. The companies are named in the path below.
               </p>
               <p>
                 I work best when I own the whole thing. Schema to interface, first commit to

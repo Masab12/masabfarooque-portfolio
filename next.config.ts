@@ -35,11 +35,23 @@ const nextConfig: NextConfig = {
   },
 
   async headers() {
+    // Turbopack's dev server does not guarantee a fresh chunk URL on every
+    // edit the way a production build's content hashing does, so an
+    // immutable, one year cache on /_next/static in dev tells the browser
+    // to keep serving a stale JS bundle forever, no matter how many times
+    // the page is reloaded. Scope the aggressive caching to production only.
+    const immutableStatic =
+      process.env.NODE_ENV === 'production'
+        ? [
+            {
+              source: '/_next/static/:path*',
+              headers: [{ key: 'Cache-Control', value: 'public, max-age=31536000, immutable' }],
+            },
+          ]
+        : [];
+
     return [
-      {
-        source: '/_next/static/:path*',
-        headers: [{ key: 'Cache-Control', value: 'public, max-age=31536000, immutable' }],
-      },
+      ...immutableStatic,
       {
         source: '/fonts/:path*',
         headers: [{ key: 'Cache-Control', value: 'public, max-age=31536000, immutable' }],

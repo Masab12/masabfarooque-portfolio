@@ -71,7 +71,7 @@ function Plate({
                 {project.title}
               </h3>
 
-              <p className="mt-4 max-w-md text-xs leading-relaxed text-gray-400 sm:text-sm">
+              <p className="mt-4 max-w-md text-sm leading-relaxed text-gray-400 sm:text-base">
                 {project.summary}
               </p>
 

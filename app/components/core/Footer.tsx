@@ -22,15 +22,17 @@ export default function Footer() {
   const year = new Date().getFullYear();
 
   return (
-    <footer className="bg-black pb-4 sm:pb-6">
-      <div className="shell">
-      <div className="overflow-hidden rounded-2xl bg-[#101010] md:rounded-[2rem]">
+    <footer className="bg-black px-3 pb-3 sm:px-4 sm:pb-4 md:px-6 md:pb-6">
+      <div className="mx-auto w-full max-w-[1800px] overflow-hidden rounded-2xl bg-[#101010] md:rounded-[2rem]">
         {/* The address is the loudest thing down here, on purpose */}
-        <div className="border-b px-5 py-10 sm:px-8 sm:py-12 md:px-10 md:py-16" style={{ borderColor: 'var(--line)' }}>
+        <div
+          className="border-b px-5 py-9 sm:px-8 sm:py-12 md:px-10 md:py-16"
+          style={{ borderColor: 'var(--line)' }}
+        >
           <p className="label">Start here</p>
           <a
             href={`mailto:${site.email}`}
-            className="group mt-4 flex flex-wrap items-center gap-x-4 gap-y-2 break-all text-[clamp(1.25rem,5.2vw,3.4rem)] font-medium leading-[1.05] tracking-[-0.04em] text-cream transition-opacity duration-300 hover:opacity-70"
+            className="group mt-4 flex flex-wrap items-center gap-x-4 gap-y-2 break-all text-[clamp(1.5rem,6.5vw,3.4rem)] font-medium leading-[1.05] tracking-[-0.04em] text-cream transition-opacity duration-300 hover:opacity-70"
           >
             {site.email}
             <ArrowLong
@@ -40,8 +42,8 @@ export default function Footer() {
           </a>
         </div>
 
-        <div className="grid grid-cols-1 gap-9 px-5 py-10 sm:grid-cols-2 sm:px-8 sm:py-12 lg:grid-cols-12 lg:gap-8 md:px-10 md:py-14">
-          <div className="sm:col-span-2 lg:col-span-4">
+        <div className="grid grid-cols-2 gap-x-6 gap-y-10 px-5 py-10 sm:gap-x-8 sm:px-8 sm:py-12 md:px-10 md:py-14 lg:grid-cols-12 lg:gap-8">
+          <div className="col-span-2 lg:col-span-4">
             <Monogram size={30} className="text-cream" />
             <p className="mt-5 max-w-xs text-xs leading-relaxed text-gray-400 sm:text-sm">
               {site.tagline} Working from {site.location} with product teams and agencies
@@ -52,9 +54,29 @@ export default function Footer() {
               <span className="mx-2 opacity-40">/</span>
               {site.availability}
             </p>
+
+            <div className="mt-6 flex flex-wrap gap-2">
+              {socials.map((s) => {
+                const Glyph = glyphs[s.glyph as keyof typeof glyphs];
+                return (
+                  <a
+                    key={s.label}
+                    href={s.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label={s.label}
+                    title={s.label}
+                    className="group flex h-9 w-9 items-center justify-center rounded-full border text-gray-400 transition-colors duration-300 hover:border-hair2 hover:text-cream"
+                    style={{ borderColor: 'var(--line-2)' }}
+                  >
+                    <Glyph size={14} />
+                  </a>
+                );
+              })}
+            </div>
           </div>
 
-          <nav className="lg:col-span-2 lg:col-start-6">
+          <nav aria-label="Footer" className="lg:col-span-2 lg:col-start-6">
             <p className="label">Pages</p>
             <ul className="mt-5 space-y-3">
               <li>
@@ -78,7 +100,7 @@ export default function Footer() {
             </ul>
           </nav>
 
-          <div className="lg:col-span-2">
+          <div className="lg:col-span-3">
             <p className="label">Elsewhere</p>
             <ul className="mt-5 space-y-3">
               {socials.map((s) => {
@@ -104,7 +126,7 @@ export default function Footer() {
             </ul>
           </div>
 
-          <div className="sm:col-span-2 lg:col-span-3">
+          <div className="col-span-2 lg:col-span-3">
             <p className="label">Document</p>
             <a
               href={cv.href}
@@ -120,23 +142,20 @@ export default function Footer() {
               </span>
               <MarkDocument
                 size={17}
-                className="text-primary transition-transform duration-300 group-hover:translate-y-0.5"
+                className="shrink-0 text-primary transition-transform duration-300 group-hover:translate-y-0.5"
               />
             </a>
           </div>
         </div>
 
         <div
-          className="flex flex-col gap-3 border-t px-5 py-6 sm:px-8 lg:flex-row lg:items-center lg:justify-between md:px-10"
+          className="flex flex-wrap items-center gap-x-6 gap-y-3 border-t px-5 py-6 sm:px-8 md:px-10 md:justify-between"
           style={{ borderColor: 'var(--line)' }}
         >
-          <p className="label">
+          <p className="label order-1">
             {year} {site.name}
           </p>
-          <p className="label order-last lg:order-none">
-            Next.js, Framer Motion, Almarai and Instrument Serif
-          </p>
-          <div className="flex gap-6">
+          <div className="order-2 ml-auto flex gap-6 md:order-3 md:ml-0">
             <Link href="/privacy" className="label transition-opacity hover:opacity-100">
               Privacy
             </Link>
@@ -144,8 +163,10 @@ export default function Footer() {
               Terms
             </Link>
           </div>
+          <p className="label order-3 w-full md:order-2 md:w-auto">
+            Next.js, Framer Motion, Almarai and Instrument Serif
+          </p>
         </div>
-      </div>
       </div>
     </footer>
   );

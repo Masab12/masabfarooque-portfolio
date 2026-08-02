@@ -12,6 +12,7 @@ export default function Statement() {
 
         <div className="mx-auto mt-7 max-w-3xl sm:mt-8">
           <WordsPullUpMultiStyle
+            as="h2"
             className="text-[1.75rem] leading-[1.02] sm:text-4xl sm:leading-[0.95] md:text-5xl lg:text-6xl xl:text-7xl"
             segments={[
               { text: 'I am Masab Farooque,', className: 'font-normal' },
@@ -26,8 +27,8 @@ export default function Statement() {
 
         <div className="mx-auto mt-8 max-w-2xl sm:mt-10">
           <ScrollLetters
-            className="text-xs leading-relaxed text-[#DEDBC8] sm:text-sm md:text-base"
-            text="Companies bring me in as an external resource when something has to be built properly and there is nobody free to own it. Three years of that so far, most of it as the only engineer on the project. This year I joined two product teams: an AI proposal tool in March, then a browser based audio editor in June. Before those came a marketplace monitoring platform and a booking system, both taken from an empty repository to paying users. That work has earned 148 reviews at a 4.85 average from clients in 23 countries."
+            className="text-sm leading-relaxed text-[#DEDBC8] sm:text-base md:text-lg"
+            text="I work across the full stack: schema design, backend services and APIs, then the interface on top. Next.js and TypeScript on the frontend, FastAPI, Node.js and Nest.js on the backend, PostgreSQL underneath. Over 100 projects shipped, more than 10 of them SaaS products still earning for their owners today. That work has earned 148 reviews at a 5.0 average from clients in 23 countries."
           />
         </div>
       </div>

@@ -58,7 +58,7 @@ export const timeline: TimelineEntry[] = [
     title: 'Graduated',
     org: 'COMSATS University Islamabad',
     kind: 'education',
-    body: 'Finished the degree already holding three years of studio experience and a set of competition results.',
+    body: 'Finished the degree after three internships and a six month full time job, plus a set of competition results.',
   },
   {
     year: '2023',
@@ -66,14 +66,6 @@ export const timeline: TimelineEntry[] = [
     kind: 'shift',
     body: 'A deliberate pivot out of games. Learned Next.js, Node.js, FastAPI, NestJS, LangChain and retrieval architectures, then started taking web clients and building products with them.',
     tags: ['Next.js', 'FastAPI', 'LangChain'],
-  },
-  {
-    year: '2024',
-    title: 'Founder',
-    org: 'ReplayJutsu',
-    kind: 'founder',
-    body: 'Grew a gaming publication past one hundred thousand monthly active users on an entity based SEO strategy and hard technical optimisation.',
-    tags: ['100k monthly users', 'Entity SEO'],
   },
   {
     year: '2024',
@@ -96,8 +88,8 @@ export const timeline: TimelineEntry[] = [
     title: 'Full Stack Engineer',
     org: 'Skylight Studio and Chord.fm',
     kind: 'work',
-    body: 'Two product teams at once. Internal tooling and AI proposal generation at Skylight Studio, and the browser based audio editor at Chord.fm with Go services on AWS Lambda.',
-    tags: ['Go', 'AWS Lambda', 'Claude API'],
+    body: 'Two product teams at once. Internal tooling and AI proposal generation at Skylight Studio, and the browser based audio editor at Chord.fm.',
+    tags: ['Next.js', 'AWS Lambda', 'Claude API'],
   },
 ];
 

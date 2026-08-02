@@ -1,47 +1,12 @@
 'use client';
 
 import { useState } from 'react';
-import Image from 'next/image';
 import { AnimatePresence, motion } from 'framer-motion';
 import { roles } from '@/app/data/experience';
-import { ArrowDiagonal, LogoChord, LogoPenta, LogoMindstorm, PlusMark } from '@/app/components/marks';
+import { ArrowDiagonal, PlusMark } from '@/app/components/marks';
 import Section from '@/app/components/core/Section';
 import SectionHeader from '@/app/components/core/SectionHeader';
 import Reveal from '@/app/components/motion/Reveal';
-
-const drawn = {
-  chord: LogoChord,
-  penta: LogoPenta,
-  mindstorm: LogoMindstorm,
-} as const;
-
-/**
- * Each brand asset carries a different amount of internal padding, so the
- * height is set per logo rather than stretching everything to one box.
- */
-function RoleLogo({ role }: { role: (typeof roles)[number] }) {
-  const height = role.logo.height ?? 24;
-
-  if (role.logo.kind === 'drawn' && role.logo.mark) {
-    const Drawn = drawn[role.logo.mark];
-    return <Drawn className="w-auto text-cream" style={{ height, width: 'auto' }} />;
-  }
-
-  if (role.logo.src) {
-    return (
-      <Image
-        src={role.logo.src}
-        alt={`${role.company} logo`}
-        width={160}
-        height={height}
-        className="w-auto object-contain"
-        style={{ height, width: 'auto', filter: 'grayscale(1) brightness(2.3) contrast(0.75)' }}
-      />
-    );
-  }
-
-  return null;
-}
 
 export default function ExperienceIndex() {
   const [open, setOpen] = useState<string | null>(roles[0].id);
@@ -49,11 +14,7 @@ export default function ExperienceIndex() {
   return (
     <Section id="experience">
       <div>
-        <SectionHeader
-          label="Experience"
-          title="Companies I have worked with."
-          subtitle="Two product teams now. Studios and agencies before."
-        />
+        <SectionHeader label="Experience" title="Companies I have worked with." />
 
         <div className="mt-10 md:mt-14">
           {roles.map((role, i) => {
@@ -71,17 +32,12 @@ export default function ExperienceIndex() {
                     className="group flex w-full items-start gap-4 py-6 text-left md:grid md:grid-cols-12 md:items-center md:gap-6 md:py-8"
                   >
                     {/* Phone: name, role and dates stack. Desktop: one row. */}
-                    <span className="min-w-0 flex-1 md:col-span-5 md:flex md:items-center md:gap-5">
-                      <span className="hidden h-7 shrink-0 items-center opacity-80 transition-opacity duration-500 group-hover:opacity-100 md:flex">
-                        <RoleLogo role={role} />
+                    <span className="min-w-0 flex-1 md:col-span-5">
+                      <span className="block truncate text-[0.95rem] text-cream md:text-base">
+                        {role.company}
                       </span>
-                      <span className="min-w-0">
-                        <span className="block truncate text-[0.95rem] text-cream md:text-base">
-                          {role.company}
-                        </span>
-                        <span className="mt-1 block text-[0.7rem] text-gray-500 md:hidden">
-                          {role.period}
-                        </span>
+                      <span className="mt-1 block text-[0.7rem] text-gray-500 md:hidden">
+                        {role.period}
                       </span>
                     </span>
 

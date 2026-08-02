@@ -178,7 +178,7 @@ export default function Testimonials() {
           style={{ borderColor: 'var(--line)', background: 'var(--line)' }}
         >
           {[
-            { value: reviewSummary.average.toFixed(2), label: 'Average rating' },
+            { value: reviewSummary.average.toFixed(1), label: 'Average rating' },
             { value: String(reviewSummary.total), label: 'Reviews on Fiverr' },
             { value: String(reviewSummary.countries), label: 'Client countries' },
             { value: `${reviewSummary.repeatShare}%`, label: 'Clients who came back' },

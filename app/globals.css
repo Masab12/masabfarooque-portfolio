@@ -72,15 +72,26 @@ body {
 
    Snapping is desktop only. On a phone it fights momentum scrolling,
    and any section holding sticky children is left off the track
-   because sticky plus snap is a known source of jank.               */
+   because sticky plus snap is a known source of jank.
+
+   scroll-behavior: smooth is intentionally NOT set alongside snap.
+   Every wheel or trackpad tick restarts a smooth-scroll animation, so
+   with scroll-snap-type also fighting to settle the viewport the two
+   animations race each other and the page can stop responding to
+   scroll input entirely. Below the snap breakpoint there is no snap
+   to race against, so smooth anchor jumps stay on there.            */
 
 html {
-  scroll-behavior: smooth;
   scroll-padding-top: 0;
+}
+
+@media (max-width: 1023.98px) and (prefers-reduced-motion: no-preference) {
+  html { scroll-behavior: smooth; }
 }
 
 @media (min-width: 1024px) and (prefers-reduced-motion: no-preference) {
   html {
+    scroll-behavior: auto;
     scroll-snap-type: y proximity;
   }
 
@@ -155,10 +166,6 @@ img, video { display: block; max-width: 100%; }
 
 .no-scrollbar::-webkit-scrollbar { display: none; }
 .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
-
-@media (hover: hover) and (pointer: fine) {
-  .hide-native-cursor, .hide-native-cursor * { cursor: none; }
-}
 
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {

@@ -29,6 +29,7 @@ export default function Features() {
       <div className="shell relative">
         <div className="max-w-3xl">
           <WordsPullUpMultiStyle
+            as="h2"
             align="left"
             className="text-lg font-normal leading-snug sm:text-2xl md:text-3xl lg:text-4xl"
             segments={[{ text: 'Studio grade engineering for products that have to work.' }]}
