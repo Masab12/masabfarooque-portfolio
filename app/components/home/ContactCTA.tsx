@@ -11,7 +11,7 @@ const EASE = [0.16, 1, 0.3, 1] as const;
 
 export default function ContactCTA() {
   return (
-    <section className="bg-black py-14 sm:py-20 md:py-24 lg:py-28">
+    <section className="snap-start bg-black py-14 sm:py-20 md:py-24 lg:py-28">
       <div className="shell">
       <div className="relative overflow-hidden rounded-2xl bg-[#101010] px-5 py-16 text-center sm:px-10 sm:py-20 md:rounded-[2rem] md:py-28">
         <div className="bg-noise pointer-events-none absolute inset-0 opacity-[0.12]" />
@@ -21,6 +21,7 @@ export default function ContactCTA() {
 
           <div className="mx-auto mt-8 max-w-3xl">
             <WordsPullUpMultiStyle
+              as="h2"
               className="text-[1.75rem] leading-[1.02] sm:text-4xl sm:leading-[0.95] md:text-5xl lg:text-6xl"
               segments={[
                 { text: 'Tell me what you are' },

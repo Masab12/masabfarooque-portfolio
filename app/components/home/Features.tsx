@@ -23,12 +23,13 @@ export default function Features() {
   const inView = useInView(ref, { once: true, margin: '-100px' });
 
   return (
-    <section id="capabilities" className="relative bg-black py-14 sm:py-20 md:py-24 lg:py-28">
+    <section id="capabilities" className="snap-start relative bg-black py-14 sm:py-20 md:py-24 lg:py-28">
       <div className="bg-noise pointer-events-none absolute inset-0 opacity-[0.15]" />
 
       <div className="shell relative">
         <div className="max-w-3xl">
           <WordsPullUpMultiStyle
+            as="h2"
             align="left"
             className="text-lg font-normal leading-snug sm:text-2xl md:text-3xl lg:text-4xl"
             segments={[{ text: 'Studio grade engineering for products that have to work.' }]}
@@ -109,7 +110,6 @@ export default function Features() {
                   className="group mt-6 inline-flex items-center gap-2 text-[11px] text-primary sm:text-xs"
                 >
                   Learn more
-                  <span className="sr-only"> about {card.title.replace('.', '')}</span>
                   <ArrowLong
                     size={13}
                     className="-rotate-45 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"

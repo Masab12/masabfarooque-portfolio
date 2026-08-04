@@ -42,7 +42,7 @@
 }
 
 html {
-  overflow-x: clip;
+  overflow-x: hidden;
   -webkit-text-size-adjust: 100%;
   background: var(--bg);
 }
@@ -56,7 +56,7 @@ body {
   color: var(--cream);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  overflow-x: clip;
+  overflow-x: hidden;
 }
 
 ::selection {
@@ -65,35 +65,39 @@ body {
 }
 
 /* ── Scrolling ─────────────────────────────────────────────────────
-   Native scrolling, with exactly one snap point: the top of the hero.
+   Native scrolling with a proximity snap track. Proximity, not
+   mandatory, so the wheel and trackpad behave exactly as the browser
+   intends and only settle onto a section edge when a scroll ends near
+   one. Framer Motion reads the same position the browser is using.
 
-   A snap point on every section sounds better than it feels. Measured
-   on this page, twelve wheel ticks worth 2880px of intent landed at
-   1040px because each gesture kept getting pulled back to the nearest
-   section edge. Reading a long section became a fight. With a single
-   snap point the hero still locks cleanly on the way back up and the
-   rest of the page scrolls exactly as the browser intends.
+   Snapping is desktop only. On a phone it fights momentum scrolling,
+   and any section holding sticky children is left off the track
+   because sticky plus snap is a known source of jank.
 
-   Desktop only, and off entirely under reduced motion.              */
+   scroll-behavior: smooth is intentionally NOT set alongside snap.
+   Every wheel or trackpad tick restarts a smooth-scroll animation, so
+   with scroll-snap-type also fighting to settle the viewport the two
+   animations race each other and the page can stop responding to
+   scroll input entirely. Below the snap breakpoint there is no snap
+   to race against, so smooth anchor jumps stay on there.            */
 
 html {
-  scroll-behavior: smooth;
   scroll-padding-top: 0;
+}
+
+@media (max-width: 1023.98px) and (prefers-reduced-motion: no-preference) {
+  html { scroll-behavior: smooth; }
 }
 
 @media (min-width: 1024px) and (prefers-reduced-motion: no-preference) {
   html {
+    scroll-behavior: auto;
     scroll-snap-type: y proximity;
   }
 
   .snap-start {
     scroll-snap-align: start;
     scroll-snap-stop: normal;
-  }
-
-  /* Everything below the hero stays off the track. */
-  .snap-free {
-    scroll-snap-align: none;
   }
 }
 
@@ -162,10 +166,6 @@ img, video { display: block; max-width: 100%; }
 
 .no-scrollbar::-webkit-scrollbar { display: none; }
 .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
-
-@media (hover: hover) and (pointer: fine) {
-  .hide-native-cursor, .hide-native-cursor * { cursor: none; }
-}
 
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {

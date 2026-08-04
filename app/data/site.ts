@@ -72,7 +72,7 @@ export const socials = [
 export const stats = [
   { value: '195', suffix: '+', label: 'Orders delivered' },
   { value: String(reviewSummary.countries), suffix: '', label: 'Countries served' },
-  { value: reviewSummary.average.toFixed(2), suffix: '', label: 'Average rating' },
+  { value: reviewSummary.average.toFixed(1), suffix: '', label: 'Average rating' },
   { value: '3', suffix: '+', label: 'Years shipping' },
 ] as const;
 
