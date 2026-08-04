@@ -22,7 +22,6 @@ export default function SectionHeader({ label, title, subtitle, className = '' }
 
       <div className="mt-5 max-w-4xl">
         <WordsPullUpMultiStyle
-          as="h2"
           align="left"
           className="text-xl font-normal sm:text-2xl md:text-3xl lg:text-4xl"
           segments={[{ text: title }]}

@@ -97,7 +97,11 @@ function ReviewCard({ review }: { review: Review }) {
           </p>
         </div>
         <div className="flex flex-col items-end gap-1.5">
-          <span className="flex gap-0.5 text-primary" aria-label={`${review.rating} out of 5`}>
+          <span
+            className="flex gap-0.5 text-primary"
+            role="img"
+            aria-label={`Rated ${review.rating} out of 5`}
+          >
             {Array.from({ length: review.rating }).map((_, i) => (
               <RatingMark key={i} size={8} />
             ))}
@@ -178,7 +182,7 @@ export default function Testimonials() {
           style={{ borderColor: 'var(--line)', background: 'var(--line)' }}
         >
           {[
-            { value: reviewSummary.average.toFixed(1), label: 'Average rating' },
+            { value: reviewSummary.average.toFixed(2), label: 'Average rating' },
             { value: String(reviewSummary.total), label: 'Reviews on Fiverr' },
             { value: String(reviewSummary.countries), label: 'Client countries' },
             { value: `${reviewSummary.repeatShare}%`, label: 'Clients who came back' },

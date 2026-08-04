@@ -3,6 +3,7 @@ import Script from 'next/script';
 import './globals.css';
 import { sansFont, serifFont } from './lib/fonts';
 import { site } from './data/site';
+import Cursor from './components/core/Cursor';
 import Nav from './components/core/Nav';
 import Footer from './components/core/Footer';
 
@@ -20,7 +21,7 @@ export const metadata: Metadata = {
     template: '%s | Masab Farooque',
   },
   description:
-    'Masab Farooque is a full stack engineer in Islamabad building SaaS platforms, AI systems and data pipelines. Next.js, FastAPI, Node.js and PostgreSQL. 148 reviews at a 5.0 average from clients in 23 countries.',
+    'Masab Farooque is a full stack engineer in Islamabad building SaaS platforms, AI systems and data pipelines. Next.js, FastAPI, Go on AWS. 148 reviews at a 4.85 average from clients in 23 countries.',
   keywords: [
     'Masab Farooque',
     'masab',
@@ -134,9 +135,11 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
     <html
       lang="en"
       data-theme="dark"
+      suppressHydrationWarning
       className={`${sansFont.variable} ${serifFont.variable}`}
     >
       <head>
+        <link rel="canonical" href={site.url} />
         <meta name="geo.region" content="PK-IS" />
         <meta name="geo.placename" content="Islamabad" />
         <meta name="geo.position" content="33.6844;73.0479" />
@@ -153,7 +156,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
           dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteSchema) }}
         />
       </head>
-      <body className="font-sans antialiased">
+      <body className="font-sans antialiased" suppressHydrationWarning>
         <Script
           src="https://www.googletagmanager.com/gtag/js?id=G-YSMF0ZW4R1"
           strategy="afterInteractive"
@@ -174,6 +177,8 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
         >
           Skip to content
         </a>
+
+        <Cursor />
 
         <Nav />
         <main id="main">{children}</main>

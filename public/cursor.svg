@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20">
+  <!-- subtle drop shadow so it reads on light backgrounds -->
+  <path d="M3 2L3 16L6 12.5L8.5 18.5L10.5 17.8L8 11.8L13.5 11.8Z"
+        fill="black" opacity="0.22" transform="translate(0.6 0.7)"/>
+  <!-- arrow body -->
+  <path d="M3 2L3 16L6 12.5L8.5 18.5L10.5 17.8L8 11.8L13.5 11.8Z"
+        fill="white" stroke="#111111" stroke-width="0.9" stroke-linejoin="round"/>
+</svg>

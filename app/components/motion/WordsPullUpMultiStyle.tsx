@@ -2,7 +2,6 @@
 
 import { useRef } from 'react';
 import { motion, useInView } from 'framer-motion';
-import type { ElementType } from 'react';
 
 export type Segment = { text: string; className?: string };
 
@@ -11,7 +10,6 @@ type Props = {
   className?: string;
   align?: 'center' | 'left';
   delayOffset?: number;
-  as?: ElementType;
 };
 
 /**
@@ -24,7 +22,6 @@ export default function WordsPullUpMultiStyle({
   className = '',
   align = 'center',
   delayOffset = 0,
-  as = 'div',
 }: Props) {
   const ref = useRef<HTMLDivElement>(null);
   const inView = useInView(ref, { once: true });
@@ -36,10 +33,8 @@ export default function WordsPullUpMultiStyle({
       .map((word) => ({ word, className: segment.className ?? '' })),
   );
 
-  const Tag = motion[as as 'div'] ?? motion.div;
-
   return (
-    <Tag
+    <div
       ref={ref}
       className={`inline-flex flex-wrap ${
         align === 'center' ? 'justify-center' : 'justify-start'
@@ -61,6 +56,6 @@ export default function WordsPullUpMultiStyle({
           {item.word}
         </motion.span>
       ))}
-    </Tag>
+    </div>
   );
 }

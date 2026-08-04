@@ -25,7 +25,7 @@ export default function PageHead({ label, title, intro, meta, showAsterisk = tru
           as="h1"
           text={title}
           showAsterisk={showAsterisk}
-          className="mt-4 text-[13vw] font-medium leading-[0.85] tracking-[-0.06em] sm:text-[11vw] md:text-[9vw] lg:text-[7.5vw] 3xl:text-[8.44rem]"
+          className="mt-4 text-[13vw] font-medium leading-[0.85] tracking-[-0.06em] sm:text-[11vw] md:text-[9vw] lg:text-[7.5vw]"
         />
 
         {intro ? (

@@ -17,8 +17,8 @@ import sharp from 'sharp';
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const publicDir = path.join(root, 'public');
 
-const MAX_WIDTH = 1800;
-const QUALITY = 82;
+const MAX_WIDTH = 1400;
+const QUALITY = 76;
 const SKIP = new Set(['fonts']);
 
 async function* walk(dir) {

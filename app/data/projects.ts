@@ -83,6 +83,7 @@ export const projects: Project[] = [
       '/projects/Navia-Disease-Compare.webp',
     ],
     liveUrl: 'https://navia.health',
+    featured: true,
   },
   {
     slug: 'the-proposal-maker',
@@ -293,7 +294,6 @@ export const projects: Project[] = [
     cover: '/projects/javea-denia-rentals.webp',
     images: ['/projects/javea-denia-rentals.webp'],
     liveUrl: 'https://www.javea-denia-rentals.com/',
-    featured: true,
   },
   {
     slug: 'apple-music-validator',
@@ -328,12 +328,7 @@ export const projects: Project[] = [
   },
 ];
 
-// Homepage lead order, independent of where each project sits in the list above.
-const featuredOrder = ['firstdeal', 'javea-denia-rentals', 'the-proposal-maker'];
-
-export const featuredProjects = projects
-  .filter((p) => p.featured)
-  .sort((a, b) => featuredOrder.indexOf(a.slug) - featuredOrder.indexOf(b.slug));
+export const featuredProjects = projects.filter((p) => p.featured);
 
 export function getProject(slug: string) {
   return projects.find((p) => p.slug === slug);

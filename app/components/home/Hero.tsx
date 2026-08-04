@@ -1,54 +1,18 @@
 'use client';
 
-import { useRef } from 'react';
 import Link from 'next/link';
-import { motion, useMotionValue, useSpring, useTransform } from 'framer-motion';
-import { media, site } from '@/app/data/site';
+import { motion } from 'framer-motion';
+import { media, nav, site } from '@/app/data/site';
 import { ArrowLong } from '@/app/components/marks';
 import WordsPullUp from '@/app/components/motion/WordsPullUp';
 
 const EASE = [0.16, 1, 0.3, 1] as const;
 
-/** Casts an x/y offset onto a small rotation and translate for a subtle tilt. */
-function useTilt() {
-  const px = useMotionValue(0.5);
-  const py = useMotionValue(0.5);
-  const spring = { stiffness: 150, damping: 20, mass: 0.5 };
-  const sx = useSpring(px, spring);
-  const sy = useSpring(py, spring);
-
-  const rotateX = useTransform(sy, [0, 1], [3, -3]);
-  const rotateY = useTransform(sx, [0, 1], [-4, 4]);
-  const moveX = useTransform(sx, [0, 1], [-14, 14]);
-  const moveY = useTransform(sy, [0, 1], [-14, 14]);
-
-  const onPointerMove = (event: React.PointerEvent<HTMLDivElement>) => {
-    const rect = event.currentTarget.getBoundingClientRect();
-    px.set((event.clientX - rect.left) / rect.width);
-    py.set((event.clientY - rect.top) / rect.height);
-  };
-
-  const onPointerLeave = () => {
-    px.set(0.5);
-    py.set(0.5);
-  };
-
-  return { rotateX, rotateY, moveX, moveY, onPointerMove, onPointerLeave };
-}
-
 export default function Hero() {
-  const frameRef = useRef<HTMLDivElement>(null);
-  const { rotateX, rotateY, moveX, moveY, onPointerMove, onPointerLeave } = useTilt();
-
   return (
     <section className="snap-start h-[100svh] w-full p-3 sm:p-4 md:p-6">
-      <div
-        ref={frameRef}
-        onPointerMove={onPointerMove}
-        onPointerLeave={onPointerLeave}
-        className="relative h-full w-full overflow-hidden rounded-2xl [perspective:1200px] md:rounded-[2rem]"
-      >
-        <motion.video
+      <div className="relative h-full w-full overflow-hidden rounded-2xl md:rounded-[2rem]">
+        <video
           className="absolute inset-0 h-full w-full object-cover"
           src={media.heroVideo}
           poster={media.heroPoster}
@@ -58,15 +22,32 @@ export default function Hero() {
           playsInline
           preload="metadata"
           aria-hidden
-          initial={{ scale: 1.08 }}
-          animate={{ scale: [1.08, 1.14, 1.08] }}
-          whileHover={{ scale: 1.18, transition: { duration: 0.7, ease: EASE } }}
-          transition={{ duration: 16, repeat: Infinity, ease: 'easeInOut' }}
-          style={{ x: moveX, y: moveY, rotateX, rotateY }}
         />
 
         <div className="noise-overlay pointer-events-none absolute inset-0 opacity-[0.7] mix-blend-overlay" />
         <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-black/45 via-black/15 to-black/85" />
+
+        {/* Navigation pill, hanging off the top edge of the frame */}
+        <nav className="absolute left-1/2 top-0 z-20 -translate-x-1/2">
+          <div className="flex max-w-[96vw] items-center justify-center gap-2.5 overflow-x-auto rounded-b-xl bg-black px-3 py-2 no-scrollbar xs:gap-4 sm:gap-6 sm:rounded-b-2xl sm:px-5 md:gap-10 md:rounded-b-3xl md:px-8 lg:gap-14">
+            {nav.map((item) => (
+              <Link
+                key={item.href}
+                href={item.href}
+                className="whitespace-nowrap text-[10px] leading-none transition-colors duration-300 sm:text-xs md:text-sm"
+                style={{ color: 'rgba(225, 224, 204, 0.8)' }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.color = '#E1E0CC';
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.color = 'rgba(225, 224, 204, 0.8)';
+                }}
+              >
+                {item.label}
+              </Link>
+            ))}
+          </div>
+        </nav>
 
         {/* Bottom aligned content */}
         <div className="absolute bottom-0 left-0 right-0 z-10 px-4 pb-5 sm:px-6 sm:pb-6 md:px-8 md:pb-8">
@@ -76,17 +57,17 @@ export default function Hero() {
                 as="h1"
                 text={site.shortName}
                 showAsterisk
-                className="text-[16vw] font-medium leading-[0.85] tracking-[-0.07em] sm:text-[14vw] md:text-[12vw] lg:text-[11vw] xl:text-[9.5vw] 3xl:text-[10.7rem]"
+                className="text-[24vw] font-medium leading-[0.85] tracking-[-0.07em] sm:text-[22vw] md:text-[20vw] lg:text-[19vw] xl:text-[18vw]"
               />
             </div>
 
-            <div className="flex flex-col gap-4 sm:gap-5 md:col-span-4">
+            <div className="flex flex-col gap-4 sm:gap-5 md:col-span-4 md:pb-6">
               <motion.p
                 initial={{ y: 20, opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}
                 transition={{ duration: 0.8, delay: 0.5, ease: EASE }}
-                className="max-w-md text-sm text-cream/90 sm:text-base md:text-lg"
-                style={{ lineHeight: 1.45 }}
+                className="max-w-md text-[0.7rem] text-primary/70 xs:text-xs sm:text-sm md:text-base"
+                style={{ lineHeight: 1.2 }}
               >
                 Masab Farooque is a full stack engineer in Islamabad building SaaS
                 platforms, AI systems and data pipelines. Brought in as an external
