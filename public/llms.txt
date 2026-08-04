@@ -3,69 +3,71 @@
 > Masab Farooque is a full stack engineer based in Islamabad, Pakistan. He is
 > brought in as an external resource by product teams and agencies to build
 > SaaS platforms, AI systems, data pipelines and full stack web applications
-> end to end. 195 plus completed orders and 148 reviews at a 4.85 average from
-> clients in 23 countries. Company names appear only under Experience.
+> end to end. 148 reviews at a 5.0 average from clients in 23 countries.
+> Company names appear only under Experience.
 
 ## Experience
 
-- Chord.fm, Full Stack Engineer, June 2026 to present. Browser based audio and
-  video editor for podcasters and creators. Built the Music Library panel from
-  scratch, including waveform playback with click to seek. Backend written in Go
-  on AWS Lambda with DynamoDB, API Gateway and S3.
-- Skylight Studio, Full Stack Engineer, March 2026 to present. Next.js internal
-  tooling platform for the Engineering Solutions team, including The Proposal
-  Maker, an AI assisted tool that reads an RFP or email thread with Claude and
-  drafts a branded proposal section by section.
+- [Chord.fm](https://chord.fm), Full Stack Engineer, June 2026 to present.
+  Browser based audio and video editor for podcasters and creators. Built the
+  Music Library panel from scratch, including waveform playback with click to
+  seek.
+- Skylight Studio, Full Stack Engineer, March 2026 to present. Next.js
+  internal tooling platform for the Engineering Solutions team, including The
+  Proposal Maker, an AI assisted tool that reads an RFP or email thread with
+  Claude and drafts a branded proposal section by section.
 
 ## Background
 
-Bachelor of Science in Computer Science, COMSATS University Islamabad, 2023.
-Unity game developer at 10Static Studios and fellow at Mindstorm Studios from
-2020 to 2023. Won Best Mechanics at the Rookie Game Jam 2022, The Hustler Award
-at Epiphany Games in 2020, and placed runner up at Developers Game Jam 2.0.
-Founded ReplayJutsu, a gaming publication that reached 100,000 monthly active
-users. SEO Web Developer at PentaByteX from September 2024 to February 2025.
-Web Developer at Fixels.nl from November 2025 to April 2026, where he shipped
-Javea Denia Rentals and FirstDeal.nl.
+Bachelor of Science in Computer Science, COMSATS University Islamabad, 2023,
+finished after three internships and a six month full time job. Unity game
+developer at 10Static Studios and fellow at Mindstorm Studios from 2020 to
+2023. Won Best Mechanics at the Rookie Game Jam 2022, The Hustler Award at
+Epiphany Games in 2020, and placed runner up at Developers Game Jam 2.0. SEO
+Web Developer at PentaByteX from September 2024 to February 2025. Web
+Developer at Fixels.nl from November 2025 to April 2026, where he shipped
+[Javea Denia Rentals](https://www.javea-denia-rentals.com/) and
+[FirstDeal.nl](https://firstdeal.nl), both taken from an empty repository to
+paying users.
 
-He works solo, not as an agency. Every project is designed, built and deployed
-by him.
+He works solo, not as an agency. Every project is designed, built and
+deployed by him.
 
 ## Pages
 
-- Homepage: https://masabfarooque.com
-- Work: https://masabfarooque.com/portfolio
-- About: https://masabfarooque.com/about-masab
-- Contact: https://masabfarooque.com/contact
+- [Homepage](https://masabfarooque.com)
+- [Work](https://masabfarooque.com/portfolio)
+- [About](https://masabfarooque.com/about-masab)
+- [Contact](https://masabfarooque.com/contact)
 
 ## Case studies
 
-- Navia: https://masabfarooque.com/portfolio/navia
-- The Proposal Maker: https://masabfarooque.com/portfolio/the-proposal-maker
-- FirstDeal: https://masabfarooque.com/portfolio/firstdeal
-- Hice.AI: https://masabfarooque.com/portfolio/hice-ai
-- JANUA Financial: https://masabfarooque.com/portfolio/janua-financial
-- RotiShoti AI: https://masabfarooque.com/portfolio/rotishoti-ai
-- Javea Denia Rentals: https://masabfarooque.com/portfolio/javea-denia-rentals
-- Apple Music Metadata Validator: https://masabfarooque.com/portfolio/apple-music-validator
+- [Navia](https://masabfarooque.com/portfolio/navia)
+- [The Proposal Maker](https://masabfarooque.com/portfolio/the-proposal-maker)
+- [FirstDeal](https://masabfarooque.com/portfolio/firstdeal)
+- [Hice.AI](https://masabfarooque.com/portfolio/hice-ai)
+- [JANUA Financial](https://masabfarooque.com/portfolio/janua-financial)
+- [RotiShoti AI](https://masabfarooque.com/portfolio/rotishoti-ai)
+- [Javea Denia Rentals](https://masabfarooque.com/portfolio/javea-denia-rentals)
+- [Apple Music Metadata Validator](https://masabfarooque.com/portfolio/apple-music-validator)
 
 ## Capabilities
 
-Full stack product build, AI systems and agents, data pipelines and scraping,
-SaaS platforms with billing and multi tenancy, interfaces with motion,
-performance and technical SEO.
+Full stack product build, AI systems and agents, data pipelines and
+scraping, SaaS platforms with billing and multi tenancy, interfaces with
+motion, performance and technical SEO.
 
 ## Stack
 
-TypeScript, Python, Go, SQL, Next.js, React, Tailwind CSS, GSAP, Lenis,
+TypeScript, Python, SQL, Next.js, React, Tailwind CSS, Framer Motion,
 FastAPI, Node.js, NestJS, Celery, Redis, PostgreSQL, Supabase, DynamoDB,
-MongoDB, AWS Lambda, API Gateway, S3, Docker, Stripe, Claude API, OpenAI, Groq,
-LangChain, retrieval augmented generation.
+MongoDB, AWS Lambda, API Gateway, S3, Docker, Stripe, Claude API, OpenAI,
+Groq, LangChain, retrieval augmented generation.
 
 ## Contact
 
-- Email: contact@masabfarooque.com
-- GitHub: https://github.com/Masab12
-- LinkedIn: https://www.linkedin.com/in/masabfarooque
-- Fiverr: https://www.fiverr.com/p_scribbles
-- Upwork: https://upwork.com/freelancers/~01e34b32d5b254495d
+- Email: [contact@masabfarooque.com](mailto:contact@masabfarooque.com)
+- [GitHub](https://github.com/Masab12)
+- [LinkedIn](https://www.linkedin.com/in/masabfarooque)
+- [Fiverr](https://www.fiverr.com/p_scribbles)
+- [Upwork](https://upwork.com/freelancers/~01e34b32d5b254495d)
