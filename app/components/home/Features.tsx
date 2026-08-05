@@ -107,10 +107,9 @@ export default function Features() {
 
                 <Link
                   href={card.href}
-                  aria-label={`Learn more about ${card.title.replace(/\.$/, '')}`}
                   className="group mt-6 inline-flex items-center gap-2 text-[11px] text-primary sm:text-xs"
                 >
-                  Learn more
+                  Learn more<span className="sr-only"> about {card.title.replace(/\.$/, '')}</span>
                   <ArrowLong
                     size={13}
                     className="-rotate-45 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
