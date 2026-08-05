@@ -3,7 +3,6 @@
 import { useRef } from 'react';
 import Link from 'next/link';
 import { motion, useInView } from 'framer-motion';
-import { media } from '@/app/data/site';
 import { featureCards } from '@/app/data/capabilities';
 import {
   MarkCheck,
@@ -53,16 +52,13 @@ export default function Features() {
             transition={{ duration: 0.8, delay: 0, ease: CARD_EASE }}
             className="relative h-[260px] overflow-hidden rounded-xl sm:h-[320px] lg:h-auto lg:min-h-full"
           >
-            <video
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
               className="absolute inset-0 h-full w-full object-cover"
-              src={media.featureVideo}
-              poster={media.featurePoster}
-              autoPlay
-              loop
-              muted
-              playsInline
-              preload="metadata"
-              aria-hidden
+              src="https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExbGE2Zm1vZXF6bGQ0bTM0N3RpNzJhY25qeWZwcGFpM214NzZwNGlkMSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/bGgsc5mWoryfgKBx1u/giphy.gif"
+              alt=""
+              aria-hidden="true"
+              loading="lazy"
             />
             <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent" />
             <p
