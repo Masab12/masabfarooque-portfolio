@@ -12,7 +12,7 @@ export const metadata: Metadata = {
   alternates: { canonical: `${site.url}/privacy` },
 };
 
-const LAST_UPDATED = 'August 1, 2026';
+const LAST_UPDATED = 'August 5, 2026';
 
 export default function PrivacyPage() {
   return (
@@ -50,9 +50,10 @@ export default function PrivacyPage() {
             ]}
           />
           <p>
-            I do not use tracking pixels, fingerprinting or behavioural profiling. The site does
-            use Google Analytics for aggregate visit counts, which you can block with any standard
-            content blocker.
+            The site also runs analytics on every visit: which pages get looked at, how people
+            move through the site, and where something is confusing or not working. This includes
+            session recordings and click behaviour, used purely to improve the site itself, not to
+            identify you personally.
           </p>
         </LegalSection>
 
@@ -74,15 +75,17 @@ export default function PrivacyPage() {
             Contact form messages are delivered through EmailJS, which processes the submission to
             send the email and does not keep it afterwards. Client review photos on this site are
             served directly by Fiverr, which means your browser requests them from Fiverr when you
-            view the reviews section.
+            view the reviews section. Analytics runs through third party analytics tools, which set
+            their own cookies and process visit data under their own privacy policies.
           </p>
         </LegalSection>
 
         <LegalSection index="05" title="Cookies and storage">
           <p>
-            No tracking cookies are set by me. The site stores one small session flag in your
-            browser so the opening animation does not play twice in the same visit. That value
-            never leaves your device.
+            Analytics cookies are set on your first visit and run for every visitor, without a
+            separate opt in prompt. If your browser or a content blocker is set to refuse third
+            party analytics cookies, that choice is respected the same way it would be on any
+            other site.
           </p>
         </LegalSection>
 

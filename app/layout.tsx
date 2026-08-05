@@ -5,6 +5,7 @@ import { sansFont, serifFont } from './lib/fonts';
 import { site } from './data/site';
 import Nav from './components/core/Nav';
 import Footer from './components/core/Footer';
+import AnalyticsNotice, { Analytics } from './components/core/Consent';
 
 export const viewport = {
   width: 'device-width',
@@ -140,6 +141,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
         <meta name="geo.region" content="PK-IS" />
         <meta name="geo.placename" content="Islamabad" />
         <meta name="geo.position" content="33.6844;73.0479" />
+        <link rel="preconnect" href="https://d8j0ntlcm91z4.cloudfront.net" />
         <link rel="me" href="https://github.com/Masab12" />
         <link rel="me" href="https://www.linkedin.com/in/masabfarooque" />
         <Script
@@ -154,18 +156,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
         />
       </head>
       <body className="font-sans antialiased">
-        <Script
-          src="https://www.googletagmanager.com/gtag/js?id=G-YSMF0ZW4R1"
-          strategy="afterInteractive"
-        />
-        <Script id="google-analytics" strategy="afterInteractive">
-          {`
-            window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
-            gtag('js', new Date());
-            gtag('config', 'G-YSMF0ZW4R1');
-          `}
-        </Script>
+        <Analytics />
 
         <a
           href="#main"
@@ -178,6 +169,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
         <Nav />
         <main id="main">{children}</main>
         <Footer />
+        <AnalyticsNotice />
       </body>
     </html>
   );

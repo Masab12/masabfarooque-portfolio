@@ -36,6 +36,13 @@ function useTilt() {
   return { rotateX, rotateY, moveX, moveY, onPointerMove, onPointerLeave };
 }
 
+// fetchpriority must be in the server rendered markup to do anything, since
+// it hints the browser's preload scanner before any JS has run. framer-motion's
+// HTMLMotionProps<'video'> does not type it yet, so it is passed through with
+// a narrow cast rather than added imperatively after hydration, which would
+// be too late to have any effect.
+const videoProps = { fetchPriority: 'high' } as unknown as { fetchPriority?: never };
+
 export default function Hero() {
   const frameRef = useRef<HTMLDivElement>(null);
   const { rotateX, rotateY, moveX, moveY, onPointerMove, onPointerLeave } = useTilt();
@@ -49,6 +56,7 @@ export default function Hero() {
         className="relative h-full w-full overflow-hidden rounded-2xl [perspective:1200px] md:rounded-[2rem]"
       >
         <motion.video
+          {...videoProps}
           className="absolute inset-0 h-full w-full object-cover"
           src={media.heroVideo}
           poster={media.heroPoster}
@@ -56,7 +64,7 @@ export default function Hero() {
           loop
           muted
           playsInline
-          preload="metadata"
+          preload="auto"
           aria-hidden
           initial={{ scale: 1.08 }}
           animate={{ scale: [1.08, 1.14, 1.08] }}
