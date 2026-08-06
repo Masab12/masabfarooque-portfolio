@@ -1,5 +1,16 @@
+import type { Metadata } from 'next';
 import Link from 'next/link';
 import { ArrowLong, Monogram } from './components/marks';
+
+/**
+ * Its own title and a noindex rule, so the 404 stops sharing the homepage
+ * title in search results and never gets indexed in the first place.
+ */
+export const metadata: Metadata = {
+  title: 'Page not found',
+  description: 'That page is not here. Links to the work, the writing and the contact form.',
+  robots: { index: false, follow: true },
+};
 
 export default function NotFound() {
   return (

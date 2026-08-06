@@ -38,26 +38,46 @@ deployed by him.
 - [Homepage](https://masabfarooque.com)
 - [Work](https://masabfarooque.com/portfolio)
 - [Writing](https://masabfarooque.com/blog)
+- [WordPress to Next.js migration](https://masabfarooque.com/services/wordpress-to-nextjs)
 - [About](https://masabfarooque.com/about-masab)
 - [Contact](https://masabfarooque.com/contact)
 
+## Services
+
+- [WordPress to Next.js migration](https://masabfarooque.com/services/wordpress-to-nextjs):
+  migrating WordPress sites to Next.js without losing search rankings, and
+  setting WordPress up as a headless CMS when the editorial team wants to keep
+  the WordPress admin. Fixed price per project, written scope before work
+  starts, documented handover. Typical timelines run one to six weeks
+  depending on page count and whether the headless setup is included.
+
 ## Articles
 
-Technical writing on migrating off WordPress, headless CMS architecture and
-web performance.
+Technical writing on migrating off WordPress, headless CMS architecture, web
+performance and how the work is run.
 
 - [Moving a WordPress site to Next.js without losing your rankings](https://masabfarooque.com/blog/wordpress-to-nextjs-migration):
   freezing URLs, building and testing a redirect map, porting SEO metadata,
   and verifying the move in Search Console.
+- [Keeping your Yoast SEO metadata after moving to Next.js](https://masabfarooque.com/blog/yoast-metadata-to-nextjs):
+  reading Yoast values out of wp_postmeta or yoast_head_json, mapping them
+  onto the Next.js Metadata API, rebuilding the schema graph, and diffing
+  every tag before launch.
 - [Keep the WordPress editor, drop the WordPress front end](https://masabfarooque.com/blog/wordpress-as-headless-cms):
   running WordPress as a headless CMS behind Next.js, using the REST API or
   WPGraphQL, with on demand revalidation so publishing stays instant.
+- [Where to host a headless WordPress backend, and what it costs](https://masabfarooque.com/blog/hosting-headless-wordpress):
+  how sizing changes once visitors stop hitting PHP, the realistic hosting
+  options with monthly cost ranges, and the line items people forget.
 - [Why a headless CMS beats building on WordPress or Wix](https://masabfarooque.com/blog/headless-cms-vs-website-builders):
   the coupling problem, where page builders cost you, and the cases where a
   builder is still the right choice.
 - [Core Web Vitals for content sites](https://masabfarooque.com/blog/core-web-vitals-for-content-sites):
   what LCP, INP and CLS each measure, and the specific Next.js changes that
   improve them.
+- [What a solo developer can build that an agency usually will not](https://masabfarooque.com/blog/solo-developer-vs-agency):
+  who writes the code, the context cost of handoffs, what handover should
+  include, and the cases where an agency is the better hire.
 
 ## Case studies
 

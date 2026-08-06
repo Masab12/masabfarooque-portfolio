@@ -161,10 +161,13 @@ export default function ArticleLayout({
               <Reveal y={18}>
                 <p className="text-[0.98rem] leading-[1.75] text-gray-400">
                   I am {site.name}, a full stack engineer in {site.location}. I build SaaS
-                  platforms, AI systems and data pipelines, and a good part of my work is moving
-                  slow WordPress sites onto Next.js. If your team wants to keep writing in
-                  WordPress, I wire it up as a headless CMS so the editor stays exactly where it
-                  is while the public site gets served as static files.
+                  platforms, AI systems and data pipelines, and a good part of my work is{' '}
+                  <Link href="/services/wordpress-to-nextjs">
+                    moving slow WordPress sites onto Next.js
+                  </Link>
+                  . If your team wants to keep writing in WordPress, I wire it up as a headless CMS
+                  so the editor stays exactly where it is while the public site gets served as
+                  static files.
                 </p>
                 <p className="mt-4 text-[0.98rem] leading-[1.75] text-gray-400">
                   If you have a site that needs this, tell me what you are running now and I will

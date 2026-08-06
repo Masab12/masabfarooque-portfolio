@@ -7,12 +7,13 @@
  * structured data need, so nothing can drift between them.
  */
 
-export type PostTopic = 'migration' | 'architecture' | 'performance';
+export type PostTopic = 'migration' | 'architecture' | 'performance' | 'practice';
 
 export const topicLabels: Record<PostTopic, string> = {
   migration: 'Migration',
   architecture: 'Architecture',
   performance: 'Performance',
+  practice: 'Practice',
 };
 
 export interface Post {
@@ -44,7 +45,7 @@ export const posts: Post[] = [
     topic: 'migration',
     published: '2026-07-14',
     readingMinutes: 11,
-    related: ['wordpress-as-headless-cms', 'core-web-vitals-for-content-sites'],
+    related: ['yoast-metadata-to-nextjs', 'wordpress-as-headless-cms'],
     sections: [
       { id: 'why-people-move', label: 'Why people move off WordPress' },
       { id: 'what-actually-breaks', label: 'What actually breaks a migration' },
@@ -66,10 +67,7 @@ export const posts: Post[] = [
     topic: 'architecture',
     published: '2026-07-22',
     readingMinutes: 12,
-    related: [
-      'wordpress-to-nextjs-migration',
-      'headless-cms-vs-website-builders',
-    ],
+    related: ['hosting-headless-wordpress', 'wordpress-to-nextjs-migration'],
     sections: [
       { id: 'what-headless-means', label: 'What headless actually means here' },
       { id: 'rest-or-graphql', label: 'REST or GraphQL' },
@@ -91,7 +89,7 @@ export const posts: Post[] = [
     topic: 'architecture',
     published: '2026-07-29',
     readingMinutes: 10,
-    related: ['wordpress-as-headless-cms', 'core-web-vitals-for-content-sites'],
+    related: ['wordpress-as-headless-cms', 'solo-developer-vs-agency'],
     sections: [
       { id: 'the-coupling-problem', label: 'The coupling problem' },
       { id: 'where-builders-cost-you', label: 'Where builders cost you' },
@@ -123,6 +121,72 @@ export const posts: Post[] = [
       { id: 'fixing-inp', label: 'Fixing INP' },
       { id: 'fixing-cls', label: 'Fixing CLS' },
       { id: 'measure-it', label: 'Measuring it yourself' },
+      { id: 'resources', label: 'Resources' },
+    ],
+  },
+  {
+    slug: 'yoast-metadata-to-nextjs',
+    title: 'Keeping your Yoast SEO metadata after moving to Next.js',
+    summary:
+      'Yoast holds years of titles, descriptions, canonicals and social cards. How to pull all of it out of WordPress and rebuild it in the Next.js Metadata API.',
+    standfirst:
+      'Yoast data does not travel on its own. You have to carry it.',
+    topic: 'migration',
+    published: '2026-08-05',
+    readingMinutes: 11,
+    related: ['wordpress-to-nextjs-migration', 'wordpress-as-headless-cms'],
+    sections: [
+      { id: 'what-yoast-stores', label: 'What Yoast actually stores' },
+      { id: 'getting-it-out', label: 'Getting the data out' },
+      { id: 'titles-and-descriptions', label: 'Titles and descriptions' },
+      { id: 'canonicals-and-robots', label: 'Canonicals and robots rules' },
+      { id: 'social-cards', label: 'Open Graph and social cards' },
+      { id: 'schema', label: 'The schema Yoast was emitting' },
+      { id: 'verify', label: 'Checking nothing dropped' },
+      { id: 'resources', label: 'Resources' },
+    ],
+  },
+  {
+    slug: 'hosting-headless-wordpress',
+    title: 'Where to host a headless WordPress backend, and what it costs',
+    summary:
+      'Once WordPress stops serving visitors, its hosting needs change completely. The realistic options, what each costs per month, and how to size the box.',
+    standfirst:
+      'Your CMS stops being a website. Stop paying for it like one.',
+    topic: 'architecture',
+    published: '2026-08-06',
+    readingMinutes: 10,
+    related: ['wordpress-as-headless-cms', 'headless-cms-vs-website-builders'],
+    sections: [
+      { id: 'what-changes', label: 'What changes when you go headless' },
+      { id: 'the-options', label: 'The options, and what they cost' },
+      { id: 'sizing-the-box', label: 'Sizing the box' },
+      { id: 'hidden-costs', label: 'The costs people forget' },
+      { id: 'worked-example', label: 'A worked example' },
+      { id: 'keeping-it-cheap', label: 'Keeping the bill predictable' },
+      { id: 'what-i-pick', label: 'What I usually pick' },
+      { id: 'resources', label: 'Resources' },
+    ],
+  },
+  {
+    slug: 'solo-developer-vs-agency',
+    title: 'What a solo developer can build that an agency usually will not',
+    summary:
+      'The honest differences between hiring one engineer and hiring a studio: who writes your code, what handover looks like, and when an agency fits better.',
+    standfirst:
+      'The question is not which is better. It is which one fits the job.',
+    topic: 'practice',
+    published: '2026-08-07',
+    readingMinutes: 9,
+    related: ['wordpress-to-nextjs-migration', 'headless-cms-vs-website-builders'],
+    sections: [
+      { id: 'who-writes-it', label: 'Who actually writes your code' },
+      { id: 'the-context-problem', label: 'The context problem' },
+      { id: 'handover', label: 'What handover really looks like' },
+      { id: 'speed', label: 'Why decisions move faster' },
+      { id: 'where-agencies-win', label: 'Where an agency genuinely wins' },
+      { id: 'how-to-check', label: 'How to check before you hire' },
+      { id: 'how-i-work', label: 'How I work' },
       { id: 'resources', label: 'Resources' },
     ],
   },

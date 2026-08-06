@@ -228,6 +228,118 @@ export function BeforeAfterBars({
 }
 
 /**
+ * A floating bar per option, spanning a low to high range. Built for prices,
+ * where a single number would be a lie and a range is the honest shape. The
+ * caller supplies the caption and must say what the range represents.
+ */
+export function CostRange({
+  rows,
+  caption,
+  label,
+  unit = '$',
+}: {
+  rows: { label: string; low: number; high: number; note?: string }[];
+  caption: React.ReactNode;
+  label: string;
+  unit?: string;
+}) {
+  const x0 = 190;
+  const maxWidth = 430;
+  const max = Math.max(...rows.map((r) => r.high));
+  const scale = (v: number) => (v / max) * maxWidth;
+
+  // Round gridlines at quarters of the top value, so the axis stays readable
+  const ticks = [0, 0.25, 0.5, 0.75, 1].map((f) => Math.round(max * f));
+
+  // Vertical geometry is derived from the row count rather than fixed, so the
+  // axis always clears the last bar however many rows the caller passes.
+  const rowGap = 52;
+  const firstRowY = 70;
+  const lastRowY = firstRowY + (rows.length - 1) * rowGap;
+  const gridTop = firstRowY - 30;
+  const gridBottom = lastRowY + 28;
+  const tickY = gridBottom + 22;
+
+  return (
+    <ChartShell label={label} caption={caption}>
+      {/* Gridlines behind the bars */}
+      <g>
+        {ticks.map((t) => (
+          <g key={t}>
+            <line
+              x1={x0 + scale(t)}
+              y1={gridTop}
+              x2={x0 + scale(t)}
+              y2={gridBottom}
+              stroke={CREAM}
+              strokeOpacity="0.09"
+              strokeWidth="1"
+            />
+            <text
+              x={x0 + scale(t)}
+              y={tickY}
+              fill={CREAM}
+              fillOpacity="0.4"
+              fontFamily={MONO}
+              fontSize="12"
+              textAnchor="middle"
+            >
+              {unit}
+              {t}
+            </text>
+          </g>
+        ))}
+      </g>
+
+      {rows.map((row, i) => {
+        const y = firstRowY + i * rowGap;
+        const lowX = x0 + scale(row.low);
+        const highX = x0 + scale(row.high);
+        return (
+          <g key={row.label}>
+            <text
+              x={x0 - 16}
+              y={y + 5}
+              fill={CREAM}
+              fontFamily={MONO}
+              fontSize="13"
+              textAnchor="end"
+            >
+              {row.label}
+            </text>
+            {/* The span itself */}
+            <rect
+              x={lowX}
+              y={y - 9}
+              width={Math.max(highX - lowX, 3)}
+              height="18"
+              fill={CREAM}
+              fillOpacity="0.75"
+              rx="2"
+            />
+            {/* End caps, so a narrow range still reads as a range */}
+            <line x1={lowX} y1={y - 14} x2={lowX} y2={y + 14} stroke={CREAM} strokeWidth="1.4" />
+            <line x1={highX} y1={y - 14} x2={highX} y2={y + 14} stroke={CREAM} strokeWidth="1.4" />
+            <text
+              x={highX + 12}
+              y={y + 5}
+              fill={CREAM}
+              fillOpacity="0.75"
+              fontFamily={MONO}
+              fontSize="12.5"
+            >
+              {unit}
+              {row.low} to {unit}
+              {row.high}
+            </text>
+          </g>
+        );
+      })}
+    </ChartShell>
+  );
+}
+
+/**
  * Where the bytes go on a page. Drawn as one stacked bar per site so the
  * comparison is about proportion, not just total.
  */
