@@ -1,6 +1,6 @@
 'use client';
 
-import { useRef } from 'react';
+import { Fragment, useRef } from 'react';
 import { motion, useInView } from 'framer-motion';
 import type { ElementType } from 'react';
 
@@ -39,27 +39,30 @@ export default function WordsPullUpMultiStyle({
   const Tag = motion[as as 'div'] ?? motion.div;
 
   return (
+    // Normal inline flow rather than flex. A flex container drops
+    // whitespace-only text nodes, so the words would render correctly and
+    // still leave the heading's text content as one unbroken string for
+    // crawlers and screen readers.
     <Tag
       ref={ref}
-      className={`inline-flex flex-wrap ${
-        align === 'center' ? 'justify-center' : 'justify-start'
-      } ${className}`}
+      className={`${align === 'center' ? 'text-center' : 'text-left'} ${className}`}
     >
       {words.map((item, i) => (
-        <motion.span
-          key={`${item.word}-${i}`}
-          initial={{ y: 20, opacity: 0 }}
-          animate={inView ? { y: 0, opacity: 1 } : {}}
-          transition={{
-            duration: 0.6,
-            delay: delayOffset + i * 0.08,
-            ease: [0.16, 1, 0.3, 1],
-          }}
-          className={`inline-block ${item.className}`}
-          style={{ paddingRight: '0.24em' }}
-        >
-          {item.word}
-        </motion.span>
+        <Fragment key={`${item.word}-${i}`}>
+          <motion.span
+            initial={{ y: 20, opacity: 0 }}
+            animate={inView ? { y: 0, opacity: 1 } : {}}
+            transition={{
+              duration: 0.6,
+              delay: delayOffset + i * 0.08,
+              ease: [0.16, 1, 0.3, 1],
+            }}
+            className={`inline-block ${item.className}`}
+          >
+            {item.word}
+          </motion.span>
+          {i === words.length - 1 ? null : ' '}
+        </Fragment>
       ))}
     </Tag>
   );

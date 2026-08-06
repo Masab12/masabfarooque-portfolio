@@ -51,4 +51,7 @@ next-env.d.ts
 # Session scratch, safe to delete
 _to_delete/
 _commit-message.txt
-.claude/settings.local.json
+
+# Local agent tooling. Stays on the machine, never in the repository.
+.claude/
+.agents/

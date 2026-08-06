@@ -1,6 +1,6 @@
 'use client';
 
-import { useRef } from 'react';
+import { Fragment, useRef } from 'react';
 import { motion, useInView } from 'framer-motion';
 
 type Props = {
@@ -37,32 +37,37 @@ export default function WordsPullUp({
         const tail = isLast && showAsterisk ? word.slice(-1) : '';
 
         return (
-          <motion.span
-            key={`${word}-${i}`}
-            initial={{ y: 20, opacity: 0 }}
-            animate={inView ? { y: 0, opacity: 1 } : {}}
-            transition={{
-              duration: 0.6,
-              delay: delayOffset + i * 0.08,
-              ease: [0.16, 1, 0.3, 1],
-            }}
-            className="inline-block"
-            style={{ paddingRight: '0.22em' }}
-          >
-            {tail ? (
-              <span className="relative inline-block">
-                {head}
+          // The space between words is a real text node rather than padding on
+          // the span. Padding looks identical but leaves the heading's text
+          // content as one run-together string, which is what a crawler and a
+          // screen reader both read.
+          <Fragment key={`${word}-${i}`}>
+            <motion.span
+              initial={{ y: 20, opacity: 0 }}
+              animate={inView ? { y: 0, opacity: 1 } : {}}
+              transition={{
+                duration: 0.6,
+                delay: delayOffset + i * 0.08,
+                ease: [0.16, 1, 0.3, 1],
+              }}
+              className="inline-block"
+            >
+              {tail ? (
                 <span className="relative inline-block">
-                  {tail}
-                  <span className="absolute -right-[0.3em] top-[0.65em] text-[0.31em] font-normal">
-                    *
+                  {head}
+                  <span className="relative inline-block">
+                    {tail}
+                    <span className="absolute -right-[0.3em] top-[0.65em] text-[0.31em] font-normal">
+                      *
+                    </span>
                   </span>
                 </span>
-              </span>
-            ) : (
-              word
-            )}
-          </motion.span>
+              ) : (
+                word
+              )}
+            </motion.span>
+            {isLast ? null : ' '}
+          </Fragment>
         );
       })}
     </MotionTag>

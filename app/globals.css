@@ -175,6 +175,42 @@ img, video { display: block; max-width: 100%; }
   }
 }
 
+/* ── Writing ───────────────────────────────────────────────────────
+   The blog needs a monospace voice for code and a slightly wider
+   measure for body copy. No extra webfont is loaded for either, so a
+   long article costs the same in bytes as the rest of the site.     */
+
+.mono {
+  font-family: ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas,
+    'Liberation Mono', monospace;
+  font-feature-settings: 'liga' 0;
+}
+
+/* Inline code inside body copy */
+.article-body code:not(pre code) {
+  font-family: ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas,
+    'Liberation Mono', monospace;
+  font-size: 0.875em;
+  padding: 0.12em 0.36em;
+  border-radius: 4px;
+  background: var(--surface-2);
+  color: var(--cream);
+  word-break: break-word;
+}
+
+/* Body links read as links without shouting */
+.article-body a:not(.plain) {
+  color: var(--cream);
+  text-decoration: underline;
+  text-decoration-color: var(--line-3);
+  text-underline-offset: 0.22em;
+  transition: text-decoration-color 300ms ease;
+}
+
+.article-body a:not(.plain):hover {
+  text-decoration-color: var(--cream);
+}
+
 /* Long form intro copy */
 .text-lede {
   font-size: clamp(1rem, 1.4vw, 1.2rem);

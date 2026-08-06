@@ -25,9 +25,10 @@ export const cv = {
 export const nav = [
   { label: 'Work', href: '/portfolio', index: '01' },
   { label: 'Capabilities', href: '/#capabilities', index: '02' },
-  { label: 'Reviews', href: '/#reviews', index: '03' },
-  { label: 'About', href: '/about-masab', index: '04' },
-  { label: 'Contact', href: '/contact', index: '05' },
+  { label: 'Writing', href: '/blog', index: '03' },
+  { label: 'Reviews', href: '/#reviews', index: '04' },
+  { label: 'About', href: '/about-masab', index: '05' },
+  { label: 'Contact', href: '/contact', index: '06' },
 ] as const;
 
 /**

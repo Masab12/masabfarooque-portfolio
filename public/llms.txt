@@ -37,8 +37,27 @@ deployed by him.
 
 - [Homepage](https://masabfarooque.com)
 - [Work](https://masabfarooque.com/portfolio)
+- [Writing](https://masabfarooque.com/blog)
 - [About](https://masabfarooque.com/about-masab)
 - [Contact](https://masabfarooque.com/contact)
+
+## Articles
+
+Technical writing on migrating off WordPress, headless CMS architecture and
+web performance.
+
+- [Moving a WordPress site to Next.js without losing your rankings](https://masabfarooque.com/blog/wordpress-to-nextjs-migration):
+  freezing URLs, building and testing a redirect map, porting SEO metadata,
+  and verifying the move in Search Console.
+- [Keep the WordPress editor, drop the WordPress front end](https://masabfarooque.com/blog/wordpress-as-headless-cms):
+  running WordPress as a headless CMS behind Next.js, using the REST API or
+  WPGraphQL, with on demand revalidation so publishing stays instant.
+- [Why a headless CMS beats building on WordPress or Wix](https://masabfarooque.com/blog/headless-cms-vs-website-builders):
+  the coupling problem, where page builders cost you, and the cases where a
+  builder is still the right choice.
+- [Core Web Vitals for content sites](https://masabfarooque.com/blog/core-web-vitals-for-content-sites):
+  what LCP, INP and CLS each measure, and the specific Next.js changes that
+  improve them.
 
 ## Case studies
 
@@ -55,7 +74,9 @@ deployed by him.
 
 Full stack product build, AI systems and agents, data pipelines and
 scraping, SaaS platforms with billing and multi tenancy, interfaces with
-motion, performance and technical SEO.
+motion, performance and technical SEO. Also WordPress to Next.js migrations,
+and setting WordPress up as a headless CMS behind a Next.js front end so
+editors keep their existing workflow.
 
 ## Stack
 
