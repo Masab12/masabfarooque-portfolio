@@ -338,6 +338,64 @@ export function GlyphUpwork({ size = 18, className }: { size?: number; className
   );
 }
 
+/** Facebook, drawn as the f alone so it sits flat next to the others. */
+export function GlyphFacebook({ size = 18, className }: { size?: number; className?: string }) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="currentColor" className={className} aria-hidden focusable="false">
+      <path d="M13.6 21.9v-8.2h2.8l.42-3.25h-3.22V8.37c0-.94.26-1.58 1.61-1.58h1.72V3.88a23.2 23.2 0 0 0-2.5-.13c-2.48 0-4.18 1.51-4.18 4.29v2.39H7.42v3.25h2.85v8.22h3.33Z" />
+    </svg>
+  );
+}
+
+/** X. Two tapered strokes crossing, with the counter cut out. */
+export function GlyphX({ size = 18, className }: { size?: number; className?: string }) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="currentColor" className={className} aria-hidden focusable="false">
+      <path
+        fillRule="evenodd"
+        clipRule="evenodd"
+        d="M13.62 10.63 20.92 2.2h-1.73l-6.34 7.32L7.79 2.2H2.06l7.66 11.15L2.06 21.8h1.73l6.7-7.79 5.35 7.79h5.73l-7.95-11.17Zm-1.02 1.18-.78-1.13L4.4 3.5h2.66l5.1 7.3.78 1.12 6.02 8.61h-2.66l-5.7-8.72Z"
+      />
+    </svg>
+  );
+}
+
+/** Instagram, drawn as a rounded aperture with the lens and the light. */
+export function GlyphInstagram({ size = 18, className }: { size?: number; className?: string }) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="currentColor" className={className} aria-hidden focusable="false">
+      <path
+        fillRule="evenodd"
+        clipRule="evenodd"
+        d="M12 2.16c-2.67 0-3 .01-4.05.06-1.04.05-1.76.22-2.38.46a4.8 4.8 0 0 0-1.74 1.13 4.8 4.8 0 0 0-1.13 1.74c-.24.62-.41 1.34-.46 2.38C2.19 9 2.16 9.33 2.16 12s.01 3 .06 4.05c.05 1.04.22 1.76.46 2.38a4.8 4.8 0 0 0 1.13 1.74 4.8 4.8 0 0 0 1.74 1.13c.62.24 1.34.41 2.38.46 1.05.05 1.38.06 4.05.06s3-.01 4.05-.06c1.04-.05 1.76-.22 2.38-.46a4.8 4.8 0 0 0 1.74-1.13 4.8 4.8 0 0 0 1.13-1.74c.24-.62.41-1.34.46-2.38.05-1.05.06-1.38.06-4.05s-.01-3-.06-4.05c-.05-1.04-.22-1.76-.46-2.38a4.8 4.8 0 0 0-1.13-1.74 4.8 4.8 0 0 0-1.74-1.13c-.62-.24-1.34-.41-2.38-.46C15 2.19 14.67 2.16 12 2.16Zm0 1.77c2.62 0 2.94.01 3.97.06.96.04 1.48.2 1.83.33.46.18.79.39 1.13.74.35.34.56.67.74 1.13.13.35.29.87.33 1.83.05 1.03.06 1.35.06 3.97s-.01 2.94-.06 3.97c-.4.96-.2 1.48-.33 1.83a3.03 3.03 0 0 1-.74 1.13c-.34.35-.67.56-1.13.74-.35.13-.87.29-1.83.33-1.03.05-1.35.06-3.97.06s-2.94-.01-3.97-.06c-.96-.04-1.48-.2-1.83-.33a3.03 3.03 0 0 1-1.13-.74 3.03 3.03 0 0 1-.74-1.13c-.13-.35-.29-.87-.33-1.83-.05-1.03-.06-1.35-.06-3.97s.01-2.94.06-3.97c.04-.96.2-1.48.33-1.83.18-.46.39-.79.74-1.13.34-.35.67-.56 1.13-.74.35-.13.87-.29 1.83-.33 1.03-.05 1.35-.06 3.97-.06Z"
+      />
+      <path
+        fillRule="evenodd"
+        clipRule="evenodd"
+        d="M12 15.28a3.28 3.28 0 1 1 0-6.56 3.28 3.28 0 0 1 0 6.56Zm0-8.33a5.05 5.05 0 1 0 0 10.1 5.05 5.05 0 0 0 0-10.1Z"
+      />
+      <circle cx="17.25" cy="6.75" r="1.18" />
+    </svg>
+  );
+}
+
+/**
+ * One map so a new profile only has to be added to the socials list. Every
+ * surface that renders a social icon reads from here, which is what stops a
+ * new entry rendering as a missing component on one page and not another.
+ */
+export const socialGlyphs = {
+  github: GlyphGithub,
+  linkedin: GlyphLinkedin,
+  fiverr: GlyphFiverr,
+  upwork: GlyphUpwork,
+  facebook: GlyphFacebook,
+  x: GlyphX,
+  instagram: GlyphInstagram,
+} as const;
+
+export type SocialGlyph = keyof typeof socialGlyphs;
+
 /* ── Client logotypes drawn in house ───────────────────────────── */
 
 /**

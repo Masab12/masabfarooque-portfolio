@@ -5,18 +5,8 @@ import {
   ArrowDiagonal,
   ArrowLong,
   MarkDocument,
-  GlyphGithub,
-  GlyphLinkedin,
-  GlyphFiverr,
-  GlyphUpwork,
+  socialGlyphs as glyphs,
 } from '@/app/components/marks';
-
-const glyphs = {
-  github: GlyphGithub,
-  linkedin: GlyphLinkedin,
-  fiverr: GlyphFiverr,
-  upwork: GlyphUpwork,
-} as const;
 
 export default function Footer() {
   const year = new Date().getFullYear();

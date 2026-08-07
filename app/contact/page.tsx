@@ -9,10 +9,7 @@ import {
   MarkPin,
   MarkClock,
   ArrowDiagonal,
-  GlyphGithub,
-  GlyphLinkedin,
-  GlyphFiverr,
-  GlyphUpwork,
+  socialGlyphs as glyphs,
 } from '@/app/components/marks';
 
 export const metadata: Metadata = {
@@ -21,13 +18,6 @@ export const metadata: Metadata = {
     'Start a project with Masab Farooque. Tell me what you are building and what is in the way, and you will get a scope and a straight answer within one working day.',
   alternates: { canonical: `${site.url}/contact` },
 };
-
-const glyphs = {
-  github: GlyphGithub,
-  linkedin: GlyphLinkedin,
-  fiverr: GlyphFiverr,
-  upwork: GlyphUpwork,
-} as const;
 
 export default function ContactPage() {
   return (

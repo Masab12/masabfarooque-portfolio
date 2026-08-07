@@ -1,8 +1,7 @@
 import type { Metadata } from 'next';
-import Script from 'next/script';
 import './globals.css';
 import { sansFont, serifFont } from './lib/fonts';
-import { site } from './data/site';
+import { site, socials } from './data/site';
 import Nav from './components/core/Nav';
 import Footer from './components/core/Footer';
 import AnalyticsNotice, { Analytics } from './components/core/Consent';
@@ -62,6 +61,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
+    site: '@MasabDF',
+    creator: '@MasabDF',
     title: 'Masab Farooque | Full Stack Engineer',
     description: 'SaaS platforms, AI systems and data pipelines, built end to end.',
     images: ['/og-image.webp'],
@@ -98,12 +99,9 @@ const personSchema = {
     addressCountry: 'Pakistan',
   },
   alumniOf: { '@type': 'Organization', name: 'COMSATS University Islamabad' },
-  sameAs: [
-    'https://github.com/Masab12',
-    'https://www.linkedin.com/in/masabfarooque',
-    'https://www.fiverr.com/p_scribbles',
-    'https://upwork.com/freelancers/~01e34b32d5b254495d',
-  ],
+  // Read from the socials list rather than repeated here, so adding a profile
+  // in one place also tells search engines the accounts are the same person.
+  sameAs: socials.map((s) => s.href),
   knowsAbout: [
     'Full Stack Development',
     'Next.js',
@@ -142,15 +140,19 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
         <meta name="geo.placename" content="Islamabad" />
         <meta name="geo.position" content="33.6844;73.0479" />
         <link rel="preconnect" href="https://d8j0ntlcm91z4.cloudfront.net" />
-        <link rel="me" href="https://github.com/Masab12" />
-        <link rel="me" href="https://www.linkedin.com/in/masabfarooque" />
-        <Script
-          id="person-schema"
+        {/* Verified identity links, generated from the same list as sameAs */}
+        {socials.map((s) => (
+          <link key={s.href} rel="me" href={s.href} />
+        ))}
+        {/* Plain script tags, not next/script. next/script defers these to the
+            client, so the markup only existed in the flight payload and any
+            crawler that does not run JavaScript saw no Person schema at all.
+            The article routes already emit theirs this way. */}
+        <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(personSchema) }}
         />
-        <Script
-          id="website-schema"
+        <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteSchema) }}
         />

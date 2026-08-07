@@ -61,6 +61,19 @@ export const socials = [
     href: 'https://upwork.com/freelancers/~01e34b32d5b254495d',
     glyph: 'upwork',
   },
+  { label: 'X', handle: 'MasabDF', href: 'https://x.com/MasabDF', glyph: 'x' },
+  {
+    label: 'Instagram',
+    handle: 'masabfarooque',
+    href: 'https://www.instagram.com/masabfarooque',
+    glyph: 'instagram',
+  },
+  {
+    label: 'Facebook',
+    handle: 'MasabDF',
+    href: 'https://www.facebook.com/MasabDF',
+    glyph: 'facebook',
+  },
 ] as const;
 
 /**
