@@ -8,7 +8,6 @@ import {
   H3,
   P,
   Lede,
-  UL,
   Code,
   Note,
   Takeaways,

@@ -555,12 +555,14 @@ export function CoverCost({ className }: CoverProps) {
   const x0 = 130;
   const track = 940;
 
-  let cursor = x0;
-  const segments = items.map((item) => {
-    const seg = { x: cursor, w: track * item.w, label: item.label };
-    cursor += track * item.w;
-    return seg;
-  });
+  // Prefix sum rather than a running counter, for the same reason as the
+  // charts: nothing gets reassigned while the component renders.
+  const widths = items.map((item) => track * item.w);
+  const segments = items.map((item, i) => ({
+    label: item.label,
+    w: widths[i],
+    x: x0 + widths.slice(0, i).reduce((sum, w) => sum + w, 0),
+  }));
 
   return (
     <Frame

@@ -5,7 +5,6 @@ import { getPost } from '@/app/data/posts';
 import ArticleLayout, { articleSchema } from '@/app/components/blog/ArticleLayout';
 import {
   H2,
-  H3,
   P,
   Lede,
   UL,

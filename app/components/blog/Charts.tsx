@@ -357,13 +357,15 @@ export function EffortSplit({
   const trackWidth = 640;
   const total = parts.reduce((sum, p) => sum + p.percent, 0);
 
-  let cursor = x0;
-  const laid = parts.map((part) => {
-    const w = (part.percent / total) * trackWidth;
-    const seg = { ...part, x: cursor, w };
-    cursor += w;
-    return seg;
-  });
+  // Each segment starts where the ones before it end. Written as a prefix sum
+  // rather than a running counter, because reassigning a variable from inside
+  // a render pass is exactly what the immutability lint rule exists to catch.
+  const widths = parts.map((part) => (part.percent / total) * trackWidth);
+  const laid = parts.map((part, i) => ({
+    ...part,
+    w: widths[i],
+    x: x0 + widths.slice(0, i).reduce((sum, w) => sum + w, 0),
+  }));
 
   return (
     <ChartShell label={label} caption={caption}>
