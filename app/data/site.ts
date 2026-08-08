@@ -22,11 +22,16 @@ export const cv = {
   size: '120 KB',
 } as const;
 
+/**
+ * Every entry points at a real route. Capabilities and Reviews used to be
+ * homepage anchors, which meant they were not indexable on their own and,
+ * on a phone, tapping one from the menu changed nothing but the URL.
+ */
 export const nav = [
   { label: 'Work', href: '/portfolio', index: '01' },
-  { label: 'Capabilities', href: '/#capabilities', index: '02' },
+  { label: 'Capabilities', href: '/capabilities', index: '02' },
   { label: 'Writing', href: '/blog', index: '03' },
-  { label: 'Reviews', href: '/#reviews', index: '04' },
+  { label: 'Reviews', href: '/reviews', index: '04' },
   { label: 'About', href: '/about-masab', index: '05' },
   { label: 'Contact', href: '/contact', index: '06' },
 ] as const;

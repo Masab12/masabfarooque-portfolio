@@ -1,115 +1,21 @@
 'use client';
 
 import { useEffect, useMemo, useRef, useState } from 'react';
+import Link from 'next/link';
 import { motion, useScroll, useTransform } from 'framer-motion';
-import { reviews, reviewSummary, type Review } from '@/app/data/reviews';
-import { RatingMark, Quote, ArrowDiagonal, GlyphFiverr } from '@/app/components/marks';
+import { reviews, reviewSummary } from '@/app/data/reviews';
+import { ArrowLong } from '@/app/components/marks';
 import Section from '@/app/components/core/Section';
 import SectionHeader from '@/app/components/core/SectionHeader';
 import Reveal from '@/app/components/motion/Reveal';
+import ReviewCard from '@/app/components/reviews/ReviewCard';
 
-const MONTHS = [
-  'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
-  'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec',
-];
-
-function formatDate(value: string) {
-  const [y, m] = value.split('T')[0].split('-');
-  return `${MONTHS[Number(m) - 1]} ${y}`;
-}
-
-function initials(name: string) {
-  const cleaned = name.replace(/[^a-zA-Z]/g, '');
-  return (cleaned.slice(0, 2) || 'MF').toUpperCase();
-}
-
-function Avatar({ review }: { review: Review }) {
-  const [failed, setFailed] = useState(false);
-
-  if (review.avatar && !failed) {
-    return (
-      // The photo is served by Fiverr's own CDN, so it is loaded directly
-      // rather than proxied through the image optimiser.
-      // eslint-disable-next-line @next/next/no-img-element
-      <img
-        src={review.avatar}
-        alt={`${review.name} on Fiverr`}
-        width={44}
-        height={44}
-        loading="lazy"
-        decoding="async"
-        referrerPolicy="no-referrer"
-        onError={() => setFailed(true)}
-        className="h-11 w-11 shrink-0 rounded-full object-cover"
-        style={{ border: '1px solid var(--line-2)' }}
-      />
-    );
-  }
-
-  return (
-    <span
-      aria-hidden
-      className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full text-[0.7rem]"
-      style={{
-        border: '1px solid var(--line-2)',
-        background: 'rgba(225,224,204,0.08)',
-        color: 'var(--cream)',
-      }}
-    >
-      {initials(review.name)}
-    </span>
-  );
-}
-
-function ReviewCard({ review }: { review: Review }) {
-  return (
-    <figure
-      className="group relative overflow-hidden border p-6 transition-colors duration-500 hover:border-hair2"
-      style={{
-        borderColor: 'var(--line)',
-        background: 'var(--surface-1)',
-        borderRadius: 'clamp(10px, 1.2vw, 18px)',
-      }}
-    >
-      <Quote size={26} className="mb-4 text-primary opacity-30" />
-
-      <blockquote className="text-[0.9rem] leading-relaxed text-gray-400">
-        <span
-          style={{
-            display: '-webkit-box',
-            WebkitLineClamp: 7,
-            WebkitBoxOrient: 'vertical',
-            overflow: 'hidden',
-          }}
-        >
-          {review.comment}
-        </span>
-      </blockquote>
-
-      <figcaption className="mt-6 flex items-center gap-3 border-t pt-5" style={{ borderColor: 'var(--line)' }}>
-        <Avatar review={review} />
-        <div className="min-w-0 flex-1">
-          <p className="truncate text-sm text-cream">{review.name}</p>
-          <p className="mt-1 text-[0.6rem] text-gray-500">
-            {review.country || 'Fiverr client'}
-            <span className="mx-1.5 opacity-40">/</span>
-            {formatDate(review.date)}
-          </p>
-        </div>
-        <div className="flex flex-col items-end gap-1.5">
-          <span className="flex gap-0.5 text-primary" role="img" aria-label={`Rated ${review.rating} out of 5`}>
-            {Array.from({ length: review.rating }).map((_, i) => (
-              <RatingMark key={i} size={8} />
-            ))}
-          </span>
-          {review.orders > 1 ? (
-            <span className="text-[0.55rem] text-primary">{review.orders} orders</span>
-          ) : null}
-        </div>
-      </figcaption>
-    </figure>
-  );
-}
+/**
+ * The homepage strip is a sample, not the archive. The full set lives on
+ * /reviews, which keeps this page lighter and stops the same quotes being
+ * indexed twice.
+ */
+const FEATURED = 9;
 
 /** One, two or three columns depending on the viewport. */
 function useColumnCount() {
@@ -139,10 +45,10 @@ export default function Testimonials() {
    * shortest, which balances the grid without a masonry library.
    */
   const columns = useMemo(() => {
-    const cols: Review[][] = Array.from({ length: columnCount }, () => []);
+    const cols: (typeof reviews)[number][][] = Array.from({ length: columnCount }, () => []);
     const heights = new Array(columnCount).fill(0);
 
-    reviews.forEach((review) => {
+    reviews.slice(0, FEATURED).forEach((review) => {
       const lines = Math.min(7, Math.ceil(review.comment.length / 46));
       const weight = 150 + lines * 24;
       const shortest = heights.indexOf(Math.min(...heights));
@@ -154,7 +60,7 @@ export default function Testimonials() {
   }, [columnCount]);
 
   // Columns drift at slightly different rates as the block passes, which keeps
-  // a long wall of quotes from reading as one static slab.
+  // a wall of quotes from reading as one static slab.
   const { scrollYProgress } = useScroll({
     target: ref,
     offset: ['start end', 'end start'],
@@ -169,7 +75,7 @@ export default function Testimonials() {
       <div>
         <SectionHeader
           label="Client words"
-          title="Twenty five clients, unedited."
+          title="Read the reviews, not the pitch."
           subtitle="Pulled from Fiverr, newest first, nothing rewritten."
         />
 
@@ -184,9 +90,7 @@ export default function Testimonials() {
             { value: `${reviewSummary.repeatShare}%`, label: 'Clients who came back' },
           ].map((item) => (
             <div key={item.label} className="p-5 sm:p-6 md:p-8" style={{ background: 'var(--surface-1)' }}>
-              <p className="text-[clamp(1.4rem,3.4vw,2.7rem)] text-primary">
-                {item.value}
-              </p>
+              <p className="text-[clamp(1.4rem,3.4vw,2.7rem)] text-primary">{item.value}</p>
               <p className="label mt-2.5">{item.label}</p>
             </div>
           ))}
@@ -210,29 +114,18 @@ export default function Testimonials() {
           ))}
         </div>
 
-        <Reveal
-          className="mt-10 flex flex-col items-start justify-between gap-5 border-t pt-7 lg:flex-row lg:items-center"
-          style={{ borderColor: 'var(--line)' }}
-        >
-          <p className="max-w-xl text-xs leading-relaxed text-gray-500">
-            Reviews and profile photos are imported from my Fiverr seller profile and shown as
-            written by the client. Fiverr is a trademark of its owner and this site is not
-            affiliated with or endorsed by Fiverr.
-          </p>
-          <a
-            href={reviewSummary.profileUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="group inline-flex shrink-0 items-center gap-3 border px-5 py-3 text-sm transition-colors duration-500 hover:border-hair2"
+        <Reveal className="mt-10 flex justify-center">
+          <Link
+            href="/reviews"
+            data-cursor="Read all reviews"
+            className="group inline-flex items-center gap-2 rounded-full border py-1.5 pl-6 pr-1.5 text-sm transition-all duration-300 hover:gap-3"
             style={{ borderColor: 'var(--line-2)' }}
           >
-            <GlyphFiverr size={16} className="text-primary" />
-            Verify on Fiverr
-            <ArrowDiagonal
-              size={13}
-              className="text-primary transition-transform duration-500 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
-            />
-          </a>
+            Read all {reviewSummary.total} reviews
+            <span className="flex h-9 w-9 items-center justify-center rounded-full bg-primary transition-transform duration-300 group-hover:scale-110">
+              <ArrowLong size={15} className="text-black" />
+            </span>
+          </Link>
         </Reveal>
       </div>
     </Section>

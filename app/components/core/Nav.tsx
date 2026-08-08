@@ -3,7 +3,7 @@
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { AnimatePresence, motion } from 'framer-motion';
+import { motion } from 'framer-motion';
 import { cv, nav, site, socials } from '@/app/data/site';
 import { Monogram, MenuMark, CloseMark, MarkDocument } from '@/app/components/marks';
 
@@ -18,6 +18,10 @@ export default function Nav() {
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
 
+  // Closing on a pathname change alone is not enough. A link to a hash on the
+  // page you are already on never changes the pathname, so the menu stayed
+  // open and the body scroll lock below stayed on, which froze the page.
+  // Every menu link closes it directly instead.
   useEffect(() => setOpen(false), [pathname]);
 
   useEffect(() => {
@@ -87,6 +91,7 @@ export default function Nav() {
               onClick={() => setOpen((v) => !v)}
               aria-label={open ? 'Close menu' : 'Open menu'}
               aria-expanded={open}
+              aria-controls="mobile-menu"
               className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full transition-colors duration-300 hover:bg-white/5 sm:h-9 sm:w-9"
             >
               {open ? <CloseMark size={17} /> : <MenuMark size={17} />}
@@ -95,73 +100,88 @@ export default function Nav() {
         </div>
       </header>
 
-      <AnimatePresence>
-        {open ? (
-          <motion.div
-            key="menu"
-            initial={{ clipPath: 'inset(0 0 100% 0)' }}
-            animate={{ clipPath: 'inset(0 0 0% 0)' }}
-            exit={{ clipPath: 'inset(0 0 100% 0)' }}
-            transition={{ duration: 0.6, ease: [0.76, 0, 0.24, 1] }}
-            className="fixed inset-0 z-40 flex flex-col overflow-y-auto bg-[#101010]"
-          >
-            <div className="flex flex-1 flex-col justify-center gap-1 px-5 pb-10 pt-24 sm:px-8 sm:pt-28">
-              {nav.map((item, i) => (
-                <motion.div
-                  key={item.href}
-                  initial={{ opacity: 0, y: 24 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.16 + i * 0.06, duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-                >
-                  <Link
-                    href={item.href}
-                    className="block py-2 text-[15vw] font-medium leading-[0.95] tracking-[-0.05em] sm:text-[10vw] xl:text-[8rem]"
-                    style={{ color: isActive(item.href) ? '#E1E0CC' : 'rgba(225,224,204,0.65)' }}
-                  >
-                    {item.label}
-                  </Link>
-                </motion.div>
-              ))}
+      {/* The panel stays mounted and is driven by `open` rather than being
+          added and removed by AnimatePresence. An exiting child was being
+          left behind in the DOM: invisible, because the clip path had closed
+          it, but still holding fourteen focusable links that a keyboard user
+          could tab into on the page they had just navigated to. `inert`
+          takes the whole subtree out of the tab order and the a11y tree the
+          moment it closes, so that cannot happen. */}
+      <motion.div
+        id="mobile-menu"
+        initial={false}
+        animate={{ clipPath: open ? 'inset(0 0 0% 0)' : 'inset(0 0 100% 0)' }}
+        transition={{ duration: 0.6, ease: [0.76, 0, 0.24, 1] }}
+        inert={!open}
+        aria-hidden={!open}
+        className={`fixed inset-0 z-40 flex flex-col overflow-y-auto bg-[#101010] ${
+          open ? '' : 'pointer-events-none'
+        }`}
+      >
+        <div className="flex flex-1 flex-col justify-center gap-1 px-5 pb-10 pt-24 sm:px-8 sm:pt-28">
+          {nav.map((item, i) => (
+            <motion.div
+              key={item.href}
+              initial={false}
+              animate={open ? { opacity: 1, y: 0 } : { opacity: 0, y: 24 }}
+              transition={{
+                delay: open ? 0.16 + i * 0.06 : 0,
+                duration: open ? 0.6 : 0.25,
+                ease: [0.16, 1, 0.3, 1],
+              }}
+            >
+              <Link
+                href={item.href}
+                onClick={() => setOpen(false)}
+                className="block py-2 text-[15vw] font-medium leading-[0.95] tracking-[-0.05em] sm:text-[10vw] xl:text-[8rem]"
+                style={{ color: isActive(item.href) ? '#E1E0CC' : 'rgba(225,224,204,0.65)' }}
+              >
+                {item.label}
+              </Link>
+            </motion.div>
+          ))}
 
-              <motion.a
-                href={cv.href}
+          <motion.a
+            href={cv.href}
+            target="_blank"
+            rel="noopener noreferrer"
+            download={cv.fileName}
+            initial={false}
+            animate={open ? { opacity: 1, y: 0 } : { opacity: 0, y: 24 }}
+            transition={{
+              delay: open ? 0.16 + nav.length * 0.06 : 0,
+              duration: open ? 0.6 : 0.25,
+              ease: [0.16, 1, 0.3, 1],
+            }}
+            className="mt-8 flex items-center justify-between gap-4 rounded-xl bg-[#212121] px-5 py-4 transition-colors duration-300 hover:bg-[#2a2a2a] sm:max-w-sm"
+          >
+            <span className="min-w-0">
+              <span className="block text-sm text-cream">{cv.label}</span>
+              <span className="label mt-1.5 block truncate">
+                PDF, {cv.size}, updated {cv.updated}
+              </span>
+            </span>
+            <MarkDocument size={20} className="shrink-0 text-primary" />
+          </motion.a>
+        </div>
+
+        <div className="px-5 pb-8 sm:px-8">
+          <div className="rule mb-5" />
+          <div className="flex flex-wrap items-center gap-x-6 gap-y-2">
+            {socials.map((s) => (
+              <a
+                key={s.label}
+                href={s.href}
                 target="_blank"
                 rel="noopener noreferrer"
-                download={cv.fileName}
-                initial={{ opacity: 0, y: 24 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.16 + nav.length * 0.06, duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-                className="mt-8 flex items-center justify-between gap-4 rounded-xl bg-[#212121] px-5 py-4 transition-colors duration-300 hover:bg-[#2a2a2a] sm:max-w-sm"
+                className="text-xs text-gray-400 hover:text-cream"
               >
-                <span className="min-w-0">
-                  <span className="block text-sm text-cream">{cv.label}</span>
-                  <span className="label mt-1.5 block truncate">
-                    PDF, {cv.size}, updated {cv.updated}
-                  </span>
-                </span>
-                <MarkDocument size={20} className="shrink-0 text-primary" />
-              </motion.a>
-            </div>
-
-            <div className="px-5 pb-8 sm:px-8">
-              <div className="rule mb-5" />
-              <div className="flex flex-wrap items-center gap-x-6 gap-y-2">
-                {socials.map((s) => (
-                  <a
-                    key={s.label}
-                    href={s.href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-xs text-gray-400 hover:text-cream"
-                  >
-                    {s.label}
-                  </a>
-                ))}
-              </div>
-            </div>
-          </motion.div>
-        ) : null}
-      </AnimatePresence>
+                {s.label}
+              </a>
+            ))}
+          </div>
+        </div>
+      </motion.div>
     </>
   );
 }

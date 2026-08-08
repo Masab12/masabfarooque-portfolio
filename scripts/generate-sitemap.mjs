@@ -13,6 +13,8 @@ const routes = [
   // The service page targets commercial intent, so it ranks alongside the
   // homepage rather than below the writing.
   { path: '/services/wordpress-to-nextjs', changefreq: 'monthly', priority: '0.9' },
+  { path: '/capabilities', changefreq: 'monthly', priority: '0.9' },
+  { path: '/reviews', changefreq: 'monthly', priority: '0.8' },
   { path: '/about-masab', changefreq: 'monthly', priority: '0.9' },
   { path: '/contact', changefreq: 'yearly', priority: '0.7' },
   { path: '/privacy', changefreq: 'yearly', priority: '0.3' },

@@ -8,6 +8,8 @@ type RevealProps = {
   as?: ElementType;
   className?: string;
   style?: React.CSSProperties;
+  /** Anchor target, so a revealed block can be linked to directly. */
+  id?: string;
   delay?: number;
   y?: number;
   /** Stagger the direct children instead of animating the wrapper. */
@@ -26,6 +28,7 @@ export default function Reveal({
   as = 'div',
   className,
   style,
+  id,
   delay = 0,
   y = 20,
   stagger,
@@ -35,6 +38,7 @@ export default function Reveal({
   if (stagger) {
     return (
       <Tag
+        id={id}
         className={className}
         style={style}
         initial="hidden"
@@ -52,6 +56,7 @@ export default function Reveal({
 
   return (
     <Tag
+      id={id}
       className={className}
       style={style}
       initial={{ opacity: 0, y }}
