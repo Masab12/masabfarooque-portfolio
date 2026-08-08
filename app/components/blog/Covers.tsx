@@ -540,6 +540,262 @@ export function CoverSolo({ className }: CoverProps) {
   );
 }
 
+/** Cost. One total bar broken into the line items underneath it. */
+export function CoverCost({ className }: CoverProps) {
+  // Widths are proportional to the effort shares the article sets out.
+  const items = [
+    { w: 0.22, label: 'BUILD' },
+    { w: 0.16, label: 'CONTENT' },
+    { w: 0.14, label: 'ROUTING' },
+    { w: 0.12, label: 'META' },
+    { w: 0.11, label: 'PERF' },
+    { w: 0.1, label: 'QA' },
+    { w: 0.15, label: '' },
+  ];
+  const x0 = 130;
+  const track = 940;
+
+  let cursor = x0;
+  const segments = items.map((item) => {
+    const seg = { x: cursor, w: track * item.w, label: item.label };
+    cursor += track * item.w;
+    return seg;
+  });
+
+  return (
+    <Frame
+      className={className}
+      label="One total cost bar split into the line items that make it up, with tick marks beneath"
+    >
+      {/* The single number a client is usually given */}
+      <g>
+        <rect
+          x={x0}
+          y="150"
+          width={track}
+          height="56"
+          rx="4"
+          fill="none"
+          stroke={CREAM}
+          strokeWidth="1.4"
+          strokeOpacity="0.45"
+        />
+        <text
+          x={x0 + track / 2}
+          y="187"
+          fill={CREAM}
+          fillOpacity="0.45"
+          fontFamily="ui-monospace, Menlo, monospace"
+          fontSize="20"
+          textAnchor="middle"
+          letterSpacing="4"
+        >
+          ONE NUMBER
+        </text>
+      </g>
+
+      {/* Split apart into what it is actually made of */}
+      <g>
+        {segments.map((seg, i) => (
+          <g key={i}>
+            <rect
+              x={seg.x + 2}
+              y="300"
+              width={Math.max(seg.w - 4, 2)}
+              height="72"
+              rx="3"
+              fill={CREAM}
+              fillOpacity={0.14 + (segments.length - i) * 0.1}
+            />
+            {seg.label ? (
+              <text
+                x={seg.x + seg.w / 2}
+                y="418"
+                fill={CREAM}
+                fillOpacity="0.55"
+                fontFamily="ui-monospace, Menlo, monospace"
+                fontSize="14"
+                textAnchor="middle"
+                letterSpacing="1"
+              >
+                {seg.label}
+              </text>
+            ) : null}
+            <line
+              x1={seg.x + seg.w / 2}
+              y1="382"
+              x2={seg.x + seg.w / 2}
+              y2="396"
+              stroke={CREAM}
+              strokeOpacity="0.3"
+              strokeWidth="1.2"
+            />
+          </g>
+        ))}
+      </g>
+
+      {/* Connectors from the single bar down to the split */}
+      <g stroke={CREAM} strokeOpacity="0.22" strokeWidth="1.2" fill="none">
+        <path d={`M${x0} 206 L${x0} 300`} />
+        <path d={`M${x0 + track} 206 L${x0 + track} 300`} />
+      </g>
+
+      <text
+        x={x0}
+        y="500"
+        fill={CREAM}
+        fontFamily="ui-monospace, Menlo, monospace"
+        fontSize="18"
+        letterSpacing="3"
+      >
+        NINE LINE ITEMS
+      </text>
+    </Frame>
+  );
+}
+
+/** Timeline. Phases as offset bars running left to right across weeks. */
+export function CoverTimeline({ className }: CoverProps) {
+  const phases = [
+    { start: 0, len: 1 },
+    { start: 0.4, len: 2.2 },
+    { start: 1.4, len: 1.6 },
+    { start: 2.4, len: 1 },
+    { start: 3, len: 1 },
+    { start: 3.4, len: 1.2 },
+  ];
+  const x0 = 150;
+  const weekW = 176;
+  const weeks = 5;
+
+  return (
+    <Frame
+      className={className}
+      label="Six project phases drawn as overlapping bars across five weeks"
+    >
+      {/* Week gridlines */}
+      <g stroke={CREAM} strokeOpacity="0.12" strokeWidth="1">
+        {Array.from({ length: weeks + 1 }).map((_, i) => (
+          <line key={i} x1={x0 + i * weekW} y1="120" x2={x0 + i * weekW} y2="470" />
+        ))}
+      </g>
+      <g
+        fill={CREAM}
+        fillOpacity="0.4"
+        fontFamily="ui-monospace, Menlo, monospace"
+        fontSize="15"
+        letterSpacing="2"
+      >
+        {Array.from({ length: weeks }).map((_, i) => (
+          <text key={i} x={x0 + i * weekW + weekW / 2} y="106" textAnchor="middle">
+            W{i + 1}
+          </text>
+        ))}
+      </g>
+
+      {/* Phase bars */}
+      {phases.map((p, i) => {
+        const y = 152 + i * 54;
+        return (
+          <g key={i}>
+            <rect
+              x={x0 + p.start * weekW}
+              y={y}
+              width={p.len * weekW}
+              height="30"
+              rx="4"
+              fill={CREAM}
+              fillOpacity={0.85 - i * 0.1}
+            />
+          </g>
+        );
+      })}
+
+      <text
+        x={x0}
+        y="524"
+        fill={CREAM}
+        fontFamily="ui-monospace, Menlo, monospace"
+        fontSize="18"
+        letterSpacing="3"
+      >
+        PHASES OVERLAP
+      </text>
+    </Frame>
+  );
+}
+
+/** Checklist. Ticked boxes above, empty ones below, one still open. */
+export function CoverChecklist({ className }: CoverProps) {
+  const rows = [
+    { done: true, w: 470 },
+    { done: true, w: 560 },
+    { done: true, w: 400 },
+    { done: false, w: 520, current: true },
+    { done: false, w: 440 },
+    { done: false, w: 490 },
+  ];
+
+  return (
+    <Frame
+      className={className}
+      label="A checklist with the first three items ticked and the fourth highlighted as current"
+    >
+      {rows.map((row, i) => {
+        const y = 130 + i * 74;
+        return (
+          <g key={i}>
+            {/* Box */}
+            <rect
+              x="160"
+              y={y}
+              width="40"
+              height="40"
+              rx="4"
+              fill="none"
+              stroke={CREAM}
+              strokeWidth="1.6"
+              strokeOpacity={row.done ? 0.85 : row.current ? 1 : 0.32}
+            />
+            {row.done ? (
+              <path
+                d={`M169 ${y + 21} L178 ${y + 30} L192 ${y + 11}`}
+                fill="none"
+                stroke={CREAM}
+                strokeWidth="2.2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+            ) : null}
+
+            {/* The line of text, drawn as a rule */}
+            <rect
+              x="228"
+              y={y + 16}
+              width={row.w}
+              height="9"
+              rx="4.5"
+              fill={CREAM}
+              fillOpacity={row.done ? 0.3 : row.current ? 0.7 : 0.14}
+            />
+
+            {/* Marker on the item you are on */}
+            {row.current ? (
+              <path
+                d={`M120 ${y + 20} L136 ${y + 20} M130 ${y + 14} L136 ${y + 20} L130 ${y + 26}`}
+                fill="none"
+                stroke={CREAM}
+                strokeWidth="1.6"
+                strokeLinecap="round"
+              />
+            ) : null}
+          </g>
+        );
+      })}
+    </Frame>
+  );
+}
+
 export const covers = {
   'wordpress-to-nextjs-migration': CoverMigration,
   'wordpress-as-headless-cms': CoverHeadless,
@@ -548,6 +804,9 @@ export const covers = {
   'yoast-metadata-to-nextjs': CoverMetadata,
   'hosting-headless-wordpress': CoverHosting,
   'solo-developer-vs-agency': CoverSolo,
+  'wordpress-to-nextjs-migration-cost': CoverCost,
+  'wordpress-to-nextjs-migration-timeline': CoverTimeline,
+  'wordpress-to-nextjs-migration-checklist': CoverChecklist,
 } as const;
 
 export type CoverSlug = keyof typeof covers;

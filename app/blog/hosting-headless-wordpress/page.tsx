@@ -171,6 +171,45 @@ export default function Page() {
           should be paying the lowest tier, not the one you were on.
         </P>
 
+        <P>
+          Managed plans also bundle things a headless install stops needing. A page cache is the
+          clearest one. It exists to stop PHP rendering the same HTML repeatedly for visitors, and
+          you no longer have visitors hitting PHP. Worse, an aggressive page cache sometimes caches
+          REST responses too, which means your build reads yesterday&apos;s content and nobody can
+          work out why.
+        </P>
+
+        <P>Four questions worth asking a managed host before you commit to a headless build:</P>
+
+        <UL
+          items={[
+            <>
+              Can you exclude <code>/wp-json/</code> from the page cache? If the answer is no, your
+              publish webhook will fight the cache forever.
+            </>,
+            <>
+              Are outbound HTTP requests allowed? <code>wp_remote_post</code> has to reach your
+              front end host or on demand revalidation never fires.
+            </>,
+            <>
+              How is the plan priced, by visits or by resources? Visit pricing should now put you on
+              the cheapest tier.
+            </>,
+            <>
+              Is object caching available? That one still helps, because it speeds up the database
+              queries your build makes.
+            </>,
+          ]}
+        />
+
+        <Code filename="terminal" lang="bash">{`# Confirm the REST API is not being served from a page cache.
+# Run it twice and compare: the timestamps and cache headers should move.
+curl -sI "https://cms.example.com/wp-json/wp/v2/posts?per_page=1" \\
+  | grep -iE 'x-cache|cf-cache-status|age:|cache-control'
+
+# Confirm the install can actually reach the outside world
+wp eval 'var_dump( wp_remote_get( "https://example.com/api/health" ) );'`}</Code>
+
         <H3>A container platform</H3>
 
         <P>
@@ -256,6 +295,53 @@ watch -n 1 'free -m'`}</Code>
 // Do this before you migrate media, or you will rewrite thousands of rows later.
 define( 'WP_CONTENT_URL', 'https://media.example.com/wp-content' );
 define( 'UPLOADS', 'wp-content/uploads' );`}</Code>
+
+        <P>
+          Order matters here and it catches people out. Set the constant first, then move the files,
+          then rewrite the URLs already sitting in post content. Doing it the other way round means
+          running a second search and replace across thousands of rows to fix what you just broke.
+        </P>
+
+        <Code filename="terminal" lang="bash">{`# 1. Copy the uploads directory to object storage
+aws s3 sync wp-content/uploads/ s3://example-media/wp-content/uploads/ \\
+  --cache-control "public, max-age=31536000, immutable"
+
+# 2. Rewrite the URLs already embedded in post content.
+#    Always dry run first and read what it plans to change.
+wp search-replace 'https://cms.example.com/wp-content/uploads' \\
+                  'https://media.example.com/wp-content/uploads' \\
+                  --all-tables --dry-run
+
+# 3. Run it for real, skipping the columns that should never be touched
+wp search-replace 'https://cms.example.com/wp-content/uploads' \\
+                  'https://media.example.com/wp-content/uploads' \\
+                  --all-tables --skip-columns=guid`}</Code>
+
+        <P>
+          Skip <code>guid</code> deliberately. WordPress uses it as an internal identifier for feed
+          readers rather than as a link, and rewriting it makes old posts look brand new to anything
+          subscribed.
+        </P>
+
+        <P>
+          One more piece on the Next.js side. Serving images from a different hostname means telling
+          the image optimiser it is allowed to fetch from there, otherwise every image throws at
+          build time.
+        </P>
+
+        <Code filename="next.config.ts" lang="typescript">{`const nextConfig = {
+  images: {
+    remotePatterns: [
+      { protocol: 'https', hostname: 'media.example.com', pathname: '/wp-content/uploads/**' },
+    ],
+  },
+};`}</Code>
+
+        <P>
+          Long cache headers on media are safe because WordPress appends a size suffix to the
+          filename whenever an image is regenerated. The URL changes, so the cache never serves a
+          stale file. That is why the sync above sets a year and marks it immutable.
+        </P>
 
         <H2 id="worked-example">A worked example</H2>
 

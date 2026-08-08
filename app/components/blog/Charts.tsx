@@ -340,6 +340,192 @@ export function CostRange({
 }
 
 /**
+ * One stacked bar showing how a whole splits into parts, labelled by percent.
+ * Built for effort shares, where the useful information is the proportion
+ * rather than any absolute figure.
+ */
+export function EffortSplit({
+  parts,
+  caption,
+  label,
+}: {
+  parts: { name: string; percent: number }[];
+  caption: React.ReactNode;
+  label: string;
+}) {
+  const x0 = 40;
+  const trackWidth = 640;
+  const total = parts.reduce((sum, p) => sum + p.percent, 0);
+
+  let cursor = x0;
+  const laid = parts.map((part) => {
+    const w = (part.percent / total) * trackWidth;
+    const seg = { ...part, x: cursor, w };
+    cursor += w;
+    return seg;
+  });
+
+  return (
+    <ChartShell label={label} caption={caption}>
+      {/* The bar itself */}
+      {laid.map((seg, i) => (
+        <g key={seg.name}>
+          <rect
+            x={seg.x}
+            y="60"
+            width={Math.max(seg.w - 2, 1)}
+            height="64"
+            fill={CREAM}
+            fillOpacity={0.9 - i * 0.1}
+          />
+          {seg.w > 44 ? (
+            <text
+              x={seg.x + seg.w / 2}
+              y="100"
+              fill="#0B0B0B"
+              fontFamily={MONO}
+              fontSize="14"
+              textAnchor="middle"
+            >
+              {seg.percent}%
+            </text>
+          ) : null}
+        </g>
+      ))}
+
+      {/* Legend in two columns, so nine items still fit the frame */}
+      {laid.map((seg, i) => {
+        const perColumn = Math.ceil(laid.length / 2);
+        const col = Math.floor(i / perColumn);
+        const rowIndex = i % perColumn;
+        const colX = x0 + col * 340;
+        const row = 178 + rowIndex * 26;
+        return (
+          <g key={`${seg.name}-legend`}>
+            <rect
+              x={colX}
+              y={row - 9}
+              width="14"
+              height="11"
+              fill={CREAM}
+              fillOpacity={0.9 - i * 0.1}
+            />
+            <text
+              x={colX + 24}
+              y={row}
+              fill={CREAM}
+              fillOpacity="0.75"
+              fontFamily={MONO}
+              fontSize="13"
+            >
+              {seg.name}
+            </text>
+            <text
+              x={colX + 300}
+              y={row}
+              fill={CREAM}
+              fontFamily={MONO}
+              fontSize="13"
+              textAnchor="end"
+            >
+              {seg.percent}%
+            </text>
+          </g>
+        );
+      })}
+    </ChartShell>
+  );
+}
+
+/**
+ * Phases drawn as bars across a week grid, so overlap is visible rather than
+ * implied. Weeks are fractional on purpose: real phases do not start on
+ * Monday morning.
+ */
+export function PhaseTimeline({
+  phases,
+  weeks,
+  caption,
+  label,
+}: {
+  phases: { name: string; start: number; length: number }[];
+  weeks: number;
+  caption: React.ReactNode;
+  label: string;
+}) {
+  const x0 = 210;
+  const trackWidth = 470;
+  const weekW = trackWidth / weeks;
+  const rowGap = 40;
+  const firstRowY = 74;
+  const lastRowY = firstRowY + (phases.length - 1) * rowGap;
+
+  return (
+    <ChartShell label={label} caption={caption}>
+      {/* Week grid and headers */}
+      <g>
+        {Array.from({ length: weeks + 1 }).map((_, i) => (
+          <line
+            key={i}
+            x1={x0 + i * weekW}
+            y1={firstRowY - 34}
+            x2={x0 + i * weekW}
+            y2={lastRowY + 26}
+            stroke={CREAM}
+            strokeOpacity="0.1"
+            strokeWidth="1"
+          />
+        ))}
+        {Array.from({ length: weeks }).map((_, i) => (
+          <text
+            key={i}
+            x={x0 + i * weekW + weekW / 2}
+            y={firstRowY - 44}
+            fill={CREAM}
+            fillOpacity="0.45"
+            fontFamily={MONO}
+            fontSize="12"
+            textAnchor="middle"
+          >
+            Week {i + 1}
+          </text>
+        ))}
+      </g>
+
+      {phases.map((phase, i) => {
+        const y = firstRowY + i * rowGap;
+        const barX = x0 + phase.start * weekW;
+        const barW = phase.length * weekW;
+        return (
+          <g key={phase.name}>
+            <text
+              x={x0 - 16}
+              y={y + 5}
+              fill={CREAM}
+              fillOpacity="0.8"
+              fontFamily={MONO}
+              fontSize="12.5"
+              textAnchor="end"
+            >
+              {phase.name}
+            </text>
+            <rect
+              x={barX}
+              y={y - 9}
+              width={Math.max(barW, 4)}
+              height="18"
+              rx="3"
+              fill={CREAM}
+              fillOpacity={0.85 - i * 0.07}
+            />
+          </g>
+        );
+      })}
+    </ChartShell>
+  );
+}
+
+/**
  * Where the bytes go on a page. Drawn as one stacked bar per site so the
  * comparison is about proportion, not just total.
  */

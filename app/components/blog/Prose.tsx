@@ -179,6 +179,42 @@ export function Takeaways({ items }: { items: string[] }) {
   );
 }
 
+/* ── Checklists ────────────────────────────────────────────────── */
+
+/**
+ * A block of checks with an empty box against each one, so the article can be
+ * printed or handed over and worked through. The boxes are drawn rather than
+ * real inputs, because the page is a document to follow, not a form to submit.
+ */
+export function Checklist({
+  title,
+  items,
+}: {
+  title?: string;
+  items: React.ReactNode[];
+}) {
+  return (
+    <div
+      className="my-8 rounded-xl border p-5 sm:p-6"
+      style={{ borderColor: 'var(--line)', background: 'var(--surface-1)' }}
+    >
+      {title ? <p className="label mb-5">{title}</p> : null}
+      <ul className="space-y-3.5">
+        {items.map((item, i) => (
+          <li key={i} className="flex gap-3.5">
+            <span
+              aria-hidden
+              className="mt-[0.2rem] h-[1.05rem] w-[1.05rem] shrink-0 rounded-[4px] border"
+              style={{ borderColor: 'var(--line-3)' }}
+            />
+            <span className="text-[0.94rem] leading-[1.65] text-gray-400">{item}</span>
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
+}
+
 /* ── Tables ────────────────────────────────────────────────────── */
 
 export function Table({

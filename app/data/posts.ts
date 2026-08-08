@@ -45,7 +45,7 @@ export const posts: Post[] = [
     topic: 'migration',
     published: '2026-07-14',
     readingMinutes: 11,
-    related: ['yoast-metadata-to-nextjs', 'wordpress-as-headless-cms'],
+    related: ['wordpress-to-nextjs-migration-cost', 'wordpress-to-nextjs-migration-checklist'],
     sections: [
       { id: 'why-people-move', label: 'Why people move off WordPress' },
       { id: 'what-actually-breaks', label: 'What actually breaks a migration' },
@@ -134,7 +134,7 @@ export const posts: Post[] = [
     topic: 'migration',
     published: '2026-08-05',
     readingMinutes: 11,
-    related: ['wordpress-to-nextjs-migration', 'wordpress-as-headless-cms'],
+    related: ['wordpress-to-nextjs-migration', 'wordpress-to-nextjs-migration-checklist'],
     sections: [
       { id: 'what-yoast-stores', label: 'What Yoast actually stores' },
       { id: 'getting-it-out', label: 'Getting the data out' },
@@ -187,6 +187,77 @@ export const posts: Post[] = [
       { id: 'where-agencies-win', label: 'Where an agency genuinely wins' },
       { id: 'how-to-check', label: 'How to check before you hire' },
       { id: 'how-i-work', label: 'How I work' },
+      { id: 'resources', label: 'Resources' },
+    ],
+  },
+  {
+    slug: 'wordpress-to-nextjs-migration-cost',
+    title: 'What a WordPress to Next.js migration costs, line by line',
+    summary:
+      'Where the money goes in a WordPress to Next.js migration, broken into the nine line items behind the quote, with worked examples for three site sizes.',
+    standfirst:
+      'Most quotes give you one number. Here is what sits inside it.',
+    topic: 'migration',
+    published: '2026-08-08',
+    readingMinutes: 12,
+    related: ['wordpress-to-nextjs-migration-timeline', 'wordpress-to-nextjs-migration'],
+    sections: [
+      { id: 'what-drives-the-number', label: 'What drives the number' },
+      { id: 'the-line-items', label: 'The nine line items' },
+      { id: 'where-the-effort-goes', label: 'Where the effort goes' },
+      { id: 'worked-examples', label: 'Three worked examples' },
+      { id: 'what-inflates-it', label: 'What inflates a quote' },
+      { id: 'what-you-can-cut', label: 'What you can safely cut' },
+      { id: 'red-flags', label: 'Quotes that should worry you' },
+      { id: 'resources', label: 'Resources' },
+    ],
+  },
+  {
+    slug: 'wordpress-to-nextjs-migration-timeline',
+    title: 'How long a WordPress to Next.js migration actually takes',
+    summary:
+      'A realistic schedule for moving WordPress to Next.js: what happens each week, what runs late, and which parts of the delay you actually control.',
+    standfirst:
+      'The build is rarely what makes a migration slow.',
+    topic: 'migration',
+    published: '2026-08-08',
+    readingMinutes: 10,
+    related: [
+      'wordpress-to-nextjs-migration-cost',
+      'wordpress-to-nextjs-migration-checklist',
+    ],
+    sections: [
+      { id: 'what-sets-the-clock', label: 'What sets the clock' },
+      { id: 'the-phases', label: 'The phases, week by week' },
+      { id: 'by-site-size', label: 'Timelines by site size' },
+      { id: 'what-runs-late', label: 'What actually runs late' },
+      { id: 'what-you-control', label: 'The delay you control' },
+      { id: 'running-in-parallel', label: 'What can run in parallel' },
+      { id: 'resources', label: 'Resources' },
+    ],
+  },
+  {
+    slug: 'wordpress-to-nextjs-migration-checklist',
+    title: 'A WordPress to Next.js migration checklist you can hand to a developer',
+    summary:
+      'Every check worth running before, during and after a WordPress to Next.js migration, written so you can hand it to whoever does the work.',
+    standfirst:
+      'Print it, send it, tick it off. Nothing here is optional.',
+    topic: 'migration',
+    published: '2026-08-08',
+    readingMinutes: 9,
+    related: [
+      'wordpress-to-nextjs-migration',
+      'wordpress-to-nextjs-migration-timeline',
+    ],
+    sections: [
+      { id: 'before-you-start', label: 'Before anyone writes code' },
+      { id: 'freeze-the-urls', label: 'Freeze the URLs' },
+      { id: 'while-building', label: 'While the build runs' },
+      { id: 'pre-launch', label: 'The pre launch pass' },
+      { id: 'launch-day', label: 'Launch day' },
+      { id: 'first-month', label: 'The first month after' },
+      { id: 'handing-it-over', label: 'Handing this to a developer' },
       { id: 'resources', label: 'Resources' },
     ],
   },
