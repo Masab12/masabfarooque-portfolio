@@ -9,11 +9,11 @@ export interface TimelineEntry {
 
 export const timeline: TimelineEntry[] = [
   {
-    year: '2019',
+    year: '2018',
     title: 'Started Computer Science',
     org: 'COMSATS University Islamabad, Wah Campus',
     kind: 'education',
-    body: 'Began a four year Computer Science degree and started taking small paid projects in the first semester, because reading about software is not the same as shipping it.',
+    body: 'Began a Computer Science degree and started taking small paid projects in the first semester, because reading about software is not the same as shipping it.',
     tags: ['B.Sc. Computer Science'],
   },
   {
