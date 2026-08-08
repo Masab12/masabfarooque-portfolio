@@ -26,7 +26,6 @@ const nextConfig: NextConfig = {
   async redirects() {
     return [
       { source: '/pricing', destination: '/contact', permanent: true },
-      { source: '/services', destination: '/#capabilities', permanent: true },
       { source: '/forge', destination: '/contact', permanent: true },
       { source: '/about', destination: '/about-masab', permanent: true },
       { source: '/work', destination: '/portfolio', permanent: true },

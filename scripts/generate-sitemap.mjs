@@ -10,9 +10,7 @@ const routes = [
   { path: '/', changefreq: 'monthly', priority: '1.0' },
   { path: '/portfolio', changefreq: 'weekly', priority: '0.9' },
   { path: '/blog', changefreq: 'weekly', priority: '0.9' },
-  // The service page targets commercial intent, so it ranks alongside the
-  // homepage rather than below the writing.
-  { path: '/services/wordpress-to-nextjs', changefreq: 'monthly', priority: '0.9' },
+  { path: '/services', changefreq: 'monthly', priority: '0.9' },
   { path: '/capabilities', changefreq: 'monthly', priority: '0.9' },
   { path: '/reviews', changefreq: 'monthly', priority: '0.8' },
   { path: '/about-masab', changefreq: 'monthly', priority: '0.9' },
@@ -28,6 +26,19 @@ const slugs = [...projectsSource.matchAll(/^\s{4}slug:\s*'([^']+)'/gm)].map((m) 
 
 slugs.forEach((slug) => {
   routes.push({ path: `/portfolio/${slug}`, changefreq: 'monthly', priority: '0.8' });
+});
+
+// Service pages come out of the data file too. They target commercial intent,
+// so they sit at the same priority as the homepage rather than below the blog.
+const servicesSource = readFileSync(resolve(root, 'app', 'data', 'services.ts'), 'utf8');
+const serviceSlugs = [...servicesSource.matchAll(/^\s{4}slug:\s*'([^']+)'/gm)].map((m) => m[1]);
+
+if (!serviceSlugs.length) {
+  throw new Error('services.ts parsed to zero services, so the sitemap would drop every service page');
+}
+
+serviceSlugs.forEach((slug) => {
+  routes.push({ path: `/services/${slug}`, changefreq: 'monthly', priority: '0.9' });
 });
 
 // Articles carry their own dates, so lastmod reflects when the piece was
@@ -81,5 +92,5 @@ ${urlEntries}
 writeFileSync(resolve(root, 'public', 'sitemap.xml'), xml, 'utf-8');
 console.log(
   `sitemap written to public/sitemap.xml with ${routes.length} URLs ` +
-    `(${slugs.length} case studies, ${postBlocks.length} articles)`,
+    `(${slugs.length} case studies, ${postBlocks.length} articles, ${serviceSlugs.length} services)`,
 );

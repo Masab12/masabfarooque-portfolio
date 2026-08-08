@@ -44,12 +44,27 @@ deployed by him.
 
 ## Services
 
+All four are quoted at a fixed price per project, with a written scope before
+work starts and a documented handover. Index at
+[masabfarooque.com/services](https://masabfarooque.com/services).
+
 - [WordPress to Next.js migration](https://masabfarooque.com/services/wordpress-to-nextjs):
   migrating WordPress sites to Next.js without losing search rankings, and
   setting WordPress up as a headless CMS when the editorial team wants to keep
-  the WordPress admin. Fixed price per project, written scope before work
-  starts, documented handover. Typical timelines run one to six weeks
-  depending on page count and whether the headless setup is included.
+  the WordPress admin. One to six weeks depending on page count and whether
+  the headless setup is included.
+- [AI and LLM application development](https://masabfarooque.com/services/ai-application-development):
+  document parsing, retrieval over private content, and agents that perform
+  real operations, with guardrails, structured output, evaluation sets and a
+  cost budget per request. Two to ten weeks.
+- [Full stack web application development](https://masabfarooque.com/services/full-stack-web-development):
+  schema, backend services, auth and roles, multi tenancy, billing, admin
+  tooling and the interface, through to deploy. Two to twelve weeks.
+- [Web scraping and data pipeline development](https://masabfarooque.com/services/web-scraping-data-pipelines):
+  resilient collection systems with queueing, retries, rate limit handling,
+  layout change detection, monitoring and an API over the results. Publicly
+  accessible data only, respecting robots rules and rate limits. One to eight
+  weeks.
 
 ## Articles
 
