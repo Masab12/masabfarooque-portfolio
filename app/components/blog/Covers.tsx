@@ -798,6 +798,100 @@ export function CoverChecklist({ className }: CoverProps) {
   );
 }
 
+/**
+ * Schema by hand against schema in code. An admin form on the left, where every
+ * row costs a click and nothing survives outside the database, and a file on
+ * the right that lives in the repository with everything else.
+ */
+export function CoverSchema({ className }: CoverProps) {
+  const rows = [0, 1, 2, 3, 4];
+  // Indent and length of each rule in the file, so the block reads as nested
+  // code rather than as a paragraph of body text.
+  const lines = [
+    { indent: 0, w: 196 },
+    { indent: 26, w: 232 },
+    { indent: 52, w: 158 },
+    { indent: 52, w: 204 },
+    { indent: 26, w: 132 },
+    { indent: 0, w: 78 },
+  ];
+
+  return (
+    <Frame
+      className={className}
+      label="An admin form built of clickable field rows on the left, against a version controlled schema file on the right"
+    >
+      <g stroke={CREAM} fill="none" strokeWidth="1.4">
+        {/* Admin panel, dimmed, with a title bar and five field rows */}
+        <rect x="112" y="146" width="376" height="334" rx="6" strokeOpacity="0.5" />
+        <path d="M112 192h376" strokeOpacity="0.4" />
+        <circle cx="140" cy="169" r="5.5" strokeOpacity="0.4" />
+        <circle cx="160" cy="169" r="5.5" strokeOpacity="0.4" />
+
+        {rows.map((r) => {
+          const y = 226 + r * 50;
+          return (
+            <g key={r}>
+              <rect x="144" y={y} width="212" height="32" rx="4" strokeOpacity="0.32" />
+              {/* Every row ends in a select, which is the click you cannot commit */}
+              <rect x="372" y={y} width="84" height="32" rx="4" strokeOpacity="0.3" />
+              <path d={`M404 ${y + 13} l10 8 l10 -8`} strokeOpacity="0.55" />
+            </g>
+          );
+        })}
+
+        <line x1="600" y1="128" x2="600" y2="500" strokeOpacity="0.2" strokeDasharray="6 8" />
+
+        {/* The file, drawn bright, because this one is readable in a diff */}
+        <rect x="712" y="146" width="376" height="334" rx="6" />
+        <path d="M712 192h376" strokeOpacity="0.5" />
+      </g>
+
+      {/* Filename in the bar, so the right panel reads as a file not a window */}
+      <text
+        x="744"
+        y="176"
+        fill={CREAM}
+        fillOpacity="0.55"
+        fontFamily="ui-monospace, Menlo, monospace"
+        fontSize="16"
+      >
+        article.ts
+      </text>
+
+      {lines.map((line, i) => (
+        <rect
+          key={i}
+          x={744 + line.indent}
+          y={228 + i * 42}
+          width={line.w}
+          height="10"
+          rx="5"
+          fill={CREAM}
+          fillOpacity={0.72 - i * 0.07}
+        />
+      ))}
+
+      {/* Commit nodes down the gutter of the file */}
+      <g stroke={CREAM} strokeOpacity="0.3" strokeWidth="1.2" fill="none">
+        <path d="M726 232v212" />
+        {[0, 1, 2].map((n) => (
+          <circle key={n} cx="726" cy={244 + n * 100} r="6" fill="#0B0B0B" />
+        ))}
+      </g>
+
+      <g fill={CREAM} fontFamily="ui-monospace, Menlo, monospace" fontSize="18" letterSpacing="3">
+        <text x="300" y="546" textAnchor="middle" fillOpacity="0.45">
+          CLICKED
+        </text>
+        <text x="900" y="546" textAnchor="middle">
+          COMMITTED
+        </text>
+      </g>
+    </Frame>
+  );
+}
+
 export const covers = {
   'wordpress-to-nextjs-migration': CoverMigration,
   'wordpress-as-headless-cms': CoverHeadless,
@@ -809,6 +903,7 @@ export const covers = {
   'wordpress-to-nextjs-migration-cost': CoverCost,
   'wordpress-to-nextjs-migration-timeline': CoverTimeline,
   'wordpress-to-nextjs-migration-checklist': CoverChecklist,
+  'wordpress-vs-sanity-headless-cms': CoverSchema,
 } as const;
 
 export type CoverSlug = keyof typeof covers;

@@ -310,3 +310,19 @@ export function articleSchema(post: Post) {
     },
   ];
 }
+
+/**
+ * FAQPage structured data built from the same array the article renders, so a
+ * question can never appear in the markup without appearing in the schema.
+ */
+export function faqSchema(items: { q: string; a: string }[]) {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: items.map((item) => ({
+      '@type': 'Question',
+      name: item.q,
+      acceptedAnswer: { '@type': 'Answer', text: item.a },
+    })),
+  };
+}

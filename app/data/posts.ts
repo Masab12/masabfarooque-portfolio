@@ -67,7 +67,7 @@ export const posts: Post[] = [
     topic: 'architecture',
     published: '2026-07-22',
     readingMinutes: 12,
-    related: ['hosting-headless-wordpress', 'wordpress-to-nextjs-migration'],
+    related: ['wordpress-vs-sanity-headless-cms', 'hosting-headless-wordpress'],
     sections: [
       { id: 'what-headless-means', label: 'What headless actually means here' },
       { id: 'rest-or-graphql', label: 'REST or GraphQL' },
@@ -89,7 +89,7 @@ export const posts: Post[] = [
     topic: 'architecture',
     published: '2026-07-29',
     readingMinutes: 10,
-    related: ['wordpress-as-headless-cms', 'solo-developer-vs-agency'],
+    related: ['wordpress-vs-sanity-headless-cms', 'wordpress-as-headless-cms'],
     sections: [
       { id: 'the-coupling-problem', label: 'The coupling problem' },
       { id: 'where-builders-cost-you', label: 'Where builders cost you' },
@@ -258,6 +258,29 @@ export const posts: Post[] = [
       { id: 'launch-day', label: 'Launch day' },
       { id: 'first-month', label: 'The first month after' },
       { id: 'handing-it-over', label: 'Handing this to a developer' },
+      { id: 'resources', label: 'Resources' },
+    ],
+  },
+  {
+    slug: 'wordpress-vs-sanity-headless-cms',
+    title: 'WordPress or Sanity as a headless CMS: how to pick',
+    summary:
+      'A working comparison of WordPress and Sanity behind a Next.js site: schema written in code against field groups built by hand, seeding content over the API, what each costs, and when WordPress still wins.',
+    standfirst:
+      'One you click together in an admin screen. The other you write down and commit.',
+    topic: 'architecture',
+    published: '2026-08-10',
+    readingMinutes: 14,
+    related: ['wordpress-as-headless-cms', 'headless-cms-vs-website-builders'],
+    sections: [
+      { id: 'where-the-model-lives', label: 'Where the content model lives' },
+      { id: 'content-model', label: 'Defining a content model' },
+      { id: 'seeding', label: 'Seeding content over the API' },
+      { id: 'editors', label: 'What editors actually get' },
+      { id: 'cost', label: 'What each one costs' },
+      { id: 'maintenance', label: 'What breaks later' },
+      { id: 'when-wordpress-wins', label: 'When WordPress is the right pick' },
+      { id: 'faq', label: 'Questions people ask me' },
       { id: 'resources', label: 'Resources' },
     ],
   },

@@ -21,14 +21,21 @@ function Caption({ children }: { children: React.ReactNode }) {
   );
 }
 
+/**
+ * The frame every chart sits in. Height defaults to 340, which is what the
+ * fixed layout charts are drawn against, and charts whose height depends on how
+ * many rows the caller passes work out their own and hand it in here.
+ */
 function ChartShell({
   children,
   caption,
   label,
+  height = 340,
 }: {
   children: React.ReactNode;
   caption: React.ReactNode;
   label: string;
+  height?: number;
 }) {
   return (
     <figure className="my-10">
@@ -37,7 +44,7 @@ function ChartShell({
         style={{ borderColor: 'var(--line)', background: 'var(--surface-1)' }}
       >
         <div className="min-w-[520px]">
-          <svg viewBox="0 0 720 340" role="img" aria-label={label} className="w-full">
+          <svg viewBox={`0 0 720 ${height}`} role="img" aria-label={label} className="w-full">
             {children}
           </svg>
         </div>
@@ -166,10 +173,17 @@ export function BeforeAfterBars({
   const maxWidth = 470;
   const max = Math.max(...rows.flatMap((r) => [r.before, r.after]));
 
+  // A pair of bars is 46 tall. Everything below is derived from the row count
+  // so the legend always clears the last pair, however many rows come in.
+  const firstRowY = 60;
+  const rowGap = 88;
+  const lastRowBottom = firstRowY + (rows.length - 1) * rowGap + 46;
+  const legendY = lastRowBottom + 18;
+
   return (
-    <ChartShell label={label} caption={caption}>
+    <ChartShell label={label} caption={caption} height={legendY + 40}>
       {rows.map((row, i) => {
-        const y = 60 + i * 88;
+        const y = firstRowY + i * rowGap;
         const beforeW = (row.before / max) * maxWidth;
         const afterW = (row.after / max) * maxWidth;
         return (
@@ -214,12 +228,12 @@ export function BeforeAfterBars({
         );
       })}
       <g fontFamily={MONO} fontSize="12" fill={CREAM}>
-        <rect x={x0} y="300" width="26" height="10" fill={CREAM} fillOpacity="0.28" />
-        <text x={x0 + 34} y="309" fillOpacity="0.6">
+        <rect x={x0} y={legendY} width="26" height="10" fill={CREAM} fillOpacity="0.28" />
+        <text x={x0 + 34} y={legendY + 9} fillOpacity="0.6">
           {beforeLabel}
         </text>
-        <rect x={x0 + 130} y="300" width="26" height="10" fill={CREAM} />
-        <text x={x0 + 164} y="309">
+        <rect x={x0 + 250} y={legendY} width="26" height="10" fill={CREAM} />
+        <text x={x0 + 284} y={legendY + 9}>
           {afterLabel}
         </text>
       </g>

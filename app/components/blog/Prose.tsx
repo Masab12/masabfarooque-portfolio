@@ -215,6 +215,32 @@ export function Checklist({
   );
 }
 
+/* ── Questions ─────────────────────────────────────────────────── */
+
+export type FaqItem = { q: string; a: string };
+
+/**
+ * Questions and answers, left open rather than folded into an accordion, so
+ * every answer sits in the page for a reader and for a crawler without anyone
+ * having to click. The same array feeds the FAQPage schema on the route, which
+ * is the only way the two can never disagree.
+ */
+export function FAQ({ items }: { items: FaqItem[] }) {
+  return (
+    <div
+      className="mt-7 flex flex-col gap-px overflow-hidden rounded-xl border"
+      style={{ borderColor: 'var(--line)', background: 'var(--line)' }}
+    >
+      {items.map((item) => (
+        <div key={item.q} className="p-5 sm:p-6" style={{ background: 'var(--surface-1)' }}>
+          <h3 className="text-[0.98rem] leading-snug text-cream">{item.q}</h3>
+          <p className="mt-3 text-[0.92rem] leading-[1.7] text-gray-400">{item.a}</p>
+        </div>
+      ))}
+    </div>
+  );
+}
+
 /* ── Tables ────────────────────────────────────────────────────── */
 
 export function Table({
