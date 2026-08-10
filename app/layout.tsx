@@ -5,6 +5,7 @@ import { site, socials } from './data/site';
 import Nav from './components/core/Nav';
 import Footer from './components/core/Footer';
 import AnalyticsNotice, { Analytics } from './components/core/Consent';
+import ProjectIntake from './components/core/ProjectIntake';
 
 export const viewport = {
   width: 'device-width',
@@ -172,6 +173,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
         <main id="main">{children}</main>
         <Footer />
         <AnalyticsNotice />
+        <ProjectIntake />
       </body>
     </html>
   );
