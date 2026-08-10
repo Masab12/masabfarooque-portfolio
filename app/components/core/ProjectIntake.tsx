@@ -84,27 +84,78 @@ const empty: Fields = {
 
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
 
+type Errors = Partial<Record<keyof Fields, string>>;
+
+/**
+ * The rules for each step live here rather than inside the handlers, because
+ * the same checks decide two things: whether the button looks ready to press,
+ * and what the messages say once it is pressed. Written once, they cannot
+ * drift apart and leave a lit button that refuses to go anywhere.
+ */
+function stepOneErrors(fields: Fields): Errors {
+  const out: Errors = {};
+  if (!fields.need) out.need = 'Pick whichever is closest';
+  if (fields.details.trim().length < 15)
+    out.details = 'A sentence or two helps me give you a straight answer';
+  return out;
+}
+
+function stepTwoErrors(fields: Fields): Errors {
+  const out: Errors = {};
+  if (fields.name.trim().length < 2) out.name = 'Please add your name';
+  if (!EMAIL_RE.test(fields.email.trim())) out.email = 'Please add a valid email address';
+  if (fields.channel !== 'Email' && fields.handle.trim().length < 5)
+    out.handle = `Please add your ${handleHints[fields.channel].noun}`;
+  return out;
+}
+
 /* ── Pieces ────────────────────────────────────────────────────── */
+
+/**
+ * Every label says whether the field is needed, so nobody has to submit the
+ * form to find out. Optional is bracketed rather than written as ", optional"
+ * like the contact page does, because several of these labels are questions
+ * and a comma after a question mark reads badly.
+ */
+function FieldLabel({ children, optional }: { children: string; optional?: boolean }) {
+  return (
+    <>
+      {children}
+      {optional ? (
+        <span className="ml-1.5">(optional)</span>
+      ) : (
+        <span aria-hidden className="ml-1 text-primary">
+          *
+        </span>
+      )}
+    </>
+  );
+}
 
 function ChipGroup({
   legend,
   options,
   value,
   onChange,
+  optional,
 }: {
   legend: string;
   options: string[];
   value: string;
   onChange: (next: string) => void;
+  optional?: boolean;
 }) {
+  const legendId = `${legend.replace(/[^a-z0-9]+/gi, '-')}-legend`;
+
   return (
     <div>
-      <p className="label" id={`${legend.replace(/\s+/g, '-')}-legend`}>
-        {legend}
+      <p className="label" id={legendId}>
+        <FieldLabel optional={optional}>{legend}</FieldLabel>
       </p>
       <div
         role="radiogroup"
-        aria-labelledby={`${legend.replace(/\s+/g, '-')}-legend`}
+        aria-labelledby={legendId}
+        aria-required={optional ? undefined : true}
         className="mt-3 flex flex-wrap gap-2"
       >
         {options.map((option) => {
@@ -254,11 +305,7 @@ export default function ProjectIntake() {
   };
 
   const goToStepTwo = () => {
-    const next: Partial<Record<keyof Fields, string>> = {};
-    if (!fields.need) next.need = 'Pick whichever is closest';
-    if (fields.details.trim().length < 15)
-      next.details = 'A sentence or two helps me give you a straight answer';
-
+    const next = stepOneErrors(fields);
     setErrors(next);
     if (Object.keys(next).length) return;
     setStep(2);
@@ -267,12 +314,7 @@ export default function ProjectIntake() {
   const onSubmit = async (event: FormEvent) => {
     event.preventDefault();
 
-    const next: Partial<Record<keyof Fields, string>> = {};
-    if (fields.name.trim().length < 2) next.name = 'Please add your name';
-    if (!EMAIL_RE.test(fields.email.trim())) next.email = 'Please add a valid email address';
-    if (fields.channel !== 'Email' && fields.handle.trim().length < 5)
-      next.handle = `Please add your ${handleHints[fields.channel].noun}`;
-
+    const next = stepTwoErrors(fields);
     setErrors(next);
     if (Object.keys(next).length) return;
 
@@ -336,6 +378,17 @@ export default function ProjectIntake() {
   };
 
   const hint = handleHints[fields.channel];
+
+  /**
+   * Drives how the forward button looks. It stays clickable while incomplete on
+   * purpose: pressing it then names the field that is missing, which is more
+   * use than a button that does nothing and explains nothing.
+   */
+  const stepReady =
+    Object.keys(step === 1 ? stepOneErrors(fields) : stepTwoErrors(fields)).length === 0;
+
+  const forwardButtonClass =
+    'group inline-flex items-center gap-2 rounded-full bg-primary py-1.5 pl-5 pr-1.5 text-sm font-medium text-black transition-all duration-300';
 
   return (
     <AnimatePresence>
@@ -426,6 +479,14 @@ export default function ProjectIntake() {
             ) : (
               <form onSubmit={onSubmit} noValidate className="flex min-h-0 flex-1 flex-col">
                 <div className="min-h-0 flex-1 overflow-y-auto px-5 py-6 sm:px-7">
+                  {/* Sits inside the scroller rather than the fixed header, so
+                      it costs nothing on a short screen where the header and
+                      footer are the scarce space. */}
+                  <p className="mb-6 text-[0.72rem] text-gray-500">
+                    Fields marked <span className="text-primary">*</span> are needed. The rest you
+                    can skip.
+                  </p>
+
                   {step === 1 ? (
                     <div className="space-y-7">
                       <div>
@@ -443,13 +504,17 @@ export default function ProjectIntake() {
                         options={timelines}
                         value={fields.timeline}
                         onChange={update('timeline')}
+                        optional
                       />
 
                       <label className="block">
-                        <span className="label">Tell me a bit more</span>
+                        <span className="label">
+                          <FieldLabel>Tell me a bit more</FieldLabel>
+                        </span>
                         <textarea
                           value={fields.details}
                           onChange={(e) => update('details')(e.target.value)}
+                          aria-required
                           rows={4}
                           className={`${inputClass} resize-none leading-relaxed`}
                           style={{ borderColor: 'var(--line-2)' }}
@@ -462,12 +527,15 @@ export default function ProjectIntake() {
                     <div className="space-y-7">
                       <div className="grid gap-7 sm:grid-cols-2">
                         <label className="block">
-                          <span className="label">Your name</span>
+                          <span className="label">
+                            <FieldLabel>Your name</FieldLabel>
+                          </span>
                           <input
                             type="text"
                             value={fields.name}
                             onChange={(e) => update('name')(e.target.value)}
                             autoComplete="name"
+                            aria-required
                             className={inputClass}
                             style={{ borderColor: 'var(--line-2)' }}
                             placeholder="Jane Doe"
@@ -476,12 +544,15 @@ export default function ProjectIntake() {
                         </label>
 
                         <label className="block">
-                          <span className="label">Your email</span>
+                          <span className="label">
+                            <FieldLabel>Your email</FieldLabel>
+                          </span>
                           <input
                             type="email"
                             value={fields.email}
                             onChange={(e) => update('email')(e.target.value)}
                             autoComplete="email"
+                            aria-required
                             className={inputClass}
                             style={{ borderColor: 'var(--line-2)' }}
                             placeholder="jane@company.com"
@@ -499,11 +570,14 @@ export default function ProjectIntake() {
 
                       {hint ? (
                         <label ref={handleFieldRef} className="block">
-                          <span className="label">{hint.label}</span>
+                          <span className="label">
+                            <FieldLabel>{hint.label}</FieldLabel>
+                          </span>
                           <input
                             type="text"
                             value={fields.handle}
                             onChange={(e) => update('handle')(e.target.value)}
+                            aria-required
                             className={inputClass}
                             style={{ borderColor: 'var(--line-2)' }}
                             placeholder={hint.placeholder}
@@ -563,7 +637,8 @@ export default function ProjectIntake() {
                     <button
                       type="button"
                       onClick={goToStepTwo}
-                      className="group inline-flex items-center gap-2 rounded-full bg-primary py-1.5 pl-5 pr-1.5 text-sm font-medium text-black transition-all duration-300 hover:gap-3"
+                      aria-disabled={!stepReady}
+                      className={`${forwardButtonClass} ${stepReady ? 'opacity-100 hover:gap-3' : 'cursor-not-allowed opacity-40'}`}
                     >
                       Continue
                       <span className="flex h-8 w-8 items-center justify-center rounded-full bg-black transition-transform duration-300 group-hover:scale-110">
@@ -574,7 +649,10 @@ export default function ProjectIntake() {
                     <button
                       type="submit"
                       disabled={status === 'sending'}
-                      className="group inline-flex items-center gap-2 rounded-full bg-primary py-1.5 pl-5 pr-1.5 text-sm font-medium text-black transition-all duration-300 hover:gap-3 disabled:opacity-60"
+                      aria-disabled={!stepReady}
+                      className={`${forwardButtonClass} ${
+                        stepReady ? 'opacity-100 hover:gap-3' : 'cursor-not-allowed opacity-40'
+                      } disabled:opacity-60`}
                     >
                       {status === 'sending' ? 'Sending' : 'Send it'}
                       <span className="flex h-8 w-8 items-center justify-center rounded-full bg-black transition-transform duration-300 group-hover:scale-110">
