@@ -326,6 +326,49 @@ export const projects: Project[] = [
     cover: '/projects/MusicValidator.webp',
     images: ['/projects/MusicValidator.webp'],
   },
+  {
+    slug: 'blue-lock-archive',
+    title: 'Blue Lock Archive',
+    client: 'Independent build',
+    year: '2026',
+    category: 'product',
+    summary:
+      'A reference database for the Blue Lock manga and anime, where nothing goes on a page unless it can be traced back to the chapter it was stated in.',
+    overview: [
+      'Wiki content usually means whatever the last editor felt like writing. Blue Lock Archive runs on a stricter rule. Rankings, ages and stats in a sports manga shift constantly, so every value cites the chapter it came from. A reference nobody can check is not a reference.',
+      'Content comes from the Fandom wiki and AniList, ingested and reconciled into one data model at build time rather than served live. Player dossiers, chapter and episode indexes, national squads and a head to head comparison tool all render as static pages, with no database read behind any of them. The database exists for the one part that actually needs to be live: accounts, ratings and moderated comments. Each of those goes through Supabase row level security, so a write can never land outside the account that made it, whatever the application code assumes.',
+      'It runs on a small self hosted box. That meant tuning the build itself, capping memory and worker count so hundreds of static pages finish generating without exhausting the host. It also meant wrapping every server action in a guard that logs the real failure and returns a clean message, rather than letting one bad write take a content page down with it.',
+    ],
+    role: 'Sole builder. Content ingestion pipeline, database schema, community layer and self hosted deployment.',
+    stack: ['Next.js 16', 'TypeScript', 'Supabase', 'PostgreSQL', 'Row level security', 'Tailwind CSS'],
+    features: [
+      'Player dossiers for every character, with every stat traced to the chapter it was stated in',
+      'Interactive rankings that replay the programme shifting order across every recorded chapter',
+      'Chapter and episode indexes with release dates and a head to head player comparison tool',
+      'Reader ratings and moderated comments, gated behind Supabase auth',
+      'Database level row level security, so a rating or comment can never write outside its own account',
+      'Admin tools for reviewing comments and suspending members, kept out of the public site entirely',
+      'Content ingested from the Fandom wiki and AniList, reconciled into one model rather than mirrored',
+    ],
+    challenges: [
+      'Making every stated fact traceable to its source chapter without the page turning into a wall of citations',
+      'Enforcing that a rating or comment can never write outside its owner, at the database level rather than trusting the application',
+      'Fitting a production build for eight hundred plus static pages onto a small self hosted box without exhausting memory',
+      'Keeping the community layer from ever taking a content page down with it when something in Supabase fails',
+    ],
+    metrics: [
+      { value: '212', label: 'Player profiles' },
+      { value: '356', label: 'Chapters indexed' },
+      { value: '41', label: 'Episodes tracked' },
+    ],
+    cover: '/projects/BlueLockArchive-Homepage.webp',
+    images: [
+      '/projects/BlueLockArchive-Homepage.webp',
+      '/projects/BlueLockArchive-PlayerDossier.webp',
+      '/projects/BlueLockArchive-Rankings.webp',
+    ],
+    liveUrl: 'https://bluelockarchive.com',
+  },
 ];
 
 // Homepage lead order, independent of where each project sits in the list above.
