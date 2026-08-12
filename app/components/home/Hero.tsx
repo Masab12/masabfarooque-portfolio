@@ -84,7 +84,7 @@ export default function Hero() {
                 as="h1"
                 text={site.shortName}
                 showAsterisk
-                className="text-[16vw] font-medium leading-[0.85] tracking-[-0.07em] sm:text-[14vw] md:text-[12vw] lg:text-[11vw] xl:text-[9.5vw] 3xl:text-[10.7rem]"
+                className="text-[16vw] font-medium leading-[0.85] tracking-[-0.07em] sm:text-[14vw] md:text-[12vw] lg:text-[11vw] xl:text-[9.5vw] 3xl:text-[clamp(10.7rem,6vw,14rem)]"
               />
             </div>
 

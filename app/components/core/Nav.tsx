@@ -133,7 +133,7 @@ export default function Nav() {
               <Link
                 href={item.href}
                 onClick={() => setOpen(false)}
-                className="block py-2 text-[15vw] font-medium leading-[0.95] tracking-[-0.05em] sm:text-[10vw] xl:text-[8rem]"
+                className="block py-2 text-[15vw] font-medium leading-[0.95] tracking-[-0.05em] sm:text-[10vw] xl:text-[clamp(8rem,5vw,12rem)]"
                 style={{ color: isActive(item.href) ? '#E1E0CC' : 'rgba(225,224,204,0.65)' }}
               >
                 {item.label}
