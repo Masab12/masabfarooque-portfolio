@@ -62,7 +62,7 @@ export default function Features() {
             />
             <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent" />
             <p
-              className="absolute bottom-5 left-5 right-5 text-sm md:text-base"
+              className="absolute bottom-5 left-5 right-5 text-base md:text-lg"
               style={{ color: '#E1E0CC' }}
             >
               Your product, built end to end.
@@ -84,7 +84,7 @@ export default function Features() {
                 </span>
 
                 <div className="mt-5 flex items-baseline justify-between gap-3">
-                  <h3 className="text-sm sm:text-base" style={{ color: '#E1E0CC' }}>
+                  <h3 className="text-base sm:text-lg" style={{ color: '#E1E0CC' }}>
                     {card.title}
                   </h3>
                   <span className="text-[10px] text-gray-500">{card.number}</span>
@@ -94,7 +94,7 @@ export default function Features() {
                   {card.items.map((item) => (
                     <li key={item} className="flex gap-2.5">
                       <MarkCheck size={13} className="mt-[3px] shrink-0 text-primary" />
-                      <span className="text-[11px] leading-relaxed text-gray-400 sm:text-xs">
+                      <span className="text-[13px] leading-relaxed text-gray-400 sm:text-sm">
                         {item}
                       </span>
                     </li>
@@ -103,7 +103,7 @@ export default function Features() {
 
                 <Link
                   href={card.href}
-                  className="group mt-6 inline-flex items-center gap-2 text-[11px] text-primary sm:text-xs"
+                  className="group mt-6 inline-flex items-center gap-2 text-[13px] text-primary sm:text-sm"
                 >
                   Learn more<span className="sr-only"> about {card.title.replace(/\.$/, '')}</span>
                   <ArrowLong

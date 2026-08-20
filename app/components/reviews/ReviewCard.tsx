@@ -73,7 +73,7 @@ export default function ReviewCard({
     >
       <Quote size={26} className="mb-4 text-primary opacity-30" />
 
-      <blockquote className="text-[0.9rem] leading-relaxed text-gray-400">
+      <blockquote className="text-[0.95rem] leading-relaxed text-gray-400">
         <span
           style={
             clamp
@@ -96,8 +96,8 @@ export default function ReviewCard({
       >
         <Avatar review={review} />
         <div className="min-w-0 flex-1">
-          <p className="truncate text-sm text-cream">{review.name}</p>
-          <p className="mt-1 text-[0.6rem] text-gray-500">
+          <p className="truncate text-[0.95rem] text-cream">{review.name}</p>
+          <p className="mt-1 text-[0.72rem] text-gray-500">
             {review.country || 'Fiverr client'}
             <span className="mx-1.5 opacity-40">/</span>
             <time dateTime={review.date.split('T')[0]}>{formatReviewDate(review.date)}</time>
@@ -110,11 +110,11 @@ export default function ReviewCard({
             className="flex gap-0.5 text-primary"
           >
             {Array.from({ length: review.rating }).map((_, i) => (
-              <RatingMark key={i} size={8} />
+              <RatingMark key={i} size={9} />
             ))}
           </span>
           {review.orders > 1 ? (
-            <span className="text-[0.55rem] text-primary">{review.orders} orders</span>
+            <span className="text-[0.68rem] text-primary">{review.orders} orders</span>
           ) : null}
         </div>
       </figcaption>
