@@ -12,7 +12,9 @@
   "dependencies": {
     "@emailjs/browser": "^4.4.1",
     "@microsoft/clarity": "^1.0.2",
+    "cheerio": "^1.2.0",
     "framer-motion": "^12.35.0",
+    "jspdf": "^4.2.1",
     "next": "16.1.6",
     "react": "19.2.3",
     "react-dom": "19.2.3"

@@ -87,6 +87,14 @@ export default function Footer() {
                   </Link>
                 </li>
               ))}
+              <li>
+                <Link
+                  href="/site-check"
+                  className="text-sm text-gray-400 transition-colors duration-300 hover:text-cream"
+                >
+                  Site Check
+                </Link>
+              </li>
             </ul>
           </nav>
 

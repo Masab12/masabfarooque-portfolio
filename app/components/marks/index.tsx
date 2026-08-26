@@ -299,6 +299,16 @@ export function MarkCheck({ size = 24, className, strokeWidth = 1.2, style }: Ma
   );
 }
 
+/** A flagged issue: a straight stroke over a dot, on the same grid as MarkCheck. */
+export function WarnMark({ size = 24, className, strokeWidth = 1.2, style }: MarkProps) {
+  return (
+    <svg {...base(size, strokeWidth, className, style)}>
+      <path d="M12 5v9" />
+      <circle cx="12" cy="18.2" r="0.9" fill="currentColor" stroke="none" />
+    </svg>
+  );
+}
+
 /* ── Social wordmark glyphs, drawn rather than imported ────────── */
 
 export function GlyphGithub({ size = 18, className }: { size?: number; className?: string }) {
