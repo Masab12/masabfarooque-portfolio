@@ -97,10 +97,10 @@ const breadcrumbSchema = {
 
 /** A representative build for each capability, linked by slug. */
 const proof: Record<string, string> = {
-  '01': 'navia',
+  '01': 'janua-financial',
   '02': 'the-proposal-maker',
   '03': 'firstdeal',
-  '04': 'navia',
+  '04': 'hice-ai',
   '05': 'javea-denia-rentals',
   '06': 'firstdeal',
 };

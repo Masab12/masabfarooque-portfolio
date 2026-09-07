@@ -80,7 +80,7 @@ export const featureCards: FeatureCard[] = [
       'Deployment topology you can hand to an ops team',
       'Written scope in plain language, agreed before work starts',
     ],
-    href: '/portfolio/navia',
+    href: '/portfolio/firstdeal',
   },
   {
     number: '02',

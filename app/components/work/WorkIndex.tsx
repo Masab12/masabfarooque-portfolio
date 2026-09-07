@@ -7,12 +7,16 @@ import { projects, categoryLabels, type ProjectCategory } from '@/app/data/proje
 import { ArrowLong, ArrowDiagonal } from '@/app/components/marks';
 import Reveal from '@/app/components/motion/Reveal';
 
+/**
+ * Only the categories that actually have work in them. This list used to be
+ * written out by hand, which meant retiring the last project in a category
+ * left a filter behind that opened onto nothing.
+ */
 const filters: { id: 'all' | ProjectCategory; label: string }[] = [
   { id: 'all', label: 'Everything' },
-  { id: 'saas', label: categoryLabels.saas },
-  { id: 'ai', label: categoryLabels.ai },
-  { id: 'data', label: categoryLabels.data },
-  { id: 'product', label: categoryLabels.product },
+  ...(Object.keys(categoryLabels) as ProjectCategory[])
+    .filter((id) => projects.some((project) => project.category === id))
+    .map((id) => ({ id, label: categoryLabels[id] })),
 ];
 
 export default function WorkIndex() {

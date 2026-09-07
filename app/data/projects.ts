@@ -30,61 +30,6 @@ export interface Project {
 
 export const projects: Project[] = [
   {
-    slug: 'navia',
-    title: 'Navia',
-    client: 'Health data company',
-    year: '2026',
-    category: 'saas',
-    summary:
-      'A rare disease intelligence platform that pulls nine global medical sources into one searchable interface.',
-    overview: [
-      'Clinicians, researchers and pharma sponsors were losing whole days moving between ClinicalTrials.gov, Orphanet, PubMed, EuropePMC, Open Targets, EMA EPAR, WHO ICTRP, CTIS and the European Reference Networks. Every source names diseases differently, so nothing lined up. Navia was built to end that.',
-      'I built the entire stack from an empty repository. FastAPI and PostgreSQL hold the data, Celery and Redis run ingestion, and a Next.js front end presents it. The ingestion framework is idempotent, so a rerun never duplicates a record, and every trial condition is mapped back to a canonical disease so counts can be trusted.',
-      'On top of that sits a snapshot pipeline that computes more than twenty five derived metrics per disease, a comparison engine for up to five diseases at once with PDF export, and an AI summary layer with circuit breaker protection so a slow model never takes the page down with it.',
-    ],
-    role: 'Sole engineer. Architecture, backend, data pipeline, front end and deployment.',
-    stack: [
-      'Next.js 14',
-      'FastAPI',
-      'PostgreSQL',
-      'Celery',
-      'Redis',
-      'OpenAI',
-      'Stripe',
-      'Docker',
-      'JWT',
-    ],
-    features: [
-      'Ingestion from nine public medical sources, normalised into one disease model',
-      'Tiered search across more than ten thousand diseases',
-      'Snapshot pipeline computing twenty five plus metrics per disease',
-      'Side by side comparison of up to five diseases with PDF export',
-      'AI summaries with circuit breaker protection and graceful fallback',
-      'Stripe subscription tiers, JWT auth and magic link sign in',
-      'GDPR consent handling with immutable audit trails and row level security',
-      'Admin dashboard for ingestion health and user analytics',
-    ],
-    challenges: [
-      'Matching disease names across sources that all use different vocabularies',
-      'Keeping queries fast against four hundred and sixty thousand trials',
-      'Making ingestion safe to rerun at any time without duplicating records',
-      'Writing GDPR audit records that stay immutable under load',
-    ],
-    metrics: [
-      { value: '460K+', label: 'Clinical trials indexed' },
-      { value: '270K+', label: 'Publications' },
-      { value: '10K+', label: 'Diseases covered' },
-      { value: '9', label: 'Source integrations' },
-    ],
-    cover: '/projects/Navia-Homepage.webp',
-    images: [
-      '/projects/Navia-Homepage.webp',
-      '/projects/Navia-Disease-EcoSystem.webp',
-      '/projects/Navia-Disease-Compare.webp',
-    ],
-    liveUrl: 'https://navia.health',
-  },
-  {
     slug: 'the-proposal-maker',
     title: 'The Proposal Maker',
     client: 'Engineering studio',

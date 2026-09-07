@@ -258,7 +258,7 @@ export const services: Service[] = [
     ],
     guidesNote:
       'I have written the method down in full. Read these before you hire anyone, including me, because they will tell you whether the person you are talking to knows what they are doing.',
-    proof: ['firstdeal', 'navia'],
+    proof: ['firstdeal'],
   },
 
   /* ── AI and agentic applications ──────────────────────────────── */
@@ -536,7 +536,7 @@ export const services: Service[] = [
     guides: ['solo-developer-vs-agency', 'core-web-vitals-for-content-sites'],
     guidesNote:
       'Two pieces on how I work and what I hold myself to on performance.',
-    proof: ['navia', 'javea-denia-rentals', 'janua-financial'],
+    proof: ['javea-denia-rentals', 'janua-financial'],
   },
 
   /* ── Scraping and data pipelines ──────────────────────────────── */
@@ -675,7 +675,7 @@ export const services: Service[] = [
     guides: ['solo-developer-vs-agency'],
     guidesNote:
       'On how the work runs and what handover should include, whoever you hire.',
-    proof: ['firstdeal', 'navia', 'apple-music-validator'],
+    proof: ['firstdeal', 'apple-music-validator'],
   },
 ];
 

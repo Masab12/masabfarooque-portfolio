@@ -96,7 +96,6 @@ performance and how the work is run.
 
 ## Case studies
 
-- [Navia](https://masabfarooque.com/portfolio/navia)
 - [The Proposal Maker](https://masabfarooque.com/portfolio/the-proposal-maker)
 - [FirstDeal](https://masabfarooque.com/portfolio/firstdeal)
 - [Hice.AI](https://masabfarooque.com/portfolio/hice-ai)
