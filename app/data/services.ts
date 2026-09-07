@@ -258,7 +258,7 @@ export const services: Service[] = [
     ],
     guidesNote:
       'I have written the method down in full. Read these before you hire anyone, including me, because they will tell you whether the person you are talking to knows what they are doing.',
-    proof: ['firstdeal'],
+    proof: ['firstdeal', 'javea-denia-rentals'],
   },
 
   /* ── AI and agentic applications ──────────────────────────────── */

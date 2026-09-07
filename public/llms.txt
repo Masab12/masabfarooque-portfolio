@@ -71,9 +71,28 @@ work starts and a documented handover. Index at
 Technical writing on migrating off WordPress, headless CMS architecture, web
 performance and how the work is run.
 
+- [WordPress or Next.js: how to tell which one your site should be on](https://masabfarooque.com/blog/wordpress-vs-nextjs):
+  how the two differ for a real site, what the plugin model costs in security
+  and page weight, where each one hits a ceiling, and the cases where staying
+  on WordPress is the right answer.
 - [Moving a WordPress site to Next.js without losing your rankings](https://masabfarooque.com/blog/wordpress-to-nextjs-migration):
   freezing URLs, building and testing a redirect map, porting SEO metadata,
   and verifying the move in Search Console.
+- [What a WordPress to Next.js migration costs, line by line](https://masabfarooque.com/blog/wordpress-to-nextjs-migration-cost):
+  the nine line items behind a quote, where the effort actually goes, worked
+  examples at three site sizes, and the quotes that should worry you.
+- [How long a WordPress to Next.js migration actually takes](https://masabfarooque.com/blog/wordpress-to-nextjs-migration-timeline):
+  what happens week by week, which phases run late, and the part of the delay
+  the client controls.
+- [A WordPress to Next.js migration checklist you can hand to a developer](https://masabfarooque.com/blog/wordpress-to-nextjs-migration-checklist):
+  every check worth running before, during and after the move, written to hand
+  straight to whoever does the work.
+- [What happens to your WordPress plugins when you move to Next.js](https://masabfarooque.com/blog/wordpress-plugins-in-nextjs):
+  what each common plugin is really doing, which ones disappear on their own,
+  which become a few lines of code, and which turn into a second project.
+- [Moving a WooCommerce store to Next.js, and when to leave it alone](https://masabfarooque.com/blog/woocommerce-to-nextjs):
+  which half of a store moves cleanly, why the cart and checkout are the real
+  project, and when keeping WooCommerce whole is the better call.
 - [Keeping your Yoast SEO metadata after moving to Next.js](https://masabfarooque.com/blog/yoast-metadata-to-nextjs):
   reading Yoast values out of wp_postmeta or yoast_head_json, mapping them
   onto the Next.js Metadata API, rebuilding the schema graph, and diffing
@@ -84,6 +103,10 @@ performance and how the work is run.
 - [Where to host a headless WordPress backend, and what it costs](https://masabfarooque.com/blog/hosting-headless-wordpress):
   how sizing changes once visitors stop hitting PHP, the realistic hosting
   options with monthly cost ranges, and the line items people forget.
+- [WordPress or Sanity as a headless CMS: how to pick](https://masabfarooque.com/blog/wordpress-vs-sanity-headless-cms):
+  a content model clicked together in an admin screen against one written down
+  and committed, seeding over the API, what each costs, and when WordPress is
+  still the right pick.
 - [Why a headless CMS beats building on WordPress or Wix](https://masabfarooque.com/blog/headless-cms-vs-website-builders):
   the coupling problem, where page builders cost you, and the cases where a
   builder is still the right choice.
@@ -103,6 +126,7 @@ performance and how the work is run.
 - [RotiShoti AI](https://masabfarooque.com/portfolio/rotishoti-ai)
 - [Javea Denia Rentals](https://masabfarooque.com/portfolio/javea-denia-rentals)
 - [Apple Music Metadata Validator](https://masabfarooque.com/portfolio/apple-music-validator)
+- [Blue Lock Archive](https://masabfarooque.com/portfolio/blue-lock-archive)
 
 ## Capabilities
 
