@@ -892,6 +892,288 @@ export function CoverSchema({ className }: CoverProps) {
   );
 }
 
+/**
+ * WordPress against Next.js. The same page request drawn twice: once through
+ * PHP and a plugin stack on every visit, once off an edge with the CMS sitting
+ * beside the path rather than inside it.
+ */
+export function CoverVersus({ className }: CoverProps) {
+  // Bars standing in for the plugin stack every request has to pass through.
+  const plugins = [0, 1, 2, 3, 4, 5, 6];
+  // Connectors are drawn as gaps between nodes rather than one rule across
+  // the row, so nothing is struck through by the line it sits on.
+  const requestGaps: [number, number][] = [
+    [167, 232],
+    [358, 408],
+    [578, 640],
+    [766, 846],
+    [954, 1006],
+  ];
+  const edgeGaps: [number, number][] = [
+    [167, 232],
+    [358, 440],
+  ];
+
+  return (
+    <Frame
+      className={className}
+      label="One page request drawn twice: through PHP, plugins and a database on every visit, and straight off an edge cache with the content management system off the path"
+    >
+      {/* ── Request time: every visitor walks the whole line ──── */}
+      <g stroke={CREAM} fill="none" strokeWidth="1.4" strokeOpacity="0.5">
+        {requestGaps.map(([x1, x2]) => (
+          <line key={x1} x1={x1} y1="176" x2={x2} y2="176" strokeDasharray="5 8" />
+        ))}
+        <circle cx="150" cy="176" r="17" />
+        <rect x="232" y="141" width="126" height="70" rx="5" />
+        {plugins.map((i) => (
+          <rect key={i} x={408 + i * 26} y="141" width="14" height="70" rx="2" />
+        ))}
+        <rect x="640" y="141" width="126" height="70" rx="5" />
+        <rect x="846" y="141" width="108" height="70" rx="5" />
+        <path d="M866 165h68M866 180h52M866 195h60" strokeWidth="1.2" />
+      </g>
+      <path d="M1024 176l-18-10v20z" fill={CREAM} fillOpacity="0.5" />
+
+      <g
+        fill={CREAM}
+        fillOpacity="0.5"
+        fontFamily="ui-monospace, Menlo, monospace"
+        fontSize="15"
+        textAnchor="middle"
+      >
+        <text x="295" y="182">PHP</text>
+        <text x="703" y="182">DB</text>
+        <text x="491" y="244">PLUGINS</text>
+      </g>
+
+      {/* ── Build time: the visitor stops two nodes in ────────── */}
+      <g stroke={CREAM} fill="none" strokeWidth="1.4">
+        {edgeGaps.map(([x1, x2]) => (
+          <line key={x1} x1={x1} y1="430" x2={x2} y2="430" />
+        ))}
+        <circle cx="150" cy="430" r="17" />
+        <rect x="232" y="395" width="126" height="70" rx="5" />
+        <rect x="440" y="395" width="108" height="70" rx="5" />
+        <path d="M460 419h68M460 434h52M460 449h60" strokeWidth="1.2" />
+      </g>
+      {/* The CMS is still there. It just stopped answering the traffic, and
+          now only feeds the page that was built ahead of the request. */}
+      <g stroke={CREAM} fill="none" strokeWidth="1.4" strokeOpacity="0.45">
+        <rect x="846" y="386" width="160" height="88" rx="5" />
+        <line x1="576" y1="430" x2="846" y2="430" strokeDasharray="6 8" />
+      </g>
+      <path d="M558 430l18-10v20z" fill={CREAM} fillOpacity="0.45" />
+
+      <g fill={CREAM} fontFamily="ui-monospace, Menlo, monospace" fontSize="15" textAnchor="middle">
+        <text x="295" y="436">EDGE</text>
+        <text x="926" y="436" fillOpacity="0.45">CMS</text>
+      </g>
+
+      <g fill={CREAM} fontFamily="ui-monospace, Menlo, monospace" fontSize="17" letterSpacing="3">
+        <text x="150" y="304" fillOpacity="0.45">ON EVERY VISIT</text>
+        <text x="150" y="558">ONCE, BEFORE ANYONE ASKS</text>
+      </g>
+    </Frame>
+  );
+}
+
+/**
+ * The plugin list, sorted. Rows leave the admin panel on the left and land in
+ * one of four places, which is the whole argument of the piece drawn once.
+ */
+export function CoverPlugins({ className }: CoverProps) {
+  const rows = [0, 1, 2, 3, 4, 5, 6, 7];
+  // Where each bin sits, and how many rows fan into it. Weighted so the
+  // drawing says what the article says: most of the list simply goes.
+  const bins = [
+    { label: 'GONE', x: 640, fills: 4 },
+    { label: 'CODE', x: 760, fills: 2 },
+    { label: 'SERVICE', x: 880, fills: 1 },
+    { label: 'PROJECT', x: 1000, fills: 1 },
+  ];
+
+  return (
+    <Frame
+      className={className}
+      label="A list of active WordPress plugins on the left, sorted by lines into four bins on the right labelled gone, code, service and project"
+    >
+      {/* The active plugin list, drawn as rows with their toggles still on */}
+      <g stroke={CREAM} fill="none" strokeWidth="1.4">
+        <rect x="96" y="132" width="356" height="366" rx="6" strokeOpacity="0.6" />
+        <path d="M96 178h356" strokeOpacity="0.45" />
+        {rows.map((r) => {
+          const y = 208 + r * 36;
+          return (
+            <g key={r}>
+              <rect x="128" y={y} width="196" height="14" rx="7" fill={CREAM} fillOpacity="0.5" stroke="none" />
+              <rect x="368" y={y - 3} width="36" height="20" rx="10" strokeOpacity="0.55" />
+              <circle cx="394" cy={y + 7} r="6" fill={CREAM} fillOpacity="0.7" stroke="none" />
+            </g>
+          );
+        })}
+      </g>
+
+      <text
+        x="128"
+        y="163"
+        fill={CREAM}
+        fillOpacity="0.55"
+        fontFamily="ui-monospace, Menlo, monospace"
+        fontSize="16"
+      >
+        active plugins
+      </text>
+
+      {/* Sorting lines. Each one leaves the panel, runs along a lane of its
+          own and drops into its bin, so four routes cross a four bin field
+          without ever crossing each other. The nearest bin takes the lowest
+          lane, which is what keeps them apart. */}
+      <g stroke={CREAM} fill="none" strokeWidth="1.2" strokeOpacity="0.35">
+        {bins.map((bin, i) => {
+          const from = 467 - i * 72;
+          const lane = 350 - i * 20;
+          return (
+            <path
+              key={bin.label}
+              d={`M452 ${from} C 512 ${from}, 528 ${lane}, 588 ${lane} H ${bin.x} V 362`}
+            />
+          );
+        })}
+      </g>
+
+      {/* Four bins, filled by how much of a real list ends up in each */}
+      {bins.map((bin) => (
+        <g key={bin.label}>
+          <path
+            d={`M${bin.x - 40} 366 v112 h80 v-112`}
+            stroke={CREAM}
+            strokeWidth="1.4"
+            strokeOpacity="0.6"
+            fill="none"
+          />
+          {Array.from({ length: bin.fills }).map((_, f) => (
+            <rect
+              key={f}
+              x={bin.x - 32}
+              y={466 - f * 24}
+              width="64"
+              height="16"
+              rx="3"
+              fill={CREAM}
+              fillOpacity={0.66 - f * 0.12}
+            />
+          ))}
+          <text
+            x={bin.x}
+            y="518"
+            fill={CREAM}
+            fillOpacity="0.7"
+            fontFamily="ui-monospace, Menlo, monospace"
+            fontSize="14"
+            letterSpacing="1.5"
+            textAnchor="middle"
+          >
+            {bin.label}
+          </text>
+        </g>
+      ))}
+    </Frame>
+  );
+}
+
+/**
+ * A store cut down the middle. Everything on the left only reads, and moves
+ * without much argument. Everything on the right writes, and is the project.
+ */
+export function CoverStore({ className }: CoverProps) {
+  const grid = [0, 1, 2, 3, 4, 5];
+  const lines = [0, 1, 2];
+
+  return (
+    <Frame
+      className={className}
+      label="A product grid on the left under the word reads, a cart with line items, a total and a pay button on the right under the word writes, split by a dashed line"
+    >
+      {/* Catalogue: six cards, the half that is only ever read */}
+      <g stroke={CREAM} fill="none" strokeWidth="1.4">
+        {grid.map((i) => {
+          const x = 108 + (i % 3) * 148;
+          const y = 156 + Math.floor(i / 3) * 178;
+          return (
+            <g key={i}>
+              <rect x={x} y={y} width="124" height="150" rx="5" strokeOpacity="0.6" />
+              <path d={`M${x} ${y + 104}h124`} strokeOpacity="0.35" />
+              <circle cx={x + 62} cy={y + 54} r="26" strokeOpacity="0.4" />
+              <rect
+                x={x + 18}
+                y={y + 122}
+                width="66"
+                height="10"
+                rx="5"
+                fill={CREAM}
+                fillOpacity="0.45"
+                stroke="none"
+              />
+            </g>
+          );
+        })}
+      </g>
+
+      <line x1="600" y1="118" x2="600" y2="512" stroke={CREAM} strokeOpacity="0.2" strokeDasharray="6 8" />
+
+      {/* Cart: line items, a total that WooCommerce works out, and a button */}
+      <g stroke={CREAM} fill="none" strokeWidth="1.4">
+        <rect x="700" y="156" width="392" height="328" rx="6" />
+        {lines.map((i) => {
+          const y = 202 + i * 52;
+          return (
+            <g key={i}>
+              <rect x={734} y={y} width="34" height="34" rx="4" strokeOpacity="0.45" />
+              <rect x={790} y={y + 8} width={168 - i * 26} height="12" rx="6" fill={CREAM} fillOpacity="0.55" stroke="none" />
+              <rect x={1004} y={y + 8} width="52" height="12" rx="6" fill={CREAM} fillOpacity="0.3" stroke="none" />
+            </g>
+          );
+        })}
+        <path d="M734 378h324" strokeOpacity="0.45" />
+        <rect x="1004" y="398" width="52" height="14" rx="7" fill={CREAM} stroke="none" />
+        <rect x="734" y="428" width="324" height="38" rx="19" fill={CREAM} fillOpacity="0.9" stroke="none" />
+      </g>
+
+      <text
+        x="896"
+        y="453"
+        fill="#0B0B0B"
+        fontFamily="ui-monospace, Menlo, monospace"
+        fontSize="16"
+        letterSpacing="2"
+        textAnchor="middle"
+      >
+        PAY
+      </text>
+      <text
+        x="734"
+        y="408"
+        fill={CREAM}
+        fillOpacity="0.55"
+        fontFamily="ui-monospace, Menlo, monospace"
+        fontSize="15"
+      >
+        tax, shipping, coupons
+      </text>
+
+      <g fill={CREAM} fontFamily="ui-monospace, Menlo, monospace" fontSize="18" letterSpacing="3">
+        <text x="318" y="560" textAnchor="middle" fillOpacity="0.5">
+          READS
+        </text>
+        <text x="896" y="560" textAnchor="middle">
+          WRITES
+        </text>
+      </g>
+    </Frame>
+  );
+}
+
 export const covers = {
   'wordpress-to-nextjs-migration': CoverMigration,
   'wordpress-as-headless-cms': CoverHeadless,
@@ -904,6 +1186,9 @@ export const covers = {
   'wordpress-to-nextjs-migration-timeline': CoverTimeline,
   'wordpress-to-nextjs-migration-checklist': CoverChecklist,
   'wordpress-vs-sanity-headless-cms': CoverSchema,
+  'wordpress-vs-nextjs': CoverVersus,
+  'wordpress-plugins-in-nextjs': CoverPlugins,
+  'woocommerce-to-nextjs': CoverStore,
 } as const;
 
 export type CoverSlug = keyof typeof covers;
