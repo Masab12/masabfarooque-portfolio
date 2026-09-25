@@ -30,8 +30,8 @@ const EASE = [0.16, 1, 0.3, 1] as const;
 const FAIL_COLOR = '#c17165';
 
 const STATUS_STYLE: Record<CheckStatus, { color: string; Icon: typeof MarkCheck; label: string }> = {
-  pass: { color: 'var(--cream)', Icon: MarkCheck, label: 'Pass' },
-  warn: { color: 'var(--gray-400)', Icon: WarnMark, label: 'Worth checking' },
+  pass: { color: 'var(--ink)', Icon: MarkCheck, label: 'Pass' },
+  warn: { color: 'var(--ink-2)', Icon: WarnMark, label: 'Worth checking' },
   fail: { color: FAIL_COLOR, Icon: CloseMark, label: 'Needs fixing' },
 };
 
@@ -44,18 +44,18 @@ function StatusRow({ item, isFirst }: { item: CheckResult; isFirst: boolean }) {
     >
       <span
         className="mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-full"
-        style={{ background: 'rgba(225,224,204,0.06)', color }}
+        style={{ background: 'rgb(var(--ink-rgb) / 0.06)', color }}
       >
         <Icon size={13} strokeWidth={1.6} />
       </span>
       <div className="min-w-0">
         <div className="flex flex-wrap items-baseline gap-x-3 gap-y-1">
-          <p className="text-[0.95rem] text-cream">{item.label}</p>
+          <p className="text-[0.95rem] text-ink">{item.label}</p>
           <span className="text-[0.68rem] uppercase tracking-[0.1em]" style={{ color }}>
             {label}
           </span>
         </div>
-        <p className="mt-1.5 text-[0.85rem] leading-relaxed text-gray-400">{item.detail}</p>
+        <p className="mt-1.5 text-[0.85rem] leading-relaxed text-ink-2">{item.detail}</p>
       </div>
     </div>
   );
@@ -129,7 +129,7 @@ export default function SiteCheckTool() {
             onChange={(e) => setValue(e.target.value)}
             placeholder="yourwebsite.com"
             disabled={status === 'loading'}
-            className="mt-3 w-full border-b bg-transparent pb-3 text-[1.05rem] text-cream outline-none transition-colors focus:border-hair2 disabled:opacity-60"
+            className="mt-3 w-full border-b bg-transparent pb-3 text-[1.05rem] text-ink outline-none transition-colors focus:border-hair2 disabled:opacity-60"
             style={{ borderColor: 'var(--line-2)' }}
           />
         </label>
@@ -138,8 +138,7 @@ export default function SiteCheckTool() {
           <button
             type="submit"
             disabled={status === 'loading'}
-            data-cursor="Scan it"
-            className="group relative inline-flex w-full items-center justify-center gap-3 overflow-hidden rounded-full bg-primary px-7 py-3.5 text-sm font-medium text-black transition-opacity disabled:opacity-70 sm:w-auto"
+            className="group relative inline-flex w-full items-center justify-center gap-3 overflow-hidden rounded-full bg-ink px-7 py-3.5 text-sm font-medium text-paper transition-opacity disabled:opacity-70 sm:w-auto"
           >
             {status === 'loading' ? 'Reading the page' : 'Check the site'}
             {status !== 'loading' ? (
@@ -149,7 +148,7 @@ export default function SiteCheckTool() {
         </Magnetic>
       </form>
 
-      <p className="mt-4 text-[0.78rem] leading-relaxed text-gray-500">
+      <p className="mt-4 text-[0.78rem] leading-relaxed text-ink-3">
         Takes about ten seconds. This reads the page you give us the same way a browser would.
         Nothing behind a login gets touched, and nothing about the scan is saved.
       </p>
@@ -179,19 +178,19 @@ export default function SiteCheckTool() {
             {/* Score header */}
             <div
               className="flex flex-col gap-8 rounded-2xl border p-6 sm:p-8 md:flex-row md:items-center md:justify-between"
-              style={{ borderColor: 'var(--line-2)', background: 'var(--surface-1)' }}
+              style={{ borderColor: 'var(--line-2)', background: 'var(--sheet)' }}
             >
               <div>
                 <p className="label">{report.url}</p>
                 <div className="mt-3 flex items-baseline gap-2">
-                  <span className="text-[clamp(2.4rem,6vw,3.6rem)] leading-none text-cream">
+                  <span className="text-[clamp(2.4rem,6vw,3.6rem)] leading-none text-ink">
                     {report.percent}
                   </span>
-                  <span className="text-lg text-gray-500">/ 100</span>
+                  <span className="text-lg text-ink-3">/ 100</span>
                 </div>
                 <div className="mt-4 flex flex-wrap gap-x-6 gap-y-2 text-[0.8rem]">
-                  <span className="text-cream">{report.counts.pass} passing</span>
-                  <span className="text-gray-400">{report.counts.warn} worth checking</span>
+                  <span className="text-ink">{report.counts.pass} passing</span>
+                  <span className="text-ink-2">{report.counts.warn} worth checking</span>
                   <span style={{ color: FAIL_COLOR }}>{report.counts.fail} need fixing</span>
                 </div>
               </div>
@@ -201,19 +200,17 @@ export default function SiteCheckTool() {
                   type="button"
                   onClick={onDownload}
                   disabled={downloading}
-                  data-cursor="Download"
-                  className="group inline-flex items-center justify-center gap-2.5 rounded-full border px-5 py-3 text-sm text-cream transition-colors duration-300 hover:border-hair2 disabled:opacity-60"
+                  className="group inline-flex items-center justify-center gap-2.5 rounded-full border px-5 py-3 text-sm text-ink transition-colors duration-300 hover:border-hair2 disabled:opacity-60"
                   style={{ borderColor: 'var(--line-2)' }}
                 >
-                  <MarkDocument size={15} className="text-primary" />
+                  <MarkDocument size={15} className="text-sage" />
                   {downloading ? 'Preparing PDF' : 'Download the PDF'}
                 </button>
 
                 <Magnetic radius={90} pull={0.24}>
                   <Link
                     href="/contact"
-                    data-cursor="Say hello"
-                    className="group inline-flex items-center justify-center gap-2 rounded-full bg-primary px-5 py-3 text-sm font-medium text-black transition-all duration-300 hover:gap-3"
+                    className="group inline-flex items-center justify-center gap-2 rounded-full bg-ink px-5 py-3 text-sm font-medium text-paper transition-all duration-300 hover:gap-3"
                   >
                     Get these fixed
                     <ArrowLong size={14} className="transition-transform duration-300 group-hover:translate-x-1" />

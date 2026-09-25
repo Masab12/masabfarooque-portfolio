@@ -3,6 +3,7 @@
 import { useState, type ChangeEvent, type FormEvent } from 'react';
 import emailjs from '@emailjs/browser';
 import { ArrowLong, MarkCheck } from '@/app/components/marks';
+import RequestTrace from '@/app/components/contact/RequestTrace';
 import Magnetic from '@/app/components/core/Magnetic';
 
 type Fields = {
@@ -102,20 +103,23 @@ export default function ContactForm() {
     return (
       <div
         className="flex flex-col items-start gap-5 border p-10"
-        style={{ borderColor: 'var(--line-2)', background: 'rgba(225,224,204,0.08)' }}
+        style={{ borderColor: 'var(--line-2)', background: 'rgb(var(--ink-rgb) / 0.08)' }}
       >
-        <MarkCheck size={30} className="text-primary" />
-        <h3 className="text-[clamp(1.4rem,2.6vw,2rem)] text-cream">
-          Message sent
+        <div className="w-full max-w-sm">
+          <RequestTrace state="sent" />
+        </div>
+        <h3 className="flex items-center gap-3 text-[clamp(1.4rem,1.1rem+1.2vw,2rem)] font-extrabold tracking-[-0.02em] text-ink">
+          <MarkCheck size={26} className="text-sage" />
+          Message delivered
         </h3>
-        <p className="max-w-md text-sm leading-relaxed text-gray-400">
+        <p className="max-w-md text-sm leading-relaxed text-ink-2">
           Thanks for writing. I read everything myself and reply within one working day, usually
           sooner. If it is urgent, email me directly and put the word urgent in the subject.
         </p>
         <button
           type="button"
           onClick={() => setStatus('idle')}
-          className="text-[0.65rem] uppercase tracking-[0.18em] text-primary hover:underline"
+          className="mono min-h-[2.75rem] text-[0.75rem] uppercase text-sage underline decoration-[var(--line-3)] underline-offset-4 hover:decoration-sage"
         >
           Send another
         </button>
@@ -133,12 +137,12 @@ export default function ContactForm() {
             value={fields.name}
             onChange={update('name')}
             autoComplete="name"
-            className="mt-3 w-full border-b bg-transparent pb-3 text-[0.95rem] outline-none transition-colors focus:border-hair2"
+            className="mt-2 min-h-11 w-full border-b bg-transparent pb-2.5 pt-1.5 text-base outline-none transition-colors focus:border-sage"
             style={inputStyle}
             placeholder="Jane Doe"
           />
           {errors.name ? (
-            <span className="mt-2 block text-[0.6rem]" style={{ color: 'var(--gray-500)' }}>
+            <span className="mt-2 block text-[0.6875rem]" style={{ color: 'var(--ink-3)' }}>
               {errors.name}
             </span>
           ) : null}
@@ -151,12 +155,12 @@ export default function ContactForm() {
             value={fields.email}
             onChange={update('email')}
             autoComplete="email"
-            className="mt-3 w-full border-b bg-transparent pb-3 text-[0.95rem] outline-none transition-colors focus:border-hair2"
+            className="mt-2 min-h-11 w-full border-b bg-transparent pb-2.5 pt-1.5 text-base outline-none transition-colors focus:border-sage"
             style={inputStyle}
             placeholder="jane@company.com"
           />
           {errors.email ? (
-            <span className="mt-2 block text-[0.6rem]" style={{ color: 'var(--gray-500)' }}>
+            <span className="mt-2 block text-[0.6875rem]" style={{ color: 'var(--ink-3)' }}>
               {errors.email}
             </span>
           ) : null}
@@ -171,7 +175,7 @@ export default function ContactForm() {
             value={fields.company}
             onChange={update('company')}
             autoComplete="organization"
-            className="mt-3 w-full border-b bg-transparent pb-3 text-[0.95rem] outline-none transition-colors focus:border-hair2"
+            className="mt-2 min-h-11 w-full border-b bg-transparent pb-2.5 pt-1.5 text-base outline-none transition-colors focus:border-sage"
             style={inputStyle}
             placeholder="Where you work"
           />
@@ -182,8 +186,8 @@ export default function ContactForm() {
           <select
             value={fields.kind}
             onChange={update('kind')}
-            className="mt-3 w-full appearance-none border-b bg-transparent pb-3 text-[0.95rem] outline-none transition-colors focus:border-hair2"
-            style={{ ...inputStyle, color: fields.kind ? 'var(--cream)' : 'var(--gray-500)' }}
+            className="mt-2 min-h-11 w-full appearance-none border-b bg-transparent pb-2.5 pt-1.5 text-base outline-none transition-colors focus:border-sage"
+            style={{ ...inputStyle, color: fields.kind ? 'var(--ink)' : 'var(--ink-3)' }}
           >
             <option value="">Choose one</option>
             {kinds.map((kind) => (
@@ -199,8 +203,8 @@ export default function ContactForm() {
           <select
             value={fields.timeline}
             onChange={update('timeline')}
-            className="mt-3 w-full appearance-none border-b bg-transparent pb-3 text-[0.95rem] outline-none transition-colors focus:border-hair2"
-            style={{ ...inputStyle, color: fields.timeline ? 'var(--cream)' : 'var(--gray-500)' }}
+            className="mt-2 min-h-11 w-full appearance-none border-b bg-transparent pb-2.5 pt-1.5 text-base outline-none transition-colors focus:border-sage"
+            style={{ ...inputStyle, color: fields.timeline ? 'var(--ink)' : 'var(--ink-3)' }}
           >
             <option value="">Choose one</option>
             {timelines.map((t) => (
@@ -223,26 +227,29 @@ export default function ContactForm() {
           placeholder="What the product does, who it is for, and what is currently in the way."
         />
         {errors.message ? (
-          <span className="mt-2 block text-[0.6rem]" style={{ color: 'var(--gray-500)' }}>
+          <span className="mt-2 block text-[0.6875rem]" style={{ color: 'var(--ink-3)' }}>
             {errors.message}
           </span>
         ) : null}
       </label>
 
       {status === 'error' ? (
-        <p className="text-[0.65rem]" style={{ color: 'var(--gray-500)' }}>
+        <p className="text-[0.92rem] text-clay-ink" role="alert">
           Something went wrong sending that. Please email me directly and I will pick it up.
         </p>
       ) : null}
+
+      <div className="max-w-sm pt-1">
+        <RequestTrace state={status} />
+      </div>
 
       <div className="pt-2">
         <Magnetic radius={90} pull={0.24} className="inline-block">
           <button
             type="submit"
             disabled={status === 'sending'}
-            data-cursor="Send it"
-            className="group relative inline-flex items-center gap-4 overflow-hidden px-9 py-4 text-sm uppercase tracking-[0.16em] disabled:opacity-60"
-            style={{ background: 'var(--cream)', color: 'var(--bg)' }}
+            className="group relative inline-flex min-h-[3.25rem] items-center gap-4 overflow-hidden rounded-full px-8 py-4 text-[0.9375rem] font-bold disabled:opacity-60"
+            style={{ background: 'var(--ink)', color: 'var(--paper)' }}
           >
             <span className="relative z-10">
               {status === 'sending' ? 'Sending' : 'Send message'}
@@ -253,7 +260,7 @@ export default function ContactForm() {
             />
             <span
               className="absolute inset-0 origin-left scale-x-0 transition-transform duration-[650ms] ease-out group-hover:scale-x-100"
-              style={{ background: 'var(--cream)' }}
+              style={{ background: 'var(--sage)' }}
             />
           </button>
         </Magnetic>

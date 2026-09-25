@@ -1,83 +1,98 @@
 # masabfarooque.com
 
-Portfolio of Masab Farooque, full stack engineer. Next.js 16 App Router,
-TypeScript, Tailwind, Framer Motion, GSAP and Lenis. Black ground, warm cream
-type, cinematic video backdrops, no icon library anywhere in the project.
+Portfolio and inbound site of Masab Farooque, full stack engineer. Next.js 16
+App Router, React 19, TypeScript and Tailwind CSS.
 
-Type is Almarai everywhere with Instrument Serif italic as the only accent
-voice. Both are self hosted.
+The site is drawn as a set of engineering sheets on paper: chalk ground,
+carbon ink, one sage accent, cyan for vectors inside drawings and clay for the
+one thing on a page that is live or wrong. Every page has a sheet number, and
+the footer prints the index like the title block of a drawing set.
+
+Type is Almarai for headings and body, Instrument Serif italic for one phrase
+in a headline, and Fragment Mono for labels, dates and specs. All three are
+served from this domain. No icon library is used anywhere; every mark is drawn
+in `app/components/marks`.
 
 ## Running it
 
 ```bash
 npm install
 npm run dev        # http://localhost:3000
-npm run build      # production build, also regenerates the sitemap
+npm run build      # production build, then regenerates public/sitemap.xml
 npm run lint
 ```
 
-## Structure
+Pushing to `main` deploys. The host picks up the push and rebuilds; that
+hookup lives in the hosting panel, not in this repository.
+
+## How it is put together
 
 ```
 app/
-  data/            content lives here, nothing is hardcoded in components
+  data/            all content: projects, posts, services, reviews, systems
   components/
-    core/          layout, motion primitives, nav, footer
-    home/          homepage sections
-    work/          project index
-    about/         timeline and FAQ
-    contact/       contact form
-    motion/        WordsPullUp, WordsPullUpMultiStyle and ScrollLetters
-    marks/         every SVG glyph on the site, drawn by hand
-  lib/             font loading and GSAP helpers
-public/
-  fonts/           self hosted Almarai and Instrument Serif
-  video/           generated poster frames for the hero and feature video
-  projects/        case study imagery, WebP only
-  CV/              downloadable CV, linked from the nav, about page and footer
-scripts/
+    scene/         the 3D system renderer (Canvas2D) and its React wrapper
+    home/          homepage bands: live system, work stage, WordPress teardown,
+                   service schedule, reviews, terminal, scroll rail
+    motion/        Reveal and its observer, PipelineSteps, Tilt
+    core/          masthead, footer, sheet strips, page and section headers
+    blog/          article layout, prose, charts and one drawn cover per post
+    work/          project index and the case study system view
+    marks/         every glyph on the site
+  og/[slug]/       social cards, generated at build for the site, every
+                   article and every service
 ```
+
+### The scenes
+
+`app/components/scene/engine.ts` draws system diagrams in 3D with plain
+Canvas2D: boxes, database drums and queue stacks on a drafting floor, pipes
+routed along it and packets moving through them. It supports orbiting,
+picking, traced requests, stacked layers and blending between two layouts.
+Graphs are data in `app/data/systems.ts`, and every case study graph is drawn
+from what that project's write up says it does.
+
+A scene animates only while it is on screen and the tab is visible. With
+reduced motion requested it draws one still, fully assembled frame.
+
+### Scroll reveals
+
+`Reveal` renders plain server markup with a `data-reveal` attribute. One
+observer in the layout adds `is-in` as blocks arrive and CSS does the moving.
+Nothing is hidden until that observer is running, and anything already on
+screen when it starts is left alone, so the first screen and visitors without
+JavaScript always see finished content.
 
 ## Maintenance scripts
 
 | Command | What it does |
 | --- | --- |
 | `node scripts/gen-reviews.mjs` | Rebuilds `app/data/reviews.ts` from the newest `public/fiverr_reviews_*.json` or `.csv` export |
-| `node scripts/optimise-images.mjs` | Converts any PNG or JPEG in `/public` to WebP, caps width at 1800px and deletes the source |
-| `node scripts/generate-sitemap.mjs` | Rewrites `public/sitemap.xml`, including one entry per case study. Runs automatically after `npm run build` |
-| `node scripts/gen-og.mjs` | Regenerates `public/og-image.webp` using the real site fonts. Needs `npm i -D playwright` first |
-| `node scripts/gen-posters.mjs` | Regenerates the dark video poster frames in `public/video`. Needs `npm i -D playwright` first |
+| `node scripts/optimise-images.mjs` | Converts PNG and JPEG in `/public` to WebP, caps width at 1800px and deletes the source |
+| `node scripts/generate-sitemap.mjs` | Rewrites `public/sitemap.xml` from the data files. Runs after every build |
 
 ### Updating the reviews
 
-1. Run the Fiverr scraper and save the result as `public/fiverr_reviews_<date>.json`.
-2. Delete the previous export so only one file matches the pattern.
+1. Save the Fiverr export as `public/fiverr_reviews_<date>.json`.
+2. Delete the previous export so only one file matches.
 3. `node scripts/gen-reviews.mjs`
 
-The generator keeps one card per buyer per project, caps repeat buyers at two
-entries, strips emoji and dashes out of the comments, and only shows reviews
-from 2025 onward, which is where the engineering work starts. Tune the
-constants at the top of the file to change any of that.
+`reviews.ts` is generated. Edits to it are lost on the next run; change the
+export or the constants in the script instead.
 
 ### Adding a project
 
-Add an entry to `app/data/projects.ts`. The case study page, the work index,
-the sitemap and the JSON-LD all read from that one array. Drop the imagery in
-`public/projects` and run `node scripts/optimise-images.mjs`.
-
-### Swapping the video
-
-The hero and the first feature card play video. Both URLs live in one place,
-`media` in `app/data/site.ts`, alongside their poster frames. Point them at
-your own footage and nothing else has to change. The posters are deliberately
-dark so cream type still reads if a video is slow or blocked.
+Add an entry to `app/data/projects.ts`, drop its imagery in `public/projects`
+and run `node scripts/optimise-images.mjs`. To give it an architecture view on
+its case study page, add its graph to `projectSystems` in
+`app/data/systems.ts`. The case study, the work index, the sitemap and the
+JSON-LD all read from these files. `public/llms.txt` is written by hand and
+needs its own line.
 
 ## Notes
 
-- Images are pre-optimised, so `next.config.ts` sets `images.unoptimized`. The
-  bytes in the repository are the bytes on the wire, and the build stays
-  portable to a static host.
-- Old routes (`/pricing`, `/services`, `/forge`) are 301 redirected in both
-  `next.config.ts` and `public/.htaccess`, so nothing that was indexed 404s.
-- `prefers-reduced-motion` disables Lenis, the cursor, the grain and every
-  scroll animation.
+- Images are pre-optimised, so `next.config.ts` sets `images.unoptimized`.
+- HTML is served with `max-age=0, must-revalidate` and a one minute shared
+  cache, so a deploy reaches visitors quickly.
+- Old routes (`/pricing`, `/forge`, `/about`, `/work`, `/projects`) redirect
+  permanently in `next.config.ts`.

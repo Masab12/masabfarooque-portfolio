@@ -1,53 +1,71 @@
-import Reveal from '@/app/components/motion/Reveal';
-import WordsPullUp from '@/app/components/motion/WordsPullUp';
+import CurrentSheet from '@/app/components/core/CurrentSheet';
 
 type Props = {
   label: string;
+  /** Wrap a phrase in asterisks to set it in the serif italic, once. */
   title: string;
-  intro?: string;
+  intro?: React.ReactNode;
   meta?: { label: string; value: string }[];
+  /** Kept for older call sites. The asterisk mark is gone from the design. */
   showAsterisk?: boolean;
+  children?: React.ReactNode;
 };
 
-/**
- * The masthead on every inner page. It borrows the hero proportions at a
- * smaller scale so moving between pages never feels like leaving the site.
- */
-export default function PageHead({ label, title, intro, meta, showAsterisk = true }: Props) {
+function Title({ text }: { text: string }) {
+  const match = text.match(/^(.*?)\*(.+?)\*(.*)$/);
+  if (!match) return <>{text}</>;
+  const [, before, accent, after] = match;
   return (
-    <header className="relative px-4 pt-24 sm:px-6 md:px-8 md:pt-32">
-      <div className="shell">
-        <Reveal y={12}>
-          <p className="text-[10px] text-primary sm:text-xs">{label}</p>
-        </Reveal>
+    <>
+      {before}
+      <span className="serif-italic text-[1.06em] font-normal text-sage">{accent}</span>
+      {after}
+    </>
+  );
+}
 
-        <WordsPullUp
-          as="h1"
-          text={title}
-          showAsterisk={showAsterisk}
-          className="mt-4 text-[13vw] font-medium leading-[0.85] tracking-[-0.06em] sm:text-[11vw] md:text-[9vw] lg:text-[7.5vw] 3xl:text-[clamp(8.44rem,5vw,11rem)]"
-        />
+/**
+ * The top of every inner sheet: the strip with its number, the heading, a
+ * paragraph of context and, where the page has them, a row of facts set
+ * like the cells of a title block.
+ *
+ * The heading is plain server markup with no entrance animation, because on
+ * most of these pages it is the largest thing the browser paints, and the
+ * page should not wait on JavaScript to show it.
+ */
+export default function PageHead({ label, title, intro, meta, children }: Props) {
+  return (
+    <header>
+      <CurrentSheet title={label} />
+      <div className="shell pb-12 pt-10 sm:pb-14 sm:pt-14 lg:pb-16 lg:pt-20">
+        <h1 className="load-head max-w-[18ch] text-[clamp(2.5rem,1.15rem+4.6vw,5.75rem)] font-extrabold leading-[0.96] tracking-[-0.045em] text-ink [text-wrap:balance]">
+          <Title text={title} />
+        </h1>
 
         {intro ? (
-          <Reveal delay={0.25} className="mt-8 max-w-2xl">
-            <p className="text-lede">{intro}</p>
-          </Reveal>
+          <p className="text-lede load-rise mt-7 max-w-[44rem]" style={{ '--d': '0.18s' } as React.CSSProperties}>
+            {intro}
+          </p>
         ) : null}
 
+        {children}
+
         {meta ? (
-          <Reveal
-            delay={0.35}
-            stagger={0.06}
-            className="mt-12 grid grid-cols-2 gap-6 border-t pt-7 sm:grid-cols-4"
-            style={{ borderColor: 'var(--line)' }}
+          <dl
+            className="mt-10 grid grid-cols-2 gap-px border sm:mt-12 lg:grid-cols-4"
+            style={{ borderColor: 'var(--line-2)', background: 'var(--line-2)' }}
           >
-            {meta.map((item) => (
-              <div key={item.label}>
-                <p className="label mb-2">{item.label}</p>
-                <p className="text-sm text-cream">{item.value}</p>
+            {meta.map((item, i) => (
+              <div
+                key={item.label}
+                className="load-rise bg-paper px-4 py-4 sm:px-5"
+                style={{ '--d': `${0.3 + i * 0.07}s` } as React.CSSProperties}
+              >
+                <dt className="label">{item.label}</dt>
+                <dd className="mt-1.5 text-[0.98rem] font-bold text-ink">{item.value}</dd>
               </div>
             ))}
-          </Reveal>
+          </dl>
         ) : null}
       </div>
     </header>

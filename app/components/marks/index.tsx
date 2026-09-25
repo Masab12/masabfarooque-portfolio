@@ -334,7 +334,7 @@ export function GlyphFiverr({ size = 18, className }: { size?: number; className
       <rect x="2" y="2" width="20" height="20" rx="4" fill="currentColor" />
       <path
         d="M14.6 8.2h-2.3v-.4c0-.6.4-.9 1-.9h1.3V4.6h-1.6c-2 0-3.3 1.2-3.3 3.1v.5H8.2v2.4h1.5V17h2.6v-6.4h2.3V17h2.6v-8.8h-2.6Z"
-        fill="var(--bg)"
+        fill="var(--paper)"
       />
     </svg>
   );
@@ -492,6 +492,50 @@ export function LogoMindstorm({ className, style }: LogoProps) {
       >
         STUDIOS
       </text>
+    </svg>
+  );
+}
+
+/* ── Drafting marks ────────────────────────────────────────────────
+   Drawn for the paper edition of the site. Same rules as everything
+   above: stroke only, currentColor, no fills that fight the ground. */
+
+/** The link arrow. Drawn on a 16 grid so it sits true against small type. */
+export function MarkArrow45({ size = 16, className, strokeWidth = 1.5, style }: MarkProps) {
+  return (
+    <svg {...base(size, strokeWidth, className, style)} viewBox="0 0 16 16" strokeLinecap="square">
+      <path d="M3 13L13 3M13 3H5M13 3V11" />
+    </svg>
+  );
+}
+
+/** Two squares pulled apart but still overlapping: a front end and a CMS. */
+export function MarkDecouple({ size = 24, className, strokeWidth = 1.3, style }: MarkProps) {
+  return (
+    <svg {...base(size, strokeWidth, className, style)} strokeLinecap="square" strokeLinejoin="miter">
+      <rect x="3" y="3" width="11" height="11" />
+      <rect x="10" y="10" width="11" height="11" />
+      <path d="M10 10h4v4h-4z" strokeOpacity="0.45" />
+    </svg>
+  );
+}
+
+/** Three runs of a pipeline with one record caught in focus. */
+export function MarkPipeline({ size = 24, className, strokeWidth = 1.3, style }: MarkProps) {
+  return (
+    <svg {...base(size, strokeWidth, className, style)} strokeLinecap="square">
+      <path d="M3 6h18M3 12h18M3 18h18" />
+      <circle cx="15" cy="12" r="3.2" />
+    </svg>
+  );
+}
+
+/** A registration mark, as printed in the corner of a drawing sheet. */
+export function MarkRegister({ size = 14, className, strokeWidth = 1, style }: MarkProps) {
+  return (
+    <svg {...base(size, strokeWidth, className, style)} viewBox="0 0 14 14" strokeLinecap="butt">
+      <circle cx="7" cy="7" r="3.5" />
+      <path d="M7 0v14M0 7h14" />
     </svg>
   );
 }

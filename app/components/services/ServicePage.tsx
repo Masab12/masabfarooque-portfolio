@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import PipelineSteps from '@/app/components/motion/PipelineSteps';
 import { site, socials } from '@/app/data/site';
 import { reviewSummary } from '@/app/data/reviews';
 import { getPost } from '@/app/data/posts';
@@ -6,7 +7,6 @@ import { projects } from '@/app/data/projects';
 import type { Service } from '@/app/data/services';
 import PageHead from '@/app/components/core/PageHead';
 import Reveal from '@/app/components/motion/Reveal';
-import ContactCTA from '@/app/components/home/ContactCTA';
 import {
   ArrowLong,
   ArrowDiagonal,
@@ -21,7 +21,7 @@ const fiverr = socials.find((s) => s.glyph === 'fiverr');
 function Eyebrow({ children }: { children: React.ReactNode }) {
   return (
     <Reveal className="flex items-center gap-3" y={12}>
-      <Spark size={10} className="text-primary" />
+      <Spark size={10} className="text-sage" />
       <span className="label">{children}</span>
     </Reveal>
   );
@@ -68,8 +68,8 @@ export default function ServicePage({ service }: { service: Service }) {
                   key={i}
                   className={
                     i === 0
-                      ? 'text-[1.05rem] leading-[1.7] text-cream/90 sm:text-lg'
-                      : 'mt-5 text-[0.98rem] leading-[1.75] text-gray-400'
+                      ? 'text-[1.05rem] leading-[1.7] text-ink/90 sm:text-lg'
+                      : 'mt-5 text-[0.98rem] leading-[1.75] text-ink-2'
                   }
                 >
                   {paragraph}
@@ -95,15 +95,15 @@ export default function ServicePage({ service }: { service: Service }) {
                 delay={(i % 2) * 0.06}
                 y={16}
                 className="h-full p-6 md:p-7"
-                style={{ background: 'var(--bg)' }}
+                style={{ background: 'var(--paper)' }}
               >
                 <span className="flex items-start gap-3">
-                  <MarkCheck size={15} className="mt-1 shrink-0 text-primary" />
+                  <MarkCheck size={15} className="mt-1 shrink-0 text-sage" />
                   <span>
-                    <span className="block text-[0.98rem] leading-snug text-cream">
+                    <span className="block text-[0.98rem] leading-snug text-ink">
                       {item.title}
                     </span>
-                    <span className="mt-2.5 block text-[0.88rem] leading-relaxed text-gray-400">
+                    <span className="mt-2.5 block text-[0.88rem] leading-relaxed text-ink-2">
                       {item.body}
                     </span>
                   </span>
@@ -120,7 +120,7 @@ export default function ServicePage({ service }: { service: Service }) {
           <Eyebrow>{service.shapesHeading}</Eyebrow>
 
           <Reveal y={16} className="mt-6 max-w-2xl">
-            <p className="text-[0.98rem] leading-[1.75] text-gray-400">{service.shapesNote}</p>
+            <p className="text-[0.98rem] leading-[1.75] text-ink-2">{service.shapesNote}</p>
           </Reveal>
 
           <div
@@ -134,7 +134,7 @@ export default function ServicePage({ service }: { service: Service }) {
                     <th
                       key={head}
                       className="label border-b px-5 py-3.5 font-normal"
-                      style={{ borderColor: 'var(--line-2)', background: 'var(--surface-1)' }}
+                      style={{ borderColor: 'var(--line-2)', background: 'var(--sheet)' }}
                     >
                       {head}
                     </th>
@@ -145,25 +145,25 @@ export default function ServicePage({ service }: { service: Service }) {
                 {service.shapes.map((shape) => (
                   <tr key={shape.name}>
                     <td
-                      className="border-b px-5 py-4 align-top text-[0.92rem] text-cream"
+                      className="border-b px-5 py-4 align-top text-[0.92rem] text-ink"
                       style={{ borderColor: 'var(--line)' }}
                     >
                       {shape.name}
                     </td>
                     <td
-                      className="border-b px-5 py-4 align-top text-[0.88rem] text-gray-400"
+                      className="border-b px-5 py-4 align-top text-[0.88rem] text-ink-2"
                       style={{ borderColor: 'var(--line)' }}
                     >
                       {shape.scale}
                     </td>
                     <td
-                      className="border-b px-5 py-4 align-top text-[0.88rem] text-primary"
+                      className="border-b px-5 py-4 align-top text-[0.88rem] text-sage"
                       style={{ borderColor: 'var(--line)' }}
                     >
                       {shape.timeline}
                     </td>
                     <td
-                      className="border-b px-5 py-4 align-top text-[0.88rem] leading-relaxed text-gray-400"
+                      className="border-b px-5 py-4 align-top text-[0.88rem] leading-relaxed text-ink-2"
                       style={{ borderColor: 'var(--line)' }}
                     >
                       {shape.detail}
@@ -181,16 +181,8 @@ export default function ServicePage({ service }: { service: Service }) {
         <div className="shell py-16 md:py-24">
           <Eyebrow>{service.stepsHeading}</Eyebrow>
 
-          <div className="mt-10 grid gap-8 md:grid-cols-2 lg:gap-x-14">
-            {service.steps.map((step, i) => (
-              <Reveal key={step.index} delay={(i % 2) * 0.06} y={18}>
-                <div className="border-t pt-6" style={{ borderColor: 'var(--line-2)' }}>
-                  <p className="mono text-[0.7rem] text-primary">{step.index}</p>
-                  <p className="mt-3 text-[1.02rem] leading-snug text-cream">{step.title}</p>
-                  <p className="mt-3 text-[0.92rem] leading-relaxed text-gray-400">{step.body}</p>
-                </div>
-              </Reveal>
-            ))}
+          <div className="mt-12">
+            <PipelineSteps steps={service.steps} />
           </div>
         </div>
       </section>
@@ -205,22 +197,21 @@ export default function ServicePage({ service }: { service: Service }) {
               <Reveal key={project.slug} delay={(i % 3) * 0.06} y={18}>
                 <Link
                   href={`/portfolio/${project.slug}`}
-                  data-cursor="Read case study"
                   className="group flex h-full flex-col rounded-xl border p-5 transition-colors duration-500 hover:border-hair2"
                   style={{ borderColor: 'var(--line)' }}
                 >
                   <p className="label">{project.client}</p>
-                  <p className="mt-3 text-[1.02rem] leading-snug text-cream transition-colors duration-500 group-hover:text-primary">
+                  <p className="mt-3 text-[1.02rem] leading-snug text-ink transition-colors duration-500 group-hover:text-sage">
                     {project.title}
                   </p>
-                  <p className="mt-3 flex-1 text-[0.86rem] leading-relaxed text-gray-500">
+                  <p className="mt-3 flex-1 text-[0.86rem] leading-relaxed text-ink-3">
                     {project.summary}
                   </p>
                   <span className="mt-5 flex items-center gap-2">
                     <span className="label">Case study</span>
                     <ArrowLong
                       size={14}
-                      className="text-primary transition-transform duration-300 group-hover:translate-x-1"
+                      className="text-sage transition-transform duration-300 group-hover:translate-x-1"
                     />
                   </span>
                 </Link>
@@ -241,19 +232,19 @@ export default function ServicePage({ service }: { service: Service }) {
                   { value: String(reviewSummary.countries), label: 'Countries' },
                   { value: `${reviewSummary.repeatShare}%`, label: 'Came back' },
                 ].map((stat) => (
-                  <div key={stat.label} className="p-5 md:p-6" style={{ background: 'var(--bg)' }}>
-                    <p className="text-[clamp(1.3rem,3vw,2.1rem)] text-primary">{stat.value}</p>
+                  <div key={stat.label} className="p-5 md:p-6" style={{ background: 'var(--paper)' }}>
+                    <p className="text-[clamp(1.3rem,3vw,2.1rem)] text-sage">{stat.value}</p>
                     <p className="label mt-2">{stat.label}</p>
                   </div>
                 ))}
               </Reveal>
 
               <Reveal delay={0.1} y={16}>
-                <p className="mt-7 text-[0.95rem] leading-[1.75] text-gray-400">
+                <p className="mt-7 text-[0.95rem] leading-[1.75] text-ink-2">
                   Every review is written by the client and shown unedited. You can{' '}
                   <Link
                     href="/reviews"
-                    className="text-cream underline decoration-[var(--line-3)] underline-offset-4 hover:decoration-current"
+                    className="text-ink underline decoration-[var(--line-3)] underline-offset-4 hover:decoration-current"
                   >
                     read them all here
                   </Link>{' '}
@@ -267,10 +258,10 @@ export default function ServicePage({ service }: { service: Service }) {
                     href={fiverr.href}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="group inline-flex items-center gap-2.5 rounded-full border px-5 py-2.5 text-sm text-gray-400 transition-colors duration-300 hover:text-cream"
+                    className="group inline-flex min-h-11 items-center gap-2.5 rounded-full border px-5 py-2.5 text-sm text-ink-2 transition-colors duration-300 hover:text-ink"
                     style={{ borderColor: 'var(--line-2)' }}
                   >
-                    <GlyphFiverr size={14} className="text-primary" />
+                    <GlyphFiverr size={14} className="text-sage" />
                     Verify on Fiverr
                     <ArrowDiagonal size={11} className="opacity-60" />
                   </a>
@@ -290,8 +281,8 @@ export default function ServicePage({ service }: { service: Service }) {
             {service.faqs.map((faq, i) => (
               <Reveal key={faq.q} delay={(i % 2) * 0.05} y={16}>
                 <div className="border-t pt-6" style={{ borderColor: 'var(--line)' }}>
-                  <h2 className="text-[0.98rem] leading-snug text-cream">{faq.q}</h2>
-                  <p className="mt-3 text-[0.92rem] leading-[1.7] text-gray-400">{faq.a}</p>
+                  <h2 className="text-[0.98rem] leading-snug text-ink">{faq.q}</h2>
+                  <p className="mt-3 text-[0.92rem] leading-[1.7] text-ink-2">{faq.a}</p>
                 </div>
               </Reveal>
             ))}
@@ -307,7 +298,7 @@ export default function ServicePage({ service }: { service: Service }) {
 
             {service.guidesNote ? (
               <Reveal y={16} className="mt-6 max-w-2xl">
-                <p className="text-[0.98rem] leading-[1.75] text-gray-400">{service.guidesNote}</p>
+                <p className="text-[0.98rem] leading-[1.75] text-ink-2">{service.guidesNote}</p>
               </Reveal>
             ) : null}
 
@@ -319,21 +310,20 @@ export default function ServicePage({ service }: { service: Service }) {
                   <Reveal key={slug} delay={(i % 2) * 0.06} y={18}>
                     <Link
                       href={`/blog/${slug}`}
-                      data-cursor="Read"
                       className="group flex h-full flex-col rounded-xl border p-5 transition-colors duration-500 hover:border-hair2"
                       style={{ borderColor: 'var(--line)' }}
                     >
-                      <p className="text-[0.98rem] leading-snug text-cream transition-colors duration-500 group-hover:text-primary">
+                      <p className="text-[0.98rem] leading-snug text-ink transition-colors duration-500 group-hover:text-sage">
                         {guide.title}
                       </p>
-                      <p className="mt-3 flex-1 text-[0.86rem] leading-relaxed text-gray-500">
+                      <p className="mt-3 flex-1 text-[0.86rem] leading-relaxed text-ink-3">
                         {guide.standfirst}
                       </p>
                       <span className="mt-5 flex items-center gap-2">
                         <span className="label">{guide.readingMinutes} min read</span>
                         <ArrowLong
                           size={14}
-                          className="text-primary transition-transform duration-300 group-hover:translate-x-1"
+                          className="text-sage transition-transform duration-300 group-hover:translate-x-1"
                         />
                       </span>
                     </Link>
@@ -344,8 +334,6 @@ export default function ServicePage({ service }: { service: Service }) {
           </div>
         </section>
       ) : null}
-
-      <ContactCTA />
     </>
   );
 }
@@ -364,7 +352,7 @@ export function serviceSchema(service: Service) {
     url: site.url,
     email: site.email,
     telephone: '+923045624189',
-    image: `${site.url}/og-image.webp`,
+    image: `${site.url}/og/site`,
     priceRange: '$$',
     address: {
       '@type': 'PostalAddress',

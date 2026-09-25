@@ -8,7 +8,9 @@ import {
 } from '@/app/data/posts';
 import { covers, type CoverSlug } from '@/app/components/blog/Covers';
 import Reveal from '@/app/components/motion/Reveal';
-import WordsPullUp from '@/app/components/motion/WordsPullUp';
+import CurrentSheet from '@/app/components/core/CurrentSheet';
+import ReadingPipe from '@/app/components/blog/ReadingPipe';
+import Tilt from '@/app/components/motion/Tilt';
 import { ArrowLong, ArrowDiagonal, GlyphFiverr, Spark } from '@/app/components/marks';
 
 const fiverr = socials.find((s) => s.glyph === 'fiverr');
@@ -30,63 +32,45 @@ export default function ArticleLayout({
 
   return (
     <>
-      <article>
+      <ReadingPipe targetId="article" />
+      <article id="article">
         {/* ── Masthead ─────────────────────────────────────────── */}
-        <header className="relative px-4 pt-24 sm:px-6 md:px-8 md:pt-32">
-          <div className="shell">
-            <Reveal className="flex flex-wrap items-center gap-x-4 gap-y-2" y={12}>
-              <Link href="/blog" className="label plain transition-colors hover:text-primary">
-                Writing
-              </Link>
+        <header>
+          <CurrentSheet title={topicLabels[post.topic]} meta={`${post.readingMinutes} minute read`} />
+          <div className="shell pt-10 sm:pt-14">
+            <nav aria-label="Breadcrumb" className="load-rise flex flex-wrap items-center gap-x-3 gap-y-1" style={{ '--d': '0s' } as React.CSSProperties}>
+              <Link href="/blog" className="label plain transition-colors hover:text-sage">Writing</Link>
               <span className="label opacity-40">/</span>
-              <span className="label text-primary">{topicLabels[post.topic]}</span>
+              <span className="label text-sage">{topicLabels[post.topic]}</span>
               <span className="label opacity-40">/</span>
-              <time className="label" dateTime={post.published}>
-                {formatPostDate(post.published)}
-              </time>
-            </Reveal>
+              <time className="label" dateTime={post.published}>{formatPostDate(post.published)}</time>
+            </nav>
 
-            <div className="mt-7 max-w-4xl">
-              <WordsPullUp
-                as="h1"
-                text={post.title}
-                className="text-[clamp(1.9rem,5.4vw,3.5rem)] font-medium leading-[1.05] tracking-[-0.035em]"
-              />
+            <h1 className="load-head mt-6 max-w-[22ch] text-[clamp(2rem,1.2rem+3.3vw,4rem)] font-extrabold leading-[1.02] tracking-[-0.04em] text-ink [text-wrap:balance]">
+              {post.title}
+            </h1>
+
+            <p className="load-rise mt-6 max-w-2xl text-[1.08rem] leading-[1.55] text-ink-2 sm:text-lg" style={{ '--d': '0.15s' } as React.CSSProperties}>
+              {post.standfirst}
+            </p>
+
+            <div className="load-rise mt-9 flex flex-wrap items-center gap-x-8 gap-y-2 border-t pt-5" style={{ borderColor: 'var(--line)', '--d': '0.25s' } as React.CSSProperties}>
+              <span className="label">{post.readingMinutes} minute read</span>
+              <span className="label">By {site.name}, {site.location}</span>
+              {post.updated ? <span className="label">Revised {formatPostDate(post.updated)}</span> : null}
             </div>
-
-            <Reveal delay={0.12} className="mt-6 max-w-2xl">
-              <p className="text-[1.05rem] leading-[1.55] text-gray-400 sm:text-lg">
-                {post.standfirst}
-              </p>
-            </Reveal>
-
-            <Reveal
-              delay={0.2}
-              className="mt-10 flex flex-wrap items-center gap-x-8 gap-y-3 border-t pt-6"
-              style={{ borderColor: 'var(--line)' }}
-            >
-              <span className="label">
-                {post.readingMinutes} minute read
-              </span>
-              <span className="label">
-                By {site.name}, {site.location}
-              </span>
-            </Reveal>
           </div>
         </header>
 
         {/* ── Cover ────────────────────────────────────────────── */}
         {Cover ? (
-          <section className="shell mt-10 md:mt-14">
-            <Reveal y={26}>
-              <div
-                className="overflow-hidden border"
-                style={{
-                  borderColor: 'var(--line)',
-                  borderRadius: 'clamp(14px, 2vw, 26px)',
-                }}
-              >
-                <Cover className="block h-auto w-full" />
+          <section className="shell mt-10 md:mt-12">
+            <Reveal variant="scale" y={26}>
+              <div className="border bg-sheet p-2 sm:p-3" style={{ borderColor: 'var(--line-2)' }}>
+                <div className="overflow-hidden border" style={{ borderColor: 'var(--line)' }}>
+                  <Cover className="block h-auto w-full" />
+                </div>
+                <p className="label px-1 pt-2.5">Fig. 0 · {post.standfirst}</p>
               </div>
             </Reveal>
           </section>
@@ -108,12 +92,12 @@ export default function ArticleLayout({
                 <ol className="mt-4 space-y-2.5">
                   {post.sections.map((section, i) => (
                     <li key={section.id} className="flex gap-3">
-                      <span className="mono shrink-0 text-[0.62rem] text-gray-500">
+                      <span className="mono shrink-0 text-[0.6875rem] text-ink-3">
                         {String(i + 1).padStart(2, '0')}
                       </span>
                       <a
                         href={`#${section.id}`}
-                        className="plain text-[0.85rem] leading-snug text-gray-400 hover:text-cream"
+                        className="plain text-[0.85rem] leading-snug text-ink-2 hover:text-ink"
                       >
                         {section.label}
                       </a>
@@ -128,12 +112,12 @@ export default function ArticleLayout({
                   <ol className="mt-5 space-y-3">
                     {post.sections.map((section, i) => (
                       <li key={section.id} className="flex gap-3">
-                        <span className="mono mt-[0.15rem] shrink-0 text-[0.6rem] text-gray-500">
+                        <span className="mono mt-[0.15rem] shrink-0 text-[0.6875rem] text-ink-3">
                           {String(i + 1).padStart(2, '0')}
                         </span>
                         <a
                           href={`#${section.id}`}
-                          className="plain text-[0.82rem] leading-snug text-gray-400 transition-colors hover:text-cream"
+                          className="plain text-[0.82rem] leading-snug text-ink-2 transition-colors hover:text-ink"
                         >
                           {section.label}
                         </a>
@@ -159,7 +143,7 @@ export default function ArticleLayout({
 
             <div className="md:col-span-8 md:col-start-5">
               <Reveal y={18}>
-                <p className="text-[0.98rem] leading-[1.75] text-gray-400">
+                <p className="text-[0.98rem] leading-[1.75] text-ink-2">
                   I am {site.name}, a full stack engineer in {site.location}. I build SaaS
                   platforms, AI systems and data pipelines, and a good part of my work is{' '}
                   <Link href="/services/wordpress-to-nextjs">
@@ -169,7 +153,7 @@ export default function ArticleLayout({
                   so the editor stays exactly where it is while the public site gets served as
                   static files.
                 </p>
-                <p className="mt-4 text-[0.98rem] leading-[1.75] text-gray-400">
+                <p className="mt-4 text-[0.98rem] leading-[1.75] text-ink-2">
                   If you have a site that needs this, tell me what you are running now and I will
                   give you a straight answer on whether a migration is worth it.
                 </p>
@@ -178,12 +162,11 @@ export default function ArticleLayout({
               <Reveal delay={0.1} className="mt-7 flex flex-wrap items-center gap-3">
                 <Link
                   href="/contact"
-                  data-cursor="Say hello"
-                  className="plain group inline-flex items-center gap-2 rounded-full bg-primary py-1.5 pl-5 pr-1.5 text-sm font-medium text-black transition-all duration-300 hover:gap-3"
+                  className="plain group inline-flex items-center gap-2 rounded-full bg-ink py-1.5 pl-5 pr-1.5 text-sm font-medium text-paper transition-all duration-300 hover:gap-3"
                 >
                   Start a project
-                  <span className="flex h-8 w-8 items-center justify-center rounded-full bg-black transition-transform duration-300 group-hover:scale-110">
-                    <ArrowLong size={14} className="text-cream" />
+                  <span className="flex h-8 w-8 items-center justify-center rounded-full bg-paper transition-transform duration-300 group-hover:scale-110">
+                    <ArrowLong size={14} className="text-ink" />
                   </span>
                 </Link>
 
@@ -192,10 +175,10 @@ export default function ArticleLayout({
                     href={fiverr.href}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="plain group inline-flex items-center gap-2.5 rounded-full border px-5 py-2.5 text-sm text-gray-400 transition-colors duration-300 hover:text-cream"
+                    className="plain group inline-flex items-center gap-2.5 rounded-full border px-5 py-2.5 text-sm text-ink-2 transition-colors duration-300 hover:text-ink"
                     style={{ borderColor: 'var(--line-2)' }}
                   >
-                    <GlyphFiverr size={14} className="text-primary" />
+                    <GlyphFiverr size={14} className="text-sage" />
                     Hire me on Fiverr
                     <ArrowDiagonal size={11} className="opacity-60" />
                   </a>
@@ -203,7 +186,7 @@ export default function ArticleLayout({
 
                 <Link
                   href="/portfolio"
-                  className="plain inline-flex items-center gap-2 px-2 py-2.5 text-sm text-gray-400 transition-colors hover:text-cream"
+                  className="plain inline-flex items-center gap-2 px-2 py-2.5 text-sm text-ink-2 transition-colors hover:text-ink"
                 >
                   See the work
                 </Link>
@@ -218,7 +201,7 @@ export default function ArticleLayout({
         <section className="border-t" style={{ borderColor: 'var(--line)' }}>
           <div className="shell py-14 md:py-20">
             <Reveal className="flex items-center gap-3" y={12}>
-              <Spark size={10} className="text-primary" />
+              <Spark size={10} className="text-sage" />
               <span className="label">Read next</span>
             </Reveal>
 
@@ -227,9 +210,9 @@ export default function ArticleLayout({
                 const NextCover = covers[next.slug as CoverSlug];
                 return (
                   <Reveal key={next.slug} delay={i * 0.08} y={22}>
+                    <Tilt max={3}>
                     <Link
                       href={`/blog/${next.slug}`}
-                      data-cursor="Read"
                       className="plain group flex h-full flex-col overflow-hidden rounded-xl border transition-colors duration-500 hover:border-hair2"
                       style={{ borderColor: 'var(--line)' }}
                     >
@@ -240,15 +223,16 @@ export default function ArticleLayout({
                       ) : null}
                       <div className="flex flex-1 flex-col p-5">
                         <p className="label">{topicLabels[next.topic]}</p>
-                        <p className="mt-3 text-[1.02rem] leading-snug text-cream transition-colors duration-500 group-hover:text-primary">
+                        <p className="mt-3 text-[1.02rem] leading-snug text-ink transition-colors duration-500 group-hover:text-sage">
                           {next.title}
                         </p>
-                        <p className="mt-3 flex-1 text-[0.85rem] leading-relaxed text-gray-500">
+                        <p className="mt-3 flex-1 text-[0.85rem] leading-relaxed text-ink-3">
                           {next.standfirst}
                         </p>
                         <span className="label mt-5">{next.readingMinutes} min</span>
                       </div>
                     </Link>
+                    </Tilt>
                   </Reveal>
                 );
               })}

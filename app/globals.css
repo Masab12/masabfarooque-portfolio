@@ -3,143 +3,169 @@
 @tailwind utilities;
 
 /* ═══════════════════════════════════════════════════════════════
-   Visual system
-   Black ground, warm cream type, nothing else. Almarai carries
-   everything, Instrument Serif italic is the only accent voice.
+   Visual system: a drawing set on paper.
+
+   Chalk paper ground, carbon ink, one sage accent. Cyan is reserved
+   for vectors inside drawings and the homepage model. Clay marks the
+   one thing on a page that is live or wrong, and nothing else.
+
+   Every colour is declared once as RGB channels. Tailwind reads the
+   channels (see tailwind.config.ts) so classes can take an opacity,
+   and the plain var() forms below are for inline styles and SVG.
    ═══════════════════════════════════════════════════════════════ */
 
 :root {
-  color-scheme: dark;
+  color-scheme: light;
 
-  --bg:        #000000;
-  --surface-1: #101010;
-  --surface-2: #212121;
-  --surface-3: #2a2a2a;
+  --paper-rgb: 247 246 242;
+  --plate-rgb: 239 236 230;
+  --sheet-rgb: 255 255 255;
+  --sand-rgb: 230 226 216;
 
-  --cream:     #e1e0cc;
-  --cream-2:   #dedbc8;
-  --gray-400:  #9ca3af;
-  --gray-500:  #6b7280;
+  --ink-rgb: 22 24 23;
+  --ink-2-rgb: 82 86 83;
+  /* Darkened from the brief's #8C918B so small text still clears 4.5:1 on
+     paper. The lighter value survives as ink-4, for marks and rules only. */
+  --ink-3-rgb: 107 112 106;
+  --ink-4-rgb: 140 145 139;
 
-  --line:      rgba(225, 224, 204, 0.10);
-  --line-2:    rgba(225, 224, 204, 0.18);
-  --line-3:    rgba(225, 224, 204, 0.30);
+  --sage-rgb: 62 89 73;
+  --sage-wash-rgb: 219 226 216;
+  --olive-rgb: 117 132 103;
+  --clay-rgb: 184 93 59;
+  --clay-ink-rgb: 154 74 45;
+  --cyan-rgb: 42 111 120;
 
-  --ease-out:  cubic-bezier(0.16, 1, 0.3, 1);
+  --paper: rgb(var(--paper-rgb));
+  --plate: rgb(var(--plate-rgb));
+  --sheet: rgb(var(--sheet-rgb));
+  --sand: rgb(var(--sand-rgb));
+  --ink: rgb(var(--ink-rgb));
+  --ink-2: rgb(var(--ink-2-rgb));
+  --ink-3: rgb(var(--ink-3-rgb));
+  --ink-4: rgb(var(--ink-4-rgb));
+  --sage: rgb(var(--sage-rgb));
+  --sage-wash: rgb(var(--sage-wash-rgb));
+  --olive: rgb(var(--olive-rgb));
+  --clay: rgb(var(--clay-rgb));
+  --clay-ink: rgb(var(--clay-ink-rgb));
+  --cyan: rgb(var(--cyan-rgb));
+
+  --line: rgb(var(--ink-rgb) / 0.12);
+  --line-2: rgb(var(--ink-rgb) / 0.2);
+  --line-3: rgb(var(--ink-rgb) / 0.34);
+
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
   --ease-card: cubic-bezier(0.22, 1, 0.36, 1);
 
-  --gutter: clamp(1rem, 3.5vw, 4rem);
-  --shell: 1800px;
-  --nav-h: 3.25rem;
+  --gutter: clamp(1rem, 4vw, 4rem);
+  --shell: 110rem;
+  --nav-h: 4rem;
 }
 
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: var(--font-sans), -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto',
-    'Oxygen', 'Ubuntu', 'Cantarell', sans-serif;
-}
+/* ── Scale ─────────────────────────────────────────────────────────
+   Everything is sized in rem, so the whole layout grows with the root.
+   Up to 1920px the root stays at the reader's default. Past that it
+   rises by 0.3125vw, which lands on about 21px at 3440px (a 34 inch
+   ultrawide) and 22px on a 4K television, so a large screen shows a
+   larger page instead of a small page adrift in empty paper.        */
 
 html {
-  overflow-x: hidden;
+  font-size: 100%;
   -webkit-text-size-adjust: 100%;
-  background: var(--bg);
+  text-size-adjust: 100%;
+  background: var(--paper);
+  scroll-padding-top: calc(var(--nav-h) + 1rem);
 }
 
-@media (prefers-reduced-motion: reduce) {
-  html { scroll-behavior: auto; }
+@media (min-width: 1920px) {
+  html { font-size: calc(0.625rem + 0.3125vw); }
 }
 
-body {
-  background: var(--bg);
-  color: var(--cream);
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  overflow-x: hidden;
-}
-
-::selection {
-  background: var(--cream);
-  color: #000;
-}
-
-/* ── Scrolling ─────────────────────────────────────────────────────
-   Native scrolling with a proximity snap track. Proximity, not
-   mandatory, so the wheel and trackpad behave exactly as the browser
-   intends and only settle onto a section edge when a scroll ends near
-   one. Framer Motion reads the same position the browser is using.
-
-   Snapping is desktop only. On a phone it fights momentum scrolling,
-   and any section holding sticky children is left off the track
-   because sticky plus snap is a known source of jank.
-
-   scroll-behavior: smooth is intentionally NOT set alongside snap.
-   Every wheel or trackpad tick restarts a smooth-scroll animation, so
-   with scroll-snap-type also fighting to settle the viewport the two
-   animations race each other and the page can stop responding to
-   scroll input entirely. Below the snap breakpoint there is no snap
-   to race against, so smooth anchor jumps stay on there.            */
-
-html {
-  scroll-padding-top: 0;
-}
-
-@media (max-width: 1023.98px) and (prefers-reduced-motion: no-preference) {
+@media (prefers-reduced-motion: no-preference) {
   html { scroll-behavior: smooth; }
 }
 
-@media (min-width: 1024px) and (prefers-reduced-motion: no-preference) {
-  html {
-    scroll-behavior: auto;
-    scroll-snap-type: y proximity;
-  }
-
-  .snap-start {
-    scroll-snap-align: start;
-    scroll-snap-stop: normal;
-  }
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
-@media (prefers-reduced-motion: reduce) {
-  html { scroll-behavior: auto; }
+body {
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-sans), system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  line-height: 1.5;
+  letter-spacing: -0.005em;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: clip;
+  text-rendering: optimizeLegibility;
 }
 
-::-webkit-scrollbar { width: 8px; }
-::-webkit-scrollbar-track { background: #000; }
-::-webkit-scrollbar-thumb { background: #2a2a2a; }
-::-webkit-scrollbar-thumb:hover { background: #3a3a3a; }
-
-/* ── Noise textures ────────────────────────────────────────────── */
-
-.noise-overlay {
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-  background-repeat: repeat;
-  background-size: 200px 200px;
+::selection {
+  background: var(--ink);
+  color: var(--paper);
 }
 
-.bg-noise {
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='m'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23m)'/%3E%3C/svg%3E");
-  background-repeat: repeat;
-  background-size: 180px 180px;
+img, video, svg, canvas { display: block; max-width: 100%; }
+
+input, textarea, select, button { font: inherit; color: inherit; }
+input::placeholder, textarea::placeholder { color: var(--ink-3); opacity: 1; }
+
+/* Thin, quiet scrollbar that belongs to the paper rather than the OS */
+html { scrollbar-color: var(--ink-4) var(--paper); scrollbar-width: thin; }
+::-webkit-scrollbar { width: 10px; height: 10px; }
+::-webkit-scrollbar-track { background: var(--paper); }
+::-webkit-scrollbar-thumb { background: var(--ink-4); border: 3px solid var(--paper); border-radius: 10px; }
+
+/* ── Paper ─────────────────────────────────────────────────────────
+   A faint fibre texture over the whole sheet. One fixed layer, one
+   tiled data URI, no request and no blend mode to recomposite.      */
+
+.paper-grain {
+  position: fixed;
+  inset: 0;
+  z-index: 70;
+  pointer-events: none;
+  opacity: 0.05;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 220 220' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.82' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0.09 0 0 0 0 0.09 0 0 0 0 0.09 0 0 0 0.9 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23g)'/%3E%3C/svg%3E");
+  background-size: 220px 220px;
 }
 
-/* ── Type helpers ──────────────────────────────────────────────── */
+/* ── Type ──────────────────────────────────────────────────────── */
 
 .serif-italic {
   font-family: var(--font-serif), Georgia, serif;
   font-style: italic;
   font-weight: 400;
+  letter-spacing: -0.01em;
 }
 
-.label {
-  font-size: 0.625rem;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-  color: var(--cream);
-  opacity: 0.55;
-  line-height: 1;
+.mono {
+  font-family: var(--font-mono), ui-monospace, Menlo, monospace;
+  font-feature-settings: 'liga' 0;
+  letter-spacing: 0;
 }
+
+/* Drafting labels: sheet numbers, dates, specs. Scanned, not read. */
+.label {
+  font-family: var(--font-mono), ui-monospace, Menlo, monospace;
+  font-size: 0.6875rem;
+  line-height: 1.3;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+}
+
+.text-lede {
+  font-size: clamp(1.02rem, 0.95rem + 0.35vw, 1.2rem);
+  line-height: 1.6;
+  color: var(--ink-2);
+}
+
+/* ── Layout ────────────────────────────────────────────────────── */
 
 .shell {
   width: 100%;
@@ -152,69 +178,250 @@ html {
 
 /* ── Focus ─────────────────────────────────────────────────────── */
 
-:where(a, button, input, textarea, select, [tabindex]):focus-visible {
-  outline: 1px solid var(--cream);
+:where(a, button, input, textarea, select, summary, [tabindex]):focus-visible {
+  outline: 2px solid var(--sage);
   outline-offset: 3px;
-  border-radius: 2px;
+  border-radius: 3px;
 }
-
-input, textarea, select, button { font: inherit; color: inherit; }
-input::placeholder, textarea::placeholder { color: var(--gray-500); }
-select option { background: var(--surface-2); color: var(--cream); }
-
-img, video { display: block; max-width: 100%; }
 
 .no-scrollbar::-webkit-scrollbar { display: none; }
 .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+/* ── Writing ───────────────────────────────────────────────────── */
+
+.article-body code:not(pre code) {
+  font-family: var(--font-mono), ui-monospace, Menlo, monospace;
+  font-size: 0.86em;
+  padding: 0.1em 0.36em;
+  border-radius: 4px;
+  background: var(--plate);
+  border: 1px solid var(--line);
+  color: var(--ink);
+  overflow-wrap: anywhere;
+}
+
+.article-body a:not(.plain) {
+  color: var(--ink);
+  text-decoration: underline;
+  text-decoration-color: rgb(var(--sage-rgb) / 0.55);
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.22em;
+  transition: text-decoration-color 250ms ease;
+}
+
+.article-body a:not(.plain):hover { text-decoration-color: var(--sage); }
+
+.article-body strong { color: var(--ink); font-weight: 700; }
+
+/* ── Motion ────────────────────────────────────────────────────── */
 
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {
     animation-duration: 0.001ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
   }
 }
 
-/* ── Writing ───────────────────────────────────────────────────────
-   The blog needs a monospace voice for code and a slightly wider
-   measure for body copy. No extra webfont is loaded for either, so a
-   long article costs the same in bytes as the rest of the site.     */
+/* ── Print ─────────────────────────────────────────────────────── */
 
-.mono {
-  font-family: ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas,
-    'Liberation Mono', monospace;
-  font-feature-settings: 'liga' 0;
+@media print {
+  .paper-grain, .no-print { display: none !important; }
+  body { background: #fff; }
 }
 
-/* Inline code inside body copy */
-.article-body code:not(pre code) {
-  font-family: ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas,
-    'Liberation Mono', monospace;
-  font-size: 0.875em;
-  padding: 0.12em 0.36em;
-  border-radius: 4px;
-  background: var(--surface-2);
-  color: var(--cream);
-  word-break: break-word;
+/* ── Page entrance ─────────────────────────────────────────────── */
+
+@keyframes page-enter {
+  from { opacity: 0.7; transform: translateY(10px); }
+  to { opacity: 1; transform: none; }
 }
 
-/* Body links read as links without shouting */
-.article-body a:not(.plain) {
-  color: var(--cream);
-  text-decoration: underline;
-  text-decoration-color: var(--line-3);
-  text-underline-offset: 0.22em;
-  transition: text-decoration-color 300ms ease;
+.page-enter { animation: page-enter 0.5s var(--ease-out) both; }
+
+@media (prefers-reduced-motion: reduce) {
+  .page-enter { animation: none; }
 }
 
-.article-body a:not(.plain):hover {
-  text-decoration-color: var(--cream);
+/* ── Live system ───────────────────────────────────────────────── */
+
+@keyframes log-in {
+  from { opacity: 0; transform: translateY(4px); }
+  to { opacity: 1; transform: none; }
+}
+.log-line { animation: log-in 0.28s var(--ease-out) both; }
+
+@keyframes caret-blink { 50% { opacity: 0; } }
+.caret {
+  display: inline-block;
+  width: 0.55em;
+  height: 1.05em;
+  margin-top: 0.1em;
+  background: var(--ink);
+  animation: caret-blink 1.05s steps(1) infinite;
 }
 
-/* Long form intro copy */
-.text-lede {
-  font-size: clamp(1rem, 1.4vw, 1.2rem);
-  line-height: 1.55;
-  color: var(--gray-400);
-  font-weight: 300;
+/* ── Scroll reveals ────────────────────────────────────────────────
+   Hidden states only apply once the observer has started (reveal-ready),
+   so nothing is ever invisible without JavaScript.                   */
+
+.reveal-ready [data-reveal='rise'],
+.reveal-ready [data-reveal='scale'],
+.reveal-ready [data-reveal='fade'],
+.reveal-ready [data-reveal='stagger'] > * {
+  opacity: 0;
+  transition:
+    opacity 0.9s var(--ease-out) var(--reveal-delay, 0s),
+    transform 1s var(--ease-out) var(--reveal-delay, 0s);
+}
+.reveal-ready [data-reveal='rise'] { transform: translate3d(0, var(--reveal-y, 22px), 0); }
+.reveal-ready [data-reveal='scale'] { transform: translate3d(0, var(--reveal-y, 22px), 0) scale(0.965); }
+.reveal-ready [data-reveal='stagger'] > * {
+  transform: translate3d(0, var(--reveal-y, 18px), 0);
+  transition-delay: calc(var(--reveal-delay, 0s) + var(--i, 0) * var(--reveal-stagger, 0.06s));
+}
+
+.reveal-ready [data-reveal='wipe'] {
+  clip-path: inset(0 0 100% 0);
+  transform: translate3d(0, 0.35em, 0);
+  transition:
+    clip-path 1.05s var(--ease-out) var(--reveal-delay, 0s),
+    transform 1.05s var(--ease-out) var(--reveal-delay, 0s);
+}
+.reveal-ready [data-reveal='draw'] {
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition: transform 1.3s var(--ease-out) var(--reveal-delay, 0s);
+}
+
+.reveal-ready [data-reveal].is-in,
+.reveal-ready [data-reveal='stagger'].is-in > * {
+  opacity: 1;
+  transform: none;
+}
+.reveal-ready [data-reveal='wipe'].is-in { clip-path: inset(-0.2em -0.2em -0.3em -0.2em); }
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal-ready [data-reveal],
+  .reveal-ready [data-reveal='stagger'] > * {
+    opacity: 1 !important;
+    transform: none !important;
+    clip-path: none !important;
+    transition: none !important;
+  }
+}
+
+/* ── First screen of every inner page ──────────────────────────────
+   CSS only, so it plays without JavaScript and never holds back the
+   largest paint: the heading starts visible and only settles.       */
+
+@keyframes head-settle {
+  from { opacity: 0.45; transform: translate3d(0, 0.28em, 0); }
+  to { opacity: 1; transform: none; }
+}
+@keyframes rise-in {
+  from { opacity: 0; transform: translate3d(0, 16px, 0); }
+  to { opacity: 1; transform: none; }
+}
+@keyframes rule-draw {
+  from { transform: scaleX(0); }
+  to { transform: scaleX(1); }
+}
+.load-head { animation: head-settle 0.9s var(--ease-out) both; }
+.load-rise { animation: rise-in 0.9s var(--ease-out) both; animation-delay: var(--d, 0.15s); }
+.load-rule { transform-origin: left center; animation: rule-draw 1.2s var(--ease-out) both; animation-delay: var(--d, 0.1s); }
+
+@media (prefers-reduced-motion: reduce) {
+  .load-head, .load-rise, .load-rule { animation: none; }
+}
+
+/* ── Commit history (about page) ───────────────────────────────── */
+
+.commit-dot {
+  border-color: rgb(var(--ink-rgb) / 0.3);
+  background: var(--paper);
+  transition: background-color 0.6s var(--ease-out) 0.25s, border-color 0.6s var(--ease-out) 0.25s, transform 0.6s var(--ease-out) 0.25s;
+}
+.commit-dot[data-kind='award'] { border-color: rgb(var(--clay-rgb) / 0.55); }
+.is-in .commit-dot, html:not(.reveal-ready) .commit-dot { border-color: var(--sage); background: var(--sage); }
+.is-in .commit-dot[data-kind='award'], html:not(.reveal-ready) .commit-dot[data-kind='award'] { border-color: var(--clay); background: var(--clay); }
+.is-in .commit-dot[data-kind='education'] { background: var(--paper); }
+
+/* ── Tilt ──────────────────────────────────────────────────────── */
+
+.tilt {
+  --rx: 0deg;
+  --ry: 0deg;
+  --gx: 50%;
+  --gy: 50%;
+  position: relative;
+  height: 100%;
+  transform: perspective(1000px) rotateX(var(--rx)) rotateY(var(--ry));
+  transform-style: preserve-3d;
+  transition: transform 0.7s var(--ease-out);
+  will-change: transform;
+}
+.tilt[data-tilting] { transition: transform 0.12s linear; }
+.tilt::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  border-radius: inherit;
+  background: radial-gradient(420px circle at var(--gx) var(--gy), rgb(255 255 255 / 0.55), transparent 55%);
+  opacity: 0;
+  mix-blend-mode: soft-light;
+  transition: opacity 0.5s ease;
+}
+.tilt[data-tilting]::after { opacity: 1; }
+
+@media (prefers-reduced-motion: reduce) {
+  .tilt { transform: none !important; }
+}
+
+@keyframes trace-run {
+  from { left: 0; }
+  to { left: calc(100% - 10px); }
+}
+.trace-packet { animation: trace-run 1.1s var(--ease-card) infinite; }
+
+/* ── Portrait scan (about page) ────────────────────────────────── */
+
+.reveal-ready [data-reveal='scan'] {
+  clip-path: inset(0 0 100% 0);
+  transition: clip-path 1.4s var(--ease-out) var(--reveal-delay, 0s);
+}
+.reveal-ready [data-reveal='scan'].is-in { clip-path: inset(0); }
+[data-reveal='scan'] { position: relative; }
+.reveal-ready [data-reveal='scan']::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  height: 2px;
+  background: var(--sage);
+  box-shadow: 0 0 18px 4px rgb(var(--sage-rgb) / 0.35);
+  opacity: 0;
+  pointer-events: none;
+}
+.reveal-ready [data-reveal='scan'].is-in::after { animation: scan-line 1.4s var(--ease-out) var(--reveal-delay, 0s) both; }
+@keyframes scan-line {
+  0% { top: 0; opacity: 1; }
+  85% { opacity: 1; }
+  100% { top: 100%; opacity: 0; }
+}
+
+/* A live status light */
+@keyframes pip-pulse {
+  0% { box-shadow: 0 0 0 0 rgb(var(--sage-rgb) / 0.45); }
+  70% { box-shadow: 0 0 0 7px rgb(var(--sage-rgb) / 0); }
+  100% { box-shadow: 0 0 0 0 rgb(var(--sage-rgb) / 0); }
+}
+.pip-live { animation: pip-pulse 2.2s ease-out infinite; }
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal-ready [data-reveal='scan'] { clip-path: none !important; }
+  .reveal-ready [data-reveal='scan']::after, .pip-live { animation: none !important; }
 }

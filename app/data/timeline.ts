@@ -127,6 +127,6 @@ export const faqs: Faq[] = [
   {
     question: 'Where are you based and does it matter?',
     answer:
-      'Islamabad, Pakistan, on UTC plus five. I have delivered to clients in more than fifteen countries and keep overlap hours with Europe and North America. Time zone has never been the reason a project slipped.',
+      'Islamabad, Pakistan, on UTC plus five. I have delivered to clients in 23 countries and keep overlap hours with Europe and North America. Time zone has never been the reason a project slipped.',
   },
 ];

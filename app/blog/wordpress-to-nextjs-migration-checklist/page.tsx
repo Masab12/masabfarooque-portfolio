@@ -36,7 +36,9 @@ export const metadata: Metadata = {
     url: `${site.url}/blog/${post.slug}`,
     publishedTime: post.published,
     authors: [site.url],
+    images: [{ url: `/og/${post.slug}`, width: 1200, height: 630, alt: post.title }],
   },
+  twitter: { card: 'summary_large_image', images: [`/og/${post.slug}`] },
 };
 
 export default function Page() {
@@ -159,7 +161,7 @@ comm -13 urls-sitemap.txt urls-logs.txt | head -40`}</Code>
             'Trailing slash behaviour decided and applied consistently across the whole site.',
             'Query string URLs handled, including the old style paths if permalinks ever changed.',
             'Uppercase and mixed case variants covered if the old server was case insensitive.',
-            'Paginated archive URLs mapped, not just the first page.',
+            'Every paginated archive URL mapped, page two onward included.',
           ]}
         />
 

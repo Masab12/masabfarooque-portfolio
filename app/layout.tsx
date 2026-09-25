@@ -1,17 +1,19 @@
 import type { Metadata } from 'next';
 import './globals.css';
-import { sansFont, serifFont } from './lib/fonts';
+import { monoFont, sansFont, serifFont } from './lib/fonts';
 import { site, socials } from './data/site';
 import Nav from './components/core/Nav';
 import Footer from './components/core/Footer';
 import AnalyticsNotice, { Analytics } from './components/core/Consent';
 import ProjectIntake from './components/core/ProjectIntake';
+import MotionProvider from './components/core/MotionProvider';
+import RevealObserver from './components/motion/RevealObserver';
 
 export const viewport = {
   width: 'device-width',
   initialScale: 1,
   maximumScale: 5,
-  themeColor: '#000000',
+  themeColor: '#F7F6F2',
 };
 
 export const metadata: Metadata = {
@@ -53,10 +55,10 @@ export const metadata: Metadata = {
       'SaaS platforms, AI systems and data pipelines, built end to end. Islamabad, working with teams across Europe, North America and Asia.',
     images: [
       {
-        url: '/og-image.webp',
+        url: '/og/site',
         width: 1200,
         height: 630,
-        alt: 'Masab Farooque, Full Stack Engineer',
+        alt: 'Masab Farooque builds software that holds up after launch.',
       },
     ],
   },
@@ -66,7 +68,7 @@ export const metadata: Metadata = {
     creator: '@MasabDF',
     title: 'Masab Farooque | Full Stack Engineer',
     description: 'SaaS platforms, AI systems and data pipelines, built end to end.',
-    images: ['/og-image.webp'],
+    images: ['/og/site'],
   },
   robots: {
     index: true,
@@ -86,9 +88,10 @@ export const metadata: Metadata = {
 const personSchema = {
   '@context': 'https://schema.org',
   '@type': 'Person',
+  '@id': `${site.url}/#person`,
   name: site.name,
   url: site.url,
-  image: `${site.url}/og-image.webp`,
+  image: `${site.url}/Masab.webp`,
   jobTitle: 'Full Stack Engineer',
   description:
     'Full stack engineer building SaaS platforms, AI systems and data pipelines for teams worldwide.',
@@ -133,14 +136,12 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
   return (
     <html
       lang="en"
-      data-theme="dark"
-      className={`${sansFont.variable} ${serifFont.variable}`}
+      className={`${sansFont.variable} ${serifFont.variable} ${monoFont.variable}`}
     >
       <head>
         <meta name="geo.region" content="PK-IS" />
         <meta name="geo.placename" content="Islamabad" />
         <meta name="geo.position" content="33.6844;73.0479" />
-        <link rel="preconnect" href="https://d8j0ntlcm91z4.cloudfront.net" />
         {/* Verified identity links, generated from the same list as sameAs */}
         {socials.map((s) => (
           <link key={s.href} rel="me" href={s.href} />
@@ -163,17 +164,24 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
 
         <a
           href="#main"
-          className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-[100] focus:border focus:px-4 focus:py-2"
-          style={{ background: 'var(--surface-2)', borderColor: 'var(--line-2)' }}
+          className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[100] focus:rounded-full focus:border focus:bg-sheet focus:px-5 focus:py-3 focus:text-ink"
+          style={{ borderColor: 'var(--line-2)' }}
         >
           Skip to content
         </a>
 
-        <Nav />
-        <main id="main">{children}</main>
-        <Footer />
-        <AnalyticsNotice />
-        <ProjectIntake />
+        <MotionProvider>
+          <Nav />
+          <main id="main" style={{ paddingTop: 'var(--nav-h)' }}>
+            {children}
+          </main>
+          <Footer />
+          <AnalyticsNotice />
+          <ProjectIntake />
+        </MotionProvider>
+
+        <RevealObserver />
+        <div aria-hidden className="paper-grain" />
       </body>
     </html>
   );

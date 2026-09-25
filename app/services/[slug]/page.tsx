@@ -29,7 +29,9 @@ export async function generateMetadata({
       title: `${service.metaTitle} | ${site.name}`,
       description: service.metaDescription,
       url,
+      images: [{ url: `/og/service-${service.slug}`, width: 1200, height: 630, alt: service.metaTitle }],
     },
+    twitter: { card: 'summary_large_image', images: [`/og/service-${service.slug}`] },
   };
 }
 

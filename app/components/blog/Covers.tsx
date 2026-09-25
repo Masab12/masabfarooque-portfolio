@@ -3,7 +3,7 @@
  *
  * Each post gets its own drawing rather than a stock photograph. They are
  * built on the same vocabulary as the marks set: a 1.2 stroke, right angles,
- * circles and chords, cream on black. Every one is also a diagram of the
+ * circles and chords, carbon ink on a white drafting sheet. Every one is also a diagram of the
  * thing the article explains, so the cover carries information instead of
  * decorating the page.
  *
@@ -13,7 +13,10 @@
 
 type CoverProps = { className?: string };
 
-const CREAM = '#E1E0CC';
+const INK = '#161817';
+/** The sheet the drawing sits on. Knockout fills use it too, so a node can
+ *  mask the line running behind it. */
+const GROUND = '#FFFFFF';
 
 function Frame({
   label,
@@ -28,9 +31,9 @@ function Frame({
       aria-label={label}
       preserveAspectRatio="xMidYMid slice"
     >
-      <rect width="1200" height="630" fill="#0B0B0B" />
+      <rect width="1200" height="630" fill={GROUND} />
       {/* Faint measuring grid, the same one the drawings are set out on */}
-      <g stroke={CREAM} strokeOpacity="0.05" strokeWidth="1">
+      <g stroke={INK} strokeOpacity="0.05" strokeWidth="1">
         {Array.from({ length: 11 }).map((_, i) => (
           <line key={`v${i}`} x1={i * 120} y1="0" x2={i * 120} y2="630" />
         ))}
@@ -51,7 +54,7 @@ export function CoverMigration({ className }: CoverProps) {
       className={className}
       label="Old WordPress URLs on the left mapped by redirects to new Next.js routes on the right"
     >
-      <g stroke={CREAM} fill="none" strokeWidth="1.4">
+      <g stroke={INK} fill="none" strokeWidth="1.4">
         {rows.map((r) => {
           const y = 150 + r * 78;
           const dashed = r === 2 || r === 4;
@@ -87,14 +90,14 @@ export function CoverMigration({ className }: CoverProps) {
           width="88"
           height="46"
           rx="23"
-          fill="#0B0B0B"
-          stroke={CREAM}
+          fill={GROUND}
+          stroke={INK}
           strokeWidth="1.4"
         />
         <text
           x="600"
           y="322"
-          fill={CREAM}
+          fill={INK}
           fontFamily="ui-monospace, Menlo, monospace"
           fontSize="20"
           textAnchor="middle"
@@ -105,7 +108,7 @@ export function CoverMigration({ className }: CoverProps) {
       <text
         x="245"
         y="98"
-        fill={CREAM}
+        fill={INK}
         fillOpacity="0.5"
         fontFamily="ui-monospace, Menlo, monospace"
         fontSize="19"
@@ -117,7 +120,7 @@ export function CoverMigration({ className }: CoverProps) {
       <text
         x="955"
         y="98"
-        fill={CREAM}
+        fill={INK}
         fontFamily="ui-monospace, Menlo, monospace"
         fontSize="19"
         textAnchor="middle"
@@ -136,7 +139,7 @@ export function CoverHeadless({ className }: CoverProps) {
       className={className}
       label="WordPress as a content source feeding a build step, which publishes static pages to edge servers"
     >
-      <g stroke={CREAM} fill="none" strokeWidth="1.4">
+      <g stroke={INK} fill="none" strokeWidth="1.4">
         {/* Editor box */}
         <rect x="90" y="240" width="220" height="150" rx="6" />
         <path d="M90 288h220" />
@@ -163,11 +166,11 @@ export function CoverHeadless({ className }: CoverProps) {
           const rad = (deg * Math.PI) / 180;
           const x = 960 + 96 * Math.cos(rad);
           const y = 315 + 96 * Math.sin(rad);
-          return <circle key={deg} cx={x} cy={y} r="11" fill="#0B0B0B" />;
+          return <circle key={deg} cx={x} cy={y} r="11" fill={GROUND} />;
         })}
       </g>
       <g
-        fill={CREAM}
+        fill={INK}
         fillOpacity="0.5"
         fontFamily="ui-monospace, Menlo, monospace"
         fontSize="18"
@@ -194,7 +197,7 @@ export function CoverDecoupled({ className }: CoverProps) {
       className={className}
       label="A single coupled block on the left compared with three separated layers on the right"
     >
-      <g stroke={CREAM} fill="none" strokeWidth="1.4">
+      <g stroke={INK} fill="none" strokeWidth="1.4">
         {/* Coupled: one dense slab, hatched to read as tangled */}
         <rect x="120" y="170" width="360" height="290" rx="6" strokeOpacity="0.55" />
         {Array.from({ length: 13 }).map((_, i) => (
@@ -219,7 +222,7 @@ export function CoverDecoupled({ className }: CoverProps) {
         <path d="M900 250v20M900 359v20" strokeOpacity="0.5" />
         <path d="M894 264l6 6 6-6M894 373l6 6 6-6" strokeOpacity="0.5" />
       </g>
-      <g fill={CREAM} fontFamily="ui-monospace, Menlo, monospace" fontSize="18" letterSpacing="3">
+      <g fill={INK} fontFamily="ui-monospace, Menlo, monospace" fontSize="18" letterSpacing="3">
         <text x="300" y="522" textAnchor="middle" fillOpacity="0.45">
           ONE SYSTEM
         </text>
@@ -255,7 +258,7 @@ export function CoverVitals({ className }: CoverProps) {
             <text
               x="190"
               y={y + 8}
-              fill={CREAM}
+              fill={INK}
               fontFamily="ui-monospace, Menlo, monospace"
               fontSize="22"
               textAnchor="end"
@@ -264,13 +267,13 @@ export function CoverVitals({ className }: CoverProps) {
               {bar.label}
             </text>
             {/* Track segments: good, needs work, poor */}
-            <line x1={x0} y1={y} x2={goodX} y2={y} stroke={CREAM} strokeWidth="10" />
+            <line x1={x0} y1={y} x2={goodX} y2={y} stroke={INK} strokeWidth="10" />
             <line
               x1={goodX}
               y1={y}
               x2={niX}
               y2={y}
-              stroke={CREAM}
+              stroke={INK}
               strokeOpacity="0.4"
               strokeWidth="10"
             />
@@ -279,7 +282,7 @@ export function CoverVitals({ className }: CoverProps) {
               y1={y}
               x2={x0 + width}
               y2={y}
-              stroke={CREAM}
+              stroke={INK}
               strokeOpacity="0.14"
               strokeWidth="10"
             />
@@ -289,7 +292,7 @@ export function CoverVitals({ className }: CoverProps) {
               y1={y - 22}
               x2={goodX}
               y2={y + 22}
-              stroke={CREAM}
+              stroke={INK}
               strokeOpacity="0.5"
               strokeWidth="1.2"
             />
@@ -298,15 +301,15 @@ export function CoverVitals({ className }: CoverProps) {
               y1={y - 22}
               x2={niX}
               y2={y + 22}
-              stroke={CREAM}
+              stroke={INK}
               strokeOpacity="0.3"
               strokeWidth="1.2"
             />
             {/* Measurement marker, a diamond so it matches the rating mark */}
             <path
               d={`M${markerX} ${y - 20} L${markerX + 16} ${y} L${markerX} ${y + 20} L${markerX - 16} ${y} Z`}
-              fill="#0B0B0B"
-              stroke={CREAM}
+              fill={GROUND}
+              stroke={INK}
               strokeWidth="1.6"
             />
           </g>
@@ -315,7 +318,7 @@ export function CoverVitals({ className }: CoverProps) {
       <text
         x="260"
         y="548"
-        fill={CREAM}
+        fill={INK}
         fillOpacity="0.45"
         fontFamily="ui-monospace, Menlo, monospace"
         fontSize="17"
@@ -326,7 +329,7 @@ export function CoverVitals({ className }: CoverProps) {
       <text
         x="960"
         y="548"
-        fill={CREAM}
+        fill={INK}
         fillOpacity="0.2"
         fontFamily="ui-monospace, Menlo, monospace"
         fontSize="17"
@@ -347,7 +350,7 @@ export function CoverMetadata({ className }: CoverProps) {
       className={className}
       label="Meta tags lifted from a WordPress document on the left into a Next.js metadata object on the right"
     >
-      <g stroke={CREAM} fill="none" strokeWidth="1.4">
+      <g stroke={INK} fill="none" strokeWidth="1.4">
         {/* Source document */}
         <rect x="130" y="130" width="330" height="370" rx="6" strokeOpacity="0.45" />
         {/* Target document */}
@@ -366,14 +369,14 @@ export function CoverMetadata({ className }: CoverProps) {
               height="42"
               rx="21"
               fill="none"
-              stroke={CREAM}
+              stroke={INK}
               strokeOpacity="0.3"
               strokeWidth="1.2"
             />
             <text
               x="295"
               y={y + 6}
-              fill={CREAM}
+              fill={INK}
               fillOpacity="0.45"
               fontFamily="ui-monospace, Menlo, monospace"
               fontSize="17"
@@ -389,13 +392,13 @@ export function CoverMetadata({ className }: CoverProps) {
               height="42"
               rx="21"
               fill="none"
-              stroke={CREAM}
+              stroke={INK}
               strokeWidth="1.4"
             />
             <text
               x="905"
               y={y + 6}
-              fill={CREAM}
+              fill={INK}
               fontFamily="ui-monospace, Menlo, monospace"
               fontSize="17"
               textAnchor="middle"
@@ -406,14 +409,14 @@ export function CoverMetadata({ className }: CoverProps) {
             {/* Carry line between the two */}
             <path
               d={`M432 ${y} L760 ${y}`}
-              stroke={CREAM}
+              stroke={INK}
               strokeOpacity="0.35"
               strokeWidth="1.2"
               fill="none"
             />
             <path
               d={`M750 ${y - 5} L760 ${y} L750 ${y + 5}`}
-              stroke={CREAM}
+              stroke={INK}
               strokeOpacity="0.55"
               strokeWidth="1.4"
               fill="none"
@@ -422,7 +425,7 @@ export function CoverMetadata({ className }: CoverProps) {
         );
       })}
 
-      <g fill={CREAM} fontFamily="ui-monospace, Menlo, monospace" fontSize="18" letterSpacing="3">
+      <g fill={INK} fontFamily="ui-monospace, Menlo, monospace" fontSize="18" letterSpacing="3">
         <text x="295" y="556" textAnchor="middle" fillOpacity="0.45">
           YOAST
         </text>
@@ -442,7 +445,7 @@ export function CoverHosting({ className }: CoverProps) {
       className={className}
       label="A private WordPress origin feeding a build step that fans out to five edge nodes"
     >
-      <g stroke={CREAM} fill="none" strokeWidth="1.4">
+      <g stroke={INK} fill="none" strokeWidth="1.4">
         {/* Origin box, drawn closed to read as private */}
         <rect x="110" y="255" width="210" height="120" rx="6" />
         <path d="M150 255v-28a45 45 0 0 1 90 0v28" strokeOpacity="0.6" />
@@ -466,7 +469,7 @@ export function CoverHosting({ className }: CoverProps) {
         })}
       </g>
 
-      <g fill={CREAM} fontFamily="ui-monospace, Menlo, monospace" letterSpacing="3">
+      <g fill={INK} fontFamily="ui-monospace, Menlo, monospace" letterSpacing="3">
         <text x="215" y="430" fontSize="18" textAnchor="middle" fillOpacity="0.55">
           ORIGIN
         </text>
@@ -490,14 +493,14 @@ export function CoverSolo({ className }: CoverProps) {
       label="A single filled node on the left against a scattered team of partial nodes on the right"
     >
       {/* Solo: one node, every line running through it */}
-      <g stroke={CREAM} fill="none" strokeWidth="1.4">
+      <g stroke={INK} fill="none" strokeWidth="1.4">
         {Array.from({ length: 8 }).map((_, i) => {
           const angle = (i / 8) * Math.PI * 2;
           const x = 300 + Math.cos(angle) * 155;
           const y = 315 + Math.sin(angle) * 155;
           return <path key={i} d={`M300 315 L${x} ${y}`} strokeOpacity="0.28" />;
         })}
-        <circle cx="300" cy="315" r="46" fill={CREAM} stroke="none" />
+        <circle cx="300" cy="315" r="46" fill={INK} stroke="none" />
         {Array.from({ length: 8 }).map((_, i) => {
           const angle = (i / 8) * Math.PI * 2;
           const x = 300 + Math.cos(angle) * 155;
@@ -528,7 +531,7 @@ export function CoverSolo({ className }: CoverProps) {
         })}
       </g>
 
-      <g fill={CREAM} fontFamily="ui-monospace, Menlo, monospace" fontSize="18" letterSpacing="3">
+      <g fill={INK} fontFamily="ui-monospace, Menlo, monospace" fontSize="18" letterSpacing="3">
         <text x="300" y="556" textAnchor="middle">
           ONE OWNER
         </text>
@@ -578,14 +581,14 @@ export function CoverCost({ className }: CoverProps) {
           height="56"
           rx="4"
           fill="none"
-          stroke={CREAM}
+          stroke={INK}
           strokeWidth="1.4"
           strokeOpacity="0.45"
         />
         <text
           x={x0 + track / 2}
           y="187"
-          fill={CREAM}
+          fill={INK}
           fillOpacity="0.45"
           fontFamily="ui-monospace, Menlo, monospace"
           fontSize="20"
@@ -606,14 +609,14 @@ export function CoverCost({ className }: CoverProps) {
               width={Math.max(seg.w - 4, 2)}
               height="72"
               rx="3"
-              fill={CREAM}
+              fill={INK}
               fillOpacity={0.14 + (segments.length - i) * 0.1}
             />
             {seg.label ? (
               <text
                 x={seg.x + seg.w / 2}
                 y="418"
-                fill={CREAM}
+                fill={INK}
                 fillOpacity="0.55"
                 fontFamily="ui-monospace, Menlo, monospace"
                 fontSize="14"
@@ -628,7 +631,7 @@ export function CoverCost({ className }: CoverProps) {
               y1="382"
               x2={seg.x + seg.w / 2}
               y2="396"
-              stroke={CREAM}
+              stroke={INK}
               strokeOpacity="0.3"
               strokeWidth="1.2"
             />
@@ -637,7 +640,7 @@ export function CoverCost({ className }: CoverProps) {
       </g>
 
       {/* Connectors from the single bar down to the split */}
-      <g stroke={CREAM} strokeOpacity="0.22" strokeWidth="1.2" fill="none">
+      <g stroke={INK} strokeOpacity="0.22" strokeWidth="1.2" fill="none">
         <path d={`M${x0} 206 L${x0} 300`} />
         <path d={`M${x0 + track} 206 L${x0 + track} 300`} />
       </g>
@@ -645,7 +648,7 @@ export function CoverCost({ className }: CoverProps) {
       <text
         x={x0}
         y="500"
-        fill={CREAM}
+        fill={INK}
         fontFamily="ui-monospace, Menlo, monospace"
         fontSize="18"
         letterSpacing="3"
@@ -676,13 +679,13 @@ export function CoverTimeline({ className }: CoverProps) {
       label="Six project phases drawn as overlapping bars across five weeks"
     >
       {/* Week gridlines */}
-      <g stroke={CREAM} strokeOpacity="0.12" strokeWidth="1">
+      <g stroke={INK} strokeOpacity="0.12" strokeWidth="1">
         {Array.from({ length: weeks + 1 }).map((_, i) => (
           <line key={i} x1={x0 + i * weekW} y1="120" x2={x0 + i * weekW} y2="470" />
         ))}
       </g>
       <g
-        fill={CREAM}
+        fill={INK}
         fillOpacity="0.4"
         fontFamily="ui-monospace, Menlo, monospace"
         fontSize="15"
@@ -706,7 +709,7 @@ export function CoverTimeline({ className }: CoverProps) {
               width={p.len * weekW}
               height="30"
               rx="4"
-              fill={CREAM}
+              fill={INK}
               fillOpacity={0.85 - i * 0.1}
             />
           </g>
@@ -716,7 +719,7 @@ export function CoverTimeline({ className }: CoverProps) {
       <text
         x={x0}
         y="524"
-        fill={CREAM}
+        fill={INK}
         fontFamily="ui-monospace, Menlo, monospace"
         fontSize="18"
         letterSpacing="3"
@@ -755,7 +758,7 @@ export function CoverChecklist({ className }: CoverProps) {
               height="40"
               rx="4"
               fill="none"
-              stroke={CREAM}
+              stroke={INK}
               strokeWidth="1.6"
               strokeOpacity={row.done ? 0.85 : row.current ? 1 : 0.32}
             />
@@ -763,7 +766,7 @@ export function CoverChecklist({ className }: CoverProps) {
               <path
                 d={`M169 ${y + 21} L178 ${y + 30} L192 ${y + 11}`}
                 fill="none"
-                stroke={CREAM}
+                stroke={INK}
                 strokeWidth="2.2"
                 strokeLinecap="round"
                 strokeLinejoin="round"
@@ -777,7 +780,7 @@ export function CoverChecklist({ className }: CoverProps) {
               width={row.w}
               height="9"
               rx="4.5"
-              fill={CREAM}
+              fill={INK}
               fillOpacity={row.done ? 0.3 : row.current ? 0.7 : 0.14}
             />
 
@@ -786,7 +789,7 @@ export function CoverChecklist({ className }: CoverProps) {
               <path
                 d={`M120 ${y + 20} L136 ${y + 20} M130 ${y + 14} L136 ${y + 20} L130 ${y + 26}`}
                 fill="none"
-                stroke={CREAM}
+                stroke={INK}
                 strokeWidth="1.6"
                 strokeLinecap="round"
               />
@@ -821,7 +824,7 @@ export function CoverSchema({ className }: CoverProps) {
       className={className}
       label="An admin form built of clickable field rows on the left, against a version controlled schema file on the right"
     >
-      <g stroke={CREAM} fill="none" strokeWidth="1.4">
+      <g stroke={INK} fill="none" strokeWidth="1.4">
         {/* Admin panel, dimmed, with a title bar and five field rows */}
         <rect x="112" y="146" width="376" height="334" rx="6" strokeOpacity="0.5" />
         <path d="M112 192h376" strokeOpacity="0.4" />
@@ -851,7 +854,7 @@ export function CoverSchema({ className }: CoverProps) {
       <text
         x="744"
         y="176"
-        fill={CREAM}
+        fill={INK}
         fillOpacity="0.55"
         fontFamily="ui-monospace, Menlo, monospace"
         fontSize="16"
@@ -867,20 +870,20 @@ export function CoverSchema({ className }: CoverProps) {
           width={line.w}
           height="10"
           rx="5"
-          fill={CREAM}
+          fill={INK}
           fillOpacity={0.72 - i * 0.07}
         />
       ))}
 
       {/* Commit nodes down the gutter of the file */}
-      <g stroke={CREAM} strokeOpacity="0.3" strokeWidth="1.2" fill="none">
+      <g stroke={INK} strokeOpacity="0.3" strokeWidth="1.2" fill="none">
         <path d="M726 232v212" />
         {[0, 1, 2].map((n) => (
-          <circle key={n} cx="726" cy={244 + n * 100} r="6" fill="#0B0B0B" />
+          <circle key={n} cx="726" cy={244 + n * 100} r="6" fill={GROUND} />
         ))}
       </g>
 
-      <g fill={CREAM} fontFamily="ui-monospace, Menlo, monospace" fontSize="18" letterSpacing="3">
+      <g fill={INK} fontFamily="ui-monospace, Menlo, monospace" fontSize="18" letterSpacing="3">
         <text x="300" y="546" textAnchor="middle" fillOpacity="0.45">
           CLICKED
         </text>
@@ -920,7 +923,7 @@ export function CoverVersus({ className }: CoverProps) {
       label="One page request drawn twice: through PHP, plugins and a database on every visit, and straight off an edge cache with the content management system off the path"
     >
       {/* ── Request time: every visitor walks the whole line ──── */}
-      <g stroke={CREAM} fill="none" strokeWidth="1.4" strokeOpacity="0.5">
+      <g stroke={INK} fill="none" strokeWidth="1.4" strokeOpacity="0.5">
         {requestGaps.map(([x1, x2]) => (
           <line key={x1} x1={x1} y1="176" x2={x2} y2="176" strokeDasharray="5 8" />
         ))}
@@ -933,10 +936,10 @@ export function CoverVersus({ className }: CoverProps) {
         <rect x="846" y="141" width="108" height="70" rx="5" />
         <path d="M866 165h68M866 180h52M866 195h60" strokeWidth="1.2" />
       </g>
-      <path d="M1024 176l-18-10v20z" fill={CREAM} fillOpacity="0.5" />
+      <path d="M1024 176l-18-10v20z" fill={INK} fillOpacity="0.5" />
 
       <g
-        fill={CREAM}
+        fill={INK}
         fillOpacity="0.5"
         fontFamily="ui-monospace, Menlo, monospace"
         fontSize="15"
@@ -948,7 +951,7 @@ export function CoverVersus({ className }: CoverProps) {
       </g>
 
       {/* ── Build time: the visitor stops two nodes in ────────── */}
-      <g stroke={CREAM} fill="none" strokeWidth="1.4">
+      <g stroke={INK} fill="none" strokeWidth="1.4">
         {edgeGaps.map(([x1, x2]) => (
           <line key={x1} x1={x1} y1="430" x2={x2} y2="430" />
         ))}
@@ -959,18 +962,18 @@ export function CoverVersus({ className }: CoverProps) {
       </g>
       {/* The CMS is still there. It just stopped answering the traffic, and
           now only feeds the page that was built ahead of the request. */}
-      <g stroke={CREAM} fill="none" strokeWidth="1.4" strokeOpacity="0.45">
+      <g stroke={INK} fill="none" strokeWidth="1.4" strokeOpacity="0.45">
         <rect x="846" y="386" width="160" height="88" rx="5" />
         <line x1="576" y1="430" x2="846" y2="430" strokeDasharray="6 8" />
       </g>
-      <path d="M558 430l18-10v20z" fill={CREAM} fillOpacity="0.45" />
+      <path d="M558 430l18-10v20z" fill={INK} fillOpacity="0.45" />
 
-      <g fill={CREAM} fontFamily="ui-monospace, Menlo, monospace" fontSize="15" textAnchor="middle">
+      <g fill={INK} fontFamily="ui-monospace, Menlo, monospace" fontSize="15" textAnchor="middle">
         <text x="295" y="436">EDGE</text>
         <text x="926" y="436" fillOpacity="0.45">CMS</text>
       </g>
 
-      <g fill={CREAM} fontFamily="ui-monospace, Menlo, monospace" fontSize="17" letterSpacing="3">
+      <g fill={INK} fontFamily="ui-monospace, Menlo, monospace" fontSize="17" letterSpacing="3">
         <text x="150" y="304" fillOpacity="0.45">ON EVERY VISIT</text>
         <text x="150" y="558">ONCE, BEFORE ANYONE ASKS</text>
       </g>
@@ -999,16 +1002,16 @@ export function CoverPlugins({ className }: CoverProps) {
       label="A list of active WordPress plugins on the left, sorted by lines into four bins on the right labelled gone, code, service and project"
     >
       {/* The active plugin list, drawn as rows with their toggles still on */}
-      <g stroke={CREAM} fill="none" strokeWidth="1.4">
+      <g stroke={INK} fill="none" strokeWidth="1.4">
         <rect x="96" y="132" width="356" height="366" rx="6" strokeOpacity="0.6" />
         <path d="M96 178h356" strokeOpacity="0.45" />
         {rows.map((r) => {
           const y = 208 + r * 36;
           return (
             <g key={r}>
-              <rect x="128" y={y} width="196" height="14" rx="7" fill={CREAM} fillOpacity="0.5" stroke="none" />
+              <rect x="128" y={y} width="196" height="14" rx="7" fill={INK} fillOpacity="0.5" stroke="none" />
               <rect x="368" y={y - 3} width="36" height="20" rx="10" strokeOpacity="0.55" />
-              <circle cx="394" cy={y + 7} r="6" fill={CREAM} fillOpacity="0.7" stroke="none" />
+              <circle cx="394" cy={y + 7} r="6" fill={INK} fillOpacity="0.7" stroke="none" />
             </g>
           );
         })}
@@ -1017,7 +1020,7 @@ export function CoverPlugins({ className }: CoverProps) {
       <text
         x="128"
         y="163"
-        fill={CREAM}
+        fill={INK}
         fillOpacity="0.55"
         fontFamily="ui-monospace, Menlo, monospace"
         fontSize="16"
@@ -1029,7 +1032,7 @@ export function CoverPlugins({ className }: CoverProps) {
           own and drops into its bin, so four routes cross a four bin field
           without ever crossing each other. The nearest bin takes the lowest
           lane, which is what keeps them apart. */}
-      <g stroke={CREAM} fill="none" strokeWidth="1.2" strokeOpacity="0.35">
+      <g stroke={INK} fill="none" strokeWidth="1.2" strokeOpacity="0.35">
         {bins.map((bin, i) => {
           const from = 467 - i * 72;
           const lane = 350 - i * 20;
@@ -1047,7 +1050,7 @@ export function CoverPlugins({ className }: CoverProps) {
         <g key={bin.label}>
           <path
             d={`M${bin.x - 40} 366 v112 h80 v-112`}
-            stroke={CREAM}
+            stroke={INK}
             strokeWidth="1.4"
             strokeOpacity="0.6"
             fill="none"
@@ -1060,14 +1063,14 @@ export function CoverPlugins({ className }: CoverProps) {
               width="64"
               height="16"
               rx="3"
-              fill={CREAM}
+              fill={INK}
               fillOpacity={0.66 - f * 0.12}
             />
           ))}
           <text
             x={bin.x}
             y="518"
-            fill={CREAM}
+            fill={INK}
             fillOpacity="0.7"
             fontFamily="ui-monospace, Menlo, monospace"
             fontSize="14"
@@ -1096,7 +1099,7 @@ export function CoverStore({ className }: CoverProps) {
       label="A product grid on the left under the word reads, a cart with line items, a total and a pay button on the right under the word writes, split by a dashed line"
     >
       {/* Catalogue: six cards, the half that is only ever read */}
-      <g stroke={CREAM} fill="none" strokeWidth="1.4">
+      <g stroke={INK} fill="none" strokeWidth="1.4">
         {grid.map((i) => {
           const x = 108 + (i % 3) * 148;
           const y = 156 + Math.floor(i / 3) * 178;
@@ -1111,7 +1114,7 @@ export function CoverStore({ className }: CoverProps) {
                 width="66"
                 height="10"
                 rx="5"
-                fill={CREAM}
+                fill={INK}
                 fillOpacity="0.45"
                 stroke="none"
               />
@@ -1120,30 +1123,30 @@ export function CoverStore({ className }: CoverProps) {
         })}
       </g>
 
-      <line x1="600" y1="118" x2="600" y2="512" stroke={CREAM} strokeOpacity="0.2" strokeDasharray="6 8" />
+      <line x1="600" y1="118" x2="600" y2="512" stroke={INK} strokeOpacity="0.2" strokeDasharray="6 8" />
 
       {/* Cart: line items, a total that WooCommerce works out, and a button */}
-      <g stroke={CREAM} fill="none" strokeWidth="1.4">
+      <g stroke={INK} fill="none" strokeWidth="1.4">
         <rect x="700" y="156" width="392" height="328" rx="6" />
         {lines.map((i) => {
           const y = 202 + i * 52;
           return (
             <g key={i}>
               <rect x={734} y={y} width="34" height="34" rx="4" strokeOpacity="0.45" />
-              <rect x={790} y={y + 8} width={168 - i * 26} height="12" rx="6" fill={CREAM} fillOpacity="0.55" stroke="none" />
-              <rect x={1004} y={y + 8} width="52" height="12" rx="6" fill={CREAM} fillOpacity="0.3" stroke="none" />
+              <rect x={790} y={y + 8} width={168 - i * 26} height="12" rx="6" fill={INK} fillOpacity="0.55" stroke="none" />
+              <rect x={1004} y={y + 8} width="52" height="12" rx="6" fill={INK} fillOpacity="0.3" stroke="none" />
             </g>
           );
         })}
         <path d="M734 378h324" strokeOpacity="0.45" />
-        <rect x="1004" y="398" width="52" height="14" rx="7" fill={CREAM} stroke="none" />
-        <rect x="734" y="428" width="324" height="38" rx="19" fill={CREAM} fillOpacity="0.9" stroke="none" />
+        <rect x="1004" y="398" width="52" height="14" rx="7" fill={INK} stroke="none" />
+        <rect x="734" y="428" width="324" height="38" rx="19" fill={INK} fillOpacity="0.9" stroke="none" />
       </g>
 
       <text
         x="896"
         y="453"
-        fill="#0B0B0B"
+        fill={GROUND}
         fontFamily="ui-monospace, Menlo, monospace"
         fontSize="16"
         letterSpacing="2"
@@ -1154,7 +1157,7 @@ export function CoverStore({ className }: CoverProps) {
       <text
         x="734"
         y="408"
-        fill={CREAM}
+        fill={INK}
         fillOpacity="0.55"
         fontFamily="ui-monospace, Menlo, monospace"
         fontSize="15"
@@ -1162,7 +1165,7 @@ export function CoverStore({ className }: CoverProps) {
         tax, shipping, coupons
       </text>
 
-      <g fill={CREAM} fontFamily="ui-monospace, Menlo, monospace" fontSize="18" letterSpacing="3">
+      <g fill={INK} fontFamily="ui-monospace, Menlo, monospace" fontSize="18" letterSpacing="3">
         <text x="318" y="560" textAnchor="middle" fillOpacity="0.5">
           READS
         </text>

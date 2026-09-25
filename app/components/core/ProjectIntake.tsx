@@ -124,7 +124,7 @@ function FieldLabel({ children, optional }: { children: string; optional?: boole
       {optional ? (
         <span className="ml-1.5">(optional)</span>
       ) : (
-        <span aria-hidden className="ml-1 text-primary">
+        <span aria-hidden className="ml-1 text-sage">
           *
         </span>
       )}
@@ -169,9 +169,9 @@ function ChipGroup({
               onClick={() => onChange(option)}
               className="rounded-full border px-3.5 py-2 text-[0.82rem] leading-none transition-colors duration-300"
               style={{
-                borderColor: active ? 'var(--cream)' : 'var(--line-2)',
-                background: active ? 'var(--cream)' : 'transparent',
-                color: active ? '#0B0B0B' : 'var(--gray-400)',
+                borderColor: active ? 'var(--ink)' : 'var(--line-2)',
+                background: active ? 'var(--ink)' : 'transparent',
+                color: active ? 'var(--paper)' : 'var(--ink-2)',
               }}
             >
               {option}
@@ -186,7 +186,7 @@ function ChipGroup({
 function FieldError({ children }: { children?: string }) {
   if (!children) return null;
   return (
-    <span className="mt-2 block text-[0.7rem]" style={{ color: 'var(--gray-500)' }}>
+    <span className="mt-2 block text-[0.7rem]" style={{ color: 'var(--ink-3)' }}>
       {children}
     </span>
   );
@@ -388,7 +388,7 @@ export default function ProjectIntake() {
     Object.keys(step === 1 ? stepOneErrors(fields) : stepTwoErrors(fields)).length === 0;
 
   const forwardButtonClass =
-    'group inline-flex items-center gap-2 rounded-full bg-primary py-1.5 pl-5 pr-1.5 text-sm font-medium text-black transition-all duration-300';
+    'group inline-flex items-center gap-2 rounded-full bg-ink py-1.5 pl-5 pr-1.5 text-sm font-medium text-paper transition-all duration-300';
 
   return (
     <AnimatePresence>
@@ -408,7 +408,7 @@ export default function ProjectIntake() {
             aria-label="Close this panel"
             tabIndex={-1}
             onClick={close}
-            className="absolute inset-0 h-full w-full cursor-default bg-black/85 backdrop-blur-md"
+            className="absolute inset-0 h-full w-full cursor-default bg-paper/85 backdrop-blur-md"
           />
 
           <motion.div
@@ -422,7 +422,7 @@ export default function ProjectIntake() {
             exit={{ y: 20, opacity: 0, scale: 0.99 }}
             transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
             className="relative flex max-h-[calc(100dvh-1.5rem)] w-full max-w-xl flex-col overflow-hidden rounded-2xl border shadow-2xl outline-none sm:max-h-[calc(100dvh-3rem)]"
-            style={{ borderColor: 'var(--line-2)', background: 'var(--surface-1)' }}
+            style={{ borderColor: 'var(--line-2)', background: 'var(--sheet)' }}
           >
             {/* ── Head ──────────────────────────────────────────── */}
             <div
@@ -431,14 +431,14 @@ export default function ProjectIntake() {
             >
               <div className="min-w-0">
                 <div className="flex items-center gap-2.5">
-                  <Spark size={10} className="shrink-0 text-primary" />
+                  <Spark size={10} className="shrink-0 text-sage" />
                   <span className="label">
                     {status === 'sent' ? 'Received' : `Step ${step} of 2`}
                   </span>
                 </div>
                 <h2
                   id="intake-title"
-                  className="mt-2.5 text-[1.05rem] leading-snug text-cream sm:text-[1.2rem]"
+                  className="mt-2.5 text-[1.05rem] leading-snug text-ink sm:text-[1.2rem]"
                 >
                   {status === 'sent'
                     ? 'Thanks, I have got it'
@@ -452,7 +452,7 @@ export default function ProjectIntake() {
                 type="button"
                 onClick={close}
                 aria-label="Close this panel"
-                className="-mr-1.5 -mt-1.5 shrink-0 rounded-full border p-2 text-gray-400 transition-colors duration-300 hover:border-hair2 hover:text-cream"
+                className="-mr-1.5 -mt-1.5 shrink-0 rounded-full border p-2 text-ink-2 transition-colors duration-300 hover:border-hair2 hover:text-ink"
                 style={{ borderColor: 'var(--line)' }}
               >
                 <CloseMark size={14} />
@@ -462,8 +462,8 @@ export default function ProjectIntake() {
             {/* ── Body ──────────────────────────────────────────── */}
             {status === 'sent' ? (
               <div className="px-5 py-8 sm:px-7 sm:py-10">
-                <MarkCheck size={26} className="text-primary" />
-                <p className="mt-5 text-[0.95rem] leading-[1.7] text-gray-400">
+                <MarkCheck size={26} className="text-sage" />
+                <p className="mt-5 text-[0.95rem] leading-[1.7] text-ink-2">
                   Your details are with me. I read every enquiry myself and reply within one
                   working day, usually sooner. If it turns out I am not the right fit for the job,
                   I will tell you that instead of wasting your time.
@@ -471,7 +471,7 @@ export default function ProjectIntake() {
                 <button
                   type="button"
                   onClick={close}
-                  className="mt-7 rounded-full bg-primary px-6 py-2.5 text-sm font-medium text-black transition-opacity hover:opacity-85"
+                  className="mt-7 rounded-full bg-ink px-6 py-2.5 text-sm font-medium text-paper transition-opacity hover:opacity-85"
                 >
                   Close
                 </button>
@@ -482,8 +482,8 @@ export default function ProjectIntake() {
                   {/* Sits inside the scroller rather than the fixed header, so
                       it costs nothing on a short screen where the header and
                       footer are the scarce space. */}
-                  <p className="mb-6 text-[0.72rem] text-gray-500">
-                    Fields marked <span className="text-primary">*</span> are needed. The rest you
+                  <p className="mb-6 text-[0.72rem] text-ink-3">
+                    Fields marked <span className="text-sage">*</span> are needed. The rest you
                     can skip.
                   </p>
 
@@ -598,9 +598,9 @@ export default function ProjectIntake() {
                       />
 
                       {status === 'error' ? (
-                        <p className="text-[0.8rem] leading-relaxed" style={{ color: 'var(--gray-500)' }}>
+                        <p className="text-[0.8rem] leading-relaxed" style={{ color: 'var(--ink-3)' }}>
                           That did not send. Please try again, or email me directly at{' '}
-                          <a href="mailto:contact@masabfarooque.com" className="text-primary">
+                          <a href="mailto:contact@masabfarooque.com" className="text-sage">
                             contact@masabfarooque.com
                           </a>
                           .
@@ -619,7 +619,7 @@ export default function ProjectIntake() {
                     <button
                       type="button"
                       onClick={close}
-                      className="text-[0.8rem] text-gray-500 transition-colors hover:text-gray-400"
+                      className="text-[0.8rem] text-ink-3 transition-colors hover:text-ink-2"
                     >
                       Not now
                     </button>
@@ -627,7 +627,7 @@ export default function ProjectIntake() {
                     <button
                       type="button"
                       onClick={() => setStep(1)}
-                      className="text-[0.8rem] text-gray-500 transition-colors hover:text-gray-400"
+                      className="text-[0.8rem] text-ink-3 transition-colors hover:text-ink-2"
                     >
                       Back
                     </button>
@@ -641,8 +641,8 @@ export default function ProjectIntake() {
                       className={`${forwardButtonClass} ${stepReady ? 'opacity-100 hover:gap-3' : 'cursor-not-allowed opacity-40'}`}
                     >
                       Continue
-                      <span className="flex h-8 w-8 items-center justify-center rounded-full bg-black transition-transform duration-300 group-hover:scale-110">
-                        <ArrowLong size={13} className="text-cream" />
+                      <span className="flex h-8 w-8 items-center justify-center rounded-full bg-paper transition-transform duration-300 group-hover:scale-110">
+                        <ArrowLong size={13} className="text-ink" />
                       </span>
                     </button>
                   ) : (
@@ -655,8 +655,8 @@ export default function ProjectIntake() {
                       } disabled:opacity-60`}
                     >
                       {status === 'sending' ? 'Sending' : 'Send it'}
-                      <span className="flex h-8 w-8 items-center justify-center rounded-full bg-black transition-transform duration-300 group-hover:scale-110">
-                        <ArrowLong size={13} className="text-cream" />
+                      <span className="flex h-8 w-8 items-center justify-center rounded-full bg-paper transition-transform duration-300 group-hover:scale-110">
+                        <ArrowLong size={13} className="text-ink" />
                       </span>
                     </button>
                   )}

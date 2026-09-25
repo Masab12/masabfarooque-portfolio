@@ -39,7 +39,9 @@ export const metadata: Metadata = {
     url: `${site.url}/blog/${post.slug}`,
     publishedTime: post.published,
     authors: [site.url],
+    images: [{ url: `/og/${post.slug}`, width: 1200, height: 630, alt: post.title }],
   },
+  twitter: { card: 'summary_large_image', images: [`/og/${post.slug}`] },
 };
 
 export default function Page() {
@@ -54,7 +56,7 @@ export default function Page() {
       ))}
 
       <ArticleLayout post={post}>
-        <Lede>Most quotes give you one number. Here is what sits inside it.</Lede>
+        <Lede>Most quotes give you one number. This is what sits inside it.</Lede>
 
         <P>
           You ask three people what it costs to move your WordPress site to Next.js and you get

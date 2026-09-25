@@ -1,11 +1,13 @@
 import localFont from 'next/font/local';
 
 /**
- * Two families, nothing else.
+ * Three voices, each with one job.
  *
- * Almarai carries everything: headings, body, labels, numbers. Instrument
- * Serif appears only in italic, as an accent inside a sentence. Both are self
- * hosted so the page never blocks on a third party font CDN.
+ * Almarai carries headings and body. Instrument Serif appears only in italic,
+ * for a single phrase inside a headline. Fragment Mono is the drafting hand:
+ * sheet numbers, dates, specs and labels, the parts of a page a reader scans
+ * rather than reads. All three are served from this domain, so no page ever
+ * waits on a third party font host.
  */
 
 export const sansFont = localFont({
@@ -30,4 +32,12 @@ export const serifFont = localFont({
   display: 'swap',
   preload: true,
   fallback: ['Georgia', 'Times New Roman', 'serif'],
+});
+
+export const monoFont = localFont({
+  src: [{ path: '../../public/fonts/FragmentMono-Regular.woff2', weight: '400', style: 'normal' }],
+  variable: '--font-mono',
+  display: 'swap',
+  preload: true,
+  fallback: ['ui-monospace', 'SFMono-Regular', 'Menlo', 'monospace'],
 });

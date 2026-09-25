@@ -23,28 +23,67 @@ export const cv = {
 } as const;
 
 /**
- * Every entry points at a real route. Capabilities and Reviews used to be
- * homepage anchors, which meant they were not indexable on their own and,
- * on a phone, tapping one from the menu changed nothing but the URL.
+ * Every entry points at a real, indexable route, so the navigation is also a
+ * crawl path. Contact is not listed here because it has its own button in the
+ * masthead and never needs to compete with the other five.
  */
 export const nav = [
-  { label: 'Work', href: '/portfolio', index: '01' },
-  { label: 'Capabilities', href: '/capabilities', index: '02' },
-  { label: 'Writing', href: '/blog', index: '03' },
-  { label: 'Reviews', href: '/reviews', index: '04' },
-  { label: 'About', href: '/about-masab', index: '05' },
-  { label: 'Contact', href: '/contact', index: '06' },
+  { label: 'Work', href: '/portfolio' },
+  { label: 'Services', href: '/services' },
+  { label: 'Writing', href: '/blog' },
+  { label: 'Reviews', href: '/reviews' },
+  { label: 'About', href: '/about-masab' },
 ] as const;
 
 /**
- * Motion backdrop for the hero. Swap this URL for your own footage and the
- * hero re-skins without touching a component.
+ * The site as a drawing set. Each top level page is a sheet with a number,
+ * the way a set of architectural drawings is indexed. The numbers label each
+ * page's strip; sub pages borrow their parent's number.
  */
-export const media = {
-  heroVideo:
-    'https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260405_170732_8a9ccda6-5cff-4628-b164-059c500a2b41.mp4',
-  heroPoster: '/video/hero-poster.webp',
-} as const;
+export const sheets = [
+  { code: 'A-00', label: 'Home', href: '/' },
+  { code: 'A-01', label: 'Work', href: '/portfolio' },
+  { code: 'A-02', label: 'Services', href: '/services' },
+  { code: 'A-03', label: 'Capabilities', href: '/capabilities' },
+  { code: 'A-04', label: 'Writing', href: '/blog' },
+  { code: 'A-05', label: 'Reviews', href: '/reviews' },
+  { code: 'A-06', label: 'About', href: '/about-masab' },
+  { code: 'A-07', label: 'Contact', href: '/contact' },
+  { code: 'A-08', label: 'Site Check', href: '/site-check' },
+] as const;
+
+/**
+ * Sheets a given menu does not already link to. Home is always reachable
+ * from the name in the masthead and Contact from its own button, so neither
+ * is ever repeated. Used so the footer and the phone menu only list pages a
+ * visitor could not otherwise get to.
+ */
+export function sheetsNotIn(hrefs: readonly string[]) {
+  return sheets.filter((s) => s.href !== '/' && s.href !== '/contact' && !hrefs.includes(s.href));
+}
+
+/** Sheets that exist but stay out of every list. */
+const appendix = [
+  { code: 'X-01', label: 'Privacy', href: '/privacy' },
+  { code: 'X-02', label: 'Terms', href: '/terms' },
+] as const;
+
+type Sheet = { code: string; label: string; href: string };
+
+/** The sheet a path belongs to: its own entry, or the section above it. */
+export function sheetFor(pathname: string): Sheet {
+  const all: readonly Sheet[] = [...sheets, ...appendix];
+  const exact = all.find((s) => s.href === pathname);
+  if (exact) return exact;
+  const parent = all
+    .filter((s) => s.href !== '/' && pathname.startsWith(`${s.href}/`))
+    .sort((a, b) => b.href.length - a.href.length)[0];
+  return parent ?? { code: 'X-00', label: 'Not in the set', href: pathname };
+}
+
+/** Where the work is drawn from, as it appears in the masthead. */
+export const coordinates = '33.6844 N, 73.0479 E';
+
 
 export const socials = [
   { label: 'GitHub', handle: 'Masab12', href: 'https://github.com/Masab12', glyph: 'github' },
@@ -101,4 +140,15 @@ export const marqueeTerms = [
   'Go on AWS Lambda',
   'Next.js and FastAPI',
   'Interfaces with motion',
+] as const;
+
+/** Tools in use, grouped the way they sit in a system. Read by the terminal and the about page. */
+export const stack = [
+  { group: 'languages', items: ['TypeScript', 'Python', 'Go', 'SQL', 'C#'] },
+  { group: 'front end', items: ['Next.js', 'React', 'Tailwind CSS', 'Framer Motion', 'Canvas'] },
+  { group: 'back end', items: ['FastAPI', 'Node.js', 'NestJS', 'Express', 'Celery', 'Redis'] },
+  { group: 'data', items: ['PostgreSQL', 'Supabase', 'DynamoDB', 'MongoDB', 'Vector search'] },
+  { group: 'cloud', items: ['AWS Lambda', 'API Gateway', 'S3', 'Docker', 'Vercel', 'Serverless Framework'] },
+  { group: 'ai', items: ['Claude API', 'OpenAI', 'Groq', 'LangChain', 'RAG pipelines'] },
+  { group: 'payments', items: ['Stripe'] },
 ] as const;

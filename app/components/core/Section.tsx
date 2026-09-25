@@ -5,31 +5,33 @@ type Props = {
   id?: string;
   /** Wraps the content in the standard shell width. */
   shell?: boolean;
-  /** Sections holding sticky children stay off the snap track. */
-  snap?: boolean;
+  /** Draws the hairline that separates one band of a sheet from the next. */
+  ruled?: boolean;
   className?: string;
   as?: ElementType;
+  labelledBy?: string;
 };
 
 /**
- * One wrapper so every band on the site shares the same vertical rhythm,
- * horizontal gutter and snap behaviour. If a section needs different spacing,
- * the spacing is wrong, not the section.
+ * One wrapper so every band on the site shares the same vertical rhythm and
+ * horizontal gutter. If a section needs different spacing, the spacing is
+ * wrong, not the section.
  */
 export default function Section({
   children,
   id,
   shell = true,
-  snap = true,
+  ruled = true,
   className = '',
   as: Tag = 'section',
+  labelledBy,
 }: Props) {
   return (
     <Tag
       id={id}
-      className={`relative bg-black py-14 sm:py-20 md:py-24 lg:py-28 ${
-        snap ? 'snap-start' : ''
-      } ${className}`}
+      aria-labelledby={labelledBy}
+      className={`relative py-16 sm:py-20 lg:py-28 ${ruled ? 'border-t' : ''} ${className}`}
+      style={ruled ? { borderColor: 'var(--line)' } : undefined}
     >
       {shell ? <div className="shell">{children}</div> : children}
     </Tag>

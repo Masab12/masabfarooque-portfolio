@@ -35,12 +35,20 @@ deployed by him.
 
 ## Pages
 
-- [Homepage](https://masabfarooque.com)
+- [Homepage](https://masabfarooque.com): an interactive diagram of a typical
+  system, the three featured case studies each drawn as their real
+  architecture, and a working terminal.
 - [Work](https://masabfarooque.com/portfolio)
-- [Writing](https://masabfarooque.com/blog)
+- [Services](https://masabfarooque.com/services)
 - [WordPress to Next.js migration](https://masabfarooque.com/services/wordpress-to-nextjs)
+- [Capabilities](https://masabfarooque.com/capabilities)
+- [Writing](https://masabfarooque.com/blog)
+- [Reviews](https://masabfarooque.com/reviews)
 - [About](https://masabfarooque.com/about-masab)
 - [Contact](https://masabfarooque.com/contact)
+- [Site Check](https://masabfarooque.com/site-check): a free tool that checks any
+  web page for search visibility, technical setup, content and speed signals,
+  with a PDF report.
 
 ## Services
 
@@ -59,7 +67,7 @@ work starts and a documented handover. Index at
   cost budget per request. Two to ten weeks.
 - [Full stack web application development](https://masabfarooque.com/services/full-stack-web-development):
   schema, backend services, auth and roles, multi tenancy, billing, admin
-  tooling and the interface, through to deploy. Two to twelve weeks.
+  tooling and the interface, through to deploy. Three to twelve weeks.
 - [Web scraping and data pipeline development](https://masabfarooque.com/services/web-scraping-data-pipelines):
   resilient collection systems with queueing, retries, rate limit handling,
   layout change detection, monitoring and an API over the results. Publicly

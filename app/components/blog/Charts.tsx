@@ -10,7 +10,7 @@
  * fixed width, so the same drawing is readable on a phone and on a monitor.
  */
 
-const CREAM = '#E1E0CC';
+const INK = '#161817';
 const MONO = 'ui-monospace, Menlo, monospace';
 
 function Caption({ children }: { children: React.ReactNode }) {
@@ -92,16 +92,16 @@ export function VitalsThresholds() {
         const niEnd = goodEnd + trackWidth * m.niFrac;
         return (
           <g key={m.name}>
-            <text x={x0 - 18} y={y + 6} fill={CREAM} fontFamily={MONO} fontSize="16" textAnchor="end">
+            <text x={x0 - 18} y={y + 6} fill={INK} fontFamily={MONO} fontSize="16" textAnchor="end">
               {m.name}
             </text>
-            <line x1={x0} y1={y} x2={goodEnd} y2={y} stroke={CREAM} strokeWidth="14" />
+            <line x1={x0} y1={y} x2={goodEnd} y2={y} stroke={INK} strokeWidth="14" />
             <line
               x1={goodEnd}
               y1={y}
               x2={niEnd}
               y2={y}
-              stroke={CREAM}
+              stroke={INK}
               strokeOpacity="0.42"
               strokeWidth="14"
             />
@@ -110,17 +110,17 @@ export function VitalsThresholds() {
               y1={y}
               x2={x0 + trackWidth}
               y2={y}
-              stroke={CREAM}
+              stroke={INK}
               strokeOpacity="0.14"
               strokeWidth="14"
             />
-            <text x={goodEnd} y={y - 18} fill={CREAM} fontFamily={MONO} fontSize="13" textAnchor="middle">
+            <text x={goodEnd} y={y - 18} fill={INK} fontFamily={MONO} fontSize="13" textAnchor="middle">
               {m.good}
             </text>
             <text
               x={niEnd}
               y={y - 18}
-              fill={CREAM}
+              fill={INK}
               fillOpacity="0.55"
               fontFamily={MONO}
               fontSize="13"
@@ -132,16 +132,16 @@ export function VitalsThresholds() {
         );
       })}
       {/* Legend */}
-      <g fontFamily={MONO} fontSize="12" fill={CREAM}>
-        <rect x={x0} y="300" width="26" height="10" fill={CREAM} />
+      <g fontFamily={MONO} fontSize="12" fill={INK}>
+        <rect x={x0} y="300" width="26" height="10" fill={INK} />
         <text x={x0 + 34} y="309">
           Good
         </text>
-        <rect x={x0 + 100} y="300" width="26" height="10" fill={CREAM} fillOpacity="0.42" />
+        <rect x={x0 + 100} y="300" width="26" height="10" fill={INK} fillOpacity="0.42" />
         <text x={x0 + 134} y="309" fillOpacity="0.7">
           Needs work
         </text>
-        <rect x={x0 + 250} y="300" width="26" height="10" fill={CREAM} fillOpacity="0.14" />
+        <rect x={x0 + 250} y="300" width="26" height="10" fill={INK} fillOpacity="0.14" />
         <text x={x0 + 284} y="309" fillOpacity="0.45">
           Poor
         </text>
@@ -191,7 +191,7 @@ export function BeforeAfterBars({
             <text
               x={x0 - 16}
               y={y + 20}
-              fill={CREAM}
+              fill={INK}
               fillOpacity="0.75"
               fontFamily={MONO}
               fontSize="13"
@@ -200,11 +200,11 @@ export function BeforeAfterBars({
               {row.label}
             </text>
             {/* Before */}
-            <rect x={x0} y={y} width={beforeW} height="20" fill={CREAM} fillOpacity="0.28" />
+            <rect x={x0} y={y} width={beforeW} height="20" fill={INK} fillOpacity="0.28" />
             <text
               x={x0 + beforeW + 10}
               y={y + 15}
-              fill={CREAM}
+              fill={INK}
               fillOpacity="0.6"
               fontFamily={MONO}
               fontSize="13"
@@ -213,11 +213,11 @@ export function BeforeAfterBars({
               {row.unit}
             </text>
             {/* After */}
-            <rect x={x0} y={y + 26} width={afterW} height="20" fill={CREAM} />
+            <rect x={x0} y={y + 26} width={afterW} height="20" fill={INK} />
             <text
               x={x0 + afterW + 10}
               y={y + 41}
-              fill={CREAM}
+              fill={INK}
               fontFamily={MONO}
               fontSize="13"
             >
@@ -227,12 +227,12 @@ export function BeforeAfterBars({
           </g>
         );
       })}
-      <g fontFamily={MONO} fontSize="12" fill={CREAM}>
-        <rect x={x0} y={legendY} width="26" height="10" fill={CREAM} fillOpacity="0.28" />
+      <g fontFamily={MONO} fontSize="12" fill={INK}>
+        <rect x={x0} y={legendY} width="26" height="10" fill={INK} fillOpacity="0.28" />
         <text x={x0 + 34} y={legendY + 9} fillOpacity="0.6">
           {beforeLabel}
         </text>
-        <rect x={x0 + 250} y={legendY} width="26" height="10" fill={CREAM} />
+        <rect x={x0 + 250} y={legendY} width="26" height="10" fill={INK} />
         <text x={x0 + 284} y={legendY + 9}>
           {afterLabel}
         </text>
@@ -285,14 +285,14 @@ export function CostRange({
               y1={gridTop}
               x2={x0 + scale(t)}
               y2={gridBottom}
-              stroke={CREAM}
+              stroke={INK}
               strokeOpacity="0.09"
               strokeWidth="1"
             />
             <text
               x={x0 + scale(t)}
               y={tickY}
-              fill={CREAM}
+              fill={INK}
               fillOpacity="0.4"
               fontFamily={MONO}
               fontSize="12"
@@ -314,7 +314,7 @@ export function CostRange({
             <text
               x={x0 - 16}
               y={y + 5}
-              fill={CREAM}
+              fill={INK}
               fontFamily={MONO}
               fontSize="13"
               textAnchor="end"
@@ -327,17 +327,17 @@ export function CostRange({
               y={y - 9}
               width={Math.max(highX - lowX, 3)}
               height="18"
-              fill={CREAM}
+              fill={INK}
               fillOpacity="0.75"
               rx="2"
             />
             {/* End caps, so a narrow range still reads as a range */}
-            <line x1={lowX} y1={y - 14} x2={lowX} y2={y + 14} stroke={CREAM} strokeWidth="1.4" />
-            <line x1={highX} y1={y - 14} x2={highX} y2={y + 14} stroke={CREAM} strokeWidth="1.4" />
+            <line x1={lowX} y1={y - 14} x2={lowX} y2={y + 14} stroke={INK} strokeWidth="1.4" />
+            <line x1={highX} y1={y - 14} x2={highX} y2={y + 14} stroke={INK} strokeWidth="1.4" />
             <text
               x={highX + 12}
               y={y + 5}
-              fill={CREAM}
+              fill={INK}
               fillOpacity="0.75"
               fontFamily={MONO}
               fontSize="12.5"
@@ -391,14 +391,14 @@ export function EffortSplit({
             y="60"
             width={Math.max(seg.w - 2, 1)}
             height="64"
-            fill={CREAM}
+            fill={INK}
             fillOpacity={0.9 - i * 0.1}
           />
           {seg.w > 44 ? (
             <text
               x={seg.x + seg.w / 2}
               y="100"
-              fill="#0B0B0B"
+              fill="#FFFFFF"
               fontFamily={MONO}
               fontSize="14"
               textAnchor="middle"
@@ -423,13 +423,13 @@ export function EffortSplit({
               y={row - 9}
               width="14"
               height="11"
-              fill={CREAM}
+              fill={INK}
               fillOpacity={0.9 - i * 0.1}
             />
             <text
               x={colX + 24}
               y={row}
-              fill={CREAM}
+              fill={INK}
               fillOpacity="0.75"
               fontFamily={MONO}
               fontSize="13"
@@ -439,7 +439,7 @@ export function EffortSplit({
             <text
               x={colX + 300}
               y={row}
-              fill={CREAM}
+              fill={INK}
               fontFamily={MONO}
               fontSize="13"
               textAnchor="end"
@@ -487,7 +487,7 @@ export function PhaseTimeline({
             y1={firstRowY - 34}
             x2={x0 + i * weekW}
             y2={lastRowY + 26}
-            stroke={CREAM}
+            stroke={INK}
             strokeOpacity="0.1"
             strokeWidth="1"
           />
@@ -497,7 +497,7 @@ export function PhaseTimeline({
             key={i}
             x={x0 + i * weekW + weekW / 2}
             y={firstRowY - 44}
-            fill={CREAM}
+            fill={INK}
             fillOpacity="0.45"
             fontFamily={MONO}
             fontSize="12"
@@ -517,7 +517,7 @@ export function PhaseTimeline({
             <text
               x={x0 - 16}
               y={y + 5}
-              fill={CREAM}
+              fill={INK}
               fillOpacity="0.8"
               fontFamily={MONO}
               fontSize="12.5"
@@ -531,7 +531,7 @@ export function PhaseTimeline({
               width={Math.max(barW, 4)}
               height="18"
               rx="3"
-              fill={CREAM}
+              fill={INK}
               fillOpacity={0.85 - i * 0.07}
             />
           </g>
@@ -571,7 +571,7 @@ export function PayloadBreakdown({
             <text
               x={x0 - 16}
               y={y + 21}
-              fill={CREAM}
+              fill={INK}
               fontFamily={MONO}
               fontSize="14"
               textAnchor="end"
@@ -587,7 +587,7 @@ export function PayloadBreakdown({
                   y={y}
                   width={w}
                   height="30"
-                  fill={CREAM}
+                  fill={INK}
                   fillOpacity={opacities[pi] ?? 0.1}
                 />
               );
@@ -597,7 +597,7 @@ export function PayloadBreakdown({
             <text
               x={cursor + 12}
               y={y + 21}
-              fill={CREAM}
+              fill={INK}
               fontFamily={MONO}
               fontSize="13"
             >
@@ -606,7 +606,7 @@ export function PayloadBreakdown({
           </g>
         );
       })}
-      <g fontFamily={MONO} fontSize="12" fill={CREAM}>
+      <g fontFamily={MONO} fontSize="12" fill={INK}>
         {(sites[0]?.parts ?? []).map((part, pi) => (
           <g key={part.name}>
             <rect
@@ -614,7 +614,7 @@ export function PayloadBreakdown({
               y="290"
               width="24"
               height="10"
-              fill={CREAM}
+              fill={INK}
               fillOpacity={opacities[pi] ?? 0.1}
             />
             <text

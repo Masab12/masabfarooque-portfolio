@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import { slugify } from '@/app/lib/slugify';
 import Link from 'next/link';
 import { site } from '@/app/data/site';
 import { reviewSummary } from '@/app/data/reviews';
@@ -6,7 +7,6 @@ import { capabilities, process as steps } from '@/app/data/capabilities';
 import { projects } from '@/app/data/projects';
 import PageHead from '@/app/components/core/PageHead';
 import Reveal from '@/app/components/motion/Reveal';
-import ContactCTA from '@/app/components/home/ContactCTA';
 import {
   ArrowLong,
   MarkStack,
@@ -19,8 +19,6 @@ import {
 } from '@/app/components/marks';
 
 /** "Full stack product build" becomes "full-stack-product-build". */
-const slugify = (value: string) =>
-  value.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
 
 const marks = {
   stack: MarkStack,
@@ -118,7 +116,7 @@ export default function CapabilitiesPage() {
 
       <PageHead
         label="Capabilities"
-        title="What I build"
+        title="What I *build*"
         intro="Six kinds of work, and the tools behind each one. If your project sits across several of these, that is normal, and it is the reason one engineer owning the whole thing tends to go faster than a team splitting it."
         meta={[
           { label: 'Areas', value: String(capabilities.length) },
@@ -144,18 +142,18 @@ export default function CapabilitiesPage() {
                 delay={(i % 2) * 0.06}
                 y={18}
                 className="flex h-full scroll-mt-28 flex-col p-6 md:p-8"
-                style={{ background: 'var(--bg)' }}
+                style={{ background: 'var(--paper)' }}
               >
                 <div className="flex items-start justify-between gap-4">
-                  <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-lg" style={{ background: 'var(--surface-2)' }}>
-                    <Mark size={20} className="text-primary" />
+                  <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-lg" style={{ background: 'var(--plate)' }}>
+                    <Mark size={20} className="text-sage" />
                   </span>
-                  <span className="mono text-[0.7rem] text-gray-500">{cap.index}</span>
+                  <span className="mono text-[0.7rem] text-ink-3">{cap.index}</span>
                 </div>
 
-                <h2 className="mt-5 text-[1.08rem] leading-snug text-cream">{cap.title}</h2>
+                <h2 className="mt-5 text-[1.08rem] leading-snug text-ink">{cap.title}</h2>
 
-                <p className="mt-3 flex-1 text-[0.92rem] leading-[1.7] text-gray-400">
+                <p className="mt-3 flex-1 text-[0.92rem] leading-[1.7] text-ink-2">
                   {cap.description}
                 </p>
 
@@ -163,7 +161,7 @@ export default function CapabilitiesPage() {
                   {cap.tools.map((tool) => (
                     <span
                       key={tool}
-                      className="border px-2 py-1 text-[0.6rem] text-gray-500"
+                      className="border px-2 py-1 text-[0.6875rem] text-ink-3"
                       style={{ borderColor: 'var(--line)' }}
                     >
                       {tool}
@@ -174,8 +172,7 @@ export default function CapabilitiesPage() {
                 {project ? (
                   <Link
                     href={`/portfolio/${project.slug}`}
-                    data-cursor="Read case study"
-                    className="group mt-5 inline-flex items-center gap-2 text-[0.8rem] text-primary"
+                    className="group mt-5 inline-flex items-center gap-2 text-[0.8rem] text-sage"
                   >
                     See it in {project.title}
                     <ArrowLong
@@ -194,7 +191,7 @@ export default function CapabilitiesPage() {
       <section className="border-t" style={{ borderColor: 'var(--line)' }}>
         <div className="shell py-16 md:py-24">
           <Reveal className="flex items-center gap-3" y={12}>
-            <Spark size={10} className="text-primary" />
+            <Spark size={10} className="text-sage" />
             <span className="label">How the work runs</span>
           </Reveal>
 
@@ -202,9 +199,9 @@ export default function CapabilitiesPage() {
             {steps.map((step, i) => (
               <Reveal key={step.index} delay={(i % 2) * 0.06} y={18}>
                 <div className="border-t pt-6" style={{ borderColor: 'var(--line-2)' }}>
-                  <p className="mono text-[0.7rem] text-primary">{step.index}</p>
-                  <p className="mt-3 text-[1.02rem] leading-snug text-cream">{step.title}</p>
-                  <p className="mt-3 text-[0.92rem] leading-relaxed text-gray-400">{step.body}</p>
+                  <p className="mono text-[0.7rem] text-sage">{step.index}</p>
+                  <p className="mt-3 text-[1.02rem] leading-snug text-ink">{step.title}</p>
+                  <p className="mt-3 text-[0.92rem] leading-relaxed text-ink-2">{step.body}</p>
                 </div>
               </Reveal>
             ))}
@@ -218,18 +215,18 @@ export default function CapabilitiesPage() {
           <div className="grid gap-10 md:grid-cols-12">
             <Reveal className="md:col-span-3" y={14}>
               <div className="flex items-center gap-3">
-                <Spark size={10} className="text-primary" />
+                <Spark size={10} className="text-sage" />
                 <span className="label">A defined piece of work</span>
               </div>
             </Reveal>
 
             <div className="md:col-span-8 md:col-start-5">
               <Reveal y={18}>
-                <p className="text-[1.02rem] leading-[1.7] text-cream/90">
+                <p className="text-[1.02rem] leading-[1.7] text-ink/90">
                   A lot of what comes through the door is one specific job: an old WordPress site
                   that has become slow and expensive to maintain.
                 </p>
-                <p className="mt-5 text-[0.96rem] leading-[1.75] text-gray-400">
+                <p className="mt-5 text-[0.96rem] leading-[1.75] text-ink-2">
                   I move those onto Next.js without losing the rankings they already have, and when
                   the team wants to keep writing in WordPress I wire it up as a headless CMS so the
                   editor never changes. That one has its own page with timelines and a written
@@ -240,12 +237,11 @@ export default function CapabilitiesPage() {
               <Reveal delay={0.1} className="mt-7">
                 <Link
                   href="/services/wordpress-to-nextjs"
-                  data-cursor="Read more"
-                  className="group inline-flex items-center gap-2 rounded-full bg-primary py-1.5 pl-5 pr-1.5 text-sm font-medium text-black transition-all duration-300 hover:gap-3"
+                  className="group inline-flex items-center gap-2 rounded-full bg-ink py-1.5 pl-5 pr-1.5 text-sm font-medium text-paper transition-all duration-300 hover:gap-3"
                 >
                   WordPress to Next.js migration
-                  <span className="flex h-8 w-8 items-center justify-center rounded-full bg-black transition-transform duration-300 group-hover:scale-110">
-                    <ArrowLong size={14} className="text-cream" />
+                  <span className="flex h-8 w-8 items-center justify-center rounded-full bg-paper transition-transform duration-300 group-hover:scale-110">
+                    <ArrowLong size={14} className="text-ink" />
                   </span>
                 </Link>
               </Reveal>
@@ -253,8 +249,6 @@ export default function CapabilitiesPage() {
           </div>
         </div>
       </section>
-
-      <ContactCTA />
     </>
   );
 }

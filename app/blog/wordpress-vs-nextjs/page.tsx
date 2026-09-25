@@ -42,7 +42,9 @@ export const metadata: Metadata = {
     url: `${site.url}/blog/${post.slug}`,
     publishedTime: post.published,
     authors: [site.url],
+    images: [{ url: `/og/${post.slug}`, width: 1200, height: 630, alt: post.title }],
   },
+  twitter: { card: 'summary_large_image', images: [`/og/${post.slug}`] },
 };
 
 const faqs: FaqItem[] = [
@@ -135,9 +137,8 @@ export default function Page() {
         </P>
 
         <P>
-          Which makes the real question something other than speed. It is whether you want the
-          system that stores your content to also be the system that takes the hit when traffic
-          arrives. On a site nobody visits, that coupling costs nothing at all. On a site with a
+          That changes what you are deciding. You are choosing whether the system that stores
+          your content should also be the system that takes the hit when traffic arrives. On a site nobody visits, that coupling costs nothing at all. On a site with a
           publishing schedule and an audience, it is the thing that eventually gives.
         </P>
 

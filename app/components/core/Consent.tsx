@@ -61,14 +61,14 @@ export default function AnalyticsNotice() {
           className="fixed inset-x-3 bottom-3 z-[90] sm:inset-x-auto sm:bottom-6 sm:right-6 sm:max-w-sm"
         >
           <div
-            className="rounded-2xl border bg-[#101010] p-5 shadow-2xl"
+            className="rounded-2xl border bg-sheet p-5 shadow-2xl"
             style={{ borderColor: 'var(--line-2)' }}
           >
-            <p className="text-sm text-cream">A quick word on analytics</p>
-            <p className="mt-2 text-xs leading-relaxed text-gray-400">
+            <p className="text-sm text-ink">A quick word on analytics</p>
+            <p className="mt-2 text-xs leading-relaxed text-ink-2">
               This site uses analytics to see which pages are working and which are not, so I can
               keep improving it. Details are in the{' '}
-              <a href="/privacy" className="text-primary hover:underline">
+              <a href="/privacy" className="text-sage hover:underline">
                 privacy policy
               </a>
               .
@@ -76,7 +76,7 @@ export default function AnalyticsNotice() {
             <button
               type="button"
               onClick={dismiss}
-              className="mt-4 w-full rounded-full bg-primary px-4 py-2 text-xs font-medium text-black transition-opacity hover:opacity-85"
+              className="mt-4 w-full rounded-full bg-ink px-4 py-2 text-xs font-medium text-paper transition-opacity hover:opacity-85"
             >
               OK
             </button>

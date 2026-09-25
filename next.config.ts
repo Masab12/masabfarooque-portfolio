@@ -52,6 +52,31 @@ const nextConfig: NextConfig = {
     return [
       ...immutableStatic,
       {
+        /*
+         * HTML must revalidate. Next marks prerendered pages
+         * s-maxage=31536000, which lets any shared cache in front of the
+         * host keep a page for a year, so a deploy could take a long time
+         * to reach visitors. Browsers now always check, a shared cache may
+         * hold a page for a minute, and it may serve a stale copy for a day
+         * while it fetches the new one in the background.
+         *
+         * Hashed build assets under /_next are left alone: they are content
+         * addressed and cached hard above.
+         */
+        source: '/((?!_next/|api/|og/|fonts/).*)',
+        headers: [
+          {
+            key: 'Cache-Control',
+            value: 'public, max-age=0, must-revalidate, s-maxage=60, stale-while-revalidate=86400',
+          },
+        ],
+      },
+      {
+        // Social cards change only when a title does. A day, then revalidate.
+        source: '/og/:path*',
+        headers: [{ key: 'Cache-Control', value: 'public, max-age=86400, stale-while-revalidate=604800' }],
+      },
+      {
         source: '/fonts/:path*',
         headers: [{ key: 'Cache-Control', value: 'public, max-age=31536000, immutable' }],
       },

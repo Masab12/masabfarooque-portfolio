@@ -3,7 +3,6 @@ import { projects } from '@/app/data/projects';
 import { site } from '@/app/data/site';
 import PageHead from '@/app/components/core/PageHead';
 import WorkIndex from '@/app/components/work/WorkIndex';
-import ContactCTA from '@/app/components/home/ContactCTA';
 
 export const metadata: Metadata = {
   title: 'Work',
@@ -35,7 +34,7 @@ export default function WorkPage() {
 
       <PageHead
         label="Work"
-        title="Things I built and shipped"
+        title="Things I built *and shipped*"
         intro="Eight projects that reached real users. Each one lists what it does, how it is put together and what was hard about it, because that is the part worth reading."
         meta={[
           { label: 'Projects', value: String(projects.length) },
@@ -48,8 +47,6 @@ export default function WorkPage() {
       <section className="shell py-14 md:py-20">
         <WorkIndex />
       </section>
-
-      <ContactCTA />
     </>
   );
 }

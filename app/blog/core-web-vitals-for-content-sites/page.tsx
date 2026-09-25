@@ -37,7 +37,9 @@ export const metadata: Metadata = {
     url: `${site.url}/blog/${post.slug}`,
     publishedTime: post.published,
     authors: [site.url],
+    images: [{ url: `/og/${post.slug}`, width: 1200, height: 630, alt: post.title }],
   },
+  twitter: { card: 'summary_large_image', images: [`/og/${post.slug}`] },
 };
 
 export default function Page() {
@@ -269,7 +271,7 @@ import dynamic from 'next/dynamic';
 // keeps it off the critical path entirely.
 const Thread = dynamic(() => import('./Thread'), {
   ssr: false,
-  loading: () => <p className="text-sm text-gray-500">Loading comments</p>,
+  loading: () => <p className="text-sm text-ink-3">Loading comments</p>,
 });`}</Code>
 
         <H3>Third party scripts</H3>

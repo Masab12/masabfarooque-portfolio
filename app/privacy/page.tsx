@@ -32,7 +32,7 @@ export default function PrivacyPage() {
           </p>
           <p>
             Contact:{' '}
-            <a href={`mailto:${site.email}`} className="text-primary hover:underline">
+            <a href={`mailto:${site.email}`} className="text-sage hover:underline">
               {site.email}
             </a>
           </p>
@@ -125,7 +125,7 @@ export default function PrivacyPage() {
             style={{ borderColor: 'var(--line-2)' }}
           >
             Terms
-            <ArrowLong size={15} className="text-primary transition-transform group-hover:translate-x-1" />
+            <ArrowLong size={15} className="text-sage transition-transform group-hover:translate-x-1" />
           </Link>
           <Link
             href="/contact"
@@ -133,7 +133,7 @@ export default function PrivacyPage() {
             style={{ borderColor: 'var(--line-2)' }}
           >
             Contact
-            <ArrowLong size={15} className="text-primary transition-transform group-hover:translate-x-1" />
+            <ArrowLong size={15} className="text-sage transition-transform group-hover:translate-x-1" />
           </Link>
         </div>
       </div>

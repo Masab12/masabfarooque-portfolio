@@ -83,7 +83,7 @@ export const posts: Post[] = [
     slug: 'headless-cms-vs-website-builders',
     title: 'Why a headless CMS beats building on WordPress or Wix',
     summary:
-      'For content sites, portfolios and brand sites, a headless CMS with a static front end wins on speed, cost and ownership. Here is the reasoning, with the tradeoffs.',
+      'For content sites, portfolios and brand sites, a headless CMS with a static front end wins on speed, cost and ownership. This is the reasoning, tradeoffs included.',
     standfirst:
       'A page builder decides your performance ceiling before you write a word.',
     topic: 'architecture',
@@ -196,7 +196,7 @@ export const posts: Post[] = [
     summary:
       'Where the money goes in a WordPress to Next.js migration, broken into the nine line items behind the quote, with worked examples for three site sizes.',
     standfirst:
-      'Most quotes give you one number. Here is what sits inside it.',
+      'Most quotes give you one number. This is what sits inside it.',
     topic: 'migration',
     published: '2026-08-08',
     readingMinutes: 12,

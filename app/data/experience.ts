@@ -108,7 +108,7 @@ export const roles: Role[] = [
     to: '2023',
     place: 'Islamabad',
     summary:
-      'Two game development fellowships where I learned to build systems that have to feel right, not just work. That habit carried straight into product work.',
+      'Two game development fellowships where I learned to build systems that have to feel right as well as work. That habit carried straight into product work.',
     highlights: [
       'Completed the fellowship programme and competed in the Rookie Game Jam 2022.',
       'Won the Best Mechanics Award at Rookie Game Jam 2022, and the game was selected for incubation.',

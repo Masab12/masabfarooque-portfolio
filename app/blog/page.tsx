@@ -4,8 +4,8 @@ import { site } from '@/app/data/site';
 import { postsByDate, formatPostDate, topicLabels } from '@/app/data/posts';
 import { covers, type CoverSlug } from '@/app/components/blog/Covers';
 import PageHead from '@/app/components/core/PageHead';
+import Tilt from '@/app/components/motion/Tilt';
 import Reveal from '@/app/components/motion/Reveal';
-import ContactCTA from '@/app/components/home/ContactCTA';
 import { ArrowLong } from '@/app/components/marks';
 
 export const metadata: Metadata = {
@@ -64,7 +64,7 @@ export default function BlogIndexPage() {
 
       <PageHead
         label="Writing"
-        title="Notes from the build"
+        title="Notes from *the build*"
         intro="Long form pieces on the work I actually do: migrating WordPress sites to Next.js, wiring WordPress up as a headless CMS so editors keep their workflow, and the performance work that follows. Written for the person who has to implement it, not for a newsletter."
         meta={[
           { label: 'Articles', value: String(postsByDate.length) },
@@ -79,9 +79,8 @@ export default function BlogIndexPage() {
         <Reveal y={26}>
           <Link
             href={`/blog/${lead.slug}`}
-            data-cursor="Read"
             className="group grid gap-7 overflow-hidden rounded-2xl border transition-colors duration-500 hover:border-hair2 md:grid-cols-12 md:gap-0 md:rounded-[1.75rem]"
-            style={{ borderColor: 'var(--line)', background: 'var(--surface-1)' }}
+            style={{ borderColor: 'var(--line)', background: 'var(--sheet)' }}
           >
             {LeadCover ? (
               <div className="overflow-hidden md:col-span-7">
@@ -91,20 +90,20 @@ export default function BlogIndexPage() {
 
             <div className="flex flex-col justify-center p-6 sm:p-8 md:col-span-5 md:p-9">
               <div className="flex items-center gap-3">
-                <span className="label text-primary">Latest</span>
+                <span className="label text-sage">Latest</span>
                 <span className="label opacity-40">/</span>
                 <span className="label">{topicLabels[lead.topic]}</span>
               </div>
 
-              <h2 className="mt-5 text-[clamp(1.3rem,2.6vw,1.9rem)] font-medium leading-[1.15] tracking-[-0.02em] text-cream transition-colors duration-500 group-hover:text-primary">
+              <h2 className="mt-5 text-[clamp(1.3rem,2.6vw,1.9rem)] font-medium leading-[1.15] tracking-[-0.02em] text-ink transition-colors duration-500 group-hover:text-sage">
                 {lead.title}
               </h2>
 
-              <p className="mt-4 text-[0.92rem] leading-relaxed text-gray-400">{lead.summary}</p>
+              <p className="mt-4 text-[0.92rem] leading-relaxed text-ink-2">{lead.summary}</p>
 
               <div className="mt-7 flex items-center gap-4">
-                <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-primary transition-transform duration-300 group-hover:scale-110">
-                  <ArrowLong size={15} className="text-black" />
+                <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-ink transition-transform duration-300 group-hover:scale-110">
+                  <ArrowLong size={15} className="text-paper" />
                 </span>
                 <span className="label">
                   {lead.readingMinutes} min
@@ -124,11 +123,11 @@ export default function BlogIndexPage() {
             const Cover = covers[post.slug as CoverSlug];
             return (
               <Reveal key={post.slug} delay={i * 0.07} y={24}>
+                <Tilt max={3.5}>
                 <Link
                   href={`/blog/${post.slug}`}
-                  data-cursor="Read"
                   className="group flex h-full flex-col overflow-hidden rounded-xl border transition-colors duration-500 hover:border-hair2"
-                  style={{ borderColor: 'var(--line)', background: 'var(--surface-1)' }}
+                  style={{ borderColor: 'var(--line)', background: 'var(--sheet)' }}
                 >
                   {Cover ? (
                     <div
@@ -142,11 +141,11 @@ export default function BlogIndexPage() {
                   <div className="flex flex-1 flex-col p-5 sm:p-6">
                     <p className="label">{topicLabels[post.topic]}</p>
 
-                    <h2 className="mt-3 text-[1.02rem] leading-snug text-cream transition-colors duration-500 group-hover:text-primary sm:text-[1.08rem]">
+                    <h2 className="mt-3 text-[1.02rem] leading-snug text-ink transition-colors duration-500 group-hover:text-sage sm:text-[1.08rem]">
                       {post.title}
                     </h2>
 
-                    <p className="mt-3 flex-1 text-[0.85rem] leading-relaxed text-gray-500">
+                    <p className="mt-3 flex-1 text-[0.85rem] leading-relaxed text-ink-3">
                       {post.standfirst}
                     </p>
 
@@ -157,13 +156,12 @@ export default function BlogIndexPage() {
                     </span>
                   </div>
                 </Link>
+                </Tilt>
               </Reveal>
             );
           })}
         </div>
       </section>
-
-      <ContactCTA />
     </>
   );
 }

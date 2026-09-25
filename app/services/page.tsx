@@ -4,8 +4,8 @@ import { site } from '@/app/data/site';
 import { reviewSummary } from '@/app/data/reviews';
 import { services } from '@/app/data/services';
 import PageHead from '@/app/components/core/PageHead';
+import Tilt from '@/app/components/motion/Tilt';
 import Reveal from '@/app/components/motion/Reveal';
-import ContactCTA from '@/app/components/home/ContactCTA';
 import { ArrowLong } from '@/app/components/marks';
 
 export const metadata: Metadata = {
@@ -80,7 +80,7 @@ export default function ServicesIndexPage() {
 
       <PageHead
         label="Services"
-        title="What you can hire me for"
+        title="What you can *hire me for*"
         intro="Four kinds of work, each with its own page covering scope, timelines and the questions people ask before they commit. If your project sits across several of them, that is normal and it is the reason hiring one engineer tends to go faster than splitting it across a team."
         meta={[
           { label: 'Engagements', value: String(services.length) },
@@ -97,21 +97,21 @@ export default function ServicesIndexPage() {
         <div className="grid gap-4 md:grid-cols-2">
           {services.map((service, i) => (
             <Reveal key={service.slug} delay={(i % 2) * 0.06} y={18}>
+              <Tilt max={3}>
               <Link
                 href={`/services/${service.slug}`}
-                data-cursor="Read more"
                 className="group flex h-full flex-col rounded-xl border p-6 transition-colors duration-500 hover:border-hair2 md:p-8"
                 style={{ borderColor: 'var(--line)' }}
               >
-                <p className="mono text-[0.7rem] text-gray-500">
+                <p className="mono text-[0.7rem] text-ink-3">
                   {String(i + 1).padStart(2, '0')}
                 </p>
 
-                <h2 className="mt-4 text-[clamp(1.15rem,2.4vw,1.5rem)] leading-snug text-cream transition-colors duration-500 group-hover:text-primary">
+                <h2 className="mt-4 text-[clamp(1.15rem,2.4vw,1.5rem)] leading-snug text-ink transition-colors duration-500 group-hover:text-sage">
                   {service.metaTitle}
                 </h2>
 
-                <p className="mt-4 flex-1 text-[0.92rem] leading-[1.7] text-gray-400">
+                <p className="mt-4 flex-1 text-[0.92rem] leading-[1.7] text-ink-2">
                   {service.intro}
                 </p>
 
@@ -123,12 +123,12 @@ export default function ServicesIndexPage() {
                     <span key={item.label} className="label">
                       {item.label}
                       <span className="mx-2 opacity-40">/</span>
-                      <span style={{ color: 'var(--cream)' }}>{item.value}</span>
+                      <span style={{ color: 'var(--ink)' }}>{item.value}</span>
                     </span>
                   ))}
                 </div>
 
-                <span className="mt-6 inline-flex items-center gap-2 text-sm text-primary">
+                <span className="mt-6 inline-flex items-center gap-2 text-sm text-sage">
                   Read the detail
                   <ArrowLong
                     size={14}
@@ -136,12 +136,11 @@ export default function ServicesIndexPage() {
                   />
                 </span>
               </Link>
+              </Tilt>
             </Reveal>
           ))}
         </div>
       </section>
-
-      <ContactCTA />
     </>
   );
 }

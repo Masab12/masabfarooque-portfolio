@@ -17,11 +17,11 @@ export default function NotFound() {
     <section className="relative flex min-h-[80svh] flex-col items-center justify-center overflow-hidden py-24 text-center">
 
       <div className="shell relative">
-        <Monogram size={44} className="mx-auto text-primary" />
+        <Monogram size={44} className="mx-auto text-sage" />
 
         <p className="mt-10 text-[clamp(4rem,18vw,13rem)] leading-none">404</p>
 
-        <h1 className="mt-4 text-[clamp(1.3rem,3vw,2.2rem)] text-cream">
+        <h1 className="mt-4 text-[clamp(1.3rem,3vw,2.2rem)] text-ink">
           This page is not here
         </h1>
 
@@ -34,7 +34,7 @@ export default function NotFound() {
           <Link
             href="/"
             className="group inline-flex items-center gap-3 px-7 py-4 text-sm uppercase tracking-[0.16em]"
-            style={{ background: 'var(--cream)', color: 'var(--bg)' }}
+            style={{ background: 'var(--ink)', color: 'var(--paper)' }}
           >
             Back home
             <ArrowLong size={15} className="transition-transform group-hover:translate-x-1" />
@@ -45,7 +45,7 @@ export default function NotFound() {
             style={{ borderColor: 'var(--line-2)' }}
           >
             See the work
-            <ArrowLong size={15} className="text-primary transition-transform group-hover:translate-x-1" />
+            <ArrowLong size={15} className="text-sage transition-transform group-hover:translate-x-1" />
           </Link>
         </div>
       </div>

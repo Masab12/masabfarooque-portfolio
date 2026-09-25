@@ -125,7 +125,7 @@ export default function TermsPage() {
         <LegalSection index="10" title="Contact">
           <p>
             Questions about these terms, email{' '}
-            <a href={`mailto:${site.email}`} className="text-primary hover:underline">
+            <a href={`mailto:${site.email}`} className="text-sage hover:underline">
               {site.email}
             </a>
             .
@@ -139,7 +139,7 @@ export default function TermsPage() {
             style={{ borderColor: 'var(--line-2)' }}
           >
             Privacy
-            <ArrowLong size={15} className="text-primary transition-transform group-hover:translate-x-1" />
+            <ArrowLong size={15} className="text-sage transition-transform group-hover:translate-x-1" />
           </Link>
           <Link
             href="/contact"
@@ -147,7 +147,7 @@ export default function TermsPage() {
             style={{ borderColor: 'var(--line-2)' }}
           >
             Contact
-            <ArrowLong size={15} className="text-primary transition-transform group-hover:translate-x-1" />
+            <ArrowLong size={15} className="text-sage transition-transform group-hover:translate-x-1" />
           </Link>
         </div>
       </div>

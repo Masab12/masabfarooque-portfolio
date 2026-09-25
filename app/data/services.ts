@@ -43,6 +43,8 @@ export interface Service {
   keywords: string[];
   /** Sentence under the h1. */
   intro: string;
+  /** One line for the service schedule on the homepage and the index. */
+  line: string;
   /** The four figures in the masthead. Reviews and location get appended. */
   meta: { label: string; value: string }[];
   /** schema.org Service fields. */
@@ -107,6 +109,7 @@ export const services: Service[] = [
       'migrate WordPress to Next.js',
       'hire Next.js developer Pakistan',
     ],
+    line: 'Move off WordPress without losing your rankings, or keep WordPress as the editor behind a faster front end.',
     intro:
       'I move WordPress sites onto Next.js without losing the rankings you already have. If your team wants to keep writing in WordPress, I wire it up as a headless CMS so the editor never changes.',
     meta: [
@@ -276,6 +279,7 @@ export const services: Service[] = [
       'AI agent development service',
       'Claude API developer Islamabad',
     ],
+    line: 'Retrieval over your own material and agents that take real actions, with the guardrails and cost limits a product needs.',
     intro:
       'A demo and a product are not the same thing. I build the second one: retrieval over your own material, agents that take real actions, and the guardrails, fallbacks and cost controls that keep it working once strangers start using it.',
     meta: [
@@ -415,6 +419,7 @@ export const services: Service[] = [
       'hire full stack developer Islamabad',
       'MVP development Pakistan',
     ],
+    line: 'One engineer on the schema, the API and the interface, so nothing gets lost in the gaps between them.',
     intro:
       'One person owning the schema, the API and the interface. That means fewer handoffs, fewer gaps between the backend and the screen, and a codebase that stays coherent because one head held the whole shape of it.',
     meta: [
@@ -554,6 +559,7 @@ export const services: Service[] = [
       'price monitoring scraper',
       'hire scraping developer Islamabad',
     ],
+    line: 'Collection systems that keep working when a source changes its markup or starts blocking requests.',
     intro:
       'A script that works today is not a data pipeline. I build collection systems that keep running when a source changes its markup, blocks a request or throttles your range, and that store what they gather in a shape you can actually query.',
     meta: [

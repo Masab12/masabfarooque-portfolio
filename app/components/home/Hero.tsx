@@ -1,126 +1,88 @@
-'use client';
-
-import { useRef } from 'react';
 import Link from 'next/link';
-import { motion, useMotionValue, useSpring, useTransform } from 'framer-motion';
-import { media, site } from '@/app/data/site';
-import { ArrowLong } from '@/app/components/marks';
-import WordsPullUp from '@/app/components/motion/WordsPullUp';
+import { site } from '@/app/data/site';
+import { reviewSummary } from '@/app/data/reviews';
+import SheetHeader from '@/app/components/core/SheetHeader';
+import LiveSystem from '@/app/components/home/LiveSystem';
+import { MarkArrow45 } from '@/app/components/marks';
 
-const EASE = [0.16, 1, 0.3, 1] as const;
+/**
+ * The cover sheet: a running system across the whole stage, with the name
+ * and the claim set over its lower left corner.
+ *
+ * The heading and copy are server markup and come first in the document, so
+ * they are what a search engine reads first and what the browser measures as
+ * the largest paint. On a phone the stage shows first and the words sit
+ * under it; on a wide screen the words sit on the stage.
+ */
 
-/** Casts an x/y offset onto a small rotation and translate for a subtle tilt. */
-function useTilt() {
-  const px = useMotionValue(0.5);
-  const py = useMotionValue(0.5);
-  const spring = { stiffness: 150, damping: 20, mass: 0.5 };
-  const sx = useSpring(px, spring);
-  const sy = useSpring(py, spring);
-
-  const rotateX = useTransform(sy, [0, 1], [3, -3]);
-  const rotateY = useTransform(sx, [0, 1], [-4, 4]);
-  const moveX = useTransform(sx, [0, 1], [-14, 14]);
-  const moveY = useTransform(sy, [0, 1], [-14, 14]);
-
-  const onPointerMove = (event: React.PointerEvent<HTMLDivElement>) => {
-    const rect = event.currentTarget.getBoundingClientRect();
-    px.set((event.clientX - rect.left) / rect.width);
-    py.set((event.clientY - rect.top) / rect.height);
-  };
-
-  const onPointerLeave = () => {
-    px.set(0.5);
-    py.set(0.5);
-  };
-
-  return { rotateX, rotateY, moveX, moveY, onPointerMove, onPointerLeave };
-}
-
-// fetchpriority must be in the server rendered markup to do anything, since
-// it hints the browser's preload scanner before any JS has run. framer-motion's
-// HTMLMotionProps<'video'> does not type it yet, so it is passed through with
-// a narrow cast rather than added imperatively after hydration, which would
-// be too late to have any effect.
-const videoProps = { fetchPriority: 'high' } as unknown as { fetchPriority?: never };
+const facts = [
+  { term: 'Client reviews', value: `${reviewSummary.total}`, note: `${reviewSummary.average.toFixed(1)} average` },
+  { term: 'Countries', value: `${reviewSummary.countries}`, note: 'clients have ordered from' },
+  { term: 'Orders delivered', value: '195+', note: 'to date' },
+  { term: 'Came back', value: `${reviewSummary.repeatShare}%`, note: 'of clients ordered again' },
+];
 
 export default function Hero() {
-  const frameRef = useRef<HTMLDivElement>(null);
-  const { rotateX, rotateY, moveX, moveY, onPointerMove, onPointerLeave } = useTilt();
-
   return (
-    <section className="snap-start h-[100svh] w-full p-3 sm:p-4 md:p-6">
-      <div
-        ref={frameRef}
-        onPointerMove={onPointerMove}
-        onPointerLeave={onPointerLeave}
-        className="relative h-full w-full overflow-hidden rounded-2xl [perspective:1200px] md:rounded-[2rem]"
-      >
-        <motion.video
-          {...videoProps}
-          className="absolute inset-0 h-full w-full object-cover"
-          src={media.heroVideo}
-          poster={media.heroPoster}
-          autoPlay
-          loop
-          muted
-          playsInline
-          preload="auto"
-          aria-hidden
-          initial={{ scale: 1.08 }}
-          animate={{ scale: [1.08, 1.14, 1.08] }}
-          whileHover={{ scale: 1.18, transition: { duration: 0.7, ease: EASE } }}
-          transition={{ duration: 16, repeat: Infinity, ease: 'easeInOut' }}
-          style={{ x: moveX, y: moveY, rotateX, rotateY }}
-        />
+    <section aria-labelledby="hero-title" className="relative">
+      <SheetHeader code="A-00" title="Cover sheet" meta={`Working hours ${site.timezone}`} />
 
-        <div className="noise-overlay pointer-events-none absolute inset-0 opacity-[0.7] mix-blend-overlay" />
-        <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-black/45 via-black/15 to-black/85" />
-
-        {/* Bottom aligned content */}
-        <div className="absolute bottom-0 left-0 right-0 z-10 px-4 pb-5 sm:px-6 sm:pb-6 md:px-8 md:pb-8">
-          <div className="grid grid-cols-1 items-end gap-5 sm:gap-6 md:grid-cols-12 md:gap-6">
-            <div className="md:col-span-8">
-              <WordsPullUp
-                as="h1"
-                text={site.shortName}
-                showAsterisk
-                className="text-[16vw] font-medium leading-[0.85] tracking-[-0.07em] sm:text-[14vw] md:text-[12vw] lg:text-[11vw] xl:text-[9.5vw] 3xl:text-[clamp(10.7rem,6vw,14rem)]"
-              />
-            </div>
-
-            <div className="flex flex-col gap-4 sm:gap-5 md:col-span-4">
-              <motion.p
-                initial={{ y: 20, opacity: 0 }}
-                animate={{ y: 0, opacity: 1 }}
-                transition={{ duration: 0.8, delay: 0.5, ease: EASE }}
-                className="max-w-md text-sm text-cream/90 sm:text-base md:text-lg"
-                style={{ lineHeight: 1.45 }}
-              >
-                Masab Farooque is a full stack engineer in Islamabad building SaaS
-                platforms, AI systems and data pipelines. Brought in as an external
-                resource by product teams and agencies in 23 countries, from schema
-                to interface, first commit to deploy.
-              </motion.p>
-
-              <motion.div
-                initial={{ y: 20, opacity: 0 }}
-                animate={{ y: 0, opacity: 1 }}
-                transition={{ duration: 0.8, delay: 0.7, ease: EASE }}
-              >
-                <Link
-                  href="/contact"
-                  data-cursor="Say hello"
-                  className="group inline-flex items-center gap-2 rounded-full bg-primary py-1.5 pl-6 pr-1.5 text-sm font-medium text-black transition-all duration-300 hover:gap-3 sm:text-base"
-                >
-                  Start a project
-                  <span className="flex h-9 w-9 items-center justify-center rounded-full bg-black transition-transform duration-300 group-hover:scale-110 sm:h-10 sm:w-10">
-                    <ArrowLong size={16} className="text-cream" />
-                  </span>
-                </Link>
-              </motion.div>
-            </div>
+      <div className="relative flex flex-col lg:block lg:h-[calc(100svh-var(--nav-h)-2.75rem)] lg:min-h-[44rem]">
+        {/* Words, first in the document */}
+        <div className="shell relative z-10 order-1 pb-6 pt-8 lg:pointer-events-none lg:absolute lg:bottom-0 lg:left-0 lg:max-w-[46rem] lg:pb-10 lg:pr-0 xl:max-w-[52rem]">
+          <p className="label">Full stack engineer · Islamabad, Pakistan</p>
+          <h1
+            id="hero-title"
+            className="mt-4 text-[clamp(2.4rem,1rem+4.3vw,5.4rem)] font-extrabold leading-[0.97] tracking-[-0.045em] text-ink [text-wrap:balance]"
+          >
+            Masab Farooque builds software that{' '}
+            <span className="serif-italic text-[1.08em] leading-[0.9] text-sage">holds up after launch.</span>
+          </h1>
+          <p className="text-lede mt-5 max-w-[34rem]">
+            SaaS platforms, AI systems and data pipelines, built end to end for product teams and
+            agencies. The drawing is the shape most of that work takes, and it is running.
+          </p>
+          <div className="pointer-events-auto mt-7 flex flex-wrap items-center gap-3">
+            <Link
+              href="/contact"
+              className="group inline-flex h-12 items-center gap-2.5 rounded-full bg-ink pl-6 pr-5 text-[0.9375rem] font-bold text-paper transition-colors duration-300 hover:bg-sage"
+            >
+              Start a project
+              <MarkArrow45 size={12} className="transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
+            </Link>
+            <Link
+              href="/portfolio"
+              className="inline-flex h-12 items-center rounded-full border bg-paper/80 px-6 text-[0.9375rem] font-bold text-ink backdrop-blur-sm transition-colors duration-300 hover:border-hair3 hover:bg-sheet"
+              style={{ borderColor: 'var(--line-2)' }}
+            >
+              See the work
+            </Link>
           </div>
         </div>
+
+        {/* The stage */}
+        <div className="order-2 pb-10 lg:absolute lg:inset-0 lg:pb-0">
+          <div className="shell grid gap-3 pt-3 lg:block lg:h-full lg:max-w-none lg:p-0">
+            <LiveSystem />
+          </div>
+        </div>
+      </div>
+
+      <div className="shell">
+        <dl
+          className="grid grid-cols-2 gap-px border lg:grid-cols-4"
+          style={{ borderColor: 'var(--line-2)', background: 'var(--line-2)' }}
+        >
+          {facts.map((fact) => (
+            <div key={fact.term} className="flex flex-col gap-1 bg-paper px-4 py-4 sm:px-6 sm:py-5">
+              <dt className="label">{fact.term}</dt>
+              <dd className="text-[clamp(1.6rem,1.2rem+1.4vw,2.4rem)] font-extrabold leading-none tracking-[-0.03em] text-ink">
+                {fact.value}
+              </dd>
+              <dd className="text-[0.8125rem] text-ink-3">{fact.note}</dd>
+            </div>
+          ))}
+        </dl>
       </div>
     </section>
   );

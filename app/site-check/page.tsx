@@ -3,7 +3,6 @@ import { site } from '@/app/data/site';
 import PageHead from '@/app/components/core/PageHead';
 import Section from '@/app/components/core/Section';
 import Reveal from '@/app/components/motion/Reveal';
-import ContactCTA from '@/app/components/home/ContactCTA';
 import { Spark } from '@/app/components/marks';
 import SiteCheckTool from '@/app/components/site-check/SiteCheckTool';
 
@@ -127,11 +126,11 @@ export default function SiteCheckPage() {
         intro="Paste in a web address and get a plain answer on what is holding the page back. Search visibility, technical setup, content and speed, checked in about ten seconds. Nothing to install, nothing to sign up for."
       />
 
-      <Section snap={false} className="pt-10 md:pt-14">
+      <Section className="pt-10 md:pt-14">
         <Reveal>
           <div
             className="rounded-2xl border p-6 sm:p-9 md:p-12"
-            style={{ borderColor: 'var(--line-2)', background: 'var(--surface-1)' }}
+            style={{ borderColor: 'var(--line-2)', background: 'var(--sheet)' }}
           >
             <SiteCheckTool />
           </div>
@@ -140,12 +139,12 @@ export default function SiteCheckPage() {
 
       <Section id="what-we-check">
         <div className="flex items-center gap-3">
-          <Spark size={10} className="text-primary" />
+          <Spark size={10} className="text-sage" />
           <span className="label">What gets checked</span>
         </div>
 
         <div className="mt-8 max-w-2xl">
-          <p className="text-[1.05rem] leading-[1.65] text-gray-400">
+          <p className="text-[1.05rem] leading-[1.65] text-ink-2">
             This reads the one page you give it, the same way a visitor's browser would. It does
             not crawl your whole site and it does not need a login. Eighteen checks run across
             four groups, and every one of them is read straight from the page itself, not
@@ -155,10 +154,10 @@ export default function SiteCheckPage() {
 
         <div className="mt-10 grid gap-px overflow-hidden rounded-xl border sm:grid-cols-2" style={{ borderColor: 'var(--line)', background: 'var(--line)' }}>
           {categories.map((category, i) => (
-            <Reveal key={category.name} delay={i * 0.06} className="p-6 sm:p-7" style={{ background: 'var(--bg)' }}>
-              <p className="text-[0.6rem] text-gray-500">{String(i + 1).padStart(2, '0')}</p>
-              <h3 className="mt-3 text-[1.05rem] text-cream">{category.name}</h3>
-              <p className="mt-3 text-[0.9rem] leading-relaxed text-gray-400">{category.detail}</p>
+            <Reveal key={category.name} delay={i * 0.06} className="p-6 sm:p-7" style={{ background: 'var(--paper)' }}>
+              <p className="text-[0.6875rem] text-ink-3">{String(i + 1).padStart(2, '0')}</p>
+              <h3 className="mt-3 text-[1.05rem] text-ink">{category.name}</h3>
+              <p className="mt-3 text-[0.9rem] leading-relaxed text-ink-2">{category.detail}</p>
             </Reveal>
           ))}
         </div>
@@ -166,7 +165,7 @@ export default function SiteCheckPage() {
 
       <Section id="faq">
         <div className="flex items-center gap-3">
-          <Spark size={10} className="text-primary" />
+          <Spark size={10} className="text-sage" />
           <span className="label">Questions people ask</span>
         </div>
 
@@ -178,14 +177,12 @@ export default function SiteCheckPage() {
               className="border-t py-6 first:border-t-0 first:pt-0"
               style={{ borderColor: 'var(--line)' }}
             >
-              <h3 className="text-[1rem] text-cream">{faq.q}</h3>
-              <p className="mt-3 text-[0.92rem] leading-relaxed text-gray-400">{faq.a}</p>
+              <h3 className="text-[1rem] text-ink">{faq.q}</h3>
+              <p className="mt-3 text-[0.92rem] leading-relaxed text-ink-2">{faq.a}</p>
             </Reveal>
           ))}
         </div>
       </Section>
-
-      <ContactCTA />
     </>
   );
 }

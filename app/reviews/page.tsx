@@ -5,7 +5,6 @@ import PageHead from '@/app/components/core/PageHead';
 import Reveal from '@/app/components/motion/Reveal';
 import ReviewCard from '@/app/components/reviews/ReviewCard';
 import { formatReviewDate } from '@/app/lib/reviewDate';
-import ContactCTA from '@/app/components/home/ContactCTA';
 import { ArrowDiagonal, GlyphFiverr, Spark } from '@/app/components/marks';
 
 export const metadata: Metadata = {
@@ -35,7 +34,7 @@ const reviewsSchema = {
   '@type': 'ProfessionalService',
   name: site.name,
   url: `${site.url}/reviews`,
-  image: `${site.url}/og-image.webp`,
+  image: `${site.url}/og/site`,
   email: site.email,
   priceRange: '$$',
   address: {
@@ -89,7 +88,7 @@ export default function ReviewsPage() {
 
       <PageHead
         label="Reviews"
-        title="What clients said"
+        title="What clients *said afterwards*"
         intro={`Every review below was written by the client and is shown exactly as they left it. Nothing is edited, nothing is cherry picked out of a worse set. The ${reviews.length} most recent are here in full, out of ${reviewSummary.total} total.`}
         meta={[
           { label: 'Average rating', value: reviewSummary.average.toFixed(1) },
@@ -116,14 +115,14 @@ export default function ReviewsPage() {
           <div className="grid gap-10 md:grid-cols-12">
             <Reveal className="md:col-span-3" y={14}>
               <div className="flex items-center gap-3">
-                <Spark size={10} className="text-primary" />
+                <Spark size={10} className="text-sage" />
                 <span className="label">Where they came from</span>
               </div>
             </Reveal>
 
             <div className="md:col-span-8 md:col-start-5">
               <Reveal y={18}>
-                <p className="text-[0.98rem] leading-[1.75] text-gray-400">
+                <p className="text-[0.98rem] leading-[1.75] text-ink-2">
                   Clients on this page are based in {countries.length} countries. Across all{' '}
                   {reviewSummary.total} reviews the number is {reviewSummary.countries}. Most work
                   is remote, and {reviewSummary.repeatShare}% of clients came back for a second
@@ -135,7 +134,7 @@ export default function ReviewsPage() {
                 {countries.map((country) => (
                   <span
                     key={country}
-                    className="border px-2.5 py-1 text-[0.62rem] text-gray-400"
+                    className="border px-2.5 py-1 text-[0.6875rem] text-ink-2"
                     style={{ borderColor: 'var(--line)' }}
                   >
                     {country}
@@ -154,7 +153,7 @@ export default function ReviewsPage() {
             className="flex flex-col items-start justify-between gap-6 lg:flex-row lg:items-center"
             y={16}
           >
-            <p className="max-w-2xl text-xs leading-relaxed text-gray-500">
+            <p className="max-w-2xl text-xs leading-relaxed text-ink-3">
               Reviews and profile photos are imported from my Fiverr seller profile, newest first,
               with the most recent left on {newest}. Fiverr is a trademark of its owner and this
               site is not affiliated with or endorsed by Fiverr. You can check every one of them
@@ -168,18 +167,16 @@ export default function ReviewsPage() {
               className="group inline-flex shrink-0 items-center gap-3 rounded-full border px-5 py-3 text-sm transition-colors duration-500 hover:border-hair2"
               style={{ borderColor: 'var(--line-2)' }}
             >
-              <GlyphFiverr size={15} className="text-primary" />
+              <GlyphFiverr size={15} className="text-sage" />
               Verify on Fiverr
               <ArrowDiagonal
                 size={12}
-                className="text-primary transition-transform duration-500 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+                className="text-sage transition-transform duration-500 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
               />
             </a>
           </Reveal>
         </div>
       </section>
-
-      <ContactCTA />
     </>
   );
 }

@@ -38,7 +38,9 @@ export const metadata: Metadata = {
     url: `${site.url}/blog/${post.slug}`,
     publishedTime: post.published,
     authors: [site.url],
+    images: [{ url: `/og/${post.slug}`, width: 1200, height: 630, alt: post.title }],
   },
+  twitter: { card: 'summary_large_image', images: [`/og/${post.slug}`] },
 };
 
 export default function Page() {
@@ -60,8 +62,8 @@ export default function Page() {
 
         <P>
           I get asked to do this often enough that I have a fixed order of operations. It is not
-          complicated, but skipping any step costs you rankings that take months to earn back. So
-          here is the whole thing, in the order I actually run it.
+          complicated, but skipping any step costs you rankings that take months to earn back. This
+          is the whole thing, in the order I actually run it.
         </P>
 
         <Takeaways
@@ -135,27 +137,27 @@ export default function Page() {
         <OL
           items={[
             <>
-              <strong className="font-medium text-cream">URLs changed silently.</strong> The old
+              <strong className="font-medium text-ink">URLs changed silently.</strong> The old
               site used <code>/2024/03/my-post/</code> and the new one uses{' '}
               <code>/blog/my-post/</code>. Every link Google has stored now returns a 404.
             </>,
             <>
-              <strong className="font-medium text-cream">Redirects chain or loop.</strong> An old
+              <strong className="font-medium text-ink">Redirects chain or loop.</strong> An old
               URL 301s to a second URL that 301s again. Each hop loses a little, and a loop loses
               the page entirely.
             </>,
             <>
-              <strong className="font-medium text-cream">Metadata was not ported.</strong> Yoast or
+              <strong className="font-medium text-ink">Metadata was not ported.</strong> Yoast or
               RankMath held hand written titles and descriptions in post meta. A fresh build
               generates its own, and suddenly every title is different from the one that was
               ranking.
             </>,
             <>
-              <strong className="font-medium text-cream">The sitemap still lists old URLs.</strong>{' '}
+              <strong className="font-medium text-ink">The sitemap still lists old URLs.</strong>{' '}
               You point crawlers at pages that no longer exist while the new ones go undiscovered.
             </>,
             <>
-              <strong className="font-medium text-cream">Content got trimmed in the rebuild.</strong>{' '}
+              <strong className="font-medium text-ink">Content got trimmed in the rebuild.</strong>{' '}
               Someone decides the old post is too long and cuts it to a summary. That page was
               ranking because of the length.
             </>,

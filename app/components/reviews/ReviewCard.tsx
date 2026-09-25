@@ -45,8 +45,8 @@ function Avatar({ review }: { review: Review }) {
       className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full text-[0.7rem]"
       style={{
         border: '1px solid var(--line-2)',
-        background: 'rgba(225,224,204,0.08)',
-        color: 'var(--cream)',
+        background: 'rgb(var(--ink-rgb) / 0.08)',
+        color: 'var(--ink)',
       }}
     >
       {initials(review.name)}
@@ -67,13 +67,13 @@ export default function ReviewCard({
       className="group relative overflow-hidden border p-6 transition-colors duration-500 hover:border-hair2"
       style={{
         borderColor: 'var(--line)',
-        background: 'var(--surface-1)',
+        background: 'var(--sheet)',
         borderRadius: 'clamp(10px, 1.2vw, 18px)',
       }}
     >
-      <Quote size={26} className="mb-4 text-primary opacity-30" />
+      <Quote size={26} className="mb-4 text-sage opacity-30" />
 
-      <blockquote className="text-[0.95rem] leading-relaxed text-gray-400">
+      <blockquote className="text-[0.95rem] leading-relaxed text-ink-2">
         <span
           style={
             clamp
@@ -96,8 +96,8 @@ export default function ReviewCard({
       >
         <Avatar review={review} />
         <div className="min-w-0 flex-1">
-          <p className="truncate text-[0.95rem] text-cream">{review.name}</p>
-          <p className="mt-1 text-[0.72rem] text-gray-500">
+          <p className="truncate text-[0.95rem] text-ink">{review.name}</p>
+          <p className="mt-1 text-[0.72rem] text-ink-3">
             {review.country || 'Fiverr client'}
             <span className="mx-1.5 opacity-40">/</span>
             <time dateTime={review.date.split('T')[0]}>{formatReviewDate(review.date)}</time>
@@ -107,14 +107,14 @@ export default function ReviewCard({
           <span
             role="img"
             aria-label={`Rated ${review.rating} out of 5`}
-            className="flex gap-0.5 text-primary"
+            className="flex gap-0.5 text-sage"
           >
             {Array.from({ length: review.rating }).map((_, i) => (
               <RatingMark key={i} size={9} />
             ))}
           </span>
           {review.orders > 1 ? (
-            <span className="text-[0.68rem] text-primary">{review.orders} orders</span>
+            <span className="text-[0.68rem] text-sage">{review.orders} orders</span>
           ) : null}
         </div>
       </figcaption>

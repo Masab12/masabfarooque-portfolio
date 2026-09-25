@@ -1,169 +1,152 @@
 import Link from 'next/link';
-import { cv, nav, site, socials } from '@/app/data/site';
-import {
-  Monogram,
-  ArrowDiagonal,
-  ArrowLong,
-  MarkDocument,
-  socialGlyphs as glyphs,
-} from '@/app/components/marks';
+import { coordinates, cv, nav, sheetsNotIn, site, socials } from '@/app/data/site';
+import { services } from '@/app/data/services';
+import { MarkArrow45, MarkRegister } from '@/app/components/marks';
+
+/**
+ * The footer is the title block of the drawing set: who drew it, where,
+ * how to reach them, the pages the masthead does not link to, and the
+ * revision date. The
+ * cells are separated by one pixel gaps over a ruled ground, which is how a
+ * title block is actually printed.
+ *
+ * The revision is the date this build was made, since that is the last time
+ * anything on the site can have changed.
+ */
+
+const revised = new Date().toLocaleDateString('en-GB', {
+  day: 'numeric',
+  month: 'short',
+  year: 'numeric',
+  timeZone: 'Asia/Karachi',
+});
+
+function Cell({
+  label,
+  children,
+  className = '',
+}: {
+  label: string;
+  children: React.ReactNode;
+  className?: string;
+}) {
+  return (
+    <div className={`bg-paper p-5 sm:p-6 ${className}`}>
+      <p className="label mb-4">{label}</p>
+      {children}
+    </div>
+  );
+}
+
+/** Pages the masthead does not already link to. */
+const morePages = sheetsNotIn(nav.map((n) => n.href));
 
 export default function Footer() {
   const year = new Date().getFullYear();
 
   return (
-    <footer className="bg-black px-3 pb-3 sm:px-4 sm:pb-4 md:px-6 md:pb-6">
-      <div className="mx-auto w-full max-w-[1800px] overflow-hidden rounded-2xl bg-[#101010] md:rounded-[2rem]">
-        {/* The address is the loudest thing down here, on purpose */}
-        <div
-          className="border-b px-5 py-9 sm:px-8 sm:py-12 md:px-10 md:py-16"
-          style={{ borderColor: 'var(--line)' }}
-        >
-          <p className="label">Start here</p>
-          <a
-            href={`mailto:${site.email}`}
-            className="group mt-4 flex flex-wrap items-center gap-x-4 gap-y-2 break-all text-[clamp(1.5rem,6.5vw,3.4rem)] font-medium leading-[1.05] tracking-[-0.04em] text-cream transition-opacity duration-300 hover:opacity-70"
+    <footer className="mt-24 pb-[calc(5.5rem+env(safe-area-inset-bottom))] sm:mt-32 lg:pb-10">
+      <div className="shell">
+        <div className="relative">
+          {/* Registration marks at the corners of the block */}
+          <MarkRegister size={14} className="absolute -left-[7px] -top-[7px] text-ink-4" />
+          <MarkRegister size={14} className="absolute -right-[7px] -top-[7px] text-ink-4" />
+
+          <div
+            className="grid gap-px border md:grid-cols-2 xl:grid-cols-12"
+            style={{ borderColor: 'var(--line-2)', background: 'var(--line-2)' }}
           >
-            {site.email}
-            <ArrowLong
-              size={22}
-              className="shrink-0 text-primary transition-transform duration-500 group-hover:translate-x-2 sm:size-7"
-            />
-          </a>
-        </div>
+            <Cell label="Drawn by" className="md:col-span-2 xl:col-span-5">
+              <p className="text-[clamp(1.6rem,1.2rem+1.6vw,2.6rem)] font-extrabold leading-[1.02] tracking-[-0.035em] text-ink">
+                {site.name}
+              </p>
+              <p className="mt-2 text-[1.05rem] text-ink-2">
+                {site.role}, <span className="serif-italic text-[1.15em] text-sage">{site.location}</span>
+              </p>
+              <a
+                href={`mailto:${site.email}`}
+                className="group mt-6 inline-flex min-h-11 items-center gap-2 text-[1.05rem] text-ink underline decoration-[rgb(var(--sage-rgb)/0.45)] decoration-1 underline-offset-[0.3em] transition-colors hover:decoration-sage"
+              >
+                {site.email}
+                <MarkArrow45 size={11} className="text-sage transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
+              </a>
+              <p className="mono mt-3 text-[0.75rem] text-ink-3">
+                {site.phone} · {site.timezone}
+              </p>
+            </Cell>
 
-        <div className="grid grid-cols-2 gap-x-6 gap-y-10 px-5 py-10 sm:gap-x-8 sm:px-8 sm:py-12 md:px-10 md:py-14 lg:grid-cols-12 lg:gap-8">
-          <div className="col-span-2 lg:col-span-4">
-            <Monogram size={30} className="text-cream" />
-            <p className="mt-5 max-w-xs text-xs leading-relaxed text-gray-400 sm:text-sm">
-              {site.tagline} Working from {site.location} with product teams and agencies
-              across Europe, North America and Asia.
-            </p>
-            <p className="label mt-5">
-              {site.timezone}
-              <span className="mx-2 opacity-40">/</span>
-              {site.availability}
-            </p>
+            <Cell label="More pages" className="xl:col-span-3">
+              <ol className="grid grid-cols-1 gap-y-1">
+                {morePages.map((sheet) => (
+                  <li key={sheet.href}>
+                    <Link href={sheet.href} className="group flex min-h-11 items-center gap-3">
+                      <span className="mono w-10 shrink-0 text-[0.6875rem] text-ink-3">{sheet.code}</span>
+                      <span className="text-[0.9375rem] text-ink-2 transition-colors group-hover:text-ink">{sheet.label}</span>
+                    </Link>
+                  </li>
+                ))}
+              </ol>
+            </Cell>
 
-            <div className="mt-6 flex flex-wrap gap-2">
-              {socials.map((s) => {
-                const Glyph = glyphs[s.glyph as keyof typeof glyphs];
-                return (
-                  <a
-                    key={s.label}
-                    href={s.href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    aria-label={s.label}
-                    title={s.label}
-                    className="group flex h-9 w-9 items-center justify-center rounded-full border text-gray-400 transition-colors duration-300 hover:border-hair2 hover:text-cream"
-                    style={{ borderColor: 'var(--line-2)' }}
-                  >
-                    <Glyph size={14} />
-                  </a>
-                );
-              })}
-            </div>
-          </div>
+            <Cell label="Services" className="xl:col-span-2">
+              <ul className="space-y-1">
+                {services.map((service) => (
+                  <li key={service.slug}>
+                    <Link href={`/services/${service.slug}`} className="flex min-h-11 items-center text-[0.9375rem] text-ink-2 transition-colors hover:text-ink">
+                      {service.title}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </Cell>
 
-          <nav aria-label="Footer" className="lg:col-span-2 lg:col-start-6">
-            <p className="label">Pages</p>
-            <ul className="mt-5 space-y-3">
-              <li>
-                <Link
-                  href="/"
-                  className="text-sm text-gray-400 transition-colors duration-300 hover:text-cream"
-                >
-                  Home
-                </Link>
-              </li>
-              {nav.map((item) => (
-                <li key={item.href}>
-                  <Link
-                    href={item.href}
-                    className="text-sm text-gray-400 transition-colors duration-300 hover:text-cream"
-                  >
-                    {item.label}
-                  </Link>
-                </li>
-              ))}
-              <li>
-                <Link
-                  href="/site-check"
-                  className="text-sm text-gray-400 transition-colors duration-300 hover:text-cream"
-                >
-                  Site Check
-                </Link>
-              </li>
-            </ul>
-          </nav>
-
-          <div className="lg:col-span-3">
-            <p className="label">Elsewhere</p>
-            <ul className="mt-5 space-y-3">
-              {socials.map((s) => {
-                const Glyph = glyphs[s.glyph as keyof typeof glyphs];
-                return (
+            <Cell label="Elsewhere" className="md:col-span-2 xl:col-span-2">
+              <ul className="grid grid-cols-2 gap-y-1 xl:grid-cols-1">
+                {socials.map((s) => (
                   <li key={s.label}>
                     <a
                       href={s.href}
                       target="_blank"
-                      rel="noopener noreferrer"
-                      className="group inline-flex items-center gap-2.5 text-sm text-gray-400 transition-colors duration-300 hover:text-cream"
+                      rel="noopener noreferrer me"
+                      className="flex min-h-11 items-center text-[0.9375rem] text-ink-2 transition-colors hover:text-ink"
                     >
-                      <Glyph size={14} className="opacity-50 group-hover:opacity-100" />
                       {s.label}
-                      <ArrowDiagonal
-                        size={11}
-                        className="opacity-0 transition-all duration-300 group-hover:translate-x-0.5 group-hover:opacity-60"
-                      />
                     </a>
                   </li>
-                );
-              })}
-            </ul>
-          </div>
+                ))}
+                <li>
+                  <a
+                    href={cv.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    download={cv.fileName}
+                    className="flex min-h-11 items-center text-[0.9375rem] text-ink-2 transition-colors hover:text-ink"
+                  >
+                    CV, PDF
+                  </a>
+                </li>
+              </ul>
+            </Cell>
 
-          <div className="col-span-2 lg:col-span-3">
-            <p className="label">Document</p>
-            <a
-              href={cv.href}
-              target="_blank"
-              rel="noopener noreferrer"
-              download={cv.fileName}
-              data-cursor="Download PDF"
-              className="group mt-5 flex max-w-xs items-center justify-between gap-3 rounded-xl bg-[#212121] px-4 py-3.5 transition-colors duration-300 hover:bg-[#2a2a2a]"
-            >
-              <span>
-                <span className="block text-sm text-cream">CV</span>
-                <span className="label mt-1 block">PDF, {cv.size}</span>
-              </span>
-              <MarkDocument
-                size={17}
-                className="shrink-0 text-primary transition-transform duration-300 group-hover:translate-y-0.5"
-              />
-            </a>
+            {/* The strip along the bottom edge of a title block */}
+            <div className="grid gap-px md:col-span-2 sm:grid-cols-2 xl:col-span-12 xl:grid-cols-4" style={{ background: 'var(--line-2)' }}>
+              <p className="mono bg-paper px-5 py-3.5 text-[0.6875rem] uppercase text-ink-3 sm:px-6">
+                {coordinates}
+              </p>
+              <p className="mono bg-paper px-5 py-3.5 text-[0.6875rem] uppercase text-ink-3 sm:px-6">
+                Rev. {revised}
+              </p>
+              <p className="mono flex items-center gap-2 bg-paper px-5 py-3.5 text-[0.6875rem] uppercase text-ink-3 sm:px-6">
+                <span aria-hidden className="h-1.5 w-1.5 rounded-full bg-sage" />
+                {site.availability}
+              </p>
+              <p className="mono flex flex-wrap items-center gap-x-4 bg-paper px-5 py-3.5 text-[0.6875rem] uppercase text-ink-3 sm:px-6">
+                <span>© {year}</span>
+                <Link href="/privacy" className="hover:text-ink">Privacy</Link>
+                <Link href="/terms" className="hover:text-ink">Terms</Link>
+              </p>
+            </div>
           </div>
-        </div>
-
-        <div
-          className="flex flex-wrap items-center gap-x-6 gap-y-3 border-t px-5 py-6 sm:px-8 md:px-10 md:justify-between"
-          style={{ borderColor: 'var(--line)' }}
-        >
-          <p className="label order-1">
-            {year} {site.name}
-          </p>
-          <div className="order-2 ml-auto flex gap-6 md:order-3 md:ml-0">
-            <Link href="/privacy" className="label transition-opacity hover:opacity-100">
-              Privacy
-            </Link>
-            <Link href="/terms" className="label transition-opacity hover:opacity-100">
-              Terms
-            </Link>
-          </div>
-          <p className="label order-3 w-full md:order-2 md:w-auto">
-            Next.js, Framer Motion, Almarai and Instrument Serif
-          </p>
         </div>
       </div>
     </footer>
