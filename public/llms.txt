@@ -49,6 +49,11 @@ deployed by him.
 - [Site Check](https://masabfarooque.com/site-check): a free tool that checks any
   web page for search visibility, technical setup, content and speed signals,
   with a PDF report.
+- [UrlToReel](https://masabfarooque.com/urltoreel): a standalone product built
+  and run by Masab Farooque. It turns a website link into short promo videos
+  for Instagram Reels, TikTok and YouTube Shorts. Free to make and edit, with
+  one time credit packs for HD downloads and voice-overs, sold through Polar.
+  Live at https://urltoreel.com.
 
 ## Services
 
