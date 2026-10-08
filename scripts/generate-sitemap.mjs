@@ -13,6 +13,7 @@ const routes = [
   { path: '/services', changefreq: 'monthly', priority: '0.9' },
   { path: '/capabilities', changefreq: 'monthly', priority: '0.9' },
   { path: '/site-check', changefreq: 'monthly', priority: '0.9' },
+  { path: '/urltoreel', changefreq: 'monthly', priority: '0.8' },
   { path: '/reviews', changefreq: 'monthly', priority: '0.8' },
   { path: '/about-masab', changefreq: 'monthly', priority: '0.9' },
   { path: '/contact', changefreq: 'yearly', priority: '0.7' },

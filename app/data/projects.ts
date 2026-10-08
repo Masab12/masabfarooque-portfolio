@@ -30,6 +30,47 @@ export interface Project {
 
 export const projects: Project[] = [
   {
+    slug: 'urltoreel',
+    title: 'UrlToReel',
+    client: 'My own product',
+    year: '2026',
+    category: 'product',
+    summary:
+      'Paste a link and get four short promo videos made from your real website, with motion graphics, music and an optional voice-over.',
+    overview: [
+      'Small businesses know they should post short videos, but few have the time to make them. UrlToReel starts from the one thing every business already has, its website. Paste the link and about three minutes later you get four different promo reels for Instagram, TikTok and YouTube Shorts.',
+      'A real browser opens the page, scrolls it and records it. Along the way it reads the logo, the headlines, the products and prices, the colours and the exact fonts. A planner then picks the strongest lines, a language model tightens the copy, and a deterministic canvas renderer cuts every frame with beat synced motion graphics, music and sound effects. Nothing is stock footage and nothing is invented.',
+      'Every take opens in an editor where you can change any word, colour, scene, format or voice. Making and editing is free. HD downloads and voice-overs are paid for with small credit packs, so people only pay for what costs money to make.',
+      'I designed and built all of it myself, from the capture service and the video engine to the editor, billing and the server it runs on.',
+    ],
+    role: 'Founder and sole engineer. Product, design, capture, rendering engine, editor, billing and infrastructure.',
+    stack: ['Next.js', 'TypeScript', 'Node.js', 'Puppeteer', 'Canvas rendering', 'FFmpeg', 'PostgreSQL', 'Redis', 'BullMQ', 'Docker'],
+    features: [
+      'Records any website in a real browser and reads its logo, headlines, products, colours and fonts',
+      'Four different takes from every link, each with its own look, pacing and music',
+      'Motion graphics cut to the beat of the music, rendered frame by frame on the server',
+      'Optional voice-over written from the site and read by a natural voice',
+      'A full editor for words, colours, scenes, voices and formats, with instant previews',
+      'Every common format: Reels, feed posts, squares and landscape promos',
+      'Credit packs through Polar for HD downloads and voice-overs, with no subscription',
+    ],
+    challenges: [
+      'Reading the real fonts, products and brand colours from any site, including variable web fonts',
+      'Rendering smooth, beat synced motion on a small server without a GPU',
+      'Keeping generated copy faithful to what the site actually says',
+      'Pricing it so the free tier is useful and paid features cover their real cost',
+    ],
+    metrics: [
+      { value: '4', label: 'Reels from every link' },
+      { value: '~3 min', label: 'From link to reels' },
+      { value: '$0', label: 'To make and edit' },
+    ],
+    cover: '/projects/UrlToReel-Homepage.webp',
+    images: ['/projects/UrlToReel-Homepage.webp', '/projects/UrlToReel-Recording.webp', '/projects/UrlToReel-Showcase.webp'],
+    liveUrl: 'https://urltoreel.com',
+    featured: true,
+  },
+  {
     slug: 'the-proposal-maker',
     title: 'The Proposal Maker',
     client: 'Engineering studio',
