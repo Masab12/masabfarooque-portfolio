@@ -39,7 +39,7 @@ const steps = [
   {
     name: 'Get four reels',
     detail:
-      'About three minutes later you get four different takes, each with motion graphics, music and sound effects, plus an optional voice-over. Every frame comes from your own site. Nothing is invented footage.',
+      'About five minutes later you get four different takes, each with motion graphics, music and sound effects, plus an optional voice-over. Every frame comes from your own site. Nothing is invented footage.',
   },
   {
     name: 'Edit and download',
@@ -52,20 +52,20 @@ const packs = [
   {
     name: 'Make and edit',
     price: 'Free',
-    note: 'No card and no account',
-    items: ['Four reels from every link', 'Every format and size', 'The full editor', 'Previews carry a watermark'],
+    note: 'No card needed',
+    items: ['Four reels from every link', 'Every format and size', 'The full editor, music and sound', 'Previews carry a watermark'],
   },
   {
-    name: '4 credits',
-    price: '$4',
-    note: 'One payment',
-    items: ['Four HD downloads, or a voice-over and two downloads', 'No watermark', 'Download an edited take again for free', 'Credits never expire'],
+    name: '2 credits',
+    price: '$5',
+    note: 'One payment, 33% off',
+    items: ['Two HD downloads, or a voice-over on every take from one link', 'No watermark', 'Download an edited take again for free', 'Credits never expire'],
   },
   {
-    name: '12 credits',
+    name: '5 credits',
     price: '$10',
-    note: 'One payment',
-    items: ['Twelve HD downloads, or mix in voice-overs', 'No watermark', 'Download an edited take again for free', 'Use them for any site you run'],
+    note: 'One payment, 50% off',
+    items: ['Everything in the 2 credit pack', '$2 a credit instead of $2.50', 'Use them for any site you run', 'Credits never expire'],
   },
 ];
 
@@ -80,8 +80,8 @@ const schema = [
     image: `${site.url}/products/urltoreel/walkthrough.webp`,
     offers: [
       { '@type': 'Offer', name: 'Make and edit', price: '0', priceCurrency: 'USD' },
-      { '@type': 'Offer', name: '4 credits', price: '4', priceCurrency: 'USD' },
-      { '@type': 'Offer', name: '12 credits', price: '10', priceCurrency: 'USD' },
+      { '@type': 'Offer', name: '2 credits', price: '5', priceCurrency: 'USD' },
+      { '@type': 'Offer', name: '5 credits', price: '10', priceCurrency: 'USD' },
     ],
     url: 'https://urltoreel.com',
     author: { '@type': 'Person', name: site.name, url: site.url },
@@ -118,7 +118,7 @@ export default function UrlToReelPage() {
         intro="Paste a link, post a reel. UrlToReel turns any website into short promo videos for Instagram Reels, TikTok and YouTube Shorts. I designed and built it myself, and I run it as a standalone product alongside my client work."
         meta={[
           { label: 'Made by', value: site.name },
-          { label: 'Pricing', value: 'Free to try, packs from $4' },
+          { label: 'Pricing', value: 'Free to try, packs from $5' },
           { label: 'Payments', value: 'Polar' },
           { label: 'Home', value: 'urltoreel.com' },
         ]}

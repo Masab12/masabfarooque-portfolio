@@ -118,7 +118,7 @@ export const projectSystems: Record<string, SceneGraph> = {
       { id: 'capture', label: 'Capture', shape: 'box', at: [-140, 0], tone: 'sheet', sub: 'Puppeteer',
         note: 'A real browser opens the page, scrolls it and records it, reading the logo, headlines, prices, colours and exact fonts.' },
       { id: 'queue', label: 'Queue', shape: 'stack', at: [-140, 180], tone: 'plate', sub: 'Redis, BullMQ',
-        note: 'Capture and render jobs wait here until a worker is free, so a three minute job never blocks the visitor.' },
+        note: 'Capture and render jobs wait here until a worker is free, so a five minute job never blocks the visitor.' },
       { id: 'render', label: 'Render', shape: 'box', at: [40, 0], tone: 'sage', sub: 'Canvas, FFmpeg',
         note: 'A deterministic canvas renderer cuts four takes frame by frame with beat synced motion graphics, music and sound effects, then FFmpeg encodes them.' },
       { id: 'pg', label: 'Postgres', shape: 'cylinder', at: [40, -180], tone: 'plate', sub: 'Takes, credits',

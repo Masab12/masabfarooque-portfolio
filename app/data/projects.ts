@@ -38,7 +38,7 @@ export const projects: Project[] = [
     summary:
       'Paste a link and get four short promo videos made from your real website, with motion graphics, music and an optional voice-over.',
     overview: [
-      'Small businesses know they should post short videos, but few have the time to make them. UrlToReel starts from the one thing every business already has, its website. Paste the link and about three minutes later you get four different promo reels for Instagram, TikTok and YouTube Shorts.',
+      'Small businesses know they should post short videos, but few have the time to make them. UrlToReel starts from the one thing every business already has, its website. Paste the link and about five minutes later you get four different promo reels for Instagram, TikTok and YouTube Shorts.',
       'A real browser opens the page, scrolls it and records it. Along the way it reads the logo, the headlines, the products and prices, the colours and the exact fonts. A planner then picks the strongest lines, a language model tightens the copy, and a deterministic canvas renderer cuts every frame with beat synced motion graphics, music and sound effects. Nothing is stock footage and nothing is invented.',
       'Every take opens in an editor where you can change any word, colour, scene, format or voice. Making and editing is free. HD downloads and voice-overs are paid for with small credit packs, so people only pay for what costs money to make.',
       'I designed and built all of it myself, from the capture service and the video engine to the editor, billing and the server it runs on.',
@@ -62,7 +62,7 @@ export const projects: Project[] = [
     ],
     metrics: [
       { value: '4', label: 'Reels from every link' },
-      { value: '~3 min', label: 'From link to reels' },
+      { value: '~5 min', label: 'From link to reels' },
       { value: '$0', label: 'To make and edit' },
     ],
     cover: '/projects/UrlToReel-Homepage.webp',
