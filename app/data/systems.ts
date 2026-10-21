@@ -110,6 +110,40 @@ export const scenarios: Scenario[] = [
 /* ── Case studies ─────────────────────────────────────────────── */
 
 export const projectSystems: Record<string, SceneGraph> = {
+  urltoreel: {
+    id: 'urltoreel',
+    nodes: [
+      { id: 'link', label: 'Link', shape: 'slab', at: [-300, 0], tone: 'plate', sub: 'Any website',
+        note: 'Paste the address of a shop, app or landing page.' },
+      { id: 'capture', label: 'Capture', shape: 'box', at: [-140, 0], tone: 'sheet', sub: 'Puppeteer',
+        note: 'A real browser opens the page, scrolls it and records it, reading the logo, headlines, prices, colours and exact fonts.' },
+      { id: 'queue', label: 'Queue', shape: 'stack', at: [-140, 180], tone: 'plate', sub: 'Redis, BullMQ',
+        note: 'Capture and render jobs wait here until a worker is free, so a three minute job never blocks the visitor.' },
+      { id: 'render', label: 'Render', shape: 'box', at: [40, 0], tone: 'sage', sub: 'Canvas, FFmpeg',
+        note: 'A deterministic canvas renderer cuts four takes frame by frame with beat synced motion graphics, music and sound effects, then FFmpeg encodes them.' },
+      { id: 'pg', label: 'Postgres', shape: 'cylinder', at: [40, -180], tone: 'plate', sub: 'Takes, credits',
+        note: 'Every take, edit and the credit balance that pays for an HD export.' },
+      { id: 'editor', label: 'Editor', shape: 'box', at: [220, 0], tone: 'sheet', sub: 'Next.js',
+        note: 'Change any word, colour, scene, format or voice, with an instant preview.' },
+      { id: 'polar', label: 'Polar', shape: 'slab', at: [220, 180], tone: 'cyan', sub: 'HD export',
+        note: 'HD downloads and voice-overs are paid for with one time credit packs, charged through Polar.' },
+    ],
+    edges: [
+      { from: 'link', to: 'capture' },
+      { from: 'queue', to: 'capture' },
+      { from: 'capture', to: 'render' },
+      { from: 'render', to: 'pg' },
+      { from: 'pg', to: 'editor' },
+      { from: 'editor', to: 'polar' },
+      { from: 'editor', to: 'pg', dashed: true },
+    ],
+    flows: [
+      ['link', 'capture', 'render', 'pg', 'editor', 'polar'],
+      ['queue', 'capture'],
+      ['editor', 'pg'],
+    ],
+  },
+
   'the-proposal-maker': {
     id: 'the-proposal-maker',
     nodes: [
